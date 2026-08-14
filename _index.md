@@ -1,60 +1,20 @@
-# Placement Prep: Index
+# Placement Prep
 
-Single entry point. Every topic hangs off this file.
+> [!tldr]
+> The map. Every area has its own index, and this file only points at those.
 
-## DSA
+---
 
-- [[complexity]]: big-O, amortised cost, space tradeoffs
-- [[arrays]]: sliding window, prefix sum, two pointers
-- [[strings]]: hashing, palindromes, pattern matching
-- [[linked-lists]]: reversal, cycle detection, merge
-- [[stacks-queues]]: monotonic stack, deque tricks
-- [[trees]]: traversals, BST, LCA, diameter
-- [[graphs]]: BFS/DFS, topological sort, shortest path, union-find
-- [[heaps]]: top-k, k-way merge
-- [[binary-search]]: on answer, on rotated arrays
-- [[recursion-backtracking]]: subsets, permutations, N-queens
-- [[dynamic-programming]]: 1D, 2D, knapsack, LIS, on trees
-- [[greedy]]: interval scheduling, exchange argument
+## Areas
 
-### Patterns
+| Area | Index | Holds |
+| --- | --- | --- |
+| System Design | [[system-design]] | 7 concepts, 3 terms, 1 case study |
 
-- [[two-pointer]]
-- [[sliding-window]]
-- [[prefix-sum]]
+---
 
-## Node.js
+## Not started yet
 
-- [[event-loop]]: phases, microtasks, starvation
-- [[async]]: callbacks, promises, async/await, error handling
-- [[express]]: middleware, routing, error middleware
-- [[streams]]: readable, writable, backpressure
-- [[modules]]: CommonJS vs ESM, resolution
-- [[testing]]: jest, supertest, mocking
+Nothing is written for these, so there are no files. Each one arrives with its own index the day the first real note does.
 
-## CS Core
-
-- [[dbms]]: normalisation, indexes, transactions, isolation levels
-- [[sql]]: joins, window functions, query plans
-- [[os]]: processes vs threads, scheduling, deadlock, memory
-- [[networks]]: TCP/UDP, HTTP, DNS, TLS
-- [[oops]]: SOLID, design patterns
-
-## System Design
-
-- [[fundamentals]]: scaling, caching, load balancing, CAP
-- [[case-studies]]: URL shortener, rate limiter, chat, feed
-
-## Behavioural
-
-- [[stories]]: STAR-format answers
-- [[questions-to-ask]]
-
-## Personal
-
-- [[log]]: daily solve log
-- [[weak-topics]]
-
-## Interviews
-
-One file per company under `Interviews/`.
+DSA, Node.js, CS Core, Behavioural, interview debriefs, personal solve log.

@@ -1,1 +1,0 @@
-# Solve Log: Lalu
