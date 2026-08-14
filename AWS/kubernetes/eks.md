@@ -23,7 +23,11 @@ The control plane is the part of Kubernetes that decides what runs where, and ru
 | Auto scaling | works with both Kubernetes autoscalers and AWS Auto Scaling |
 | Flexible | run workloads on EC2 instances or on Fargate |
 
-The AWS services it leans on:
+---
+
+## How AWS uses EKS internally
+
+AWS itself runs cloud native applications on EKS, integrating it with these services:
 
 | Service | Provides |
 | --- | --- |
@@ -37,7 +41,7 @@ The AWS services it leans on:
 
 ## EKS against ECS and Lambda
 
-| | EKS | ECS | Lambda |
+| Feature | EKS | ECS | Lambda |
 | --- | --- | --- | --- |
 | **Control plane** | AWS managed | AWS managed | fully serverless |
 | **Orchestration** | Kubernetes | AWS ECS | none |
@@ -50,4 +54,4 @@ The honest way to choose between EKS and ECS: ECS is simpler and ties you to AWS
 
 ## Where it sits in the pipeline
 
-EKS is the last stage in [[deploy-pipeline]]: it pulls the image from ECR and replaces the running pods with it.
+EKS is the last stage in [[deploy-pipeline]]. Once the Deployment is updated with the new image tag, EKS pulls that image from ECR and rolls the pods over to it. The update to the Deployment comes from the pipeline, not from the registry push.

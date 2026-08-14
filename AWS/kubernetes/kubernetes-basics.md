@@ -16,7 +16,9 @@ Think of a restaurant.
 | **Node** | a server, physical or virtual, that runs your pods | one kitchen |
 | **Cluster** | many nodes working together, managed as one | the whole restaurant |
 
-The one people get wrong is that Kubernetes does not manage containers directly. It manages **pods**, and a pod happens to contain containers. That is why the smallest thing you can scale, schedule or restart is a pod.
+The one people get wrong is that Kubernetes does not schedule containers directly. It schedules **pods**, and a pod happens to contain containers. So the smallest thing you can schedule or scale is a pod.
+
+Restarting is the exception worth knowing. When a container inside a pod crashes, the kubelet restarts that container in place, according to the pod's `restartPolicy`, without recreating the pod or moving it to another node.
 
 ---
 

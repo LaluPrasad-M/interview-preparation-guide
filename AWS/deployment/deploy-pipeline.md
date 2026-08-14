@@ -19,7 +19,10 @@
 | Scaling | based on your configuration, usually the Horizontal Pod Autoscaler (HPA) |
 | Self healing | a failing container gets restarted without anyone being paged |
 
-When a new image is pushed to ECR, EKS pulls the latest version and replaces the running instances.
+When a new image is pushed to ECR, the running pods get replaced with the new version.
+
+> [!warning] The push alone does not cause that
+> Kubernetes does not watch a registry. Something has to update the Deployment: a step in the CI pipeline, a `kubectl rollout restart`, or a GitOps controller that notices the change. The original notes describe this as automatic, and the accurate version is in their own list further down, where "auto-replacement on new push" is a **configured deployment policy** rather than default behaviour. Worth knowing, because "who actually triggers the rollout" is a normal follow-up question.
 
 ---
 
@@ -39,7 +42,9 @@ When a new image is pushed to ECR, EKS pulls the latest version and replaces the
 
 In a Kubernetes deployment you specify the number of pods you want, called replicas, and Kubernetes makes sure that many are running.
 
-The Service object then gives you one stable endpoint in front of them and spreads incoming traffic evenly across the pods. That pairing is what gives you scalability and reliability: the replicas provide the capacity, the Service hides the fact that there is more than one of them, and the client never needs to know which pod answered. More on the pieces in [[kubernetes-basics]].
+The Service object then gives you one stable endpoint in front of them and spreads incoming traffic evenly across the pods.
+
+That pairing is what gives you scalability and reliability. The replicas provide the capacity, the Service hides the fact that there is more than one of them, and the client never needs to know which pod answered. More on the pieces in [[kubernetes-basics]].
 
 ---
 

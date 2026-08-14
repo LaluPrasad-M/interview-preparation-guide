@@ -16,7 +16,7 @@ Mechanics for adding to this vault: naming, placement, linking, pull requests, w
 
 Each area is a top-level folder holding one index note named after the folder, plus subfolders when the area is big enough to need them. `System-Design/` shows the pattern:
 
-```
+```text
 System-Design/
   system-design.md      the area index, linked from _index.md
   concepts/             one topic per file
@@ -31,6 +31,8 @@ System-Design/
 | `Node/` | Node.js and JavaScript runtime topics |
 | `CS-Core/` | DBMS, SQL, OS, networks, OOP |
 | `System-Design/` | see the tree above |
+| `AWS/` | `compute/`, `s3/`, `kubernetes/`, `deployment/` |
+| `Node/` | `javascript/`, `runtime/`, `snippets/` with `snippets/server/`, `typescript/` |
 | `Behavioural/` | STAR stories, questions to ask them |
 | `Interviews/` | one file per company, your own debriefs |
 | `people/<your-name>/` | your solve log, weak-topic list, anything personal |

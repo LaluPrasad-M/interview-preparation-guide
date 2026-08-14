@@ -14,9 +14,11 @@
 | Access Control Lists (ACLs) | an object or bucket | granting permissions to specific AWS accounts. The older mechanism |
 | Public Access Block | account or bucket | preventing accidental public exposure, whatever the other three say |
 
-The distinction that matters: an **IAM policy** is attached to the identity asking, and a **bucket policy** is attached to the thing being asked for. When you need to grant access to another AWS account, the bucket policy is the one that can express it.
+The distinction that matters: an **IAM policy** is attached to the identity asking, and a **bucket policy** is attached to the thing being asked for.
 
-**Public Access Block is the seatbelt.** It overrides the rest, which is exactly why it exists. Most published S3 leaks were a bucket policy or ACL someone loosened for a quick test and never tightened, and this setting makes that mistake unavailable.
+Cross account access needs both halves. Something on the resource side has to grant it, which is usually a bucket policy and can also be the older ACL route, **and** the caller's own IAM policy has to allow the call. Neither one is sufficient alone, which is the detail people miss when a cross account setup silently fails.
+
+**Public Access Block is the seatbelt.** It blocks public grants even when a bucket policy or an ACL would allow them, which is what makes it useful: the mistake it prevents is someone loosening a policy for a quick test and never tightening it. Note the limits, though. It only blocks *public* grants, so a bucket policy naming a specific external account still works, and the setting itself can be switched off.
 
 ---
 
@@ -36,7 +38,9 @@ The distinction that matters: an **IAM policy** is attached to the identity aski
 
 ## Choosing between them
 
-SSE-S3 is the default answer and takes no work. SSE-KMS is the answer when you need to say who may decrypt and to prove later who did. SSE-C and client side encryption both exist for the case where AWS must never hold the key, and the cost is that key management becomes entirely your problem, including the part where losing the key destroys the data.
+SSE-S3 is the default answer and takes no work. SSE-KMS is the answer when you need to control who may decrypt and to prove later who did.
+
+SSE-C and client side encryption both exist for the case where AWS must never hold the key. The cost is that key management becomes entirely your problem, including the part where losing the key destroys the data.
 
 > [!tip] The one line worth remembering
 > Encryption at rest protects against someone getting the disk. It does nothing about someone with valid credentials, which is what the access control table above is for. Interviewers like to hear those treated as separate problems.

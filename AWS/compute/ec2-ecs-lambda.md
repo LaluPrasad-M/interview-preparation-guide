@@ -45,7 +45,7 @@ Event driven and fully serverless. A function execution service.
 
 ## Choosing
 
-| | EC2 | ECS | Lambda |
+| Feature | EC2 | ECS | Lambda |
 | --- | --- | --- | --- |
 | **Do you manage servers?** | yes | less, and none with Fargate | no |
 | **Scalability** | autoscaling, but slower | container scaling | instant |

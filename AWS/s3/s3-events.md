@@ -33,4 +33,6 @@ The shape is the same every time: the upload is the event, and nothing polls for
 
 ## Why this comes up in interviews
 
-S3 is rarely the interesting part of a design on its own. It becomes interesting as the join between services: the place an upload arrives, the trigger that starts the work, and the durable store the results go back into. If you can name the event source and what consumes it, you have described most of an event driven architecture.
+S3 is rarely the interesting part of a design on its own. It becomes interesting as the join between services: the place an upload arrives, the trigger that starts the work, and the durable store the results go back into.
+
+If you can name the event source and what consumes it, you have described most of an event driven architecture.

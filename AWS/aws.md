@@ -1,7 +1,7 @@
 # AWS
 
 > [!tldr]
-> Index for everything under `AWS/`. Compute is choosing where code runs, s3 is storage, kubernetes is orchestration, deployment is how the two meet in a pipeline.
+> Index for everything under `AWS/`. Compute is choosing where code runs, S3 is storage, Kubernetes is orchestration, and Deployment is how a container gets from a Git push to a running pod.
 
 ---
 
@@ -19,7 +19,7 @@
 | Note | Covers |
 | --- | --- |
 | [[s3-basics]] | objects, buckets, keys, the flat namespace, console and CLI |
-| [[storage-classes]] | six classes, and why durability never changes between them |
+| [[storage-classes]] | six classes, and the One Zone-IA exception where cheaper really does risk the data |
 | [[s3-security]] | IAM against bucket policies against ACLs, and the four encryption options |
 | [[s3-lifecycle]] | the transition and expiration rule, field by field |
 | [[s3-events]] | Lambda triggers, and the common use cases |
@@ -30,7 +30,7 @@
 
 | Note | Covers |
 | --- | --- |
-| [[kubernetes-basics]] | container, pod, node, cluster, and what the scheduler actually does |
+| [[kubernetes-basics]] | container, pod, node, cluster, and what Kubernetes actually does |
 | [[eks]] | Kubernetes managed by AWS, and how it compares with ECS and Lambda |
 
 ---

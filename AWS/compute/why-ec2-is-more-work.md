@@ -1,7 +1,10 @@
 # Why EC2 is More Work Than ECS
 
 > [!tldr]
-> A fair question: EC2 has autoscaling and ECS does not do it by itself, so why is EC2 called the manual option? Because autoscaling only adds machines. Everything you then have to do with those machines is still yours.
+> The question as it is usually asked: EC2 has autoscaling, so why is it called the manual option? Because autoscaling only adds machines. Everything you then have to do with those machines is still yours.
+
+> [!warning] The usual framing contains a false premise
+> The question is often put as "EC2 autoscales but ECS does not". ECS does autoscale: Service Auto Scaling adjusts the number of running tasks, and it works on the EC2 launch type as well as on Fargate. Fargate removes the servers, it is not what enables the scaling. Worth correcting out loud, because agreeing with the premise makes it look like you think scaling is the difference.
 
 ---
 
@@ -21,7 +24,8 @@ So autoscaling solves one problem, capacity, and leaves every other problem wher
 - ECS is a container orchestration service that runs Docker containers.
 - It abstracts away much of the work of managing individual EC2 instances.
 - Service management is built in, so a failed container gets restarted for you.
-- With Fargate, it autoscales without you managing EC2 instances at all.
+- Service Auto Scaling adjusts the task count for you, on either launch type.
+- With Fargate you do not manage EC2 instances at all.
 - Running ECS on EC2 rather than Fargate means you are back to managing the underlying instances, but deploying and scaling the containers is still easier.
 
 ---

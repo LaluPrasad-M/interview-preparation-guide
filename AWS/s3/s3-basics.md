@@ -38,7 +38,7 @@ A bucket is like a folder, but **flat**. There are no nested directories. A key 
 
 ## Storing a file, start to finish
 
-1. Create a bucket. The name has to be globally unique, across every AWS account in the world.
+1. Create a bucket. The name has to be globally unique, across every AWS account in the commercial partition. The Chinese and GovCloud partitions keep separate namespaces.
 2. Upload an object into it.
 3. Assign permissions to control access.
 4. Retrieve it by URL or API request.
@@ -47,9 +47,20 @@ A bucket is like a folder, but **flat**. There are no nested directories. A key 
 
 ## Using it from the console
 
-**Create a bucket.** Go to the AWS Management Console, navigate to S3, click Create Bucket, enter a unique name, choose a region, configure versioning, encryption and public access, then create it.
+**Step 1: create a bucket.**
 
-**Upload files.** Open the bucket, click Upload, select files, set the storage class and encryption, then upload.
+1. Go to the AWS Management Console.
+2. Navigate to S3 and click Create Bucket.
+3. Enter a unique bucket name and choose a region.
+4. Configure settings like versioning, encryption and public access.
+5. Click Create Bucket.
+
+**Step 2: upload files.**
+
+1. Open the bucket in the AWS Console.
+2. Click Upload and select files.
+3. Configure storage class and encryption.
+4. Click Upload to store the file in S3.
 
 ---
 
@@ -69,7 +80,7 @@ aws s3 cp s3://bucket-name/object-name local-file
 
 Or through the SDKs, which exist for Node.js, Python, Java and the rest.
 
-> [!warning] The bucket name is global
-> Bucket names are unique across all of AWS, not just your account, which is why every obvious name is taken and why a name can leak information. A bucket called `acme-payroll-backups` tells anyone who guesses it that it exists, even if they cannot read it.
+> [!warning] The bucket name is shared with the whole world
+> Bucket names are unique across every account in the partition, not just yours, which is why every obvious name is taken and why the name itself can leak information. A bucket called `acme-payroll-backups` confirms to anyone who guesses it that it exists, even when they cannot read a byte of it.
 
 Storage classes are in [[storage-classes]], access control and encryption in [[s3-security]], automatic transitions in [[s3-lifecycle]], and triggers in [[s3-events]].
