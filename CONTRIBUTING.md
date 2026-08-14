@@ -28,11 +28,12 @@ System-Design/
 | --- | --- |
 | `DSA/` | a data structure or algorithm family: `trees.md`, `binary-search.md` |
 | `DSA/patterns/` | a technique that spans structures: `two-pointer.md`, `sliding-window.md` |
-| `Node/` | Node.js and JavaScript runtime topics |
-| `CS-Core/` | DBMS, SQL, OS, networks, OOP |
+| `Node/` | `javascript/`, `runtime/`, `snippets/` with `snippets/server/`, `typescript/` |
+| `CS-Core/` | DBMS, SQL, OS, networks |
 | `System-Design/` | see the tree above |
 | `AWS/` | `compute/`, `s3/`, `kubernetes/`, `deployment/` |
-| `Node/` | `javascript/`, `runtime/`, `snippets/` with `snippets/server/`, `typescript/` |
+| `Security/` | authentication, authorization, hardening, encryption |
+| `OOP/` | object oriented design concepts |
 | `Behavioural/` | STAR stories, questions to ask them |
 | `Interviews/` | one file per company, your own debriefs |
 | `people/<your-name>/` | your solve log, weak-topic list, anything personal |

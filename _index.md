@@ -12,6 +12,8 @@
 | System Design | [[system-design]] | 7 concepts, 3 terms, 1 case study |
 | Node.js | [[node]] | 9 JavaScript, 7 runtime, 5 snippets, 2 servers, 2 TypeScript |
 | AWS | [[aws]] | 2 compute, 5 S3, 2 Kubernetes, 2 deployment |
+| Security | [[security]] | authentication, authorization, hardening, encryption |
+| OOP | [[oop]] | abstract classes, access modifiers |
 
 ---
 
@@ -19,4 +21,4 @@
 
 Nothing is written for these, so there are no files. Each one arrives with its own index the day the first real note does.
 
-DSA, CS Core, object oriented design, Behavioural, interview debriefs, personal solve log.
+DSA, CS Core, Behavioural, interview debriefs, personal solve log.
