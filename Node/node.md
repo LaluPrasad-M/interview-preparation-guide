@@ -28,15 +28,26 @@
 
 ## Snippets
 
+Language and utility code, the things you reach for while solving something.
+
+| Note | Covers |
+| --- | --- |
+| [[arrays]] | what each method returns, creating arrays and grids, destructuring, slice against splice |
+| [[objects]] | assign, keys and values and entries, own properties against inherited |
+| [[strings-and-numbers]] | negative slice, string immutability, template literals, base conversion |
+| [[timers-and-concurrency]] | sleep, cancellable timers, timeout wrapper, progress, concurrency pool, map and filter and reduce written out |
+| [[console]] | grouping, styling, table, time, trace |
+
+---
+
+## Server
+
+Whole servers you can run, rather than pieces you drop into something else.
+
 | Note | Covers |
 | --- | --- |
 | [[http-server]] | a server with no framework, routing, POST bodies, middleware by hand |
 | [[express-server]] | routes, params, query, a full CRUD API, in memory cache |
-| [[timers-and-concurrency]] | sleep, cancellable timers, timeout wrapper, progress, concurrency pool, map and filter and reduce written out |
-| [[arrays]] | what each method returns, creating arrays and grids, destructuring, slice against splice |
-| [[objects]] | assign, keys and values and entries, own properties against inherited |
-| [[strings-and-numbers]] | negative slice, string immutability, template literals, base conversion |
-| [[console]] | grouping, styling, table, time, trace |
 
 ---
 
