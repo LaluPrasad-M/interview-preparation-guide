@@ -1,1 +1,1 @@
-# Weak Topics — Lalu
+# Weak Topics: Lalu

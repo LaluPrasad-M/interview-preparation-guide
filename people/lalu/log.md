@@ -1,1 +1,1 @@
-# Solve Log — Lalu
+# Solve Log: Lalu

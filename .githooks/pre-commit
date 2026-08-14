@@ -1,0 +1,8 @@
+#!/bin/sh
+# Runs every gate on the lines being committed. Both checks report, rather than
+# stopping at the first failure, so one commit attempt shows everything to fix.
+# Both also take --all to scan the whole working tree.
+status=0
+scripts/check-conflicts.sh || status=1
+scripts/check-style.sh || status=1
+exit $status
