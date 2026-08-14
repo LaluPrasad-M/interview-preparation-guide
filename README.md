@@ -1,9 +1,21 @@
 # Placement Notes
 
-Shared Obsidian vault for placement prep — DSA, Node.js, system design, CS core.
+Shared Obsidian vault for placement prep: DSA, Node.js, system design, CS core.
 The Git repo is the source of truth. Obsidian is just the editor.
 
-Start at [`_index.md`](_index.md).
+## Where things are
+
+| File | Governs |
+| --- | --- |
+| [_index.md](_index.md) | the notes themselves; every topic links from here |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | naming, where a note belongs, linking, pull requests, what not to commit, resolving conflicts |
+| [STYLE.md](STYLE.md) | how an explanation should read: plain language, no generated-sounding text |
+| [scripts/check-style.sh](scripts/check-style.sh) | the dash check, run by the pre-commit hook |
+| [scripts/check-conflicts.sh](scripts/check-conflicts.sh) | the conflict-marker check, run by the pre-commit hook |
+
+This table is the only place files point at each other. Each file above is complete on its
+own and does not defer to the others, so adding a new one means adding a row here and
+nothing else.
 
 ## Setup
 
@@ -19,38 +31,13 @@ Start at [`_index.md`](_index.md).
    - Auto commit-and-sync: **off** (prevents conflict storms)
    - Push on commit: **on**
 
+5. Turn on the repo's git hooks, once per clone:
+   ```bash
+   git config core.hooksPath .githooks
+   ```
+   Git does not share hooks through a clone, so this step is manual, and nothing checks your
+   commits until you run it.
+
 Vault options and enabled core plugins live in `.obsidian/` and are tracked, so a
 clone behaves the same everywhere. Your local pane layout is ignored.
 
-## Working rules
-
-- **Pull before you write. Commit and push before you close.**
-- Work on your own branch. `main` is the merged, reviewed state.
-- One topic file has one owner. Adding to someone else's topic is fine; rewriting it
-  needs a PR they look at.
-- Personal scratch, solve logs and interview debriefs go in `people/<your-name>/`.
-  Nobody else edits those.
-- Keep `assets/` small — compress screenshots before adding. Mobile git slows down on
-  large history.
-
-## Branch workflow
-
-```bash
-git switch -c lalu/segment-trees      # <your-name>/<topic>
-# ...write notes...
-git add -A && git commit -m "dsa: add segment tree notes"
-git push -u origin lalu/segment-trees
-gh pr create --fill
-```
-
-Resolve conflicts on your own branch (`git pull origin main`), then merge the PR.
-That keeps broken merges out of `main`.
-
-## Conventions
-
-- One topic per file, kebab-case names: `binary-search.md`.
-- Link topics with `[[wikilinks]]` — backlinks build the topic map automatically.
-- Code fences always get a language: ` ```cpp `, ` ```js `, ` ```sql `.
-- No imposed note structure. Write each note however that topic wants.
-
-CI blocks any push that leaves merge conflict markers in a note.
