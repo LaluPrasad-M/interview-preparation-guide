@@ -83,3 +83,72 @@ async function example() {
 ```
 
 Leaving off `await` means the function does not wait. Sometimes that is what you want. Usually it means an unhandled rejection later, and Node has terminated the process on those since version 15.
+
+---
+
+## Nested promises flatten themselves
+
+```js
+function chainedPromises() {
+  return new Promise(res1 =>
+    res1(new Promise(res2 =>
+      res2(new Promise(res3 => setTimeout(res3, 1000, 'Data'))))));
+}
+
+console.log(await chainedPromises());  // 'Data'
+```
+
+Three promises deep, and one `await` unwraps all of it. Resolving a promise with another promise makes the outer one wait for the inner one, however many layers there are. You never get a promise of a promise back.
+
+---
+
+## The cooking example
+
+> [!example]- Making a meal, as a promise chain
+> Every step is a promise, and some steps are built out of smaller steps.
+>
+> ```js
+> function washRice(value) {
+>   console.log('starting washRice 1');
+>   return new Promise(function (resolve) {
+>     console.log('starting washRice');
+>     resolve('Washed Rice');
+>     console.log('After Cooking Rice');   // still runs, resolve does not return
+>   });
+>   console.log('ending washRice 1');      // never runs, it is after a return
+> }
+>
+> function cookRice(value) {
+>   return new Promise(function (resolve) {
+>     washRice()
+>       .then(boilRice)
+>       .then(function (value) {
+>         resolve('Rice Cooked');
+>       });
+>   });
+> }
+>
+> function cookFood(value) {
+>   return new Promise(function (resolve) {
+>     cookRice()
+>       .then(cookCurry)
+>       .then(function (value) {
+>         resolve('Food Cooked');
+>       });
+>   });
+> }
+>
+> console.log('Wash Hands before Food');
+> cookFood()
+>   .then(eatFood)
+>   .then(value => console.log('Wash Hands after Food'));
+> console.log('END Of Process');
+> ```
+>
+> Three lessons hide in the log order:
+>
+> 1. `END Of Process` prints almost immediately, long before the food is cooked. The chain was only started, not waited for.
+> 2. `resolve()` is not `return`. The line after it still runs, which is why `After Cooking Rice` appears.
+> 3. Code after a `return` never runs, so `ending washRice 1` prints never.
+>
+> The nesting also shows why `async` and `await` won. The same logic written with `await` is six flat lines with no `new Promise` at all.
