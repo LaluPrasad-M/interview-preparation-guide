@@ -4,3 +4,6 @@
 .obsidian/plugins/*/data.json
 .trash/
 .DS_Store
+
+# Raw dumps, local only — reference material for note conventions, not shared notes
+_inbox/
