@@ -10,6 +10,7 @@
 | Area | Index | Holds |
 | --- | --- | --- |
 | System Design | [[system-design]] | 7 concepts, 3 terms, 1 case study |
+| Node.js | [[node]] | 11 concepts, 3 snippet sets, 2 TypeScript notes |
 
 ---
 
@@ -17,4 +18,4 @@
 
 Nothing is written for these, so there are no files. Each one arrives with its own index the day the first real note does.
 
-DSA, Node.js, CS Core, Behavioural, interview debriefs, personal solve log.
+DSA, CS Core, AWS, object oriented design, Behavioural, interview debriefs, personal solve log.
