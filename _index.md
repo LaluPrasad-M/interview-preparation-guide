@@ -57,4 +57,4 @@ Single entry point. Every topic hangs off this file.
 
 ## Interviews
 
-- [[how-to-debrief]] — one file per company, format inside
+One file per company under `Interviews/`.
