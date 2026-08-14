@@ -32,7 +32,7 @@ The add methods give you a length, the remove methods give you the item. Mixing 
 ```js
 Array(10);                          // [ <10 empty items> ], holes, not undefined
 Array(10).keys();                   // Object [Array Iterator] {}, lazy
-Array.from(Array(10).keys());       // [0, 1, 2, ..., 9]
+Array.from(Array(10).keys());       // [0, 1, 2, ..., 9], the iterator drained into an array
 Array(24).fill(12);                 // 24 copies of 12
 
 // 2D array, m rows of n falses

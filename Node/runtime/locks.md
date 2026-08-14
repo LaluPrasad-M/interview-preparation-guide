@@ -16,17 +16,49 @@ const mutex = new Mutex();
 let sharedResource = 0;
 
 async function criticalSection(taskId) {
+  console.log(`Task ${taskId} is waiting for the lock...`);
+
   const release = await mutex.acquire();   // waits here if someone else holds it
+  console.log(`Task ${taskId} acquired the lock!`);
+
   try {
     sharedResource++;
-    await doWork();
+    console.log(`Task ${taskId} is modifying shared resource: ${sharedResource}`);
+    await new Promise(resolve => setTimeout(resolve, 1000));   // the work
+    console.log(`Task ${taskId} is releasing the lock.`);
   } finally {
-    release();                             // always, even if doWork throws
+    release();                             // always, even if the work throws
   }
+}
+
+for (let i = 1; i <= 3; i++) {
+  criticalSection(i);
 }
 ```
 
-The order is the thing to remember: task 1 acquires, tasks 2 and 3 wait in a queue the library keeps, and each release lets exactly one more through.
+Output:
+
+```text
+Task 1 is waiting for the lock...
+Task 2 is waiting for the lock...
+Task 3 is waiting for the lock...
+Task 1 acquired the lock!
+Task 1 is modifying shared resource: 1
+Task 1 is releasing the lock.
+Task 2 acquired the lock!
+Task 2 is modifying shared resource: 2
+Task 2 is releasing the lock.
+Task 3 acquired the lock!
+Task 3 is modifying shared resource: 3
+Task 3 is releasing the lock.
+```
+
+Two things to take from it. All three tasks are started before any of them acquires, so the shared resource increments strictly one at a time rather than three tasks racing to 3. And each release lets exactly one waiter through, in the order they queued, which the library maintains for you.
+
+> [!warning] The three waiting lines all print first
+> Even when the lock is free, `await mutex.acquire()` yields to the microtask queue, so the synchronous part of all three calls runs before any of them continues. Verified on Node v22.16.0 with `async-mutex`.
+>
+> This matters because it is easy to assume the first caller sails through without pausing. It does not. Anything you need to happen strictly before the lock is taken has to be before the `await`, not after it.
 
 > [!warning] The release has to be in a finally block
 > If the work throws and you release only on the happy path, the lock is held forever and every other task waits for a task that has already died.
@@ -67,6 +99,8 @@ Have a fallback for when Redis itself is the thing that failed. Going straight t
 
 ## Table lock, inside the database
 
+This is PostgreSQL syntax. MySQL has no `IN EXCLUSIVE MODE`, and its locking works differently, so do not carry the statement across.
+
 ```sql
 LOCK TABLE my_schema.my_table IN EXCLUSIVE MODE NOWAIT
 ```
@@ -79,4 +113,4 @@ Run inside a transaction, and the lock is tied to that transaction.
 | **`NOWAIT`** | fail immediately if someone else holds the lock, instead of waiting. A deadlock guard |
 | **You unlock it by** | ending the transaction. There is no unlock statement |
 
-That last row is the difference from a mutex. An application lock is something you must remember to release. A database lock releases itself, because its lifetime is the transaction's lifetime.
+That last row is the difference from a mutex. An application lock is something you must remember to release. A database lock releases itself, because its lifetime is the transaction's lifetime, and PostgreSQL cleans it up even if the connection dies mid statement.

@@ -1,7 +1,7 @@
-# call vs apply vs bind
+# this Binding
 
 > [!tldr]
-> Three ways to tell a function what `this` should be. Two of them run the function now, one hands you a new function for later.
+> `call`, `apply` and `bind`, three ways to tell a function what `this` should be. Two of them run the function now, one hands you a new function for later.
 
 ---
 

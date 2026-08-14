@@ -87,7 +87,7 @@ switch (number) {
 let a = 13;
 const fn1 = function () {
   const lst = [0,1,2,3,4,5,6,7,8,9];
-  _.each(lst, function (eachNum) {
+  lst.forEach(function (eachNum) {
     if (eachNum === 5) return 100;   // returns from THIS callback only
     else a = eachNum;
   });
@@ -107,4 +107,6 @@ console.log(fn2(), b);   // 100, 4
 ```
 
 > [!warning] This is the difference between a loop and a callback
-> `return` inside `_.each` or `forEach` ends that one call and the iteration carries on, so `a` reaches 9 and the outer function still returns 2000. `return` inside a real `for` loop leaves the whole function, so `b` stops at 4. If you need to break out early, use a `for` loop, or `some`, or `find`.
+> `return` inside `forEach` ends that one call and the iteration carries on, so `a` reaches 9 and the outer function still returns 2000. `return` inside a real `for` loop leaves the whole function, so `b` stops at 4. If you need to break out early, use a `for` loop, or `some`, or `find`.
+
+Lodash's `_.each` behaves the same way, which is how the original version of this example was written. `forEach` needs no dependency and makes the same point.

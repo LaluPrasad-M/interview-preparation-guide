@@ -16,6 +16,14 @@
 
 Two of those names are misleading. `setImmediate` is not immediate, and `process.nextTick` does not wait for the next tick. Learn them as positions in the queue rather than as English.
 
+Three words used above are worth pinning down, because everything else builds on them.
+
+| Word | Means |
+| --- | --- |
+| **Microtask** | small work that runs between callbacks rather than waiting for a phase of its own. Both the nextTick queue and promise callbacks are microtasks |
+| **Poll** | the phase where the loop waits for I/O, so it is the one that blocks when there is nothing else to do |
+| **Check** | the phase straight after poll, which exists to run `setImmediate`. That is why `setImmediate` lands after I/O rather than before it |
+
 ---
 
 ## The question you will be asked
@@ -33,7 +41,7 @@ console.log('End');
 
 Output:
 
-```
+```text
 Start
 End
 nextTick

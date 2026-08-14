@@ -1,28 +1,41 @@
 # Node.js
 
 > [!tldr]
-> Index for everything under `Node/`. Concepts are the theory questions, snippets are code worth having ready, typescript is the type system on top.
+> Index for everything under `Node/`. JavaScript is the language itself, runtime is how Node executes and loads it, snippets is code to reach for, typescript is the type system on top.
 
 ---
 
-## Concepts
+## JavaScript
+
+The language, independent of where it runs.
+
+| Note | Covers |
+| --- | --- |
+| [[function-types]] | named, anonymous, arrow, IIFE, pure, curried, higher order, generators |
+| [[prototypes-and-classes]] | constructor functions, ES6 classes, the prototype chain, hasOwnProperty |
+| [[var-vs-let]] | scope, hoisting, the temporal dead zone, the setTimeout loop question |
+| [[closures]] | why a function remembers variables that should be gone |
+| [[this-binding]] | call, apply and bind, and when you need each |
+| [[iteration]] | for against for...of against for...in, switch scoping, return inside a callback |
+| [[deep-clone]] | structuredClone, the JSON trick and what it drops, writing it yourself |
+| [[object-locking]] | freeze, seal and preventExtensions |
+| [[coercion-gotchas]] | the output puzzles: type juggling, sort, parseInt, falsy against nullish |
+
+---
+
+## Runtime
+
+How Node executes your code, loads it, and stops two things happening at once.
 
 | Note | Covers |
 | --- | --- |
 | [[event-loop]] | nextTick, promises, setTimeout and setImmediate, and the order questions built on them |
 | [[promises]] | all, allSettled, race, any, how errors travel through await, the cooking chain example |
-| [[function-types]] | named, anonymous, arrow, IIFE, pure, curried, higher order, generators |
-| [[prototypes-and-classes]] | constructor functions, ES6 classes, the prototype chain, hasOwnProperty |
-| [[var-vs-let]] | scope, hoisting, the temporary dead zone, the setTimeout loop question |
-| [[closures]] | why a function remembers variables that should be gone |
-| [[iteration]] | for against for...of against for...in, switch scoping, return inside a callback |
-| [[this-binding]] | call, apply and bind, and when you need each |
-| [[modules]] | ES Modules against CommonJS, and the export footgun |
-| [[deep-clone]] | structuredClone, the JSON trick and what it drops, writing it yourself |
-| [[object-locking]] | freeze, seal and preventExtensions |
-| [[coercion-gotchas]] | the output puzzles: type juggling, sort, parseInt, falsy against nullish |
-| [[locks]] | mutex in one process, Redis lock across processes, table lock in the database |
+| [[modules]] | ES Modules against CommonJS, sync against async loading, the export footgun |
 | [[worker-threads]] | moving CPU heavy work off the main thread. Written from scratch, your notebook stops at the heading |
+| [[locks]] | mutex in one process, Redis lock across processes, table lock in the database |
+| [[puzzles-scheduling]] | 13 what does this print questions on the event loop, answers folded |
+| [[puzzles-promises]] | 15 combinator and error handling questions, answers folded |
 
 ---
 
@@ -40,14 +53,14 @@ Language and utility code, the things you reach for while solving something.
 
 ---
 
-## Server
+### Server
 
-Whole servers you can run, rather than pieces you drop into something else.
+Under `snippets/server/`. Whole servers you can run, rather than pieces you drop into something else.
 
 | Note | Covers |
 | --- | --- |
 | [[http-server]] | a server with no framework, routing, POST bodies, middleware by hand |
-| [[express-server]] | routes, params, query, a full CRUD API, in memory cache |
+| [[express-server]] | routes, params, query, full CRUD across five routes, in memory cache |
 
 ---
 
@@ -55,13 +68,5 @@ Whole servers you can run, rather than pieces you drop into something else.
 
 | Note | Covers |
 | --- | --- |
-| [[types]] | narrowing and widening, as const, Readonly, unions, template literal types |
+| [[types]] | narrowing and widening, as const, Readonly, unions, template literal types, running a file |
 | [[enums]] | why number enums break over a network, and what to use instead |
-
----
-
-## Run a TypeScript file
-
-```bash
-npx ts-node <file-path>
-```

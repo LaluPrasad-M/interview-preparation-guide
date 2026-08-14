@@ -3,6 +3,18 @@
 > [!tldr]
 > Four combinators, and one rule about errors: an `await` that rejects behaves exactly like a `throw`, so `try` and `catch` work normally.
 
+Two helpers used throughout, the same pair as [[puzzles-promises]]. One resolves, one rejects, and they are named differently so no snippet is ambiguous about which it means:
+
+```js
+function fetchData(t = 1000, value = 'Data') {
+  return new Promise(resolve => setTimeout(resolve, t, value));
+}
+
+function failData(t = 1000) {
+  return new Promise((_, reject) => setTimeout(reject, t, new Error('Error occurred')));
+}
+```
+
 ---
 
 ## The combinators
@@ -17,6 +29,7 @@
 `Promise.all` also accepts plain values, which it treats as already resolved:
 
 ```js
+const slowPromise = fetchData(1000, 'foo');
 Promise.all([Promise.resolve(3), 42, slowPromise]).then(console.log);
 // [3, 42, 'foo']
 ```
@@ -27,7 +40,7 @@ Promise.all([Promise.resolve(3), 42, slowPromise]).then(console.log);
 
 ```js
 try {
-  await Promise.all([fetchData(1000), fetchData(5000)]);
+  await Promise.all([failData(1000), failData(5000)]);
 } catch (error) {
   console.log(error.message); // fires at 1000ms, not 5000ms
 }
@@ -36,7 +49,7 @@ try {
 `Promise.all` gives up the moment anything fails. That is what you want when you need all the results, and wrong when you want to know which ones worked:
 
 ```js
-const results = await Promise.allSettled([fetchData(), fetchAnotherData()]);
+const results = await Promise.allSettled([fetchData(1000, 'Resolved Data'), failData(500)]);
 
 results.forEach((result, index) => {
   if (result.status === 'fulfilled') console.log(index, 'Data:', result.value);
@@ -54,7 +67,7 @@ results.forEach((result, index) => {
 ```js
 async function example() {
   try {
-    const data = await fetchData();     // rejects
+    const data = await failData();      // rejects
     console.log(data);                  // skipped
   } catch (error) {
     console.log(error.message);
@@ -105,7 +118,7 @@ Three promises deep, and one `await` unwraps all of it. Resolving a promise with
 ## The cooking example
 
 > [!example]- Making a meal, as a promise chain
-> Every step is a promise, and some steps are built out of smaller steps.
+> Every step is a promise, and some steps are built out of smaller steps. Abridged: `boilRice`, `washCereals`, `boilCereals`, `cookCurry` and `eatFood` all follow the same shape as `washRice` and are left out.
 >
 > ```js
 > function washRice(value) {

@@ -27,7 +27,7 @@ const arrowFunction = () => {
 
 const obj = { name: 'John', regular: regularFunction, arrow: arrowFunction };
 
-obj.regular(); // { name: 'John', regular: [Function], arrow: [Function] }
+obj.regular(); // { name: 'John', regular: [Function: regularFunction], arrow: [Function: arrowFunction] }
 obj.arrow();   // {}
 ```
 
@@ -44,6 +44,7 @@ const myModule = (function () {
   };
 })();
 
+console.log(myModule.getCounter()); // 0
 myModule.increment();
 console.log(myModule.getCounter()); // 1
 ```
@@ -73,9 +74,29 @@ function pure(counter) { return counter + 1; } // returns a new value instead
 **Curried.** A function of three arguments turned into three functions of one argument each. It lets you supply arguments now and the rest later.
 
 ```js
-const curried = (a) => (b) => (c) => a + b + c;
-console.log(curried(1)(2)(3)); // 6
+// not curried
+function multipleArgFunction(a, b, c) {
+  return a + b + c;
+}
+console.log(multipleArgFunction(1, 2, 3)); // 6
+
+// curried, written out
+function curryFunction1(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+
+// curried, as arrows
+const curryFunction2 = (a) => (b) => (c) => a + b + c;
+
+console.log(curryFunction1(1)(2)(3)); // 6
+console.log(curryFunction2(1)(2)(3)); // 6
 ```
+
+The two curried versions are the same function. The arrow form is what you write, the nested form is what it means, and being able to write both is what an interviewer is checking.
 
 **Constructor.** Called with `new`, and it builds an object.
 

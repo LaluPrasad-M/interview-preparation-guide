@@ -32,35 +32,57 @@ console.log(typeof NaN);       // 'number'   the not a number value is a number
 ## Numbers
 
 ```js
-console.log(0.1 + 0.2 === 0.3);  // false, floating point
+console.log(0.1 + 0.2 === 0.3);   // false, floating point
 console.log(Number('10') === 10); // true
 console.log(parseInt('11', 2));   // 3, second argument is the base
 console.log((10).toString(2));    // '1010'
 console.log(2 ** 3);              // 8
 ```
 
+More on base conversion in [[strings-and-numbers]].
+
 ---
 
 ## Sorting
 
 ```js
-const arr = [1, 9, 5, 3, 0, 14, 8];
-arr.sort();             // [0, 1, 14, 3, 5, 8, 9]
-arr.sort((a, b) => a - b); // [0, 1, 3, 5, 8, 9, 14]
+var arr = [1, 9, 5, 3, 0, 14, 8];
+
+var sortedArr = arr.sort();
+console.log(arr);        // [0, 1, 14, 3, 5, 8, 9], the original was mutated
+console.log(sortedArr);  // [0, 1, 14, 3, 5, 8, 9], same array
+
+var sortedArr = arr.toSorted();
+console.log(arr);        // unchanged
+console.log(sortedArr);  // a new array, still sorted alphabetically
+
+var sortedArr = arr.sort((a, b) => a - b);
+console.log(arr);        // [0, 1, 3, 5, 8, 9, 14], mutated again
+console.log(sortedArr);  // [0, 1, 3, 5, 8, 9, 14], the same array
 ```
 
 > [!warning] Default sort is alphabetical
-> `sort` converts everything to strings unless you pass a comparator, which is why 14 lands between 1 and 3. Also note `sort` mutates the array while `toSorted` returns a new one.
+> `sort` converts everything to strings unless you pass a comparator, which is why 14 lands between 1 and 3. `sort` also mutates and returns the same array, so `arr` and `sortedArr` are the same object. `toSorted` returns a new one and leaves the original alone.
 
 ---
 
 ## The map parseInt classic
 
 ```js
-['0', '1', '2', '10', '12'].map(parseInt); // [0, NaN, NaN, 3, 5]
+['0', '1', '2', '10', '12'].map(parseInt); // [0, NaN, NaN, 3, 6]
 ```
 
-`map` passes three arguments, and `parseInt` takes two. So the index becomes the base. `parseInt('1', 1)` is invalid, `parseInt('10', 3)` is 3. Fix it with `.map(Number)` or `.map(s => parseInt(s, 10))`.
+`map` passes three arguments, and `parseInt` takes two, so the index becomes the base. Working through it:
+
+| Call | Result | Why |
+| --- | --- | --- |
+| `parseInt('0', 0)` | 0 | base 0 means "guess", so decimal |
+| `parseInt('1', 1)` | NaN | base 1 does not exist |
+| `parseInt('2', 2)` | NaN | binary has no digit 2 |
+| `parseInt('10', 3)` | 3 | 1 times 3, plus 0 |
+| `parseInt('12', 4)` | 6 | 1 times 4, plus 2 |
+
+Fix it with `.map(Number)` or `.map(s => parseInt(s, 10))`.
 
 ---
 
@@ -81,7 +103,11 @@ let x = {
   toString() { return this.flag++; }
 };
 
-if (x == 1 && x == 2 && x == 3) console.log('Hello World!');
+if (x == 1 && x == 2 && x == 3) {
+  console.log('Hello World!');
+} else {
+  console.log('Goodbye World!');
+}
 ```
 
 It prints. Loose `==` calls `toString` each time, and this one returns a different number every call.
@@ -114,10 +140,20 @@ arr[5] = 6;
 console.log(arr.length); // 6, not 4
 ```
 
-Length is the highest index plus one, not the count of items. The gap holds empty slots, which `forEach` and `map` skip over.
+Length is the highest index plus one, not the count of items. The gap holds empty slots, which `forEach` and `map` skip over while a plain `for` loop sees `undefined`.
 
 ---
 
-## Bonus, from a binary search
+## Ternary is falsy too
 
-`mid = (low + high) / 2` overflows when both are near the maximum integer. Use `mid = low + (high - low) / 2`. Same answer, no overflow.
+```js
+const input = '';
+const result = input ? input : 'Default Value';
+console.log(result); // 'Default Value'
+```
+
+A ternary tests truthiness, exactly like `||`. So all three of `||`, `? :` and `if` treat `''`, `0` and `NaN` as false, and only `??` narrows that to `null` and `undefined`.
+
+---
+
+Sources for this note: the [tricky JavaScript ES6789 snippets](https://www.codinn.dev/tricky-javascript-2023/es6789-code-snippets-interview-questions) collection.

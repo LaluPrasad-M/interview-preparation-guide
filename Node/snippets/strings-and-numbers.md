@@ -61,4 +61,21 @@ parseInt('11', 2);     // 3, reading '11' as binary
 The second argument to `parseInt` is the base you are reading **from**. The argument to `toString` is the base you are writing **to**. Opposite directions, easy to mix up.
 
 > [!tip] Always pass the base to parseInt
-> Leaving it out lets the string decide, so a leading zero or an `0x` prefix changes the answer. `parseInt(value, 10)` every time, unless you mean otherwise.
+> Leaving it out lets the string decide, so a leading zero or an `0x` prefix changes the answer. `parseInt(value, 10)` every time, unless you mean otherwise. Passing it by accident is its own bug, see the `map(parseInt)` case in [[coercion-gotchas]].
+
+---
+
+## Big numbers lose precision, they do not overflow
+
+The interview question is usually asked the other way round: in binary search, `mid = (low + high) / 2` breaks when `low` and `high` are near the maximum integer, so use `mid = low + (high - low) / 2` instead.
+
+That fix is for languages with fixed width integers, like C++ or a Java `int`, where the addition wraps around into a negative number.
+
+JavaScript has no integer type. Every number is a float64, so nothing wraps. What you get instead is silent precision loss above `Number.MAX_SAFE_INTEGER`, which is 2 to the power 53 minus 1:
+
+```js
+Number.MAX_SAFE_INTEGER;        // 9007199254740991
+9007199254740993 === 9007199254740992;  // true, both round to the same float
+```
+
+Use `BigInt` when you genuinely need exact integers that large. And in JavaScript a binary search still needs `Math.floor((low + high) / 2)`, because dividing two integers gives you a fraction.

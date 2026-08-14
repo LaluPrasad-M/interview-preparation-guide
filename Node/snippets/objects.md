@@ -48,11 +48,11 @@ All three ignore inherited properties and only report the object's own keys.
 
 ```js
 const obj = { name: 'John', age: 30 };
-const obj2 = Object.create(obj);
+console.log(obj.hasOwnProperty('name'));  // true
 
-obj2.name;                    // 'John', read through the prototype
-obj2.hasOwnProperty('name');  // false
-obj.hasOwnProperty('name');   // true
+const obj2 = Object.create(obj);          // obj becomes obj2's prototype
+console.log(obj2.name);                   // 'John', read through the prototype
+console.log(obj2.hasOwnProperty('name')); // false, it is not obj2's own
 ```
 
-`Object.create(obj)` makes a new object whose prototype is `obj`. Reading works, but the property is not its own. See [[prototypes-and-classes]].
+`Object.keys`, `values` and `entries` also report only an object's own properties, so they agree with `hasOwnProperty` rather than with plain property access. The chain itself is in [[prototypes-and-classes]].

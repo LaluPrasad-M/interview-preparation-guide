@@ -10,7 +10,7 @@
 | Area | Index | Holds |
 | --- | --- | --- |
 | System Design | [[system-design]] | 7 concepts, 3 terms, 1 case study |
-| Node.js | [[node]] | 11 concepts, 3 snippet sets, 2 TypeScript notes |
+| Node.js | [[node]] | 9 JavaScript, 7 runtime, 5 snippets, 2 servers, 2 TypeScript |
 
 ---
 

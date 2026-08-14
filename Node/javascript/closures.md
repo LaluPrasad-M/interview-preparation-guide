@@ -41,7 +41,7 @@ outer();
 ```
 
 > [!warning] The inner declaration wins before it exists
-> `var x = 10` inside `inner` creates a local `x` for the whole of `inner`, so the outer `x` is invisible in there. The log runs before the assignment, so it prints `undefined`. Swap `var` for `let` and it throws instead, because of the temporary dead zone. See [[var-vs-let]].
+> `var x = 10` inside `inner` creates a local `x` for the whole of `inner`, so the outer `x` is invisible in there. The log runs before the assignment, so it prints `undefined`. Swap `var` for `let` and it throws instead, because of the temporal dead zone. See [[var-vs-let]].
 
 The rule underneath: a scope's variables are decided by where the code is written, not by what is happening when it runs. That is what lexical scoping means.
 

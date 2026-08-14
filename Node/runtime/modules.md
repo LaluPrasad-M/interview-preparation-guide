@@ -15,6 +15,7 @@
 | **Default export** | `export default function myFunc() {}` | `module.exports = function myFunc() {};` |
 | **Loading** | asynchronous | synchronous |
 | **Dynamic import** | `import('./mod.js').then(...)` | `require('./mod')` anywhere, including inside an `if` |
+| **Scope** | variables are not shared across modules, each one is its own scope | variables and functions can be shared through `module.exports` |
 | **Top level `this`** | `undefined` | the `exports` object, so `{}` |
 | **Top level await** | allowed | not allowed |
 | **Where it fits** | browsers and modern Node | Node, mostly older code |
@@ -27,6 +28,10 @@
 // ES Module
 import express from 'express';
 
+function createServer(app) {
+  app.listen(3000, () => console.log('Server listening on port 3000'));
+}
+
 export const pi = 3.14;
 export default { express, createServer };
 ```
@@ -34,6 +39,10 @@ export default { express, createServer };
 ```js
 // CommonJS
 const express = require('express');
+
+function createServer(app) {
+  app.listen(3000, () => console.log('Server listening on port 3000'));
+}
 
 module.exports.pi = 3.14;
 module.exports = { express, createServer };   // this line replaces the one above
