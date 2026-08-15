@@ -39,6 +39,19 @@ The five places a design decision gets made, front to back, plus two that cut ac
 
 ---
 
+## Worked examples
+
+One real system, written up end to end, rather than a topic.
+
+| Example | Covers |
+| --- | --- |
+| [[vymo-websales]] | a website to CRM lead integration: [[overview-and-requirements]], [[hld]], [[lld]], [[caching-and-errors]], and [[patterns-worth-stealing]] |
+
+> [!warning] The Vymo example contains work material
+> Real client name, SLA, encryption standard and cache TTLs. Fine in a private repo, and to be reviewed before this repo is ever public. [[patterns-worth-stealing]] is the sanitised version, safe to discuss anywhere.
+
+---
+
 ## Where to learn more
 
 - [Jio Cinema system design talk](https://www.youtube.com/watch?v=36N1Bz7qW0A)

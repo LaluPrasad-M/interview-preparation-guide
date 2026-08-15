@@ -9,7 +9,7 @@
 
 | Area | Index | Holds |
 | --- | --- | --- |
-| System Design | [[system-design]] | 7 concepts, 3 terms, 1 case study |
+| System Design | [[system-design]] | 7 concepts, 3 terms, 1 case study, 1 worked example |
 | Node.js | [[node]] | 9 JavaScript, 7 runtime, 5 snippets, 2 servers, 2 TypeScript |
 | AWS | [[aws]] | 2 compute, 5 S3, 2 Kubernetes, 2 deployment |
 | Security | [[security]] | authentication, authorization, hardening, encryption |
