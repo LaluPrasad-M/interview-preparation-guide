@@ -4,11 +4,31 @@ Shared Obsidian vault for placement prep: DSA, Node.js, system design, CS core. 
 
 ---
 
+## Layout
+
+The notes live in `vault/`, and everything else is repo plumbing. Open **`vault/`** as your Obsidian vault, not the repo root, so the sidebar shows notes rather than READMEs and shell scripts.
+
+```text
+placement-notes/
+  vault/            <- open this one in Obsidian
+    _index.md       the map, every area links from here
+    System-Design/  Node/  AWS/  Security/  OOP/
+    assets/         images referenced from notes
+    .obsidian/      vault settings, tracked
+  _inbox/           raw source material, local only, never committed
+  README.md  CONTRIBUTING.md  STYLE.md
+  scripts/  .githooks/
+```
+
+`_inbox/` sits outside the vault on purpose. It holds Word documents and Jupyter notebooks, which Obsidian cannot render, so inside the vault they would be dead weight in the sidebar. Drop raw material there through Finder, not through Obsidian.
+
+---
+
 ## Where things are
 
 | File | Governs |
 | --- | --- |
-| [_index.md](_index.md) | the notes themselves; every topic links from here |
+| [vault/_index.md](vault/_index.md) | the notes themselves; every area links from here |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | naming, where a note belongs, linking, pull requests, what not to commit, resolving conflicts |
 | [STYLE.md](STYLE.md) | how an explanation should read: plain language, no generated-sounding text |
 | [scripts/check-style.sh](scripts/check-style.sh) | the dash check, run by the pre-commit hook |
@@ -25,17 +45,18 @@ This table is the only place files point at each other. Each file above is compl
    ```bash
    git clone git@github.com:LaluPrasad-M/placement-notes.git
    ```
-3. Obsidian → **Open folder as vault** → pick the cloned folder.
+3. Obsidian → **Open folder as vault** → pick the **`vault/`** folder inside the clone.
 4. Settings → Community plugins → Browse → install **Git** (`obsidian-git`). Set it up as:
    - Auto pull on vault open: **on**
    - Auto commit-and-sync: **off** (prevents conflict storms)
    - Push on commit: **on**
-
 5. Turn on the repo's git hooks, once per clone:
    ```bash
    git config core.hooksPath .githooks
    ```
    Git does not share hooks through a clone, so this step is manual, and nothing checks your commits until you run it.
 
-Vault options and enabled core plugins live in `.obsidian/` and are tracked, so a clone behaves the same everywhere. Your local pane layout is ignored.
+Vault options and enabled core plugins live in `vault/.obsidian/` and are tracked, so a clone behaves the same everywhere. Your local pane layout is ignored.
 
+> [!tip] The git plugin still works from a subfolder
+> `obsidian-git` walks up from the vault folder to find the repository, so pointing Obsidian at `vault/` does not stop it committing or pulling. It just means the plugin's file list shows paths relative to the repo root rather than the vault.

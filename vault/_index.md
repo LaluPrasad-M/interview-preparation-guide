@@ -14,11 +14,3 @@
 | AWS | [[aws]] | 2 compute, 5 S3, 2 Kubernetes, 2 deployment |
 | Security | [[security]] | authentication, authorization, hardening, encryption |
 | OOP | [[oop]] | abstract classes, access modifiers |
-
----
-
-## Not started yet
-
-Nothing is written for these, so there are no files. Each one arrives with its own index the day the first real note does.
-
-DSA, CS Core, Behavioural, interview debriefs, personal solve log.

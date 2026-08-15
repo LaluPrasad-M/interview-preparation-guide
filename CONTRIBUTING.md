@@ -14,14 +14,17 @@ Mechanics for adding to this vault: naming, placement, linking, pull requests, w
 
 ## Where a note belongs
 
-Each area is a top-level folder holding one index note named after the folder, plus subfolders when the area is big enough to need them. `System-Design/` shows the pattern:
+All notes live under `vault/`. Paths in this file are relative to it, so `Node/` means `vault/Node/`.
+
+Each area is a folder inside `vault/` holding one index note named after the folder, plus subfolders when the area is big enough to need them. `System-Design/` shows the pattern:
 
 ```text
-System-Design/
+vault/System-Design/
   system-design.md      the area index, linked from _index.md
   concepts/             one topic per file
   terms/                short definitions, quick to check
   case-studies/         one real system per file
+  worked-examples/      one whole system, written up end to end
 ```
 
 | Folder | Holds |
@@ -50,7 +53,7 @@ Personal folders are single-owner. Nobody edits someone else's `people/` folder.
 ## Linking
 
 - Link with bare wikilinks: `[[binary-search]]`. Never `[[DSA/binary-search]]`, because the vault is set to shortest-path links and the folder-prefixed form breaks if a file moves.
-- Add new notes to their area index (`System-Design/system-design.md` and so on) under the right heading. `_index.md` at the root only links to the area indexes. An unlinked note is a note nobody finds.
+- Add new notes to their area index (`System-Design/system-design.md` and so on) under the right heading. `vault/_index.md` only links to the area indexes. An unlinked note is a note nobody finds.
 - Code fences always carry a language (` ```cpp `, ` ```js `, ` ```sql `) so they highlight on the phone too.
 - There is no required note structure. Write each topic in whatever shape suits it.
 
@@ -78,7 +81,7 @@ Adding to someone else's topic needs no ceremony. Open the PR and merge it. Rewr
 - Anything covered by an NDA, plus recruiter names, interviewer names, or material from a company's internal systems. This repo gets cloned; once something is in history it stays in history.
 - Secrets, tokens, `.env` files.
 - Multi-megabyte images. Compress screenshots before adding them to `assets/`, because the mobile git clients get slow as history grows.
-- Your Obsidian pane layout (`.obsidian/workspace*.json`) and personal scratch dumps (`_inbox/`). Both are gitignored already; don't force-add them.
+- Your Obsidian pane layout (`vault/.obsidian/workspace*.json`) and personal scratch dumps (`_inbox/`, which sits outside the vault). Both are gitignored already; don't force-add them.
 
 ---
 
