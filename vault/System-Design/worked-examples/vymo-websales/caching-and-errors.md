@@ -51,4 +51,4 @@ Three different shapes of failure, three different answers.
 > [!warning] A dead letter queue nobody reads is a bin
 > The queue only helps if something alerts on its depth. Otherwise failures accumulate quietly and you find out weeks later that a class of lead was never processed.
 
-Retries here should use [[exponential-backoff]], and the SLA tracking in [[lld]] is what tells you whether the retries are still inside the 30 second budget.
+Retries here should use [[exponential-backoff]], and the SLA tracking in [[websales-lld]] is what tells you whether the retries are still inside the 30 second budget.

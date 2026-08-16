@@ -47,6 +47,37 @@ The rule underneath: a scope's variables are decided by where the code is writte
 
 ---
 
+## The counter, the canonical example
+
+```javascript
+function createCounter() {
+    let count = 0; // lives in the closure memory space
+    return function increment() {
+        count++; // remembers 'count' even after createCounter() finished
+        console.log(count);
+    }
+}
+const counter = createCounter();
+counter(); // 1
+counter(); // 2
+```
+
+---
+
+## The three reasons to use them
+
+**Data privacy, meaning encapsulation.** Before `#private` fields existed, closures were the only way to hide variables in JavaScript.
+
+**Currying and partial application.**
+
+```javascript
+const add = a => b => a + b;
+```
+
+**Memoization.** Caching expensive function calls, where the cache lives in the closure rather than as a global.
+
+---
+
 ## Why interviewers like it
 
 Closures are how you get private state in a language with no `private` keyword. The counter inside an IIFE, the `release` function a mutex hands back, the callback that still knows which request it belonged to. All the same mechanism.

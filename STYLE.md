@@ -2,7 +2,7 @@
 
 How notes should explain things: the quality of the writing itself.
 
-Starting with two rules. More get added as we find them.
+Six rules. More get added as we find them.
 
 ---
 
@@ -22,7 +22,7 @@ Write every explanation so a smart ten-year-old could read it and get the idea. 
 
 ### This is not dumbing down
 
-The precise terms stay: *amortised*, *idempotent*, *backpressure*. You need them, because interviewers use them and you should too. The rule is about the **explaining**. Define the term in plain words the first time it shows up, then use it freely from there.
+The precise terms stay: *amortised*, *idempotent*, *backpressure*. You need them, because interviewers use them and you should too. The rule is about the **explaining**, never the vocabulary. Rule 4 covers that in full, and Rule 5 says where a term gets defined.
 
 Simple language, precise vocabulary. Both.
 
@@ -115,6 +115,49 @@ Keep to those five callout types. The colour and icon are the signal, so the sam
 
 Two practical notes. Obsidian needs a blank line before a callout, a table or a list, or the block will not render. And GitHub understands `note`, `tip`, `important`, `warning` and `caution` natively, while the rest degrade to a plain quote box, which still reads fine for anyone browsing the repo on the web.
 
+### The skeleton every note is built from
+
+Same bones everywhere, so scanning works the same way on every page and you never have to learn a new layout at midnight.
+
+```markdown
+# Title
+
+> [!tldr]
+> One or two sentences. What this is and why you care.
+
+---
+
+## First section
+
+**Bold lead-in.** so the eye catches the term before it reads the line.
+
+| Thing | Thing |
+| --- | --- |
+
+> [!tip] The line you would say out loud
+
+---
+
+## Second section
+
+> [!warning] The trap
+```
+
+Every H2 sits between dividers. That is what turns a page into blocks you can skim rather than a scroll you get lost in.
+
+### The limits, in numbers
+
+Rules of thumb are easy to argue with, so these are numbers.
+
+| Limit | Number | What you do when you hit it |
+| --- | --- | --- |
+| Note length | around 250 lines | split into linked notes, one idea each |
+| Paragraph | 3 lines | it was a list or a table pretending to be prose |
+| Section with no divider | 0 | add the `---` |
+| Notes with no `[!tldr]` | 0 | write the glance line |
+| Callout types in use | 5 | tldr, tip, warning, example, question, and nothing else |
+| Comparison written as prose | 0 | it is a table |
+
 ### One line per sentence, never hard wrapped
 
 Write a sentence or a paragraph as a single line in the file, however long it gets. Do not break it at some column with the Enter key.
@@ -133,3 +176,126 @@ It also keeps diffs honest. Change one word in a hand wrapped paragraph and the 
 ### The check
 
 Open the note, look at it for two seconds, then look away. Could you say what it covers, and where in it the answer you wanted lives? If not, it needs more structure, not more words.
+
+---
+
+## Rule 4: keep the word, fix the sentence
+
+Rule 1 is about sentences. This one is about words, and it pulls the other way on purpose.
+
+The technical words stay. *Throttling*, *rate limiting*, *idempotent*, *backpressure*, *SSR*, *MVCC*. You are practising for a room where the interviewer uses those words and expects them back. A note that says "slowing people down a bit" instead of *throttling* has trained you to say the wrong thing under pressure.
+
+So the two rules split cleanly. Hard word, plain sentence around it.
+
+### What to do
+
+- Use the real name for the thing, every time. *Rate limiting*, not "capping how much people can ask for".
+- Put the plain explanation next to it, not instead of it. The word carries the precision, the sentence carries the meaning.
+- When a note reads badly, fix the sentence. Never fix it by swapping a precise word for a vague one.
+- Acronyms get their full form once, then the acronym. *Server side rendering (SSR)*, then *SSR* from there on.
+
+### Examples
+
+**Backpressure**
+
+Too dense:
+
+> Backpressure propagates upstream when consumer throughput falls below producer emission rate, necessitating flow control at the boundary.
+
+Dumbed down, which is just as wrong, because the word you needed is gone:
+
+> When the reader is slow, stuff backs up, so we tell the writer to take it easy.
+
+Right:
+
+> **Backpressure** is what happens when the reader cannot keep up with the writer. The reader says "slow down", and that message travels back up the chain until whoever is at the front stops sending. Without it the queue in the middle keeps growing until the process runs out of memory.
+
+The last one is the longest of the three. It is also the only one that leaves you able to say the word and defend it.
+
+### The check
+
+Read the note and count the words an interviewer would actually use. If a word went missing because you were trying to sound simpler, put it back and simplify the sentence around it instead.
+
+---
+
+## Rule 5: a word gets explained once, in one place
+
+Twelve notes mention *idempotent*. If each one stops to explain it, you have written the same paragraph twelve times, they will drift apart, and every note is longer than it needs to be.
+
+So a term is explained in exactly one file, and every other note links to it.
+
+### Where a term gets explained
+
+| The term | Where it is explained | How you link it |
+| --- | --- | --- |
+| has a real note already, like sharding or idempotency | that note | `[[idempotency]]` |
+| has no note, and is jargon you would have to stop and define out loud | a `Dictionary/` entry | `[[server-side-rendering]]` |
+
+A `Dictionary/` entry never explains something that already has a note. If you are writing an entry and it is turning into a real explanation of a real topic, it was a note all along, so write the note and link that instead.
+
+### What a dictionary entry looks like
+
+```markdown
+# Write Ahead Log (WAL)
+
+> [!tldr]
+> The database writes down what it is about to do before it does it, so a crash mid write can be replayed and finished.
+
+Every change goes into an append only file first, then into the actual data pages later. Appending to the end of a file is fast; updating pages scattered across a disk is not.
+
+On restart the database reads the log and redoes anything that did not land. That is why a crash loses seconds of work rather than the whole table.
+
+**Shows up in:** [[write-scaling]], [[replication]], [[change-data-capture]].
+```
+
+Short. Title is the full name with the acronym after it. One `[!tldr]` sentence you could say out loud. A few lines of detail. Then where it actually gets used, so the entry is a doorway rather than a dead end.
+
+### What to do
+
+- Link a term the first time a note uses it, then use it bare for the rest of that note. Linking every occurrence turns the page blue and stops meaning anything.
+- Do not re-explain a linked term in passing. Half a definition next to a link is the worst of both.
+- Writing a term that has neither a note nor an entry, and you had to explain it inline? That inline explanation is a dictionary entry waiting to be cut and pasted.
+
+### The check
+
+Search the vault for a term's definition. Two hits means one of them is wrong, and you will not know which one you read last.
+
+---
+
+## Rule 6: an index answers "not here, then where"
+
+Every folder has one index note named after the folder. Its job is not to list what is inside. Its job is to end the search, including when the thing you wanted is somewhere else.
+
+The bad outcome this exists to prevent: you open `Security/`, do not see rate limiting, and now you are guessing. You know it is in the vault. You do not know which folder. That hunt is the whole reason a note goes unread.
+
+### What an index must have
+
+| Part | Why |
+| --- | --- |
+| `[!tldr]` saying what the area covers | tells you in one line whether you are in the right folder at all |
+| A table per subfolder, `Note` and `Covers` columns | `Covers` is what you scan, so write it as the specific thing, not the topic name again |
+| A **Filed elsewhere** table at the bottom | the redirect: what you might reasonably expect here, where it actually is, and why |
+
+The `Filed elsewhere` table is the one people skip, and it is the one that matters.
+
+```markdown
+## Filed elsewhere
+
+| Note | Where | Why there |
+| --- | --- | --- |
+| [[s3-security]] | `Cloud/s3/` | bucket policies and AWS encryption options, not general security |
+| [[jwt-in-practice]] | `Backend/` | it is an API auth decision, this folder holds the crypto |
+```
+
+### What Covers should say
+
+Write the thing you would come looking for, not a restatement of the title.
+
+| Weak | Useful |
+| --- | --- |
+| indexing basics | the left prefix rule, ESR, covered queries, TTL and sparse indexes |
+| about retries | why you cannot sleep in a consumer, and the delay topic that replaces it |
+
+### The check
+
+Pick a topic that is filed somewhere unobvious. Open the folder you would have guessed first. Does that page get you to the note, either by listing it or by naming where it went? If not, the redirect is missing.

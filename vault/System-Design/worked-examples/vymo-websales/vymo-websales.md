@@ -14,7 +14,7 @@
 | --- | --- |
 | [[overview-and-requirements]] | what the system does, functional and non functional requirements |
 | [[hld]] | components, service contracts, the request sequence, architecture diagram |
-| [[lld]] | endpoint by endpoint: file processing, lead creation, assignment, call centre, scheduling, metrics |
+| [[websales-lld]] | endpoint by endpoint: file processing, lead creation, assignment, call centre, scheduling, metrics |
 | [[caching-and-errors]] | what is cached and for how long, and what happens when each thing fails |
 | [[patterns-worth-stealing]] | the reusable lessons, with no client detail |
 

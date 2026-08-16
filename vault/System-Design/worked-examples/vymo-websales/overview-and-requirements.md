@@ -30,7 +30,7 @@
 - Leads are created or updated in LMS, and status updates are pushed to the TATA-AIA call centre.
 
 > [!question] Also unresolved
-> Exactly how DDP processes the file asynchronously. The [[lld]] lists the stages, but the queueing and parallelism inside it were not written down.
+> Exactly how DDP processes the file asynchronously. The [[websales-lld]] lists the stages, but the queueing and parallelism inside it were not written down.
 
 ### 4. Communication with leads
 

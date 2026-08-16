@@ -13,6 +13,8 @@
 | [[authorization]] | role, attribute and rule based access control, permission tickets, microservices, least privilege |
 | [[hardening]] | password reset, rate limiting with three algorithms, session data in cookies |
 | [[encryption]] | symmetric against asymmetric, why real systems use both, digital signatures |
+| [[jwt]] | the three parts, the signature maths, the end to end flow, and the four standard questions |
+| [[webhook-signatures]] | HMAC, the raw body trap, timing attacks, replay attacks |
 
 ---
 
