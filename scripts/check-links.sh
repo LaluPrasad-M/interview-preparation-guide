@@ -30,7 +30,7 @@ done | sort -u > "$INDEX"
 scan() {
   awk -v index_file="$INDEX" -v path="$1" '
     BEGIN { while ((getline n < index_file) > 0) known[n] = 1 }
-    /^```/ { fence = !fence; next }
+    /^ *```/ { fence = !fence; next }
     fence { next }
     {
       line = $0

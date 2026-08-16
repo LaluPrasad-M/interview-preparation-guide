@@ -1,7 +1,9 @@
 #!/bin/sh
 # Snippet gate: every fenced code block that existed at BASELINE must still
-# appear somewhere under vault/, whitespace normalised. Blocks move between
-# notes freely; they just may not disappear.
+# appear somewhere under vault/, whitespace normalised. A block is matched as
+# a whole first, since blocks move and reorder between notes freely; only
+# when the whole block cannot be found does the check fall back to individual
+# lines, so a legitimate split is reported instead of failing the run.
 #
 # Usage: scripts/check-snippets.sh <baseline-ref> [path-prefix]
 set -eu
@@ -10,26 +12,99 @@ BASE=$1
 PREFIX=${2:-vault/}
 ROOT=$(git rev-parse --show-toplevel)
 
-NOW=$(mktemp); OLD=$(mktemp)
-trap 'rm -f "$NOW" "$OLD"' EXIT
+NOWLINES=$(mktemp); NOWBLOCKS=$(mktemp)
+trap 'rm -f "$NOWLINES" "$NOWBLOCKS"' EXIT
 
-# Fingerprint every code line: strip leading and trailing space, drop blanks,
-# drop fence markers. A block survives if all of its fingerprints survive.
-fingerprints() {
-  awk '/^ *```/ { fence = !fence; next } fence { gsub(/^[ \t]+|[ \t]+$/, ""); if (length($0) > 3) print }'
+# Every fenced code block's lines, trimmed and blanks dropped, one block per
+# paragraph (blocks are separated by a blank output line). No length filter:
+# a one-line block counts. Tolerates indented fences. Reads stdin.
+blocks() {
+  awk '
+    /^ *```/ {
+      if (fence) {
+        if (n > 0) { for (i = 1; i <= n; i++) print lines[i]; print "" }
+        fence = 0
+      } else {
+        fence = 1; n = 0; delete lines
+      }
+      next
+    }
+    fence {
+      l = $0
+      gsub(/^[ \t]+|[ \t]+$/, "", l)
+      if (length(l) > 0) { n++; lines[n] = l }
+    }
+  '
 }
 
+hash_block() { shasum -a 1 | cut -d' ' -f1; }
+
+# Collapse a blocks() stream into one fingerprint per block.
+block_hashes() {
+  buf=
+  while IFS= read -r line || [ -n "$line" ]; do
+    if [ -n "$line" ]; then
+      if [ -z "$buf" ]; then buf=$line; else buf="$buf
+$line"; fi
+    else
+      [ -n "$buf" ] && printf '%s\n' "$buf" | hash_block
+      buf=
+    fi
+  done
+  [ -n "$buf" ] && printf '%s\n' "$buf" | hash_block
+}
+
+# Every block from BASE's version of $f: check whole first, then per line.
+check_blocks() {
+  f=$1
+  buf=
+  while IFS= read -r line || [ -n "$line" ]; do
+    if [ -n "$line" ]; then
+      if [ -z "$buf" ]; then buf=$line; else buf="$buf
+$line"; fi
+      continue
+    fi
+    [ -n "$buf" ] || continue
+    hash=$(printf '%s\n' "$buf" | hash_block)
+    if grep -qxF "$hash" "$NOWBLOCKS"; then
+      buf=
+      continue
+    fi
+    first=$(printf '%s\n' "$buf" | head -n1)
+    missing=$(printf '%s\n' "$buf" | while IFS= read -r bl; do
+      grep -qxF "$bl" "$NOWLINES" || printf '%s\n' "$bl"
+    done)
+    if [ -z "$missing" ]; then
+      printf 'SPLIT BLOCK  %s: %s\n' "$f" "$first"
+    else
+      printf '%s\n' "$missing" | while IFS= read -r bl; do
+        printf 'MISSING SNIPPET  %s: %s\n' "$f" "$bl"
+      done
+    fi
+    buf=
+  done
+}
+
+# Current code lines, for the line-level fallback.
 git ls-files "$PREFIX" | grep '\.md$' | while read -r f; do
-  fingerprints < "$ROOT/$f"
-done | sort -u > "$NOW"
+  blocks < "$ROOT/$f"
+done | grep -v '^$' | sort -u > "$NOWLINES"
 
-git ls-tree -r --name-only "$BASE" "$PREFIX" | grep '\.md$' | while read -r f; do
-  git show "$BASE:$f" | fingerprints | sed "s|^|$f\t|"
-done | sort -u > "$OLD"
+# Current block fingerprints, for the whole-block check.
+git ls-files "$PREFIX" | grep '\.md$' | while read -r f; do
+  blocks < "$ROOT/$f"
+done | block_hashes | sort -u > "$NOWBLOCKS"
 
-missing=$(awk -F'\t' 'NR == FNR { now[$0] = 1; next } !($2 in now) { print "  " $1 ": " $2 }' "$NOW" "$OLD")
+report=$(
+  git ls-tree -r --name-only "$BASE" "$PREFIX" | grep '\.md$' | while read -r f; do
+    git show "$BASE:$f" | blocks | check_blocks "$f"
+  done
+)
 
-if [ -n "$missing" ]; then
-  printf '\nMISSING SNIPPET lines, present at %s and gone now:\n%s\n' "$BASE" "$missing" >&2
-  exit 1
+if [ -n "$report" ]; then
+  if printf '%s\n' "$report" | grep -q '^MISSING SNIPPET'; then
+    printf '\nMISSING SNIPPET lines, present at %s and gone now:\n%s\n' "$BASE" "$report" >&2
+    exit 1
+  fi
+  printf '\n%s\n' "$report"
 fi
