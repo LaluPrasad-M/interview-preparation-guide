@@ -1,6 +1,0 @@
-# Probe
-
-```js
-foo
-bar
-```
