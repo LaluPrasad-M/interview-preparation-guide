@@ -12,12 +12,14 @@ The notes live in `vault/`, and everything else is repo plumbing. Open **`vault/
 placement-notes/
   vault/            <- open this one in Obsidian
     _index.md       the map, every area links from here
-    System-Design/  Node/  AWS/  Security/  OOP/
+    Dictionary/     every jargon word, explained once
+    DSA/  JavaScript/  React/  Design/  Databases/  Kafka/
+    Backend/  Security/  Cloud/  Operations/  AI/  Interviews/
     assets/         images referenced from notes
     .obsidian/      vault settings, tracked
   _inbox/           raw source material, local only, never committed
   README.md  CONTRIBUTING.md  STYLE.md
-  scripts/  .githooks/
+  scripts/  .githooks/  docs/
 ```
 
 `_inbox/` sits outside the vault on purpose. It holds Word documents and Jupyter notebooks, which Obsidian cannot render, so inside the vault they would be dead weight in the sidebar. Drop raw material there through Finder, not through Obsidian.
@@ -33,6 +35,8 @@ placement-notes/
 | [STYLE.md](STYLE.md) | how an explanation should read: plain language, no generated-sounding text |
 | [scripts/check-style.sh](scripts/check-style.sh) | the dash check, run by the pre-commit hook |
 | [scripts/check-conflicts.sh](scripts/check-conflicts.sh) | the conflict-marker check, run by the pre-commit hook |
+| [scripts/check-links.sh](scripts/check-links.sh) | every wikilink resolves, run by the pre-commit hook |
+| [scripts/check-snippets.sh](scripts/check-snippets.sh) | no code block silently disappears during a rewrite |
 
 This table is the only place files point at each other. Each file above is complete on its own and does not defer to the others, so adding a new one means adding a row here and nothing else.
 

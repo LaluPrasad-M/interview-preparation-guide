@@ -14,46 +14,58 @@ Mechanics for adding to this vault: naming, placement, linking, pull requests, w
 
 ## Where a note belongs
 
-All notes live under `vault/`. Paths in this file are relative to it, so `Node/` means `vault/Node/`.
+All notes live under `vault/`. Paths in this file are relative to it, so `Security/` means `vault/Security/`.
 
-Each area is a folder inside `vault/` holding one index note named after the folder, plus subfolders when the area is big enough to need them. `System-Design/` shows the pattern:
+Each area is a folder inside `vault/` holding one index note named after the folder, plus subfolders when the area is big enough to need them. `Design/` shows the pattern:
 
 ```text
-vault/System-Design/
-  system-design.md      the area index, linked from _index.md
-  concepts/             one topic per file
-  terms/                short definitions, quick to check
-  case-studies/         one real system per file
-  worked-examples/      one whole system, written up end to end
+vault/Design/
+  design.md         the area index, linked from _index.md
+  object-design/    one topic per file
+  patterns/         one pattern per file
+  system-design/    one topic per file
+  scaling/          one topic per file
+  worked/
+    lld/            one machine coding problem per file
+    systems/        one system designed from scratch per file
+    real/           one real company's design per file
 ```
 
 | Folder | Holds |
 | --- | --- |
-| `DSA/` | a data structure or algorithm family: `trees.md`, `binary-search.md` |
-| `DSA/patterns/` | a technique that spans structures: `two-pointer.md`, `sliding-window.md` |
-| `Node/` | `javascript/`, `runtime/`, `snippets/` with `snippets/server/`, `typescript/` |
-| `CS-Core/` | DBMS, SQL, OS, networks |
-| `System-Design/` | see the tree above |
-| `AWS/` | `compute/`, `s3/`, `kubernetes/`, `deployment/` |
-| `Security/` | authentication, authorization, hardening, encryption |
-| `OOP/` | object oriented design concepts |
-| `Behavioural/` | STAR stories, questions to ask them |
-| `Interviews/` | one file per company, your own debriefs |
-| `people/<your-name>/` | your solve log, weak-topic list, anything personal |
+| `Dictionary/` | one entry per jargon word, flat, filename is the spoken form |
+| `DSA/` | method notes at the root, then `arrays/`, `binary-search/`, `trees/`, `graphs/`, `dp/`, `backtracking/`, `greedy/`, `data-structures/` |
+| `JavaScript/` | `language/`, `typescript/`, `node/` with `node/server/` and `node/puzzles/`, `snippets/` |
+| `React/` | fundamentals and the live coding components |
+| `Design/` | `object-design/`, `patterns/`, `system-design/`, `scaling/`, `worked/` with `worked/lld/`, `worked/systems/`, `worked/real/` |
+| `Databases/` | `sql/`, `mongodb/`, `redis/`, `modelling/`, `operations/`, `change-data/` |
+| `Kafka/` | flat, one note per mechanic |
+| `Backend/` | API design, idempotency, status codes, realtime transports |
+| `Security/` | authentication, authorization, hardening, encryption, JWT, HMAC, XSS |
+| `Cloud/` | `aws/`, `kubernetes/`, `cicd/` |
+| `Operations/` | what breaks in production and where to look first |
+| `AI/` | working with models as infrastructure |
+| `Interviews/` | `rounds/`, `practice/`, experiences, checklists |
 | `assets/` | images referenced from notes |
 
 Folders in that table only exist once they hold a real note. Empty folders and title-only placeholder files are not kept, because a sidebar full of empty files is tiring to read and tells you nothing about what is actually written.
 
-The `DSA/` vs `DSA/patterns/` split is the only one that needs a judgment call: if you'd describe it as "a thing" it goes in `DSA/`, if you'd describe it as "a move you make" it goes in `patterns/`.
+The judgment calls, and how to settle them:
 
-Personal folders are single-owner. Nobody edits someone else's `people/` folder.
+**A thing against a move you make.** In `DSA/`, if you would describe it as "a thing" it goes in the structure folder, if you would describe it as "a move you make" it goes in the pattern folder.
+
+**A concept against a worked design.** `Backend/idempotency` is the concept. `Design/worked/systems/ai-tool-idempotency` is a system that applies it. If it has requirements and a diagram, it is a worked design.
+
+**A note against a dictionary entry.** If it needs more than a short definition and a pointer, it is a note. A `Dictionary/` entry never explains a topic that has its own note; it links to that note instead.
+
+Every index note carries a `Filed elsewhere` table naming what you might reasonably expect in that folder and where it actually went. Adding a note that could plausibly live in two folders means adding a row to the loser's index.
 
 ---
 
 ## Linking
 
 - Link with bare wikilinks: `[[binary-search]]`. Never `[[DSA/binary-search]]`, because the vault is set to shortest-path links and the folder-prefixed form breaks if a file moves.
-- Add new notes to their area index (`System-Design/system-design.md` and so on) under the right heading. `vault/_index.md` only links to the area indexes. An unlinked note is a note nobody finds.
+- Add new notes to their area index (`Design/design.md` and so on) under the right heading. `vault/_index.md` only links to the area indexes. An unlinked note is a note nobody finds.
 - Code fences always carry a language (` ```cpp `, ` ```js `, ` ```sql `) so they highlight on the phone too.
 - There is no required note structure. Write each topic in whatever shape suits it.
 
