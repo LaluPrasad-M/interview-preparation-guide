@@ -1,4 +1,4 @@
-# Placement Prep
+# Interview Preparation Guide
 
 > [!tldr]
 > The map. Every area has its own index, and this file only points at those.

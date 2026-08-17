@@ -1,6 +1,6 @@
-# Placement Notes
+# Interview Preparation Guide
 
-Shared Obsidian vault for placement prep: DSA, JavaScript, design, databases, infrastructure. The Git repo is the source of truth. Obsidian is just the editor.
+Shared Obsidian vault for interview preparation: DSA, JavaScript, design, databases, infrastructure. The Git repo is the source of truth. Obsidian is just the editor.
 
 ---
 
