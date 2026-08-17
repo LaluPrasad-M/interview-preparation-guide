@@ -11,7 +11,7 @@ A user opens a sports app and creates a game: "need 3 intermediate players for 5
 
 The system must find users who play football, are intermediate, and live within 10 km, then push alerts to their phones. If we synchronously query the database and loop through hundreds of HTTP calls to a push provider during the API request, the host's app freezes and the connection times out.
 
-**The objective.** An asynchronous event driven fan out architecture that returns `202 Accepted` to the host instantly, decouples the heavy geospatial querying, and efficiently dispatches hundreds of push notifications without overwhelming downstream providers.
+**The objective.** Build an asynchronous event driven fan out architecture that returns `202 Accepted` to the host instantly, decouples the heavy geospatial querying, and efficiently dispatches hundreds of push notifications without overwhelming downstream providers.
 
 ---
 
@@ -184,7 +184,7 @@ db.users.find({
 
 ### The case against Kafka
 
-**Error handling.** If the push provider is down, a dispatch worker fails. In SQS the message goes back to the queue via visibility timeout, or drops into a native DLQ. Kafka enforces strict partition ordering, so failing to process a message and pausing blocks the entire partition. Building retry logic in Kafka requires complex retry topics.
+**Error handling.** If the push provider is down, a dispatch worker fails. In SQS the message goes back to the queue via visibility timeout, or drops into a native DLQ. Kafka enforces strict partition ordering, so if a worker fails to process a message and pauses, it blocks the entire partition. Building retry logic in Kafka requires complex retry topics.
 
 **Overkill.** If we only need notifications and do not care about analytics or search, standing up a Kafka cluster for a simple background job is massive operational overkill compared to a managed queue.
 

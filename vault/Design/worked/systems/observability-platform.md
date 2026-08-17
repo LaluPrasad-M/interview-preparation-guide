@@ -148,7 +148,7 @@ A rule looks like CPU above 90 percent for 5 minutes.
 
 ## Grafana
 
-The visualisation and investigation layer. It queries both ClickHouse and Loki, and shows metrics, logs, dashboards and alerts in one UI.
+This is the visualisation and investigation layer. It queries both ClickHouse and Loki, and shows metrics, logs, dashboards and alerts in one UI.
 
 ---
 

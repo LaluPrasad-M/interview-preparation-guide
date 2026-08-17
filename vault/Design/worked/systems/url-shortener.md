@@ -58,7 +58,7 @@ The access pattern is `shortCode` to `longUrl`. The short code must be unique, s
 
 This is the heart of the problem.
 
-**Random strings.** Collisions, retry logic, and hard to scale globally.
+**Random strings.** This approach causes collisions, needs retry logic, and is hard to scale globally.
 
 **An auto increment ID converted to Base62.** Generate a unique numeric ID, convert to Base62 over `[a-zA-Z0-9]`. ID 125 becomes `"cb"`.
 
@@ -89,7 +89,7 @@ Database (shards + replicas)
 
 **The read path,** which is latency critical: the user hits the short URL, the service checks the cache, falls through to the database on a miss, returns the long URL, and updates analytics asynchronously.
 
-Cache first because reads dominate, latency should be sub millisecond, and it protects the database from spikes.
+We cache first because reads dominate, latency needs to be sub millisecond, and caching protects the database from spikes.
 
 **The write path:** validate the URL, generate the ID, encode to Base62, persist, populate the cache, respond. Writes are far less frequent, so slightly higher latency is fine.
 
@@ -115,7 +115,7 @@ Cache first because reads dominate, latency should be sub millisecond, and it pr
 
 **Database primary down.** Fail over to a replica, with writes paused briefly.
 
-**Duplicate short codes.** Avoided entirely by the ID strategy. If you chose random generation, you need retry logic.
+**Duplicate short codes.** This is avoided entirely by the ID strategy. If you chose random generation, you need retry logic.
 
 ---
 

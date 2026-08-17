@@ -9,13 +9,13 @@
 
 A global platform with active datacenters in Virginia and Ireland.
 
-**The latency problem.** A round trip across the Atlantic takes roughly 150 ms. If our database lives in the US, a European user clicking add to cart suffers 150 ms of lag on every interaction. Unacceptable for e-commerce.
+**The latency problem.** A round trip across the Atlantic takes roughly 150 ms. If our database lives in the US, a European user clicking add to cart suffers 150 ms of lag on every interaction. That is unacceptable for e-commerce.
 
-**How we beat it.** Physically deploy a full copy of the application, API plus database, in both regions. Geo-DNS routing guarantees a European user's phone only talks to the European server, so 10 ms latency.
+**How we beat it.** Physically deploy a full copy of the application, API plus database, in both regions. Geo-DNS routing guarantees a European user's phone only talks to the European server, giving 10 ms latency.
 
 **The core challenge.** If the US and EU databases act independently, a user travelling from New York to London sees an empty cart.
 
-**The objective.** An active active multi region architecture. Users read and write to their local regional database instantly, and the databases asynchronously replicate across the ocean in the background, mathematically merging conflicts when concurrent updates occur.
+**The objective.** Build an active active multi region architecture. Users read and write to their local regional database instantly, and the databases asynchronously replicate across the ocean in the background, mathematically merging conflicts when concurrent updates occur.
 
 ---
 
@@ -78,9 +78,9 @@ A global platform with active datacenters in Virginia and Ireland.
 
 ## The happy path
 
-**1. DNS routing.** A user in London opens the app. The geo-DNS router checks their IP and resolves the domain to the EU gateway. No ocean crossed.
+**1. DNS routing.** A user in London opens the app. The geo-DNS router checks their IP and resolves the domain to the EU gateway. No ocean was crossed.
 
-**2. Local write.** The service writes to the local EU database, which commits to disk and returns success. The server returns `200 OK`. Total time roughly 10 ms.
+**2. Local write.** The service writes to the local EU database, which commits to disk and returns success. The server returns `200 OK`. Total time is roughly 10 ms.
 
 **3. The WAL stream.** The database pushes the change event to its internal write ahead log.
 
@@ -136,7 +136,7 @@ To achieve true multi master replication you need a database natively built for 
 
 ### The schema
 
-**The junior trap.** Storing the entire cart as a single JSON document, `Payload: { items: [...] }`.
+**The junior trap.** A junior engineer stores the entire cart as a single JSON document, `Payload: { items: [...] }`.
 
 **Why it fails.** If you sync a single massive JSON blob, and the user adds item A in the US and item B in the EU, replication makes one document overwrite the other. You lose one of the items.
 
@@ -168,7 +168,7 @@ Incredibly simple, but you can lose data. If the US changes quantity to 5 and th
 
 We do not store absolute numbers, we store increments. The cart base is 0, the US sends `+1`, the EU sends `+2`. When replication merges, the algorithm applies all increments regardless of order: `0 + 1 + 2 = 3`.
 
-Mathematical perfection with zero data loss. But it requires a highly specialised database, drastically increasing engineering complexity over native LWW. For standard e-commerce, LWW is the accepted business trade off.
+This gives mathematical perfection with zero data loss. But it requires a highly specialised database, drastically increasing engineering complexity over native LWW. For standard e-commerce, LWW is the accepted business trade off.
 
 ---
 

@@ -146,7 +146,7 @@ INSERT INTO outbox_events (...);
 COMMIT;
 ```
 
-No Kafka call inside the transaction at all. See [[distributed-transactions]].
+There is no Kafka call inside the transaction at all. See [[distributed-transactions]].
 
 ---
 
@@ -161,7 +161,7 @@ poll()
  -> commit offset
 ```
 
-**Offset commit strategy.** Manual commit, only after the database update succeeds. A crash before the commit means the message is reprocessed, which is what gives at least once delivery. See [[consumer-groups-and-offsets]].
+**Offset commit strategy.** Commit manually, only after the database update succeeds. A crash before the commit means the message is reprocessed, which is what gives at least once delivery. See [[consumer-groups-and-offsets]].
 
 ---
 
@@ -211,11 +211,11 @@ Kafka retries mean duplicate sends. The key is `hash(notification_id + channel)`
 
 **Provider partial failure.** The API returns 200 but the message is never delivered. Use provider delivery receipts and reconciliation jobs.
 
-**The database becomes the bottleneck.** Write amplification from retries. Batch the updates, make status updates async, and split read and write.
+**The database becomes the bottleneck.** Retries cause write amplification. Batch the updates, make status updates async, and split read and write.
 
 **Poison messages.** A bad payload always fails. Use schema validation and route to the DLQ after max retries.
 
-**Retry storm after recovery.** Everything retries the moment the provider comes back. Exponential backoff plus jitter. See [[exponential-backoff]].
+**Retry storm after recovery.** Everything retries the moment the provider comes back. Apply exponential backoff plus jitter. See [[exponential-backoff]].
 
 ---
 

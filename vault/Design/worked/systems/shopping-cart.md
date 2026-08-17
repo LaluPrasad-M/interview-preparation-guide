@@ -7,7 +7,7 @@
 
 ## The challenges
 
-Concurrent cart changes. Consistency with inventory. Low latency. Atomicity of mutations.
+The challenges are concurrent cart changes, consistency with inventory, low latency, and atomicity of mutations.
 
 ---
 
@@ -221,7 +221,7 @@ Reads happen far more often than writes, so the cart sits behind a cache.
 | Read | cache aside |
 | Write | invalidate |
 
-The database stays the source of truth. The cache only shortens the common read path, it is never consulted for correctness.
+The database stays the source of truth. The cache only shortens the common read path. It is never consulted for correctness.
 
 ---
 

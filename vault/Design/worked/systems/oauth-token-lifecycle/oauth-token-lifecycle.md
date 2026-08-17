@@ -72,7 +72,7 @@ Retry Original Request
 
 **Promise sharing.** A `Map<tenantId, Promise>` prevents the refresh storm.
 
-**Runtime recovery is the fallback.** The scheduler is the primary architecture, the interceptor is the safety net.
+**Runtime recovery is the fallback.** The scheduler is the primary architecture. The interceptor is the safety net.
 
 **Distributed reality.** This works inside one process. Across pods you need a Redis distributed lock, which is an important discussion point.
 

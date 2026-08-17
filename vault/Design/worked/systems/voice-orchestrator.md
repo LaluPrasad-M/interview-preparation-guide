@@ -13,7 +13,7 @@ Standard REST APIs are request and response. You wait for the full audio, send i
 
 In telephony, if latency exceeds 500 ms, humans think the line is dead and talk over the AI. And if the AI is speaking and the human interrupts, the AI must instantly stop talking and listen.
 
-**The objective.** A real time streaming pipeline that ingests continuous audio, transcribes it, feeds it to an LLM, and synthesises it back to voice using heavily chunked overlapping streams, achieving under 500 ms time to first audio.
+**The objective.** Build a real time streaming pipeline that ingests continuous audio, transcribes it, feeds it to an LLM, and synthesises it back to voice using heavily chunked overlapping streams, achieving under 500 ms time to first audio.
 
 > [!question] STT, LLM, TTS
 > **STT**, speech to text, converts the user's audio to text. The **LLM** processes the text, understands intent and generates a response. **TTS**, text to speech, converts the response text to spoken audio. Orchestration uses a streaming pipeline so they overlap: audio, STT chunks, LLM streaming, TTS chunks, audio.
@@ -110,7 +110,7 @@ We do not wait for the full sentence. The LLM streams tokens, and the moment the
 
 In a standard REST API the client opens a connection, sends data, gets a response, and the connection closes. In bidirectional streaming over WebSockets or gRPC, the connection stays open permanently and both sides push data at any time, simultaneously.
 
-**Why not HTTPS.** Fine for independent request and response calls, but it does not provide the long lived bidirectional streaming needed here.
+**Why not HTTPS.** It is fine for independent request and response calls, but it does not provide the long lived bidirectional streaming needed here.
 
 **Why gRPC streaming.** It keeps a persistent connection and lets audio and data flow continuously in both directions, avoiding repeated HTTP request overhead.
 
@@ -141,7 +141,7 @@ message TranscriptionEvent {
 
 During a live call the orchestrator needs to remember the conversation. Writing every spoken word to PostgreSQL synchronously would add 50 ms of latency and burn out the database connections.
 
-**Hot storage, Redis, the active call.** A Redis `LIST`, which is perfect for chronologically appending chat history. The key is `call_context:{call_id}`.
+**Hot storage, Redis, the active call.** This is a Redis `LIST`, which is perfect for chronologically appending chat history. The key is `call_context:{call_id}`.
 
 When STT finishes a sentence, the orchestrator runs `RPUSH call_context:123 '{"role": "user", "content": "I want to book a flight"}'`. When sending to the LLM, it runs `LRANGE call_context:123 0 -1` to grab the whole history in 1 ms.
 

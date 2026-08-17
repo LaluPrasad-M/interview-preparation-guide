@@ -23,7 +23,7 @@ A patient books an appointment on our app, but the doctors do not use our app. T
 
 We need to send our appointment data over the internet to their system via a webhook. But their system is old. It crashes often, goes down for midnight maintenance, and blocks us if we send data too fast.
 
-**The objective.** A highly reliable asynchronous pipeline that tries to send the appointment, and if it fails puts it into a retry loop with increasing delays of 1 minute, 15 minutes, 1 hour. If it fails completely, it safely parks the data in a dead letter queue so no patient record is ever lost.
+**The objective.** Build a highly reliable asynchronous pipeline that tries to send the appointment, and if it fails puts it into a retry loop with increasing delays of 1 minute, 15 minutes, 1 hour. If it fails completely, it safely parks the data in a dead letter queue so no patient record is ever lost.
 
 ---
 
@@ -162,7 +162,7 @@ That partial index lets the operations team instantly load a dashboard of failed
 
 ### Delay topics against in memory retries
 
-**The trap.** Using a `while` loop with `setTimeout` in the service to retry the webhook.
+**The trap.** A junior developer uses a `while` loop with `setTimeout` in the service to retry the webhook.
 
 **The reality.** If the pod restarts, all those in memory retries are permanently lost. And holding connections open blocks the event loop.
 

@@ -11,7 +11,7 @@ A CRM sends HTTP POST webhooks to our system whenever a contact is created or up
 
 The provider demands a response in under 5 seconds. Networks are chaotic, so an update event might arrive before a create event. And the provider guarantees at least once delivery, meaning it will frequently send the exact same event twice.
 
-**The objective.** A high throughput ingestion pipeline that acts as a shock absorber, safely queues events, and uses idempotent database operations to resolve out of order and duplicate data silently.
+**The objective.** Build a high throughput ingestion pipeline that acts as a shock absorber, safely queues events, and uses idempotent database operations to resolve out of order and duplicate data silently.
 
 ---
 

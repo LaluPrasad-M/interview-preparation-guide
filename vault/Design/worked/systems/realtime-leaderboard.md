@@ -13,7 +13,7 @@ With a standard SQL database, `SELECT * FROM players ORDER BY score DESC LIMIT 1
 
 And players do not just want the top 100. They want their own exact global rank, "you are number 4,231,899 out of 50 million". Calculating an exact absolute rank in SQL requires scanning millions of rows.
 
-**The objective.** A real time in memory ranking engine handling 50,000 score updates per second and 500,000 reads per second, returning mathematically exact global ranks in under 10 milliseconds.
+**The objective.** Build a real time in memory ranking engine handling 50,000 score updates per second and 500,000 reads per second, returning mathematically exact global ranks in under 10 milliseconds.
 
 ---
 
@@ -107,7 +107,7 @@ And players do not just want the top 100. They want their own exact global rank,
 **2. Atomic in memory update.** The service executes `ZINCRBY global_leaderboard 50 u123` directly against the Redis master.
 
 > [!tip] Why this is magic
-> Redis handles this entirely in RAM, and because Redis is strictly single threaded, `ZINCRBY` is mathematically atomic. If 5 concurrent requests try to add 50 points, Redis queues them in its event loop and executes them sequentially. Zero race conditions, under 1 ms.
+> Redis handles this entirely in RAM, and because Redis is strictly single threaded, `ZINCRBY` is mathematically atomic. If 5 concurrent requests try to add 50 points, Redis queues them in its event loop and executes them sequentially. This gives zero race conditions, under 1 ms.
 
 **3. Write behind persistence.** Redis is RAM based, so if the master crashes before replicating the score is lost. To guarantee durability without slowing the game, the service also drops a tiny event into Kafka: `{ "u123": +50 }`.
 
@@ -175,7 +175,7 @@ A Redis sorted set is two data structures operating simultaneously.
 
 **A hash table.** Maps `user_id` to score, making finding a user's score a constant time operation.
 
-**A skip list.** A multi layered linked list keeping scores perfectly sorted at all times.
+**A skip list.** This is a multi layered linked list keeping scores perfectly sorted at all times.
 
 > [!question] Why not a B-tree?
 > B-trees require heavy rebalancing during inserts, which locks memory. A skip list uses probabilistic balancing, effectively coin flips, to maintain sorting. That makes inserting or updating a score a fast logarithmic operation even with 50 million elements.

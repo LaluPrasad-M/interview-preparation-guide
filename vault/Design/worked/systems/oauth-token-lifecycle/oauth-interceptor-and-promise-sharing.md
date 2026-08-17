@@ -31,7 +31,7 @@ class TokenStore {
 module.exports = new TokenStore();
 ```
 
-This abstracts where runtime tokens live. Today an in memory `Map`, in production Redis or a shared distributed token layer.
+This abstracts where runtime tokens live. Today it is an in memory `Map`, and in production it might be Redis or a shared distributed token layer.
 
 ### Step 6: the refresh coordinator
 

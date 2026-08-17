@@ -36,8 +36,8 @@ To get sub 50 ms latency with typo tolerance across a billion records, a SQL `LI
 
 1. **The API gateway.** Routes `GET` search requests to the stateless search microservices.
 2. **The search service, read path.** Takes the prefix, checks a Redis cache, and on a miss queries the Elasticsearch cluster. If someone searches "App", millions of people do, so cache the top 10 results for "App" for 5 minutes.
-3. **The Elasticsearch cluster.** Distributed nodes holding the inverted index and edge n-grams.
-4. **The indexer worker, write path.** A background Kafka consumer that reads new contacts from the ingestion pipeline and asynchronously indexes them.
+3. **The Elasticsearch cluster.** These are distributed nodes holding the inverted index and edge n-grams.
+4. **The indexer worker, write path.** This is a background Kafka consumer that reads new contacts from the ingestion pipeline and asynchronously indexes them.
 
 ---
 
@@ -94,7 +94,7 @@ Because this fires on every keystroke, the payload must be tiny to save bandwidt
 
 ## How we hit the NFRs
 
-**Under 50 ms latency.** Achieved by precomputing the prefixes as edge n-grams at write time. When the user searches, Elasticsearch does a constant or logarithmic lookup on the precomputed prefix instead of scanning full strings. A Redis cache in front for common prefixes reduces latency further.
+**Under 50 ms latency.** This comes from precomputing the prefixes as edge n-grams at write time. When the user searches, Elasticsearch does a constant or logarithmic lookup on the precomputed prefix instead of scanning full strings. A Redis cache in front for common prefixes reduces latency further.
 
 **Typo tolerance.** Lucene natively supports fuzzy matching using Levenshtein distance, so we catch minor typos without custom logic.
 
@@ -130,7 +130,7 @@ The 50 nodes return results to the coordinating node, which merges and sorts the
 
 ### The naive approach, a ZSET of raw data
 
-A Redis sorted set where the key is the prefix, `prefix:micr`, the member is the company ID, and the score is popularity.
+This is a Redis sorted set where the key is the prefix, `prefix:micr`, the member is the company ID, and the score is popularity.
 
 **The flaw.** When the gateway reads this with `ZREVRANGE prefix:micr 0 9` it only gets IDs back. It then has to make another database call to fetch the company name, logo URL and subtitle to render the UI. You just ruined your sub 50 ms latency.
 
