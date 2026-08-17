@@ -9,9 +9,10 @@ Part of [[coding-implementations]].
 
 ## 1. Counter
 
-Tests `useState`, event handling and functional updates. The count cannot drop below 0.
+**What it tests:** `useState`, event handling, and functional updates.
+The count cannot drop below 0.
 
-```js
+```jsx
 import { useState } from "react";
 
 function Counter() {
@@ -40,13 +41,16 @@ function Counter() {
 }
 ```
 
+> [!tip]
+> Functional updates guarantee the latest state: `setCount(prev => prev + 1)` beats storing `count` and using it inside the handler.
+
 ---
 
 ## 2. API fetch, very common
 
-Tests `useEffect`, async handling, and managing error and loading states.
+**What it tests:** `useEffect`, async handling, and managing error and loading states.
 
-```js
+```jsx
 import { useEffect, useState } from "react";
 
 function Users() {
@@ -87,13 +91,16 @@ function Users() {
 }
 ```
 
+> [!tip]
+> The `finally` block runs on success or failure, so loading stops no matter what.
+
 ---
 
 ## 3. Todo application
 
-Tests managing arrays in state, immutability, unique keys and controlled inputs.
+**What it tests:** managing arrays in state, immutability, unique keys, and controlled inputs.
 
-```js
+```jsx
 import { useState } from "react";
 
 function TodoApp() {
@@ -139,13 +146,17 @@ function TodoApp() {
 }
 ```
 
+> [!tip]
+> Spread the array and map over it: never mutate state directly.
+> Each todo gets a stable `key={todo.id}` so React tracks which is which.
+
 ---
 
 ## 4. Debounced search
 
-Tests `useEffect`, cleanup functions and debouncing.
+**What it tests:** `useEffect`, cleanup functions, and debouncing.
 
-```js
+```jsx
 import { useEffect, useState } from "react";
 
 function Search() {
@@ -173,13 +184,17 @@ function Search() {
 }
 ```
 
+> [!warning]
+> The cleanup function runs on every keystroke and clears the old timer.
+> That is how debouncing works: only the last timer fires.
+
 ---
 
 ## 5. Theme toggle with Context
 
-Tests the Context API and avoiding prop drilling.
+**What it tests:** the Context API and avoiding prop drilling.
 
-```js
+```jsx
 import { createContext, useContext, useState } from "react";
 
 const ThemeContext = createContext();
@@ -204,3 +219,7 @@ function ThemeButton() {
   );
 }
 ```
+
+> [!tip]
+> Context avoids passing props through layers that do not need them.
+> Create the context, wrap the tree with Provider, then call `useContext` where you need the value.

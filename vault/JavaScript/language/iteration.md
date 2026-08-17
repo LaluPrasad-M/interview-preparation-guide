@@ -1,7 +1,7 @@
 # Loops and Iteration
 
 > [!tldr]
-> Three loops that look interchangeable and are not. `for...of` gives you values, `for...in` gives you keys, and objects work with only one of them.
+> Three loops that look alike but are not. `for...of` gives you values, `for...in` gives you keys, and objects work with only one.
 
 ---
 
@@ -10,18 +10,18 @@
 ```js
 const my_array = ['apple', 'banana', 'cherry'];
 
-for (let i = 0; i < my_array.length; i++) console.log(my_array[i]);  // apple, banana, cherry
-for (const value of my_array) console.log(value);                    // apple, banana, cherry
-for (const index in my_array) console.log(index, my_array[index]);   // 0 apple, 1 banana, 2 cherry
+for (let i = 0; i < my_array.length; i++) console.log(my_array[i]);
+for (const value of my_array) console.log(value);
+for (const index in my_array) console.log(index, my_array[index]);
 ```
 
 | Loop | Gives you | Works on |
 | --- | --- | --- |
 | `for` | an index you manage yourself | anything with a length |
 | `for...of` | the value | iterables: arrays, strings, `Map`, `Set` |
-| `for...in` | the key, as a string | any object, including its inherited keys |
+| `for...in` | the key, as a string | any object, including inherited keys |
 
-Note that `for...in` hands you `'0'` and `'1'` as strings, not numbers.
+`for...in` hands you `'0'` and `'1'` as strings, not numbers.
 
 ---
 
@@ -34,7 +34,7 @@ for (const value of my_map) console.log(value);
 // TypeError: my_map is not iterable
 ```
 
-A plain object has no iterator, so `for...of` refuses. Two ways round it:
+A plain object has no iterator, so `for...of` throws. Two ways to fix it:
 
 ```js
 for (const [key, value] of Object.entries(my_map)) console.log(key, value);
@@ -42,7 +42,7 @@ for (const [key, value] of Object.entries(my_map)) console.log(key, value);
 for (const key in my_map) console.log(key, my_map[key]);
 ```
 
-`Object.entries` is the one to reach for, because you get the key and the value together and it ignores inherited properties.
+**`Object.entries` is the one to reach for.** You get the key and the value together, and it ignores inherited properties.
 
 ---
 
@@ -50,7 +50,7 @@ for (const key in my_map) console.log(key, my_map[key]);
 
 ```js
 let number = 1;
-let numberType;          // has to live outside the switch
+let numberType;
 
 switch (number) {
   case 1:
@@ -62,12 +62,12 @@ switch (number) {
 }
 ```
 
-Declaring `let numberType` inside two different cases is an error, because all the cases share a single block. Wrap each case in braces and each gets its own scope:
+Declaring `let numberType` inside two different cases is an error. All cases share a single block. Wrap each case in braces:
 
 ```js
 switch (number) {
   case 1: {
-    let numberType = 'Odd';   // scoped to this case only
+    let numberType = 'Odd';
     console.log(numberType);
     break;
   }
@@ -79,6 +79,8 @@ switch (number) {
 }
 ```
 
+Each case now gets its own scope.
+
 ---
 
 ## return does not escape a callback
@@ -88,7 +90,7 @@ let a = 13;
 const fn1 = function () {
   const lst = [0,1,2,3,4,5,6,7,8,9];
   lst.forEach(function (eachNum) {
-    if (eachNum === 5) return 100;   // returns from THIS callback only
+    if (eachNum === 5) return 100;
     else a = eachNum;
   });
   return 2000;
@@ -98,7 +100,7 @@ console.log(fn1(), a);   // 2000, 9
 let b = 13;
 const fn2 = function () {
   for (let i = 0; i < 10; i++) {
-    if (i === 5) return 100;         // returns from fn2, loop stops
+    if (i === 5) return 100;
     else b = i;
   }
   return 4000;
@@ -107,6 +109,4 @@ console.log(fn2(), b);   // 100, 4
 ```
 
 > [!warning] This is the difference between a loop and a callback
-> `return` inside `forEach` ends that one call and the iteration carries on, so `a` reaches 9 and the outer function still returns 2000. `return` inside a real `for` loop leaves the whole function, so `b` stops at 4. If you need to break out early, use a `for` loop, or `some`, or `find`.
-
-Lodash's `_.each` behaves the same way, which is how the original version of this example was written. `forEach` needs no dependency and makes the same point.
+> `return` inside `forEach` ends that one callback and the iteration carries on. So `a` reaches 9 and the outer function still returns 2000. `return` inside a `for` loop exits the whole function. So `b` stops at 4. If you need to break out early, use a `for` loop, or `some`, or `find`.

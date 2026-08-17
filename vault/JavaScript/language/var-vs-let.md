@@ -1,7 +1,7 @@
 # var vs let
 
 > [!tldr]
-> `var` is scoped to the whole function and can be redeclared. `let` is scoped to its block and cannot. Three interview questions come out of that difference.
+> `var` is scoped to the whole function and can be redeclared. `let` is scoped to its block and cannot. Three interview questions come out of that.
 
 ---
 
@@ -9,9 +9,9 @@
 
 | | `var` | `let` |
 | --- | --- | --- |
-| **Scope** | the entire function it was declared in | only the nearest block, meaning the nearest pair of curly braces |
-| **Hoisting** | hoisted and set to `undefined`, so reading it early gives `undefined` | hoisted but unusable until the declaration runs, so reading it early throws a `ReferenceError` |
-| **Redeclaration** | allowed in the same scope, which quietly hides bugs | throws a `SyntaxError` |
+| **Scope** | the entire function it was declared in | the nearest block only (pair of curly braces) |
+| **Hoisting** | hoisted and set to `undefined` | hoisted but unusable until the declaration runs |
+| **Redeclaration** | allowed in the same scope | throws a `SyntaxError` |
 | **Use** | legacy code | everything you write now |
 
 ---
@@ -46,7 +46,7 @@ function example() {
 }
 ```
 
-Both names exist from the start of the function. The difference is that `var` starts holding `undefined`, while `let` starts in the **temporal dead zone**, a state where the name exists but touching it is an error. That is deliberate, because reading a variable before you set it is almost always a mistake, and `undefined` hides it.
+Both names exist from the start of the function. The difference is `var` starts holding `undefined`. `let` starts in the **temporal dead zone**, a state where the name exists but touching it is an error. This is deliberate. Reading a variable before you set it is almost always a mistake, and `undefined` hides that mistake.
 
 ---
 
@@ -64,48 +64,49 @@ let l = 'second';   // SyntaxError: Identifier 'l' has already been declared
 
 ## The loop question
 
-This is the classic, and it is a scope question wearing a timer costume. Three versions, same loop bounds, three different outputs.
+This is the classic scope question wearing a timer costume. Three versions, same loop bounds, three different outputs.
 
-**Version 1: `var` with a closure.**
+> [!example]-
+> **Version 1: `var` with a closure.**
+>
+> ```js
+> for (var i = 0; i < 5; i++) {
+>   setTimeout(function () {
+>     console.log(i);
+>   }, 1000);
+> }
+> // 5 5 5 5 5
+> ```
 
-```js
-for (var i = 0; i < 5; i++) {
-  setTimeout(function () {
-    console.log(i);
-  }, 1000);
-}
-// 5 5 5 5 5
-```
+> [!example]-
+> **Version 2: `var`, passing `i` as an argument.**
+>
+> ```js
+> for (var i = 0; i < 5; i++) {
+>   setTimeout(console.log, 1000, i);
+> }
+> // 0 1 2 3 4
+> ```
 
-**Version 2: `var`, passing `i` as an argument.**
-
-```js
-for (var i = 0; i < 5; i++) {
-  setTimeout(console.log, 1000, i);
-}
-// 0 1 2 3 4
-```
-
-**Version 3: `let` with a closure.**
-
-```js
-for (let i = 0; i < 5; i++) {
-  setTimeout(function () {
-    console.log(i);
-  }, 1000);
-}
-// 0 1 2 3 4
-```
-
-All three verified on Node v22.16.0.
+> [!example]-
+> **Version 3: `let` with a closure.**
+>
+> ```js
+> for (let i = 0; i < 5; i++) {
+>   setTimeout(function () {
+>     console.log(i);
+>   }, 1000);
+> }
+> // 0 1 2 3 4
+> ```
 
 | Version | Prints | Because |
 | --- | --- | --- |
-| `var` plus a closure | `5` five times | there is one `i`, shared, read a second later when the loop has left it at 5 |
-| `var` plus an argument | `0 1 2 3 4` | the value was copied into the timer's arguments at scheduling time |
-| `let` plus a closure | `0 1 2 3 4` | each iteration gets its own `i` |
+| `var` plus closure | `5` five times | There is one `i`, shared. Read a second later when the loop has left it at 5. |
+| `var` plus argument | `0 1 2 3 4` | The value was copied into the timer's arguments at scheduling time. |
+| `let` plus closure | `0 1 2 3 4` | Each iteration gets its own `i`. |
 
-Two different fixes for the same symptom, and only one of them is about scope. Worth being able to name both, because an interviewer who shows you version 2 is checking whether you reach for "closure" as a reflex.
+Two different fixes for the same symptom. Only one is about scope. An interviewer who shows version 2 is checking whether you reach for "closure" as a reflex.
 
 ### The same thing at ten
 
@@ -120,4 +121,4 @@ print1To10();
 // 11, ten times
 ```
 
-Same rule as version 1, and the final value is `11` rather than `10` because the loop only exits once the condition fails, which needs `i` to reach 11.
+Same rule as version 1. The final value is `11` rather than `10` because the loop exits once the condition fails, which needs `i` to reach 11.

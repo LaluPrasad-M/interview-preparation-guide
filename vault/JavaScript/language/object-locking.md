@@ -1,7 +1,7 @@
 # Object Locking
 
 > [!tldr]
-> `freeze`, `seal` and `preventExtensions`, three levels of locking an object from strictest to loosest. All three stop you adding new properties. They differ on deleting and changing what is already there.
+> Three levels of locking an object, from strictest to loosest. All stop you adding properties. They differ on deleting and changing existing ones.
 
 ---
 
@@ -46,23 +46,20 @@ delete closed.age;           // works
 ## Checking the state
 
 ```js
-console.log('freeze frozen ', frozen);
-console.log('isFrozen frozen', Object.isFrozen(frozen));         // true
-console.log('isSealed frozen', Object.isSealed(frozen));         // true
-console.log('isExtensible frozen', Object.isExtensible(frozen)); // false
+console.log('isFrozen frozen', Object.isFrozen(frozen));           // true
+console.log('isSealed frozen', Object.isSealed(frozen));           // true
+console.log('isExtensible frozen', Object.isExtensible(frozen));   // false
 
-console.log('seal sealed ', sealed);
-console.log('isFrozen sealed', Object.isFrozen(sealed));         // false
-console.log('isSealed sealed', Object.isSealed(sealed));         // true
-console.log('isExtensible sealed', Object.isExtensible(sealed)); // false
+console.log('isFrozen sealed', Object.isFrozen(sealed));           // false
+console.log('isSealed sealed', Object.isSealed(sealed));           // true
+console.log('isExtensible sealed', Object.isExtensible(sealed));   // false
 
-console.log('preventExtensions closed ', closed);
-console.log('isFrozen closed', Object.isFrozen(closed));         // false
-console.log('isSealed closed', Object.isSealed(closed));         // false
-console.log('isExtensible closed', Object.isExtensible(closed)); // false
+console.log('isFrozen closed', Object.isFrozen(closed));           // false
+console.log('isSealed closed', Object.isSealed(closed));           // false
+console.log('isExtensible closed', Object.isExtensible(closed));   // false
 ```
 
-Same results as a table, for scanning:
+Same results as a table:
 
 | | `isFrozen` | `isSealed` | `isExtensible` |
 | --- | --- | --- | --- |
@@ -70,7 +67,7 @@ Same results as a table, for scanning:
 | sealed | false | true | false |
 | preventExtensions | false | false | false |
 
-Two things fall out of it. Freezing implies sealing, so `isSealed` is true for a frozen object. And `isExtensible` is false for all three, because all three block new properties, which makes it the least informative of the three checks.
+Freezing implies sealing, so `isSealed` is true for a frozen object. `isExtensible` is false for all three (they all block new properties), which makes it the least informative check.
 
 > [!warning] Freeze is only one level deep
-> `Object.freeze(obj)` protects the top layer. A nested object inside it is still fully editable. Deep freezing means walking the object yourself and freezing every level.
+> `Object.freeze(obj)` protects the top layer only. A nested object inside it is still fully editable. Deep freezing means walking the object yourself and freezing every level.

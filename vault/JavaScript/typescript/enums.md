@@ -1,7 +1,7 @@
 # Enums
 
 > [!tldr]
-> TypeScript enums look convenient and cause real bugs the moment their values cross a network. A union of string literals does the same job without the trap.
+> TypeScript enums look convenient and cause real bugs when values cross a network. A union of string literals does the same job without the trap.
 
 ---
 
@@ -18,13 +18,13 @@ LoginMode.social;  // 1
 ```
 
 > [!warning] This breaks the day someone adds a value
-> The numbers come from the order of the lines. Add `app` at the top and `email` silently becomes 1. Anything that stored or sent the old number now means something else, and reordering the lines is just as bad. Nothing fails loudly. The data quietly changes meaning.
+> The numbers come from the order of lines. Add `app` at the top and `email` silently becomes 1. Anything that stored or sent the old number now means something else. Reordering the lines is just as bad. Nothing fails loudly. The data quietly changes meaning.
 
 ---
 
 ## Number enums
 
-Setting the numbers yourself fixes the reordering problem, and gives you reverse lookup.
+Set the numbers yourself to fix the reordering problem and get reverse lookup.
 
 ```ts
 enum LoginMode {
@@ -39,7 +39,7 @@ LoginMode[0];      // 'app'
 Object.keys(LoginMode); // ['0', '1', '2', 'app', 'email', 'social']
 ```
 
-That key list is worth remembering. A number enum compiles to an object holding both directions, which is why the keys look doubled.
+A number enum compiles to an object holding both directions. That is why the keys look doubled.
 
 ---
 
@@ -53,7 +53,7 @@ enum LoginMode {
 }
 
 LoginMode.app;             // 'appLogin'
-LoginMode['appLogin'];     // Error, no reverse lookup for string enums
+LoginMode['appLogin'];     // Error, no reverse lookup
 Object.keys(LoginMode);    // ['app', 'email', 'social']
 ```
 
@@ -66,7 +66,7 @@ initiateLogin('appLogin');      // Error: not assignable to type LoginMode
 initiateLogin(LoginMode.app);   // must use the enum itself
 ```
 
-Every caller now has to import the enum to say a word it already knows.
+Every caller must import the enum to say a word it already knows.
 
 ---
 
@@ -87,4 +87,4 @@ initiateLogin('appLogin');      // works
 | Survives reordering | only with explicit values | yes | yes |
 | Exists at runtime | yes, as an object | yes, as an object | no, erased at compile time |
 
-The last row is the real argument. A union is a compile time check that costs nothing at runtime, and a typo is still a compile error.
+A union is a compile-time check that costs nothing at runtime. A typo is still a compile error.

@@ -1,7 +1,7 @@
 # Coercion and Other Traps
 
 > [!tldr]
-> The output questions people use to catch you out. Almost all of them come from one habit of JavaScript: when types do not match, it converts rather than complains.
+> The output questions used to catch you out. Most come from one habit: JavaScript converts types rather than throwing an error when types do not match.
 
 ---
 
@@ -14,7 +14,7 @@ console.log('5' - '5'); // 0
 console.log(5 + + '5'); // 10     the second + converts '5' to 5 first
 ```
 
-`+` is the only operator that means two things, addition and concatenation. If either side is a string it concatenates. Every other maths operator converts to number.
+**`+` means two things.** Addition and concatenation. If either side is a string, it concatenates. Every other maths operator converts both sides to number.
 
 ---
 
@@ -24,7 +24,7 @@ console.log(5 + + '5'); // 10     the second + converts '5' to 5 first
 console.log(typeof undefined); // 'undefined'
 console.log(typeof null);      // 'object'   a bug from 1995, kept for compatibility
 console.log(typeof []);        // 'object'   use Array.isArray instead
-console.log(typeof NaN);       // 'number'   the not a number value is a number
+console.log(typeof NaN);       // 'number'   the not-a-number value is a number
 ```
 
 ---
@@ -38,8 +38,6 @@ console.log(parseInt('11', 2));   // 3, second argument is the base
 console.log((10).toString(2));    // '1010'
 console.log(2 ** 3);              // 8
 ```
-
-More on base conversion in [[strings-and-numbers]].
 
 ---
 
@@ -152,8 +150,4 @@ const result = input ? input : 'Default Value';
 console.log(result); // 'Default Value'
 ```
 
-A ternary tests truthiness, exactly like `||`. So all three of `||`, `? :` and `if` treat `''`, `0` and `NaN` as false, and only `??` narrows that to `null` and `undefined`.
-
----
-
-Sources for this note: the [tricky JavaScript ES6789 snippets](https://www.codinn.dev/tricky-javascript-2023/es6789-code-snippets-interview-questions) collection.
+**Ternary tests truthiness.** Like `||`, it treats `''`, `0` and `NaN` as false. Only `??` narrows that to `null` and `undefined`.

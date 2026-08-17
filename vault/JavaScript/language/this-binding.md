@@ -1,7 +1,7 @@
 # this Binding
 
 > [!tldr]
-> `call`, `apply` and `bind`, three ways to tell a function what `this` should be. Two of them run the function now, one hands you a new function for later.
+> `call`, `apply` and `bind` are three ways to tell a function what `this` should be. Two run now, one hands you a new function for later.
 
 ---
 
@@ -13,7 +13,7 @@
 | **apply** | yes | as an array | whatever the function returns |
 | **bind** | no | comma separated, remembered for later | a new function with `this` fixed |
 
-The only difference between `call` and `apply` is how you hand over the arguments. Use `apply` when you already have them in an array.
+The only difference between `call` and `apply` is how you pass arguments. Use `apply` when you already have them in an array.
 
 ---
 
@@ -36,4 +36,4 @@ boundGreet();                       // Hello, John!
 ---
 
 > [!tip] When bind actually matters
-> Passing a method somewhere else strips its `this`. `setTimeout(obj.method, 100)` loses the object, so you pass `obj.method.bind(obj)` instead. An arrow function solves the same problem by never having its own `this` in the first place.
+> Passing a method strips its `this`. `setTimeout(obj.method, 100)` loses the object. Pass `obj.method.bind(obj)` instead. An arrow function solves this by never having its own `this`.

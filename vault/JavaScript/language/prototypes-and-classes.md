@@ -23,7 +23,7 @@ Person.prototype.walk = function () {
 };
 ```
 
-**Methods inside the constructor.** A fresh copy of every function, for every instance.
+**Methods inside the constructor.** A fresh copy for every instance.
 
 ```js
 function Person(name) {
@@ -39,7 +39,7 @@ function Person(name) {
 }
 ```
 
-Both are used the same way:
+Both work the same way:
 
 ```js
 const person1 = new Person('Alice');
@@ -47,7 +47,7 @@ person1.run();   // Alice is running
 ```
 
 > [!warning] The second version wastes memory
-> Ten thousand instances means twenty thousand function objects, all identical. On the prototype there are two, total. Put methods on the prototype unless a method genuinely needs to capture something per instance.
+> Ten thousand instances means twenty thousand function objects, all identical. On the prototype there are two total. Put methods on the prototype unless a method needs to capture something per instance.
 
 ---
 
@@ -69,7 +69,7 @@ class Person {
 }
 ```
 
-Methods written in a class body land on the prototype automatically, so this is the first constructor version with less typing. Two real differences: a class is not hoisted the way a function declaration is, and calling one without `new` throws instead of silently doing the wrong thing.
+Methods in a class body land on the prototype automatically. This is the first constructor version with less typing. Two real differences: a class is not hoisted the way a function declaration is, and calling one without `new` throws instead of silently doing the wrong thing.
 
 ---
 
@@ -79,9 +79,9 @@ Methods written in a class body land on the prototype automatically, so this is 
 const obj = { name: 'John', age: 30 };
 console.log(obj.hasOwnProperty('name'));  // true
 
-const obj2 = Object.create(obj);          // obj becomes obj2's prototype
+const obj2 = Object.create(obj);
 console.log(obj2.name);                   // 'John', found on the prototype
 console.log(obj2.hasOwnProperty('name')); // false, it is not obj2's own
 ```
 
-That is the whole prototype chain in three lines. Reading a property walks up the chain until it finds one. `hasOwnProperty` refuses to walk, which is exactly why it exists: it answers "is this really mine" rather than "can I see it".
+Reading a property walks up the chain until it finds one. `hasOwnProperty` refuses to walk. That is exactly why it exists: it answers "is this really mine" rather than "can I see it".

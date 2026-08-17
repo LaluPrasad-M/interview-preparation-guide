@@ -136,19 +136,15 @@ const dog = Object.create(animalMethods); // dog.__proto__ points to animalMetho
 
 ## The concurrency model
 
-JavaScript is single threaded, with one call stack. The event loop is how it handles async work without freezing.
+JavaScript runs one thread. One call stack, one piece of code at a time. The event loop is how it handles async work without freezing.
 
 **Heap.** Memory allocation for objects.
+**Call stack.** Functions execute here, last in first out.
+**Web APIs or Node APIs.** Background threads handle `setTimeout`, DOM events and HTTP requests.
+**Task queue, macrotasks.** Callbacks from `setTimeout`, `setInterval`, UI rendering and I/O.
+**Microtask queue.** Callbacks from promises, `.then`, `.catch`, and `MutationObserver`.
 
-**Call stack.** Where functions are pushed to execute, last in first out.
-
-**Web APIs or Node APIs.** Background threads handling `setTimeout`, DOM events and HTTP requests.
-
-**Task queue, macrotasks.** Callbacks for `setTimeout`, `setInterval`, UI rendering and I/O.
-
-**Microtask queue.** Callbacks for promises, `.then` and `.catch`, and `MutationObserver`.
-
-The event loop continuously checks the call stack, and when it is empty pushes tasks from the queues.
+The event loop checks the call stack continuously. When it is empty, it pushes tasks from the queues.
 
 > [!tip] The priority rule
 > The microtask queue has absolute priority. The event loop empties the entire microtask queue before processing a single macrotask.
@@ -177,7 +173,7 @@ See [[event-loop]] for the full Node ordering including `process.nextTick`.
 
 ### Stack against heap
 
-**Stack.** Stores primitives, meaning string, number, boolean, null and undefined, plus object references, the pointers. Access is very fast.
+**Stack.** Stores primitives (string, number, boolean, null, undefined) and object references (pointers). Access is very fast.
 
 **Heap.** Stores objects, arrays and functions. An unstructured memory pool, slower to access.
 
@@ -187,17 +183,17 @@ The engine periodically runs a garbage collector.
 
 1. It starts at the roots, the global object.
 2. It traverses all references and marks every object it can reach.
-3. Any heap object that is not marked, meaning unreachable, is swept and deleted to free memory.
+3. Any heap object not marked (unreachable) is swept and deleted to free memory.
 
-**Memory leaks** happen when you accidentally keep references to objects you do not need, for example a forgotten `setInterval` or an undeleted DOM event listener.
+A **memory leak** happens when you accidentally keep references to objects you do not need. A forgotten `setInterval` or undeleted DOM event listener are common causes.
 
 ### The temporal dead zone
 
-With `let` or `const`, variables are hoisted to the top of their block but remain uninitialised, in the TDZ.
+With `let` or `const`, variables are hoisted to the top of their block but remain uninitialised. This uninitialised space is the TDZ.
 
-You cannot access a variable in the TDZ. The zone ends the moment execution reaches the declaration line.
+You cannot access a variable in the TDZ. The zone ends when execution reaches the declaration line.
 
-```javascript
+```js
 {
     // TDZ for 'name' starts here
     console.log(name); // ReferenceError

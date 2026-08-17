@@ -9,12 +9,13 @@ Part of [[coding-implementations]].
 
 ## 6. Search filter, and the derived state insight
 
-Tests computing derived state.
+**What it tests:** computing derived state.
 
-> [!warning] The insight interviewers look for
-> Do not store the filtered list in a state variable. Derived state should be computed during render.
+> [!warning]
+> Do not store the filtered list in state.
+> Derived state should be computed during render, not stored separately.
 
-```js
+```jsx
 import { useState } from "react";
 
 function UserSearch() {
@@ -37,13 +38,18 @@ function UserSearch() {
 }
 ```
 
+> [!tip]
+> Compute the filtered list inline: `users.filter(...)`.
+> No extra state variable needed.
+
 ---
 
 ## 7. Form validation
 
-Disable submit until the email is valid and the password is at least 6 characters.
+**What it tests:** disabling submit until form conditions are met.
+Email must be valid and password must be at least 6 characters.
 
-```js
+```jsx
 import { useState } from "react";
 
 function Login() {
@@ -66,13 +72,17 @@ function Login() {
 }
 ```
 
+> [!tip]
+> Derived state: compute `isValid` inline.
+> The button state depends on form state, but they share no extra state variable.
+
 ---
 
 ## 8. Custom hook, window width
 
-A reusable hook tracking window dimensions.
+**What it tests:** building a reusable hook that tracks window dimensions.
 
-```js
+```jsx
 import { useEffect, useState } from "react";
 
 function useWindowWidth() {
@@ -94,13 +104,17 @@ function App() {
 }
 ```
 
+> [!tip]
+> Extract the hook logic into a custom hook: `useWindowWidth()` returns a value you can call anywhere.
+> The component uses the hook without knowing the details inside.
+
 ---
 
 ## 9. Toggle
 
-Tests conditional rendering and boolean state.
+**What it tests:** conditional rendering and boolean state.
 
-```js
+```jsx
 import { useState } from "react";
 
 function Toggle() {
@@ -115,13 +129,17 @@ function Toggle() {
 }
 ```
 
+> [!tip]
+> Functional update with a boolean: `setShow(prev => !prev)`.
+> Conditional rendering in JSX: `{show && <p>...</p>}`.
+
 ---
 
 ## 10. Modal
 
-Tests state management and conditional rendering.
+**What it tests:** state management and conditional rendering.
 
-```js
+```jsx
 import { useState } from "react";
 
 function ModalExample() {
@@ -140,3 +158,7 @@ function ModalExample() {
   );
 }
 ```
+
+> [!tip]
+> State controls visibility: `{open && <div>...</div>}`.
+> No need for a separate rendered/hidden state, just show or hide based on the boolean.

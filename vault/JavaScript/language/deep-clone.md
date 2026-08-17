@@ -1,7 +1,7 @@
 # Deep Clone
 
 > [!tldr]
-> Copying an object shallowly copies the references inside it, so changing the copy changes the original. Three ways to get a real, independent copy.
+> A shallow copy copies references inside an object, so changing the copy changes the original. A deep copy makes a new tree, independent all the way down.
 
 ---
 
@@ -15,13 +15,13 @@ person2.country.pincode = 123123;
 console.log(person1.country.pincode); // 123123, the original changed too
 ```
 
-The spread copied `country`, but `country` was a reference, so both objects point at the same inner object.
+The spread operator copied `country` at the top level, but `country` is a reference. Both objects now point at the same inner object.
 
 ---
 
 ## structuredClone
 
-The built in answer, and the one to reach for.
+The built-in answer, and the one to reach for.
 
 ```js
 const person2 = structuredClone(person1);
@@ -41,16 +41,16 @@ Handles nested objects, arrays, `Map`, `Set` and `Date`.
 const person2 = JSON.parse(JSON.stringify(person1));
 ```
 
-Works, and it is the trick everyone knows.
+It works. Everyone knows this trick.
 
 > [!warning] What JSON silently throws away
-> Functions, `undefined` values and symbols vanish. A `Date` comes back as a string. `NaN` and `Infinity` become `null`. Circular references throw.
+> Functions, `undefined` and symbols vanish. A `Date` becomes a string. `NaN` and `Infinity` become `null`. Circular references throw.
 
 ---
 
 ## Writing it yourself
 
-Worth knowing because it is a common interview task, and it is short.
+A common interview task, and worth knowing.
 
 ```js
 function getReplicateObject(oldObj) {
@@ -65,4 +65,4 @@ function getReplicateObject(oldObj) {
 }
 ```
 
-Two things carry the whole function. The `Array.isArray` check keeps arrays as arrays instead of turning them into objects with numeric keys. The recursive call is what makes it deep, and the `typeof` guard is the base case that stops it.
+The `Array.isArray` check keeps arrays as arrays instead of turning them into objects with numeric keys. The recursive call makes it deep. The `typeof` guard is the base case that stops recursion.

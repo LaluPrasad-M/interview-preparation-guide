@@ -26,17 +26,17 @@
 
 The keyword does two completely different things depending on context.
 
-**OOP context.** Inheritance, class A inherits from class B.
+**OOP context.** Inheritance. Class A inherits from class B.
 
-**Type context.** Constraint and assignability, is type A assignable to type B? `T extends string` means T must be a string or a literal subset of a string.
+**Type context.** Constraint and assignability. Is type A assignable to type B? `T extends string` means T must be a string or a literal subset of string.
 
 ---
 
 ## Structural typing
 
-Unlike Java or C# which use nominal typing, TypeScript uses structural typing. If it walks like a duck and quacks like a duck, TypeScript considers it a duck.
+Unlike Java or C# which use nominal typing, TypeScript uses **structural typing**. If it walks like a duck and quacks like a duck, TypeScript considers it a duck.
 
-The compiler only cares about the shape of the object, not its explicit name or ancestry.
+The compiler only cares about the shape of the object, not its name or ancestry.
 
 ```ts
 interface Vector2D { x: number; y: number; }
@@ -142,18 +142,15 @@ type Result2 = UnpackPromise<string>;       // string
 
 ## Mapped types, building utilities from scratch
 
-In senior interviews you might be asked to implement `Partial`, `Pick` or `Omit` from scratch to prove you understand mapped types.
+Senior interviews sometimes ask you to implement `Partial`, `Pick` or `Omit` from scratch to prove you understand mapped types.
 
-**`keyof T`** extracts all keys of an interface as a string literal union, for example `"name" | "age"`.
+**`keyof T`** extracts all keys of an interface as a string literal union. For example `"name" | "age"`.
 
-**`T[K]`** looks up the specific type of a key, so `User["name"]` is `string`.
+**`T[K]`** looks up the type of a key. So `User["name"]` is `string`.
 
 ### Rebuilding `Pick`
 
 ```ts
-// 1. K must be a valid key of T.
-// 2. Iterate over every property P in K.
-// 3. Assign it the original type it had in T.
 type MyPick<T, K extends keyof T> = {
     [P in K]: T[P];
 };
@@ -162,6 +159,8 @@ interface User { id: number; name: string; email: string; }
 type PublicUser = MyPick<User, "id" | "name">;
 // Resolves to: { id: number; name: string; }
 ```
+
+K must be a valid key of T. Iterate over every property P in K. Assign it the original type it had in T.
 
 ### Rebuilding `Omit`
 
@@ -175,7 +174,7 @@ type MyOmit<T, K extends keyof any> = MyPick<T, Exclude<keyof T, K>>;
 
 ### The `enum` trap
 
-Unlike interfaces, `enum` is one of the rare TypeScript features that actually generates real JavaScript. It creates an IIFE and a two way mapping object, which bloats bundle size and behaves oddly with number assignments.
+Unlike interfaces, `enum` is one of the rare TypeScript features that generates real JavaScript. It creates an IIFE and a two-way mapping object, which bloats bundle size and behaves oddly with number assignments.
 
 The modern alternative is `as const`:
 
@@ -185,29 +184,28 @@ const Status = {
     SUCCESS: "SUCCESS"
 } as const;
 
-// Extracts the union type: "PENDING" | "SUCCESS"
 type StatusType = typeof Status[keyof typeof Status];
 ```
 
-### Declaration merging, interface against type
+This extracts the union type: `"PENDING" | "SUCCESS"`.
 
-`type` aliases are locked. Once defined they cannot be changed.
+### Declaration merging: interface against type
 
-`interface` declarations remain open. Declaring the same interface twice makes TypeScript merge them into one.
+`type` aliases are locked. Once defined they cannot change.
+
+`interface` declarations remain open. Declaring the same interface twice makes TypeScript merge them.
 
 ```ts
 interface Window { myCustomAPI: boolean; }
 interface Window { init(): void; }
-
-// TS merges them, so the global Window now has both properties.
-// This is how you augment third party libraries, for example adding
-// a user property to the Express Request type.
 ```
+
+TypeScript merges them, so the global Window has both properties. This is how you augment third-party libraries (for example adding a user property to the Express Request type).
 
 ### Covariance and contravariance
 
-**Covariance, return types.** You can return a more specific type than requested. If a function demands you return a `Vehicle`, returning a `Car` is safe.
+**Covariance, return types.** You can return a more specific type than requested. If a function demands `Vehicle`, returning `Car` is safe.
 
-**Contravariance, parameters.** Function parameters are contravariant. If a function asks for a callback taking a `Dog` and you provide a callback accepting an `Animal`, that is safe, because a dog is an animal. If you provide a callback requiring a `Greyhound`, that is unsafe, because the system might pass a poodle, which is a dog but not a greyhound.
+**Contravariance, parameters.** Function parameters are contravariant. If a function asks for a callback taking `Dog` and you provide a callback accepting `Animal`, that is safe (a dog is an animal). If you provide a callback requiring `Greyhound`, that is unsafe (the system might pass a poodle, which is a dog but not a greyhound).
 
-TypeScript operates with `--strictFunctionTypes` to enforce this safely.
+TypeScript uses `--strictFunctionTypes` to enforce this.
