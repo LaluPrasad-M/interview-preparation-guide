@@ -58,7 +58,7 @@ All three tasks start before any of them acquires the lock. So the shared resour
 > [!warning] The three waiting lines all print first
 > Even when the lock is free, `await mutex.acquire()` yields to the microtask queue, so the synchronous part of all three calls runs before any of them continues. Verified on Node v22.16.0 with `async-mutex`.
 >
-> This matters because it is easy to assume the first caller sails through without pausing. It does not. Anything you need to happen strictly before the lock is taken has to be before the `await`, not after it.
+> This matters because it is easy to assume the first caller runs straight through without pausing. It does not. Anything you need to happen strictly before the lock is taken has to be before the `await`, not after it.
 
 > [!warning] The release has to be in a finally block
 > If the work throws and you release only on the happy path, the lock is held forever and every other task waits for a task that has already died.

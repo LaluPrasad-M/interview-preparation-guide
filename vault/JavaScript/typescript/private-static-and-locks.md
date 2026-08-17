@@ -24,7 +24,7 @@ A **singleton** needs both. `private` stops anyone outside reaching the instance
 
 ## Synchronous code needs no locks
 
-In Java, C# or C++, multiple threads execute at the same time. If two threads change the same variable in the same millisecond, data corrupts. A lock forces them into a single file line.
+In Java, C# or C++, multiple threads execute at the same time. If two threads change the same variable in the same millisecond, data corrupts. A lock forces them to go one at a time.
 
 In TypeScript this cannot happen. Only one piece of synchronous code ever runs at a time.
 
@@ -68,10 +68,10 @@ async function withdraw(amount: number) {
 
 If a user double-clicks and triggers `withdraw(100)` twice in rapid succession:
 
-1. Call A checks the balance: 100 is at least 100. Passes. Hits `await` and pauses.
-2. Call B starts. Checks the balance: still 100. Passes. Hits `await` and pauses.
-3. Call A resumes and subtracts 100. Balance is 0.
-4. Call B resumes and subtracts 100. Balance is -100.
+1. Call A checks the balance: 100 is at least 100, so it passes. It hits `await` and pauses.
+2. Call B starts and checks the balance: still 100, so it passes too. It also hits `await` and pauses.
+3. Call A resumes and subtracts 100. The balance is 0.
+4. Call B resumes and subtracts 100. The balance is -100.
 
 ### The fix: a mutex
 
@@ -102,7 +102,7 @@ The mutex locks out any other call to `safeWithdraw` until `release()` runs.
 
 ## True multithreading
 
-Heavy CPU computation can use worker threads or web workers in the browser. Real separate threads.
+Heavy CPU computation can use worker threads, or web workers in the browser, which run on real separate threads.
 
 If those threads share memory using a `SharedArrayBuffer`, they can step on each other like in C++. JavaScript provides the `Atomics` object for traditional lock operations: `Atomics.wait()` and `Atomics.notify()` to synchronise memory access.
 

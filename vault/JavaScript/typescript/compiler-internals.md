@@ -60,7 +60,7 @@ const p: Point = v;
 
 ### `any` against `unknown`, the top types
 
-**`any`** completely disables the compiler. It is a virus that destroys type safety. Avoid at all costs.
+**`any`** completely disables the compiler. Using it removes every type safety check TypeScript gives you, so avoid it whenever you can.
 
 **`unknown`** is the safe alternative, meaning "I do not know what this is yet". You cannot perform operations on it until you explicitly narrow the type.
 
