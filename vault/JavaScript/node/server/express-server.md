@@ -128,7 +128,7 @@ The status codes are the part interviewers check.
 
 `res.sendStatus(204)` sends the code with no body, which is the right answer for a delete. Sending `200` with an empty object instead is the usual slip.
 
-Note that `find` returns the item while `findIndex` returns its position. Update and delete both need the position, since they have to write back into the array.
+`find` returns the item while `findIndex` returns its position. Update and delete both need the position, since they have to write back into the array.
 
 > [!warning] id from array length breaks
 > `todos.length + 1` repeats an id as soon as anything is deleted. Fine for a demo, wrong in anything real, where the database assigns the id.
