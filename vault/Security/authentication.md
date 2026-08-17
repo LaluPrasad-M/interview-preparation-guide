@@ -34,4 +34,4 @@ The flow is short enough to recite:
 3. The client includes that token with every request.
 4. The server validates the token and authorises the operation.
 
-The reason this is worth doing is that step 4 needs no lookup of the user's password and, with a self contained token, often no lookup at all. The token carries the proof, which is what lets the same token be checked by many services. See the microservices section in [[authorization]].
+The reason this is worth doing is that step 4 needs no lookup of the user's password. With a self contained token, it often needs no lookup at all. The token carries the proof, which is what lets the same token be checked by many services. See the microservices section in [[authorization]].

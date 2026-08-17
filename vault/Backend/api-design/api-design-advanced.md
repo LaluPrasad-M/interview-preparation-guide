@@ -111,7 +111,7 @@ Whenever you see money, inventory, booking or assignment, start thinking race co
 
 ### 13. Async work changes the API
 
-Delete document, send notification, generate report, index search data. These should not necessarily return `200 OK`. Often `202 Accepted` is more accurate, and saying so is a senior signal.
+Deleting a document, sending a notification, generating a report, indexing search data. These should not necessarily return `200 OK`. Often `202 Accepted` is more accurate, and saying so is a senior signal.
 
 ### 14. Distributed transactions are not the first answer
 
@@ -119,7 +119,7 @@ When Mongo, S3, Kafka and a search index are all involved, do not jump to 2PC. I
 
 ### 15. Failure paths matter more than happy paths
 
-Most candidates explain create payment, upload file, book ride. Interviewers ask what happens on retry, on timeout, when two requests arrive together, when one system fails, when Kafka is down. Seniority shows in those answers.
+Most candidates explain how to create a payment, upload a file, or book a ride. Interviewers ask what happens on retry, on timeout, when two requests arrive together, when one system fails, when Kafka is down. Seniority shows in those answers.
 
 ---
 

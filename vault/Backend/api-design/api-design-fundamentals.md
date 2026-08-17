@@ -21,7 +21,7 @@ The order matters.
 5. Handle pagination, filtering and sorting
 6. Add auth, security and validation
 7. Think about scale, performance and observability
-8. Versioning and backward compatibility
+8. Handle versioning and backward compatibility
 
 Error handling within step 4 has its own checklist: race conditions, retry safety, idempotency state, idempotency keys, atomic multi step updates, partial failure of external services, background job duplication, and timeout or downstream failure. See [[idempotency]].
 
@@ -54,7 +54,7 @@ APIs returning large lists can kill the database, memory and latency. Never retu
 GET /orders?limit=20&offset=40
 ```
 
-It is slow for large offsets, and data becomes inconsistent if rows change underneath. Fine for small datasets.
+It is slow for large offsets, and data becomes inconsistent if rows change underneath. It is fine for small datasets.
 
 ### Cursor pagination, the preferred form
 
@@ -67,7 +67,7 @@ The cursor is the last seen ID or timestamp, which is faster and stable.
 > [!tip] The line
 > For large datasets I prefer cursor based pagination, because it is stable and performant.
 
-**Why are cursors encoded?** Primarily to make the cursor opaque, so clients treat it as an uninterpreted token. Encoding also lets the server package multiple fields into a single value and evolve the cursor format over time. As a bonus, a URL safe encoding like Base64URL means the cursor travels safely in query parameters without worrying about reserved characters.
+**Why are cursors encoded?** It is primarily to make the cursor opaque, so clients treat it as an uninterpreted token. Encoding also lets the server package multiple fields into a single value and evolve the cursor format over time. As a bonus, a URL safe encoding like Base64URL means the cursor travels safely in query parameters without worrying about reserved characters.
 
 ```text
 Standard Base64 : ab+c/de=

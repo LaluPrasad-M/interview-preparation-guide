@@ -9,9 +9,9 @@ Part of [[api-design]].
 
 ## Auth and security
 
-**Authentication asks who are you.** JWT, OAuth2, or API keys for internal services, sent as `Authorization: Bearer <JWT>`.
+**Authentication asks who you are.** JWT, OAuth2, or API keys for internal services, sent as `Authorization: Bearer <JWT>`.
 
-**Authorization asks what can you do.** Role based access control and ownership checks. A user can only access their own orders, an admin can access all.
+**Authorization asks what you can do.** Role based access control and ownership checks. A user can only access their own orders, an admin can access all.
 
 ### The full security answer
 
@@ -69,7 +69,7 @@ Receiving and storing it is fine. The danger comes when your site renders commen
 The pattern repeats everywhere. User input reaching an SQL query gives SQL injection, an HTML page gives XSS, a shell command gives command injection, a MongoDB query object gives NoSQL injection.
 
 > [!tip] The real principle
-> It is not "never accept dangerous strings". It is never interpret untrusted input as code or query syntax. Always treat it as data.
+> It is not "never accept dangerous strings". It is to never interpret untrusted input as code or query syntax. Always treat it as data.
 
 See [[cross-site-scripting]] for the XSS defences in detail.
 

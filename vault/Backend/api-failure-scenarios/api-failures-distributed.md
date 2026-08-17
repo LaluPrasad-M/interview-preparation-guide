@@ -129,7 +129,7 @@ Check the rows affected. One means success, zero means already taken.
 
 Blockchain confirmation may take minutes. No duplicate withdrawal, survive a crash, handle webhook retries, process asynchronously.
 
-**Failure 1.** The user retries and a duplicate withdrawal is created. Fixed with a unique constraint on the idempotency key.
+**Failure 1.** The user retries and a duplicate withdrawal is created. This is fixed with a unique constraint on the idempotency key.
 
 **Failure 2.** The blockchain confirms, the webhook arrives, and the server crashes before the database update. The chain completed but the database shows pending.
 

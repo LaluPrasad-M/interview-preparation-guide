@@ -22,7 +22,7 @@ Symmetric encryption is fast but has a chicken and egg problem: both sides need 
 
 Asymmetric encryption solves distribution, since the public key can be handed to anyone, but it is far too slow for bulk data.
 
-So the standard arrangement uses each for what it is good at. Asymmetric encryption performs the key exchange, agreeing a fresh symmetric key, and everything after that is encrypted symmetrically with that key. TLS works this way, which is worth naming, because "how does HTTPS work" is the same question wearing a different hat.
+So the standard arrangement uses each for what it is good at. Asymmetric encryption performs the key exchange, agreeing a fresh symmetric key, and everything after that is encrypted symmetrically with that key. TLS works this way, which is worth naming, because "how does HTTPS work" is really the same question in different words.
 
 ---
 
