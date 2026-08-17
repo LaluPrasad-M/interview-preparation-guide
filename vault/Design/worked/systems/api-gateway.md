@@ -1,7 +1,7 @@
 # Enterprise API Gateway
 
 > [!tldr]
-> The absolute boundary between the chaotic public internet and your trusted internal network. It must add under 5 ms, because it sits on the critical path of every single request.
+> This is the absolute boundary between the chaotic public internet and your trusted internal network. It must add under 5 ms, because it sits on the critical path of every single request.
 
 ---
 
@@ -131,9 +131,9 @@ routes:
 
 This is a critical distinction. Gateways have two physical halves.
 
-**The data plane, the nodes.** The C or C++ servers doing the actual proxying. They have no database. They hold all configuration in RAM to ensure zero disk I/O latency.
+**The data plane, the nodes.** These are the C or C++ servers doing the actual proxying. They have no database. They hold all configuration in RAM to ensure zero disk I/O latency.
 
-**The control plane, the admin API.** A separate internal service used by DevOps to manage routes, backed by PostgreSQL.
+**The control plane, the admin API.** This is a separate internal service used by DevOps to manage routes, backed by PostgreSQL.
 
 **Table `gateway_routes`.**
 

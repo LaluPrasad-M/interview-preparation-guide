@@ -15,7 +15,7 @@ A company runs 10,000 pods globally. An external AI provider starts throttling r
 
 **Database polling.** Put the config in a database and have 10,000 pods run a `setInterval` querying every second. You just generated 10,000 QPS of useless read traffic, effectively attacking your own database.
 
-**The objective.** A push based configuration service. An engineer updates a JSON payload in a UI, and that payload streams into the local RAM of all 10,000 pods globally in under 5 seconds, with guaranteed fallback if the network drops.
+**The objective.** Build a push based configuration service. An engineer updates a JSON payload in a UI, and that payload streams into the local RAM of all 10,000 pods globally in under 5 seconds, with guaranteed fallback if the network drops.
 
 ---
 
@@ -182,7 +182,7 @@ You can use Kafka, but it is the wrong tool for this job.
 
 **Kafka is for persistence.** It writes to disk, designed so a consumer offline for 3 hours can wake up and read historical messages.
 
-**Redis pub/sub is for ephemeral speed.** Purely in RAM, sub millisecond latency.
+**Redis pub/sub is for ephemeral speed.** It is purely in RAM, with sub millisecond latency.
 
 **The deciding factor.** Configuration updates are fire and forget state changes, not a historical ledger of events. If a pod is offline when the config changes, it does not need to read a queue to see the timeout went 2s to 4s to 8s. It just needs to wake up and ask "what is the absolute latest version right now?"
 

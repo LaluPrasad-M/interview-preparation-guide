@@ -78,7 +78,7 @@ MongoDB is the right choice here. An agent's working memory, `state_data`, chang
 
 The `state_data` block is the flexible schema area, and `version` is critical for concurrency.
 
-**Indexing strategy.** A compound index on `{ tenant_id: 1, status: 1 }` to quickly query all `RUNNING` or `FAILED` executions for a client dashboard.
+**Indexing strategy.** Use a compound index on `{ tenant_id: 1, status: 1 }` to quickly query all `RUNNING` or `FAILED` executions for a client dashboard.
 
 ---
 

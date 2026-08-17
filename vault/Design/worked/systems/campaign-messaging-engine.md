@@ -13,7 +13,7 @@ A marketing agency selects 500,000 contacts, drafts an SMS, and clicks send now.
 2. Blasting 500,000 simultaneous HTTP requests to the SMS provider triggers a `429 Too Many Requests` ban.
 3. The provider then fires 500,000 asynchronous webhooks back saying delivered. Updating PostgreSQL 500,000 times individually exhausts database connections and crashes the database.
 
-**The objective.** A distributed fan out engine that breaks a massive campaign into individual tasks, strictly throttles outbound traffic to match provider limits, guarantees we never double text a user, and absorbs half a million incoming webhooks gracefully.
+**The objective.** Build a distributed fan out engine that breaks a massive campaign into individual tasks, strictly throttles outbound traffic to match provider limits, guarantees we never double text a user, and absorbs half a million incoming webhooks gracefully.
 
 ---
 

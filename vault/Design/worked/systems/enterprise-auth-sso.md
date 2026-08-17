@@ -13,7 +13,7 @@ If every microservice checks the user's password, your database melts and your s
 
 And if the user logs into one app, they should not have to type their password again in another. That is the lack of single sign on.
 
-**The objective.** A centralised identity provider that authenticates the user once, issues a cryptographically secure token, and lets all 50 microservices mathematically verify identity in zero network hops without ever seeing a password.
+**The objective.** Build a centralised identity provider that authenticates the user once, issues a cryptographically secure token, and lets all 50 microservices mathematically verify identity in zero network hops without ever seeing a password.
 
 ---
 
@@ -25,7 +25,7 @@ And if the user logs into one app, they should not have to type their password a
 
 **Validate.** Let downstream services or the gateway securely validate tokens.
 
-**Revoke.** A kill switch to immediately invalidate a compromised token, for example if a laptop is stolen.
+**Revoke.** Provide a kill switch to immediately invalidate a compromised token, for example if a laptop is stolen.
 
 ---
 
@@ -173,7 +173,7 @@ Why Redis? Because querying Postgres to validate a refresh token during a high t
 
 **The dilemma.** With opaque tokens, random strings, the gateway must query Redis on every single request to check validity. That causes massive Redis load and adds 5 ms to every call.
 
-**The solution.** Asymmetrically signed JWTs, validated in CPU memory at zero milliseconds.
+**The solution.** Use asymmetrically signed JWTs, validated in CPU memory at zero milliseconds.
 
 **The trap.** JWTs cannot be revoked natively. If an attacker steals a JWT, it is valid until it expires. We trade immediate revocability for massive global scalability. See [[jwt]] for the underlying mechanics.
 

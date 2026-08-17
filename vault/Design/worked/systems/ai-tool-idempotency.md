@@ -11,7 +11,7 @@ An AI agent is on a phone call with a customer and decides to refund a 50 dollar
 
 The orchestrator forwards this to the airline's external API. The airline processes the refund but takes 10 seconds to respond. The LLM's internal loop times out after 5 seconds, assumes failure, and generates a second identical tool call. Without protection, the customer is refunded 100 dollars.
 
-**The objective.** A centralised idempotency execution engine that intercepts all outgoing AI tool calls, generates deterministic execution locks, guarantees exactly once execution of side effects, and seamlessly returns cached responses if the LLM retries.
+**The objective.** Build a centralised idempotency execution engine that intercepts all outgoing AI tool calls, generates deterministic execution locks, guarantees exactly once execution of side effects, and seamlessly returns cached responses if the LLM retries.
 
 ---
 
@@ -112,7 +112,7 @@ message ToolResponse {
 
 ## Database design
 
-**Redis, the lock layer.** Strictly `SETNX`, set if not exists, with an expiry TTL of 30 seconds. That prevents permanent deadlocks if the tool engine pod is OOM killed while holding the lock.
+**Redis, the lock layer.** Use `SETNX` strictly, set if not exists, with an expiry TTL of 30 seconds. That prevents permanent deadlocks if the tool engine pod is OOM killed while holding the lock.
 
 **PostgreSQL, the state and cache layer. Table `tool_executions`.**
 

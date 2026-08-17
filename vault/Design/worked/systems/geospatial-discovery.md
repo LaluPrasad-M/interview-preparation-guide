@@ -19,9 +19,9 @@ Querying a database for geographic proximity requires calculating the Haversine 
 
 **Search.** Given a latitude, longitude and radius, or a bounding box, return nearby clinics or doctors.
 
-**Filter.** By `care_type`, `languages_spoken` and `insurance_accepted`.
+**Filter.** Filter by `care_type`, `languages_spoken` and `insurance_accepted`.
 
-**Ranking.** Results ranked dynamically by a composite score of proximity and availability.
+**Ranking.** Rank results dynamically by a composite score of proximity and availability.
 
 **Write path.** As clinics get booked up or wait times fluctuate, the search read infrastructure updates in near real time.
 

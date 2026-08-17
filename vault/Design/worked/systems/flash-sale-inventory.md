@@ -9,7 +9,7 @@
 
 A flash sale system: lightning deals, ticket booking, limited console or sneaker drops.
 
-5 million concurrent users, over 1 million purchase attempts per minute, extremely hot inventory keys, strong correctness requirements, and overselling must never happen.
+This means 5 million concurrent users, over 1 million purchase attempts per minute, and extremely hot inventory keys. Correctness requirements are strict, and overselling must never happen.
 
 The hardest part is preventing multiple users from successfully purchasing the same inventory unit simultaneously.
 

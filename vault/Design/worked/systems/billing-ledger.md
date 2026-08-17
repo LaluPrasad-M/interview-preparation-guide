@@ -1,7 +1,7 @@
 # Multi Tenant Billing and Rate Limiting Ledger
 
 > [!tldr]
-> An append only ledger with a unique idempotency key. The uniqueness constraint is the entire safety net, and the balance is a materialized view over the ledger.
+> This is an append only ledger with a unique idempotency key. The uniqueness constraint is the entire safety net, and the balance is a materialized view over the ledger.
 
 ---
 
@@ -93,7 +93,7 @@ For money, use `DECIMAL(19, 4)` or store everything as integers, for example 10.
 
 ### 3. Double entry against single entry
 
-**Single entry.** Tracks the ins and outs of a single account, the tenant. Usually fine for simple SaaS usage billing.
+**Single entry.** It tracks the ins and outs of a single account, the tenant. Usually fine for simple SaaS usage billing.
 
 **Double entry.** For strict financial systems, every transaction must balance to zero. If a tenant uses 15 units, you debit their prepaid balance account by 15 and credit your recognised revenue account by 15. This requires an additional `account_id` column and ensures money does not appear or disappear out of thin air.
 
@@ -129,7 +129,7 @@ The ledger and balance are guaranteed in sync. But this creates row contention: 
 
 The ingestion endpoint purely writes to `billing_events`, which is incredibly fast. Asynchronously, a separate worker sweeps the ledger every minute, calculates sums for new rows, updates `tenant_balances`, and marks a last processed ID so it knows where to resume.
 
-High throughput and you never lock the read tables. The downside is that `tenant_balances` may be 60 seconds out of date.
+This gives high throughput, and you never lock the read tables. The downside is that `tenant_balances` may be 60 seconds out of date.
 
 ### 3. Change data capture, the enterprise standard
 
@@ -137,7 +137,7 @@ High throughput and you never lock the read tables. The downside is that `tenant
 
 The database is the single source of truth and the application only inserts into `billing_events`. Debezium watches the PostgreSQL write ahead log at the system level, and when it sees a new ledger row it fires an event to Kafka. A dedicated microservice consumes that event and updates `tenant_balances` or a Redis cache.
 
-The most robust and scalable pattern. It completely decouples the heavy writing from the maths, but it introduces the operational complexity of managing Kafka and Debezium. See [[change-data-capture]].
+This is the most robust and scalable pattern. It completely decouples the heavy writing from the maths, but it introduces the operational complexity of managing Kafka and Debezium. See [[change-data-capture]].
 
 ---
 

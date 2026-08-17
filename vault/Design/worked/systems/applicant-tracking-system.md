@@ -1,7 +1,7 @@
 # Multi Tenant Applicant Tracking System
 
 > [!tldr]
-> Strongly relational, so SQL. The interesting parts are optimistic locking on stage transitions, and separating the transactional workload from the search workload.
+> It is strongly relational, which means SQL is the right choice. The interesting parts are optimistic locking on stage transitions, and separating the transactional workload from the search workload.
 
 ---
 
@@ -33,7 +33,7 @@ Recruiters filter by stage, experience, skills and location. Resumes are uploade
 
 Always state these as part of the functional requirements. They are the invariants the schema has to enforce.
 
-Tenant data must be strictly isolated, with no cross company access. Only one canonical application per job per candidate. Valid stage transitions must follow the defined workflow graph. Concurrent updates must not cause lost updates. A rejected candidate cannot reapply within 6 months. A hired candidate cannot reapply for the same job. An active application in a non terminal stage cannot be duplicated.
+Tenant data must be strictly isolated, with no cross company access. Only one canonical application can exist per job per candidate. Valid stage transitions must follow the defined workflow graph. Concurrent updates must not cause lost updates. A rejected candidate cannot reapply within 6 months. A hired candidate cannot reapply for the same job. An active application in a non terminal stage cannot be duplicated.
 
 See [[invariants]] for which of these belong in the database and which belong in the service layer.
 
@@ -177,7 +177,7 @@ The worker then reads the outbox, pushes to a queue, the parser extracts skills,
 
 The hierarchy, in order: query optimisation, proper indexing, a Redis cache for dashboard counts, read replicas, partitioning by `company_id`, and sharding by `company_id` only if needed.
 
-**Partitioning.** By `company_id`, and by `created_at` for large history, which enables partition pruning.
+**Partitioning.** Partition by `company_id`, and by `created_at` for large history, which enables partition pruning.
 
 **Sharding.** The shard key must align with the access pattern. `company_id` is a good key. `candidate_id` is a bad one, if most queries filter by company, because every query becomes a scatter gather.
 

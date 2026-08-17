@@ -51,7 +51,7 @@ Detect when the external API is unhealthy. Stop sending requests once failures c
 | Open | the dependency is unhealthy | block requests immediately, fail fast |
 | Half open | testing recovery | allow a small number of trial calls |
 
-**Closed.** All requests allowed. Track failure count, timeout count and a rolling error rate over, say, the last 30 seconds. Transition to open when the error rate exceeds a threshold, or consecutive failures exceed N.
+**Closed.** All requests are allowed. Track failure count, timeout count and a rolling error rate over, say, the last 30 seconds. Transition to open when the error rate exceeds a threshold, or consecutive failures exceed N.
 
 **Open.** Do not call the external API. Immediately return a cached response, a fallback, or a graceful error. Stay open for a cool down period, for example 30 seconds.
 

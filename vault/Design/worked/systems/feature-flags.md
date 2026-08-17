@@ -122,9 +122,9 @@ The application calls `if (flags.isEnabled("new_checkout", user))` on every sing
 
 **Polling.** Asking the server every 10 seconds creates massive unnecessary traffic and delays updates by up to 10 seconds.
 
-**WebSockets.** Bidirectional, but SDKs never need to send data back to the streaming server. Writes go through the management API.
+**WebSockets.** These are bidirectional, but SDKs never need to send data back to the streaming server. Writes go through the management API.
 
-**SSE.** A unidirectional stream over standard HTTP/1.1, perfect for pushing server state to a client efficiently. See [[websockets-and-sse]].
+**SSE.** This is a unidirectional stream over standard HTTP/1.1, perfect for pushing server state to a client efficiently. See [[websockets-and-sse]].
 
 **Endpoint.** `GET /v1/stream/flags?env=production`
 

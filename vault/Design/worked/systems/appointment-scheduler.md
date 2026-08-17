@@ -276,7 +276,7 @@ A related question: if a campaign or reminder is scheduled for 9:00 AM, how do y
 
 **The batch size.** 5,000 is the production standard. Querying 5 million records at once crashes the database and the V8 memory limit, usually around 1.5 GB. Fetching 5,000 rows of just ID, name and phone creates a payload of roughly 1 to 2 MB, which is fast for the database to return, effortless to hold in RAM, and the perfect chunk to push into Kafka.
 
-**What we store.** Not the final hydrated messages, because storing 5 million full strings wastes expensive cache memory. We store tasks, meaning instructions:
+**What we store.** We do not store the final hydrated messages, because storing 5 million full strings wastes expensive cache memory. We store tasks, meaning instructions:
 
 ```json
 {
