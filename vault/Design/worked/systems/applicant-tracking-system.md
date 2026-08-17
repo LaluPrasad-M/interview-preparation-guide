@@ -19,7 +19,13 @@ Recruiters filter by stage, experience, skills and location. Resumes are uploade
 
 ## Non functional requirements
 
-10,000 companies as a multi tenant SaaS, 100,000 candidates per company, a high read workload dominated by filtering and search, strong consistency for stage transitions, under 300 ms search latency, and async resume parsing.
+| Dimension | Requirement |
+| --- | --- |
+| Scale and traffic | 10,000 companies as a multi tenant SaaS, 100,000 candidates per company |
+| Read pattern | a high read workload dominated by filtering and search |
+| Consistency | strong consistency for stage transitions |
+| Performance | under 300 ms search latency |
+| Async work | async resume parsing |
 
 ---
 

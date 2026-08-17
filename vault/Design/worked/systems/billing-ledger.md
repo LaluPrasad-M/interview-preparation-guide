@@ -143,4 +143,5 @@ The most robust and scalable pattern. It completely decouples the heavy writing 
 
 ## What to actually pick
 
-For most modern high throughput SaaS platforms, use eventual consistency, options 2 or 3. The ledger is strictly for record keeping, and `tenant_balances` acts as a materialized view or cached snapshot updated in the background.
+> [!tip] Default to eventual consistency
+> For most modern high throughput SaaS platforms, use options 2 or 3. The ledger is strictly for record keeping, and `tenant_balances` acts as a materialized view or cached snapshot updated in the background.
