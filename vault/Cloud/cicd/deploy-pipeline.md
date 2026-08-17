@@ -22,7 +22,7 @@
 When a new image is pushed to ECR, the running pods get replaced with the new version.
 
 > [!warning] The push alone does not cause that
-> Kubernetes does not watch a registry. Something has to update the Deployment: a step in the CI pipeline, a `kubectl rollout restart`, or a GitOps controller that notices the change. The original notes describe this as automatic, and the accurate version is in their own list further down, where "auto-replacement on new push" is a **configured deployment policy** rather than default behaviour. Worth knowing, because "who actually triggers the rollout" is a normal follow-up question.
+> Kubernetes does not watch a registry. Something has to update the Deployment: a step in the CI pipeline, a `kubectl rollout restart`, or a GitOps controller that notices the change. The original notes describe this as automatic, and the accurate version is in their own list further down, where "auto-replacement on new push" is a **configured deployment policy** rather than default behaviour. It is worth knowing, because "who actually triggers the rollout" is a normal follow-up question.
 
 ---
 

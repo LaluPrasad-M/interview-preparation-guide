@@ -30,7 +30,7 @@ Docker is a containerisation platform that packages an application with its depe
 
 ## Why Kubernetes on top of Docker
 
-Docker packages the app. It does not run many copies of it across many machines, restart the ones that die, or add more when load rises, that is [[kubernetes-basics|Kubernetes]]' job.
+Docker packages the app. It does not run many copies of it across many machines, restart the ones that die, or add more when load rises. That is [[kubernetes-basics|Kubernetes]]' job.
 
 > [!tip] The interview answer
 > Docker runs containers. Kubernetes orchestrates them at scale, handling self healing, scaling and rolling updates.

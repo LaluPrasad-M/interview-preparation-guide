@@ -28,7 +28,7 @@ Service is the traffic layer. Deployment is the management layer.
 
 ## The flow, restated
 
-Code push, CI tests and builds, the Docker image is tagged and pushed to a registry, CD pulls the image and updates the Kubernetes deployment.
+Code is pushed, CI tests and builds, the Docker image is tagged and pushed to a registry, CD pulls the image and updates the Kubernetes deployment.
 
 **CI/CD.** Automating that whole flow.
 

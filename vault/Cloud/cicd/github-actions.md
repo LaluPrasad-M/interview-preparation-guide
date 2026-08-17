@@ -17,13 +17,13 @@ You are telling GitHub to spin up a fresh computer, download your code, and run 
 
 **The event, the trigger.** A customer places an order. In GitHub, this is what starts everything, like a developer pushing to main.
 
-**The workflow, the recipe.** The documented instructions the kitchen follows. In GitHub, a `.yml` file in your repository listing exactly what happens.
+**The workflow, the recipe.** These are the documented instructions the kitchen follows. In GitHub, this is a `.yml` file in your repository listing exactly what happens.
 
-**The runner, the chef.** The person executing the recipe. In GitHub, the temporary computer, usually an Ubuntu server, executing the job.
+**The runner, the chef.** This is the person executing the recipe. In GitHub, this is the temporary computer, usually an Ubuntu server, executing the job.
 
-**The job, the station.** A phase of cooking, like prepping vegetables or cooking meat. In GitHub, jobs are groupings of tasks that run in parallel by default.
+**The job, the station.** This is a phase of cooking, like prepping vegetables or cooking meat. In GitHub, jobs are groupings of tasks that run in parallel by default.
 
-**The step, the task.** The individual actions like chopping onions. In GitHub, the actual terminal commands running in the shell, such as `npm install`.
+**The step, the task.** These are the individual actions like chopping onions. In GitHub, these are the actual terminal commands running in the shell, such as `npm install`.
 
 ---
 

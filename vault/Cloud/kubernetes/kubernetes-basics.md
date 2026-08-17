@@ -76,7 +76,7 @@ Beyond the four building blocks, a handful of named objects give you control ove
 
 The "smooth swap when you update the code" further down has a name: a rolling update.
 
-**Rolling updates, the Kubernetes default.** Replaces old pods with new ones gradually, ensuring zero downtime.
+**Rolling updates, the Kubernetes default.** It replaces old pods with new ones gradually, ensuring zero downtime.
 
 **Blue green.** Two identical environments. Blue is live, you deploy to green, test it, and instantly flip the service router to green. The benefit is instant rollback.
 

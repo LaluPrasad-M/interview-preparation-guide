@@ -4,7 +4,7 @@
 > The question as it is usually asked: EC2 has autoscaling, so why is it called the manual option? Because autoscaling only adds machines. Everything you then have to do with those machines is still yours.
 
 > [!warning] The usual framing contains a false premise
-> The question is often put as "EC2 autoscales but ECS does not". ECS does autoscale: Service Auto Scaling adjusts the number of running tasks, and it works on the EC2 launch type as well as on Fargate. Fargate removes the servers, it is not what enables the scaling. Worth correcting out loud, because agreeing with the premise makes it look like you think scaling is the difference.
+> The question is often put as "EC2 autoscales but ECS does not". ECS does autoscale: Service Auto Scaling adjusts the number of running tasks, and it works on the EC2 launch type as well as on Fargate. Fargate removes the servers, but that removal is not what enables the scaling. It is worth correcting out loud, because agreeing with the premise makes it look like you think scaling is the difference.
 
 ---
 

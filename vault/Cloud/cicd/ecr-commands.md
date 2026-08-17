@@ -34,7 +34,7 @@ The registry value is a hostname plus a repository path. `docker login` only nee
 
 ## As shell commands
 
-Same three commands to run by hand. `export` matters here, since the later commands read the variables from the environment.
+These are the same three commands to run by hand. `export` matters here, since the later commands read the variables from the environment.
 
 ```bash
 export AWS_DEFAULT_REGION=us-east-1
@@ -61,7 +61,7 @@ docker push "${ECR_REGISTRY}:latest"
 `get-login-password` prints a short lived token, and the pipe hands it straight to `docker login` through `--password-stdin`.
 
 > [!tip] Never pass a token as an argument
-> A command line argument lands in your shell history and is visible in the process list to anyone else on the machine. Piping into stdin keeps it out of both. Same reasoning behind every other "do not put secrets in argv" rule.
+> A command line argument lands in your shell history and is visible in the process list to anyone else on the machine. Piping into stdin keeps it out of both. The same reasoning is behind every other "do not put secrets in argv" rule.
 
 ---
 
