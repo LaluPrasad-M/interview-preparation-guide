@@ -1,6 +1,6 @@
 # Placement Notes
 
-Shared Obsidian vault for placement prep: DSA, Node.js, system design, CS core. The Git repo is the source of truth. Obsidian is just the editor.
+Shared Obsidian vault for placement prep: DSA, JavaScript, design, databases, infrastructure. The Git repo is the source of truth. Obsidian is just the editor.
 
 ---
 
