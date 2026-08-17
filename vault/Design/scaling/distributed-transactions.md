@@ -138,6 +138,19 @@ Now the order and the event are committed atomically.
 
 A background worker continuously reads the outbox table, publishes the Kafka event, and marks the event processed.
 
+Run more than one poller for throughput and a race appears: two pollers query at the same instant and grab the same unprocessed rows, so the same message goes out twice from two different processes at once.
+
+```sql
+SELECT *
+FROM outbox_events
+WHERE processed = false
+ORDER BY created_at
+LIMIT 100
+FOR UPDATE SKIP LOCKED;
+```
+
+`FOR UPDATE` locks the rows a poller just read. `SKIP LOCKED` tells any other poller running the same query to skip those locked rows instead of blocking behind them, so it grabs the next unlocked batch instead. That is what lets you run several pollers side by side without a distributed lock coordinating them.
+
 ```text
                     +-- Business Table
 Request -> DB Txn --+

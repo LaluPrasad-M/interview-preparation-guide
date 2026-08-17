@@ -9,7 +9,7 @@
 
 1. **You**, the customer.
 2. **The merchant**, the app or website you are buying from.
-3. **The payment gateway and processor**, the secure digital cashier and router.
+3. **The payment gateway and processor**, the secure digital cashier and router, such as Stripe or Razorpay.
 4. **The card network**, the bridge, such as Visa, Mastercard or RuPay.
 5. **The banks**, your bank called the issuing bank, and the merchant's bank called the acquiring bank.
 

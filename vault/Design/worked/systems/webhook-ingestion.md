@@ -161,6 +161,31 @@ See [[out-of-order-events]] for the general pattern.
 
 ---
 
+## Many providers, not one
+
+This note gets away with a single `contacts` table because there is one provider and one event shape. A general receiver fielding a calendar provider, a payment provider and an email provider on the same endpoint needs to persist the raw event first, before anything downstream touches it.
+
+**Table `webhook_events`.**
+
+| Column | Notes |
+| --- | --- |
+| `id` | UUID, primary key |
+| `provider` | TEXT, for example `stripe` or `google_calendar` |
+| `external_event_id` | TEXT, the provider's own event ID |
+| `company_id` | UUID, which tenant the event belongs to |
+| `payload` | JSONB, the raw event body |
+| `status` | enum: `RECEIVED`, `PROCESSING`, `DONE`, `FAILED` |
+| `retry_count` | INT |
+| `created_at`, `processed_at` | timestamps |
+
+**Constraint.** `UNIQUE(provider, external_event_id)`. A unique index on `external_event_id` alone breaks the day two providers coincidentally hand out the same ID, so the pair is the real key.
+
+**Why the `status` column.** It is not there for the write path. It is there for the two questions that come later: which rows need a retry, and did this specific event ever finish processing, without grepping logs to find out.
+
+This is the outbox shape from [[distributed-transactions]]: insert the event row and an outbox row in one transaction, then let a poller move it to Kafka, so a crash between the insert and the publish cannot lose the event or silently double publish it.
+
+---
+
 ## Trade offs
 
 ### Kafka partitioning against round robin
@@ -171,7 +196,23 @@ See [[out-of-order-events]] for the general pattern.
 
 ### 202 Accepted against 200 OK
 
-`200 OK` implies "I have successfully processed and saved this data". `202 Accepted` means "I have received the payload and queued it for asynchronous processing". We explicitly return 202, because if the contact fails our internal validation later, we cannot notify the source via this synchronous connection.
+`200 OK` implies "I have successfully processed and saved this data". `202 Accepted` means "I have received the payload and queued it for asynchronous processing". This note returns 202, because if the contact fails our internal validation later, we cannot notify the source via this synchronous connection, and 202 keeps that gap honest.
+
+> [!warning] The other valid answer is 200, and it is a real trade off
+> | Code | Tells the caller | Pick it when |
+> | --- | --- | --- |
+> | `202 Accepted` | "received, not yet processed" | you want the response code to stay honest about what has actually happened, and the provider does not retry aggressively on anything but a 200 |
+> | `200 OK` | "accepted, stop retrying" | the provider hammers the endpoint on anything but 200, and your `UNIQUE(provider, external_event_id)` constraint already makes a duplicate harmless, so there is nothing left to protect by staying strictly honest |
+>
+> A stricter receiver handling several providers, some of which retry hard on non 200 responses, will often return 200 even on a detected duplicate for exactly this reason. If an interviewer asks "why 202 and not 200", this table is the answer: it depends on how the specific provider behaves when it does not see a 200.
+
+---
+
+## Observability
+
+**Watch these.** Webhook QPS per provider, signature failure rate, duplicate rate, Kafka consumer lag, DLQ count.
+
+A spike in signature failure rate means either a secret rotated without you knowing or someone is probing the endpoint. A spike in duplicate rate is usually just a provider's retry storm, not a bug, so alert on a sudden change in the rate rather than on any duplicate existing at all.
 
 ---
 

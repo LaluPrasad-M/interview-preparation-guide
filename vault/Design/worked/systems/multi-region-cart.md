@@ -19,6 +19,16 @@ A global platform with active datacenters in Virginia and Ireland.
 
 ---
 
+## Functional requirements
+
+**Mutate.** Add, update the quantity of, or remove items from the cart.
+
+**Read.** Fetch the fully hydrated cart state instantly.
+
+**Sync.** Persist the cart across regions in the background, asynchronously.
+
+---
+
 ## Non functional requirements
 
 | Dimension | Requirement |
