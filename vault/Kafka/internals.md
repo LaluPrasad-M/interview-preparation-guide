@@ -78,7 +78,7 @@ Consumer (in Consumer Group)  --> Fetch offset N --> Read from log --> Process m
 
 ---
 
-## Why this design is powerful
+## What this design buys you
 
 **High throughput.** Append only logs plus sequential disk I/O plus batching gives millions of messages per second.
 
