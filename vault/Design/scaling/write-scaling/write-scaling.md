@@ -26,7 +26,7 @@ This allows readers to continue safely, writers to continue safely, snapshot con
 
 **The PostgreSQL realisation.** PostgreSQL handles MVCC through tuple versioning. Updates behave less like overwriting existing bytes and more like appending a newer tuple version. Older tuple versions remain alive temporarily because older transactions may still require older snapshots.
 
-This is why PostgreSQL handles concurrent reads and writes, snapshot isolation, relational consistency and transactional correctness so elegantly. But the elegance came at a cost.
+This is why PostgreSQL can give you concurrent reads and writes, snapshot isolation, relational consistency and transactional correctness all at once. That combination came at a cost.
 
 > [!tip] The deepest lesson of this stage
 > Scalability almost never removes cost. It redistributes cost. Earlier the system paid through blocking. Now it pays through version churn, cleanup, storage pressure and vacuum overhead.

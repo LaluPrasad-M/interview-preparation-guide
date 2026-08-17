@@ -64,7 +64,7 @@ This teaches something deeper: databases are not merely storage systems. They ar
 
 To preserve correctness the database introduces row level locks, so transactions serialise safely and correctness is preserved. But the bottleneck changes again. Earlier the problem was storage throughput; now the problem is waiting.
 
-This reconnects beautifully to read scaling, because once again queues form, retries amplify load, p99 explodes, occupancy increases and connection pools saturate. But now the root cause is shared state coordination instead of read overload.
+This reconnects to read scaling: queues form again, retries amplify load, p99 explodes, occupancy increases and connection pools saturate. But now the root cause is shared state coordination instead of read overload.
 
 > [!tip] The recurring pattern
 > Many large scale failures are fundamentally queueing failures. Only the source of waiting changes.

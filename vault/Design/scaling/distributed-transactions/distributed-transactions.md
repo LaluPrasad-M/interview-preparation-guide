@@ -51,7 +51,7 @@ Database transactions solve single database consistency. They do not solve cross
 
 ## Idempotency returns again
 
-One of the most beautiful observations across this whole roadmap: almost every advanced distributed systems topic eventually comes back to idempotence.
+Across this whole roadmap, almost every advanced distributed systems topic eventually comes back to idempotence.
 
 Because retries happen, consumers restart, Kafka replays happen, outbox relays retry and network failures occur, consumers must safely handle duplicates.
 

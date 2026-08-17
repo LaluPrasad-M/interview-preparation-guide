@@ -241,7 +241,7 @@ One of the highest return interview discussions.
 | Read time fanout, fetch everything when the user opens the feed | simpler writes, lower write cost | expensive reads, higher latency, request amplification |
 | Write time fanout, update feed projections when the post is created | very fast reads, low request time fanout | more expensive writes, more storage, eventual consistency |
 
-**The biggest takeaways.** One request is rarely one unit of work. Request amplification is often the real bottleneck. N+1 is a special case of request amplification. Fanout magnifies tail latency. Batching is one of the most powerful scalability techniques. Parallelisation helps, but unbounded parallelisation creates new bottlenecks. Concurrency control is as important as parallelism. Eventually mature systems move work from request time to write time using projections and precomputation.
+**The biggest takeaways.** One request is rarely one unit of work. Request amplification is often the real bottleneck. N+1 is a special case of request amplification. Fanout magnifies tail latency. Batching collapses many small calls into one, which makes it one of the highest return scalability techniques. Parallelisation helps, but unbounded parallelisation creates new bottlenecks. Concurrency control is as important as parallelism. Eventually mature systems move work from request time to write time using projections and precomputation.
 
 > [!tip] The single most important sentence
 > The bottleneck is usually not the incoming request itself. The bottleneck is the amount of work that request creates inside the system.

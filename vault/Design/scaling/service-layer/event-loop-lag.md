@@ -60,7 +60,7 @@ const results = await Promise.all(
 );
 ```
 
-Looks elegant, looks scalable, can be disastrous. With 100,000 promises, Node must maintain state, callbacks, closures and references for all of them, so memory pressure grows rapidly.
+Looks clean, looks scalable, can be disastrous. With 100,000 promises, Node must maintain state, callbacks, closures and references for all of them, so memory pressure grows rapidly.
 
 If `users = 100,000`, `Promise.all(users.map(fetchProfile))` may start 100,000 concurrent operations, causing socket exhaustion, Redis overload, DB pool exhaustion, memory pressure and downstream collapse. This connects directly back to stage 3 backpressure and stage 6 fanout explosion.
 

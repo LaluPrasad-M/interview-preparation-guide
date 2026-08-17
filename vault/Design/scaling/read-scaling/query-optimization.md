@@ -68,7 +68,7 @@ Async pipelines -> Read projections
 
 Reads no longer directly depend on the normalised transactional schema.
 
-**What CQRS costs.** Synchronisation pipelines, projection lag, eventual consistency, replay complexity, projection rebuilding, debugging difficulty. CQRS is powerful but operationally expensive, and it solves a very specific scaling pain rather than being free sophistication.
+**What CQRS costs.** Synchronisation pipelines, projection lag, eventual consistency, replay complexity, projection rebuilding, debugging difficulty. CQRS solves a very specific scaling pain, not sophistication for its own sake, and that fix is operationally expensive.
 
 ---
 

@@ -152,7 +152,7 @@ Communication is a TCP connection using the Kafka binary protocol through a prod
 
 The producer does not know the consumers directly, which is important decoupling. The producer writes to a topic, for example `post-likes`, and Kafka stores the event durably.
 
-This is powerful because the API now finishes quickly. Instead of waiting for DB locks, WAL fsync, replication and aggregation, the API simply says the event was safely accepted into Kafka.
+The API now finishes quickly because of this. Instead of waiting for DB locks, WAL fsync, replication and aggregation, the API simply says the event was safely accepted into Kafka.
 
 **Step 3, Kafka internals.** Kafka writes events to an append only log, not as random updates. Sequential writes are extremely fast.
 
@@ -202,7 +202,7 @@ Originally 2 million DB writes; now a few hundred aggregated writes. The DB load
 
 **Redis crashes.** Potential aggregation loss. Mitigations: Redis AOF, replaying Kafka events, rebuilding aggregates.
 
-**DB down.** Flush workers pause, Redis accumulates more deltas, the Kafka backlog grows, and the system absorbs pressure temporarily. A beautiful decoupling property.
+**DB down.** Flush workers pause, Redis accumulates more deltas, the Kafka backlog grows, and the system absorbs pressure temporarily instead of failing outright. That is what the decoupling buys you.
 
 ### Why Kafka matters here
 
