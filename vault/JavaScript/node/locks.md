@@ -63,7 +63,7 @@ All three tasks start before any of them acquires the lock. So the shared resour
 > [!warning] The release has to be in a finally block
 > If the work throws and you release only on the happy path, the lock is held forever and every other task waits for a task that has already died.
 
-Note that a mutex only helps inside one process. Two Node instances behind a load balancer each get their own, so it protects nothing.
+A mutex only helps inside one process. Two Node instances behind a load balancer each get their own, so it protects nothing.
 
 ---
 
