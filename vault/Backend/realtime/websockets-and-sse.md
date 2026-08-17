@@ -21,8 +21,8 @@
 | Underlying protocol | `ws://` or `wss://`, upgraded from HTTP | `http://` or `https://`, standard HTTP |
 | Data types | text and binary | text only, UTF-8 |
 | Connection handling | stateful, server memory per connection | a standard HTTP response kept open |
-| Reconnections | manual, needs custom logic and backoff | automatic, the native `EventSource` API handles it |
-| Infrastructure and proxies | complex, needs sticky sessions and specific load balancer config | simple, works with standard HTTP infra out of the box |
+| Reconnections | manual, needs custom logic and [[exponential-backoff|backoff]] | automatic, the native `EventSource` API handles it |
+| Infrastructure and proxies | complex, needs [[sticky-session|sticky sessions]] and specific load balancer config | simple, works with standard HTTP infra out of the box |
 | Firewall friendly | can be blocked by strict corporate firewalls | highly compatible |
 | Browser connection limit | high, usually up to 255 per domain | 6 per domain on HTTP/1.1, unlimited on HTTP/2 |
 

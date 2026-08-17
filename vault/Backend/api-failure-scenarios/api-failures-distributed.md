@@ -67,7 +67,7 @@ Commit that.
 
 **Step 3, a background cleanup worker.** If a file is stuck in `INITIATED` for long enough, delete the S3 object if it exists.
 
-**Internally.** WAL keeps the metadata safe. S3 is eventually consistent object storage. There is no atomicity between them, so we use compensation.
+**Internally.** [[write-ahead-log|WAL]] keeps the metadata safe. S3 is eventually consistent object storage. There is no atomicity between them, so we use compensation.
 
 ---
 

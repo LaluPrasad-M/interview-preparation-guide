@@ -36,7 +36,7 @@ Every visitor who opens that page gets the alert, because their browser reads th
 | --- | --- |
 | **Clean the input** | strip or escape HTML in anything a user typed, before it is ever stored |
 | **Encode the output** | when printing user text into a page, turn `<` into its harmless form so the browser shows it instead of running it |
-| **Content Security Policy** | a header telling the browser which scripts it may run, so an injected script from an unapproved source is refused |
+| **[[content-security-policy|Content Security Policy]]** | a header telling the browser which scripts it may run, so an injected script from an unapproved source is refused |
 
 > [!tip] Input cleaning and output encoding are not the same rule
 > Clean on the way in so bad data never lands. Encode on the way out so data that did land is still harmless. You want both.

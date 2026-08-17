@@ -67,7 +67,7 @@ The cursor is the last seen ID or timestamp, which is faster and stable.
 > [!tip] The line
 > For large datasets I prefer cursor based pagination, because it is stable and performant.
 
-**Why are cursors encoded?** It is primarily to make the cursor opaque, so clients treat it as an uninterpreted token. Encoding also lets the server package multiple fields into a single value and evolve the cursor format over time. As a bonus, a URL safe encoding like Base64URL means the cursor travels safely in query parameters without worrying about reserved characters.
+**Why are cursors encoded?** It is primarily to make the cursor opaque, so clients treat it as an uninterpreted token. Encoding also lets the server package multiple fields into a single value and evolve the cursor format over time. As a bonus, a URL safe encoding like [[base64url|Base64URL]] means the cursor travels safely in query parameters without worrying about reserved characters.
 
 ```text
 Standard Base64 : ab+c/de=

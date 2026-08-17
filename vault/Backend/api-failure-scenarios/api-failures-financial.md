@@ -53,7 +53,7 @@ COMMIT;
 
 **Internally.** `FOR UPDATE` acquires an exclusive row lock. The second transaction blocks, the first commits, and the second then reads the updated balance.
 
-**The principles.** Isolation, row level locking, and WAL for durability.
+**The principles.** Isolation, row level locking, and [[write-ahead-log|WAL]] for durability.
 
 ### Failure scenario 2: the client retries
 

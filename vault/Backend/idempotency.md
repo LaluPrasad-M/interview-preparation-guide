@@ -130,7 +130,7 @@ Run through this in order whenever designing any API.
 
 **Tools.** A database transaction, a multi document transaction in Mongo, two phase commit rarely, or a saga across microservices.
 
-**The fundamental.** Atomicity and durability, meaning WAL in SQL and journaling in Mongo.
+**The fundamental.** Atomicity and durability, meaning [[write-ahead-log|WAL]] in SQL and journaling in Mongo.
 
 ### 4. Partial failure of external services
 
@@ -152,7 +152,7 @@ Run through this in order whenever designing any API.
 
 **Ask.** What if a dependency is slow or down?
 
-**Tools.** Timeout, retry with backoff, circuit breaker.
+**Tools.** Timeout, retry with [[exponential-backoff|backoff]], circuit breaker.
 
 **The fundamental.** Availability over consistency, and failing fast. See [[service-layer]].
 
@@ -160,6 +160,6 @@ Run through this in order whenever designing any API.
 
 **Ask.** What if traffic spikes?
 
-**Tools.** Rate limiting, throttling, queue buffering.
+**Tools.** Rate limiting, [[debouncing-and-throttling|throttling]], queue buffering.
 
-**The fundamental.** Backpressure, and protecting availability. See [[fault-tolerance]].
+**The fundamental.** [[backpressure|Backpressure]], and protecting availability. See [[fault-tolerance]].
