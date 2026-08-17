@@ -35,10 +35,10 @@ An IIFE is how you built a module before modules existed:
 
 ```js
 const myModule = (function () {
-  let counter = 0;
+  let counter = 0;                       // private, nothing outside can touch it
   const incrementCounter = () => { counter++; };
 
-  return {
+  return {                               // only these two escape
     increment: () => { incrementCounter(); },
     getCounter: () => counter,
   };
@@ -69,8 +69,8 @@ Nothing outside can touch `counter`. Only the two methods inside the returned ob
 ```js
 let counter = 0;
 
-function impure() { counter += 1; }
-function pure(counter) { return counter + 1; }
+function impure() { counter += 1; }        // changes the outside world
+function pure(counter) { return counter + 1; } // returns a new value instead
 ```
 
 **Curried.** A function of three arguments becomes three functions of one argument each. This lets you supply arguments now and the rest later.

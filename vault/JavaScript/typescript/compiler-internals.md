@@ -151,6 +151,9 @@ Senior interviews sometimes ask you to implement `Partial`, `Pick` or `Omit` fro
 ### Rebuilding `Pick`
 
 ```ts
+// 1. K must be a valid key of T.
+// 2. Iterate over every property P in K.
+// 3. Assign it the original type it had in T.
 type MyPick<T, K extends keyof T> = {
     [P in K]: T[P];
 };
@@ -184,6 +187,7 @@ const Status = {
     SUCCESS: "SUCCESS"
 } as const;
 
+// Extracts the union type: "PENDING" | "SUCCESS"
 type StatusType = typeof Status[keyof typeof Status];
 ```
 
@@ -198,6 +202,10 @@ This extracts the union type: `"PENDING" | "SUCCESS"`.
 ```ts
 interface Window { myCustomAPI: boolean; }
 interface Window { init(): void; }
+
+// TS merges them, so the global Window now has both properties.
+// This is how you augment third party libraries, for example adding
+// a user property to the Express Request type.
 ```
 
 TypeScript merges them, so the global Window has both properties. This is how you augment third-party libraries (for example adding a user property to the Express Request type).

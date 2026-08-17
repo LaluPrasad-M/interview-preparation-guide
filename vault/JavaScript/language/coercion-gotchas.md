@@ -24,7 +24,7 @@ console.log(5 + + '5'); // 10     the second + converts '5' to 5 first
 console.log(typeof undefined); // 'undefined'
 console.log(typeof null);      // 'object'   a bug from 1995, kept for compatibility
 console.log(typeof []);        // 'object'   use Array.isArray instead
-console.log(typeof NaN);       // 'number'   the not-a-number value is a number
+console.log(typeof NaN);       // 'number'   the not a number value is a number
 ```
 
 ---

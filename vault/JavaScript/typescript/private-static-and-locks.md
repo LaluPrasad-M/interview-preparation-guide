@@ -32,6 +32,8 @@ In TypeScript this cannot happen. Only one piece of synchronous code ever runs a
 let counter = 0;
 
 function increment() {
+    // No lock needed here.
+    // No other thread can interrupt this exact line.
     counter++;
 }
 ```
@@ -51,8 +53,12 @@ let accountBalance = 100;
 
 async function withdraw(amount: number) {
     if (accountBalance >= amount) {
+        // We hit an await. Control yields to the rest of the app.
+        // If the user double clicks withdraw, a second request
+        // can sneak in right here.
         await performFraudCheckApiCall();
         accountBalance -= amount;
+
         console.log(`Success! New balance: ${accountBalance}`);
     } else {
         console.log("Insufficient funds");
@@ -75,6 +81,7 @@ import { Mutex } from 'async-mutex';
 const mutex = new Mutex();
 
 async function safeWithdraw(amount: number) {
+    // Locks out any other call to safeWithdraw until release() is called
     const release = await mutex.acquire();
 
     try {
@@ -83,6 +90,7 @@ async function safeWithdraw(amount: number) {
             accountBalance -= amount;
         }
     } finally {
+        // Unlocks, allowing the next call in line to proceed
         release();
     }
 }

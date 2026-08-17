@@ -46,17 +46,20 @@ delete closed.age;           // works
 ## Checking the state
 
 ```js
-console.log('isFrozen frozen', Object.isFrozen(frozen));           // true
-console.log('isSealed frozen', Object.isSealed(frozen));           // true
-console.log('isExtensible frozen', Object.isExtensible(frozen));   // false
+console.log('freeze frozen ', frozen);
+console.log('isFrozen frozen', Object.isFrozen(frozen));         // true
+console.log('isSealed frozen', Object.isSealed(frozen));         // true
+console.log('isExtensible frozen', Object.isExtensible(frozen)); // false
 
-console.log('isFrozen sealed', Object.isFrozen(sealed));           // false
-console.log('isSealed sealed', Object.isSealed(sealed));           // true
-console.log('isExtensible sealed', Object.isExtensible(sealed));   // false
+console.log('seal sealed ', sealed);
+console.log('isFrozen sealed', Object.isFrozen(sealed));         // false
+console.log('isSealed sealed', Object.isSealed(sealed));         // true
+console.log('isExtensible sealed', Object.isExtensible(sealed)); // false
 
-console.log('isFrozen closed', Object.isFrozen(closed));           // false
-console.log('isSealed closed', Object.isSealed(closed));           // false
-console.log('isExtensible closed', Object.isExtensible(closed));   // false
+console.log('preventExtensions closed ', closed);
+console.log('isFrozen closed', Object.isFrozen(closed));         // false
+console.log('isSealed closed', Object.isSealed(closed));         // false
+console.log('isExtensible closed', Object.isExtensible(closed)); // false
 ```
 
 Same results as a table:

@@ -51,9 +51,9 @@ A scope's variables are decided by where the code is written, not by what happen
 
 ```js
 function createCounter() {
-    let count = 0;
+    let count = 0; // lives in the closure memory space
     return function increment() {
-        count++;
+        count++; // remembers 'count' even after createCounter() finished
         console.log(count);
     }
 }

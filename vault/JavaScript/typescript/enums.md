@@ -53,7 +53,7 @@ enum LoginMode {
 }
 
 LoginMode.app;             // 'appLogin'
-LoginMode['appLogin'];     // Error, no reverse lookup
+LoginMode['appLogin'];     // Error, no reverse lookup for string enums
 Object.keys(LoginMode);    // ['app', 'email', 'social']
 ```
 

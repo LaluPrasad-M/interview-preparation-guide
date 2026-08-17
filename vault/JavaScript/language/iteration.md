@@ -10,9 +10,9 @@
 ```js
 const my_array = ['apple', 'banana', 'cherry'];
 
-for (let i = 0; i < my_array.length; i++) console.log(my_array[i]);
-for (const value of my_array) console.log(value);
-for (const index in my_array) console.log(index, my_array[index]);
+for (let i = 0; i < my_array.length; i++) console.log(my_array[i]);  // apple, banana, cherry
+for (const value of my_array) console.log(value);                    // apple, banana, cherry
+for (const index in my_array) console.log(index, my_array[index]);   // 0 apple, 1 banana, 2 cherry
 ```
 
 | Loop | Gives you | Works on |
@@ -50,7 +50,7 @@ for (const key in my_map) console.log(key, my_map[key]);
 
 ```js
 let number = 1;
-let numberType;
+let numberType;          // has to live outside the switch
 
 switch (number) {
   case 1:
@@ -67,7 +67,7 @@ Declaring `let numberType` inside two different cases is an error. All cases sha
 ```js
 switch (number) {
   case 1: {
-    let numberType = 'Odd';
+    let numberType = 'Odd';   // scoped to this case only
     console.log(numberType);
     break;
   }
@@ -90,7 +90,7 @@ let a = 13;
 const fn1 = function () {
   const lst = [0,1,2,3,4,5,6,7,8,9];
   lst.forEach(function (eachNum) {
-    if (eachNum === 5) return 100;
+    if (eachNum === 5) return 100;   // returns from THIS callback only
     else a = eachNum;
   });
   return 2000;
@@ -100,7 +100,7 @@ console.log(fn1(), a);   // 2000, 9
 let b = 13;
 const fn2 = function () {
   for (let i = 0; i < 10; i++) {
-    if (i === 5) return 100;
+    if (i === 5) return 100;         // returns from fn2, loop stops
     else b = i;
   }
   return 4000;
