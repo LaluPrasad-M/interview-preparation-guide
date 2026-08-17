@@ -36,14 +36,14 @@ Each call returns a React element, which is just an object describing one UI nod
 
 ## State, props and immutability
 
-**Components.** Reusable pieces of UI.
+**Components.** These are reusable pieces of UI.
 They are JavaScript functions that return JSX.
 They can receive props and manage state.
 
-**Props.** Read-only data passed down from parent to child.
+**Props.** They are read-only data passed down from parent to child.
 Data only flows one way: parent to child.
 
-**State.** Data managed inside a component that changes over time.
+**State.** It is data managed inside a component that changes over time.
 Updating state triggers a re-render.
 State updates are asynchronous.
 
@@ -86,7 +86,7 @@ Scaling React means faster rendering, fewer unnecessary renders, smaller bundles
 For huge lists, say 10,000 rows, render only the visible ones using `react-window` or `react-virtualized`.
 Only the roughly 20 visible rows exist in the real DOM.
 
-**React.memo.** Caches component output so parent re-renders do not force child re-renders when props did not change.
+**React.memo.** It caches component output, so parent re-renders do not force child re-renders when props did not change.
 
 **useMemo vs useCallback.** `useMemo` caches a computed value and recalculates only when dependencies change.
 `useCallback` caches a function reference.
@@ -124,7 +124,7 @@ React sees the same reference, assumes nothing changed, and skips the re-render.
 The UI falls out of sync with the state.
 
 **When should you use a functional update?**
-When the new state depends on the old.
+You should use it when the new state depends on the old value.
 Standard state variables are snapshots.
 If you fire multiple updates fast, the later ones might use stale data.
 Functional updates guarantee you calculate against the latest state.
