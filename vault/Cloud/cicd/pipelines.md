@@ -32,9 +32,9 @@ Code is pushed, CI tests and builds, the Docker image is tagged and pushed to a 
 
 **CI/CD.** Automating that whole flow.
 
-**Infrastructure as code.** Managing infrastructure as repeatable code, for example Terraform.
+**[[infrastructure-as-code|Infrastructure as code]].** Managing infrastructure as repeatable code, for example Terraform.
 
-**GitOps.** Using Git as the single source of truth for declarative infrastructure and applications, for example ArgoCD or Flux.
+**[[gitops|GitOps]].** Using Git as the single source of truth for declarative infrastructure and applications, for example ArgoCD or Flux.
 
 > [!tip] Phrase worth using
 > "Rather than manual intervention, we use infrastructure as code."
@@ -69,4 +69,4 @@ pipelines:
 
 ## The real world answer format
 
-"When a developer pushes code, it triggers our CI pipeline, which runs tests, builds a Docker image, and pushes it to our registry. On the deployment side, we use Kubernetes deployments to manage our Node.js pods, ensuring rolling updates for zero downtime. A service acts as our stable load balancer. To handle traffic spikes we rely on HPA to scale pods horizontally, while using readiness and liveness probes to ensure traffic only hits healthy instances."
+"When a developer pushes code, it triggers our CI pipeline, which runs tests, builds a Docker image, and pushes it to our registry. On the deployment side, we use Kubernetes deployments to manage our Node.js pods, ensuring rolling updates for zero downtime. A service acts as our stable load balancer. To handle traffic spikes we rely on HPA to scale pods horizontally, while using [[readiness-and-liveness-probes|readiness and liveness probes]] to ensure traffic only hits healthy instances."

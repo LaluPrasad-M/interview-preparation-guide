@@ -78,7 +78,7 @@ The "smooth swap when you update the code" further down has a name: a rolling up
 
 **Rolling updates, the Kubernetes default.** It replaces old pods with new ones gradually, ensuring zero downtime.
 
-**Blue green.** Two identical environments. Blue is live, you deploy to green, test it, and instantly flip the service router to green. The benefit is instant rollback.
+**[[blue-green-deployment|Blue green]].** Two identical environments. Blue is live, you deploy to green, test it, and instantly flip the service router to green. The benefit is instant rollback.
 
 **Canary.** Route a small percentage of traffic, for example 5 percent, to the new version and monitor for errors before rolling out completely. See [[canary-release]].
 
@@ -88,7 +88,7 @@ The "smooth swap when you update the code" further down has a name: a rolling up
 
 Kubernetes notices when something is broken and recreates the pod to match the desired state. It knows a pod is stuck via probes.
 
-**Liveness probe.** Is the app dead? If it fails, Kubernetes restarts the container.
+**[[readiness-and-liveness-probes|Liveness probe]].** Is the app dead? If it fails, Kubernetes restarts the container.
 
 **Readiness probe.** Is the app ready to serve traffic? If it fails, Kubernetes removes it from the service load balancer until it recovers, which prevents 502 errors during startup. Pairing readiness probes with rolling updates is what gets you zero downtime deploys.
 
@@ -96,7 +96,7 @@ Kubernetes notices when something is broken and recreates the pod to match the d
 
 1. Check pod status: `kubectl get pods`
 2. Check logs, the most important step: `kubectl logs <pod-name>`
-3. Describe the pod: `kubectl describe pod <pod-name>`, looking for OOMKilled, probe failures and events
+3. Describe the pod: `kubectl describe pod <pod-name>`, looking for [[out-of-memory-kill|OOMKilled]], probe failures and events
 4. Check resources: are memory limits exceeded?
 5. Check service routing: is traffic reaching the pods correctly?
 
@@ -124,7 +124,7 @@ Scaling Kubernetes is not always the answer. Sometimes the bottleneck is the dat
 
 **Helm and Kustomize.** Package managers for Kubernetes, letting you template manifests for different environments instead of hardcoding values.
 
-**Service mesh, Istio or Linkerd.** A dedicated infrastructure layer for service to service communication, handling mTLS, advanced traffic routing and deep observability without changing application code.
+**[[service-mesh|Service mesh]], Istio or Linkerd.** A dedicated infrastructure layer for service to service communication, handling [[mutual-tls|mTLS]], advanced traffic routing and deep observability without changing application code.
 
 **Security contexts.** Defining privilege and access control settings for a pod or container, for example ensuring containers do not run as root.
 

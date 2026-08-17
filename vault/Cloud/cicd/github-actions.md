@@ -49,7 +49,7 @@ You are telling GitHub to spin up a fresh computer, download your code, and run 
 
 **Environments and protection rules.** Deploying to production automatically is dangerous. Environments let you add gates like required manual approvals before a deployment job runs.
 
-**OIDC.** Storing long lived cloud credentials in secrets is a major security risk. OIDC lets GitHub request short lived temporary access tokens directly from the cloud provider based on cryptographic trust, so no permanent secrets are stored.
+**[[oidc|OIDC]].** Storing long lived cloud credentials in secrets is a major security risk. OIDC lets GitHub request short lived temporary access tokens directly from the cloud provider based on cryptographic trust, so no permanent secrets are stored.
 
 **Self hosted runners.** Enterprises often require jobs to run inside their own private network. Install the runner agent on your own instance or pod to keep execution entirely private.
 
