@@ -1,7 +1,7 @@
 # Inheritance against Composition
 
 > [!tldr]
-> Inheritance is is a and locks you into a family tree. Composition is has a and lets you build with LEGO blocks.
+> Inheritance is an is a relationship and locks you into a family tree. Composition is a has a relationship and lets you build with LEGO blocks.
 
 ---
 
