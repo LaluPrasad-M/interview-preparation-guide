@@ -26,7 +26,7 @@
 
 Everything else on that list can be restarted. A stuck pod gets killed, a hot cache gets flushed, a thrashing autoscaler gets pinned.
 
-State cannot. A database that is slow under load is still the only copy of the data, so you cannot turn it off and on again, and you cannot scale it sideways in the middle of an incident.
+State cannot. A slow database is still the only copy of the data. You cannot turn it off and on again. You cannot add a second one halfway through an incident either.
 
 > [!tip] The one line to say out loud
 > Stateless things you restart. Stateful things you nurse.

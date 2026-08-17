@@ -82,7 +82,7 @@ Knowing the four categories is not the same as being able to answer them. The an
 
 Practise enough to be fluent, and then stop. Past a certain point you start sounding like you are reciting, which is worse than being a bit rough.
 
-Three ways to do it: with a friend, a mentor or a career counsellor; recording yourself and watching it back; or with an AI tool that will hold a conversation and give you feedback on the spot.
+Three ways to do it. Say it to a friend, a mentor or a career counsellor. Record yourself and watch it back. Or use an AI tool that holds the conversation and tells you how it went.
 
 ---
 

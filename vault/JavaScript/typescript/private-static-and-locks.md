@@ -18,7 +18,7 @@ When a variable is not static, it belongs to the instance. You need `new` to cre
 
 When you make something static, it belongs to the class. It exists in memory the moment the program loads, even with zero objects created.
 
-A **singleton** needs both: `private` so nobody outside can reach the instance, and `static` so the instance lives on the class rather than on an object you have not created.
+A **singleton** needs both. `private` stops anyone outside reaching the instance. `static` puts the instance on the class, so you can get at it without first creating an object.
 
 ---
 

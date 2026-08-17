@@ -214,4 +214,6 @@ We consciously traded raw network speed for architectural simplicity and easier 
 
 **A.** Instead of `SKIP LOCKED` queries with 10 second heartbeats, the server opens a persistent TCP session with a ZooKeeper cluster and creates an ephemeral znode, for example `/snowflake/workers/node_05`. ZooKeeper inherently guarantees uniqueness. If the pod crashes, the TCP connection drops, ZooKeeper deletes the znode, and machine ID 5 is instantly freed for a new pod.
 
-ZooKeeper detects a crash faster than Postgres polling does, because the dropped connection is the signal rather than a missed heartbeat. The cost is a heavy JVM based component to run and maintain, which is why modern systems often prefer Postgres or Redis.
+ZooKeeper spots a crash faster than Postgres polling. The dropped connection is itself the signal, so nobody waits for a missed heartbeat.
+
+The cost is running a JVM cluster and keeping it alive. Most modern systems decide that is not worth it and use Postgres or Redis instead.
