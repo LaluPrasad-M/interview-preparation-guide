@@ -128,4 +128,5 @@ Now the complex geospatial query becomes a fast indexed lookup:
 SELECT * FROM venues WHERE h3_index IN ('8860145b41fffff', '8860145b43fffff', ...);
 ```
 
-By converting spatial maths into an indexed string lookup, the database serves thousands of concurrent requests without breaking a sweat.
+> [!tip] Why this scales
+> Converting spatial maths into an indexed string lookup means the database serves thousands of concurrent requests without breaking a sweat.
