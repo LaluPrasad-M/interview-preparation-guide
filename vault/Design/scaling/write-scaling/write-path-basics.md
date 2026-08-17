@@ -71,11 +71,11 @@ This reconnects to read scaling: queues form again, retries amplify load, p99 ex
 
 ### Pessimistic locking
 
-Assumes conflicts are likely and locks immediately. Good for banking, ticket booking, inventory and payment correctness. It introduces waiting, lock queues, occupancy collapse and deadlocks.
+It assumes conflicts are likely and locks immediately. This works well for banking, ticket booking, inventory and payment correctness. It introduces waiting, lock queues, occupancy collapse and deadlocks.
 
 ### Optimistic locking
 
-Emerged as a reaction to blocking. Assumes conflicts are rare and validates the version during commit, which dramatically reduces waiting. Excellent for profile updates, metadata edits and low conflict systems.
+It emerged as a reaction to blocking. It assumes conflicts are rare and validates the version during commit, which dramatically reduces waiting. This works well for profile updates, metadata edits and low conflict systems.
 
 Under high contention, optimistic locking fails differently. Instead of a waiting collapse, the system suffers retry churn collapse, because transactions constantly fail version checks and retry.
 

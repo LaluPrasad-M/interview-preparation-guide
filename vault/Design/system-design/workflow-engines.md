@@ -17,13 +17,13 @@ It can usually be added later as an add on, without rewriting the services under
 
 ## The components
 
-**Workflow.** Deterministic code that describes what should happen, not how. No direct database or network calls.
+**Workflow.** It is deterministic code that describes what should happen, not how. It makes no direct database or network calls.
 
-**Activity.** The actual business logic, meaning API calls, database writes and real work. Activities can fail, time out and retry.
+**Activity.** It is the actual business logic, meaning API calls, database writes and real work. Activities can fail, time out and retry.
 
-**The server.** Persists workflow state and event history, schedules activities, and handles retries, timers and signals.
+**The server.** It persists workflow state and event history, schedules activities, and handles retries, timers and signals.
 
-**Workers.** Deployed alongside your services. They poll task queues and execute activities.
+**Workers.** Workers are deployed alongside your services. They poll task queues and execute activities.
 
 > [!tip] The key internal idea
 > Workflow state is rebuilt by replaying history, so a crash does not lose progress.
@@ -46,7 +46,7 @@ That is stronger than at least once messaging. It is stateful recovery.
 
 ## Scaling
 
-Handled by horizontal scaling of workers, task queues acting as logical sharding, and workflow partitioning by a business key such as entity ID, customer ID or business unit.
+Scaling is handled by horizontal scaling of workers, task queues acting as logical sharding, and workflow partitioning by a business key such as entity ID, customer ID or business unit.
 
 > [!warning] What it scales
 > The engine scales execution, not ingestion. Your producing service still controls event emission. The engine ensures controlled, reliable processing.

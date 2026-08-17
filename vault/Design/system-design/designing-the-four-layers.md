@@ -7,7 +7,7 @@
 
 ## Client
 
-The only part of the system your user actually touches. Everything behind it can be perfect and they will still call the product bad if this part is slow or confusing.
+This is the only part of the system your user actually touches. Everything behind it can be perfect and they will still call the product bad if this part is slow or confusing.
 
 ### What a good frontend gives you
 
@@ -42,7 +42,7 @@ The only part of the system your user actually touches. Everything behind it can
 
 ## Backend
 
-Where correctness and cost live. Users forgive a plain screen. They do not forgive lost data or a service that falls over when traffic doubles.
+This is where correctness and cost live. Users forgive a plain screen. They do not forgive lost data or a service that falls over when traffic doubles.
 
 ### What a good backend gives you
 
@@ -91,7 +91,7 @@ Where correctness and cost live. Users forgive a plain screen. They do not forgi
 
 ## Data
 
-The part you cannot easily undo. Code ships again tomorrow. A bad schema follows you for years, and lost data never comes back.
+This is the part you cannot easily undo. Code ships again tomorrow. A bad schema follows you for years, and lost data never comes back.
 
 ### What a good design gives you
 
@@ -121,7 +121,7 @@ The part you cannot easily undo. Code ships again tomorrow. A bad schema follows
 | **SQL** | the data has a clear shape, relationships matter, you want joins and transactions |
 | **NoSQL** | the shape varies, or throughput matters more than strict structure |
 
-**Sharding or replication.** Constantly confused, so worth separating.
+**Sharding or replication.** People often confuse the two, so they are worth separating.
 
 | Technique | What it does | Fixes |
 | --- | --- | --- |
@@ -137,7 +137,7 @@ The part you cannot easily undo. Code ships again tomorrow. A bad schema follows
 
 ## Deployment
 
-The machinery under your code: machines, networking, and the pipeline that ships a change. It decides how fast you recover when something breaks, and what you pay while nothing is breaking.
+This is the machinery under your code: machines, networking, and the pipeline that ships a change. It decides how fast you recover when something breaks, and what you pay while nothing is breaking.
 
 ### What a good setup gives you
 

@@ -13,7 +13,7 @@ Split into four blocks so the tables stay readable.
 
 **The analogy.** Arranging library desks in a circle. If one desk breaks, its books slide to the next, instead of reorganising the whole room.
 
-**The mechanics.** Hashes both the server IPs and the data keys onto the same 360 degree ring. Uses virtual nodes, or vnodes, to ensure data is evenly distributed even when hardware sizes differ.
+**The mechanics.** It hashes both the server IPs and the data keys onto the same 360 degree ring. It uses virtual nodes, or vnodes, to ensure data is evenly distributed even when hardware sizes differ.
 
 **The trade off.** Cache invalidation is notoriously difficult. If the database updates but the cache does not, users see stale data.
 
@@ -33,9 +33,9 @@ Split into four blocks so the tables stay readable.
 
 **The analogy.** A decentralised deli counter ticketing system that does not rely on a single boss to hand out numbers.
 
-**The mechanics.** Generates a 64 bit integer combining timestamp, datacenter ID, machine ID and sequence number, allowing distributed time sortable generation.
+**The mechanics.** It generates a 64 bit integer combining timestamp, datacenter ID, machine ID and sequence number, allowing distributed time sortable generation.
 
-**The trade off.** Heavily dependent on server clocks. NTP drift, clocks going backward, can cause fatal ID collisions.
+**The trade off.** It is heavily dependent on server clocks. NTP drift, clocks going backward, can cause fatal ID collisions.
 
 **The curveball.** How do you pause or recover if a server's clock drifts backward by 2 seconds?
 
@@ -49,7 +49,7 @@ See [[distributed-id-generation]].
 
 **The analogy.** Splitting a giant phonebook into volumes, A to M and N to Z, so more people can look up names simultaneously.
 
-**The mechanics.** Horizontal partitioning, splitting rows across databases by a shard key such as `User_ID % 4`. Requires an application level routing layer to direct queries to the right database.
+**The mechanics.** Horizontal partitioning splits rows across databases by a shard key such as `User_ID % 4`. It requires an application level routing layer to direct queries to the right database.
 
 **The trade off.** Join operations across shards are incredibly slow or impossible, which forces denormalisation.
 
@@ -71,7 +71,7 @@ See [[distributed-id-generation]].
 
 **The mechanics.** An inverted index maps terms to document IDs, for example `"apple" -> [Doc 1, Doc 4]`. TF-IDF or BM25 algorithms score relevance.
 
-**The trade off.** Blazing fast to read and search, but CPU heavy and slow to update.
+**The trade off.** It is blazing fast to read and search, but CPU heavy and slow to update.
 
 **The curveball.** If your inverted index exceeds the memory of a single machine, how do you scatter queries and gather accurate results?
 
@@ -85,7 +85,7 @@ See [[typeahead-search]] for the scatter gather answer.
 
 **The analogy.** A digital post office. Services drop off letters rather than forcing other services to answer the phone immediately.
 
-**The mechanics.** Decouples systems via an append only log. Producers write events, consumers read at their own pace, and consumer groups give parallel processing.
+**The mechanics.** It decouples systems via an append only log. Producers write events, consumers read at their own pace, and consumer groups give parallel processing.
 
 **The trade off.** You lose instant certainty, strict consistency, in favour of eventual consistency and resilience.
 
@@ -135,7 +135,7 @@ See [[proximity-discovery]].
 
 **The mechanics.** Probabilistic data structures: Count-Min Sketch for frequencies, HyperLogLog for unique counts, combined with stream processors such as Flink.
 
-**The trade off.** Trades 100 percent precision for fixed memory. You get a 99 percent accurate answer using mere megabytes of RAM.
+**The trade off.** It trades 100 percent precision for fixed memory. You get a 99 percent accurate answer using mere megabytes of RAM.
 
 **The curveball.** How do you implement a sliding window so a hashtag that trended yesterday naturally falls off today?
 

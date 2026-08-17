@@ -14,7 +14,7 @@
 
 ## 1. Circuit breaker, the most important
 
-Protects a service from repeatedly calling a failing service.
+It protects a service from repeatedly calling a failing service.
 
 **The scenario.** Service A depends on service B, and B goes down.
 
@@ -56,13 +56,13 @@ If a service fails, degrade rather than break. Show the product without recommen
 
 ## 6. Load shedding, rejecting early
 
-If a service is overloaded, immediately reject low priority traffic. Better to reject 10 percent than to crash entirely.
+If a service is overloaded, immediately reject low priority traffic. It is better to reject 10 percent than to crash entirely.
 
 ---
 
 ## 7. Rate limiting and throttling
 
-Protects your services from traffic spikes, denial of service, and internal misuse.
+It protects your services from traffic spikes, denial of service, and internal misuse.
 
 ---
 

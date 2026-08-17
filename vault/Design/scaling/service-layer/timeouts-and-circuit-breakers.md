@@ -70,7 +70,7 @@ await Promise.all(
 );
 ```
 
-Now a maximum of 10 concurrent downstream requests, which is admission control.
+Now there are a maximum of 10 concurrent downstream requests, which is admission control.
 
 ### Load shedding
 
@@ -172,7 +172,7 @@ Analytics       -> Delayed
 Notifications   -> Queued
 ```
 
-One of the strongest signs of a mature architecture.
+This is one of the strongest signs of a mature architecture.
 
 ### Why both exist together
 

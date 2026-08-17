@@ -65,11 +65,11 @@ The ladder: primary DB, batch writes, queue, partitioning, sharding.
 | 100x | sharding | native horizontal scale |
 | 1000x | more shards | distributed writes |
 
-**The interview risk here.** Hot shard from a bad shard key such as `createdAt` or `timestamp`, so all writes go to one shard.
+**The interview risk here.** A hot shard can form from a bad shard key such as `createdAt` or `timestamp`, so all writes go to one shard.
 
 ### Read and write heavy systems
 
-Examples: ride hailing, large e-commerce, messaging, food delivery, trading platforms. Millions of both reads and writes.
+Examples: ride hailing, large e-commerce, messaging, food delivery, trading platforms. There are millions of both reads and writes.
 
 **SQL.** Normal is app to primary DB. At 5x, query optimisation, indexes and connection pooling. At 10x, read replicas, with reads on replicas and writes on the primary. At 100x, Redis for reads and Kafka or SQS for writes. At 1000x, partitioning, sharding and multiple replicas per shard:
 

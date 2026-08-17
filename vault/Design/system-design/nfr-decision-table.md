@@ -191,7 +191,7 @@ Client -> API -> Queue/Buffer -> Worker(s) -> Service
 
 **Use cases.** Background jobs, video and image processing, email sending, payment retries, batch writes.
 
-**Characteristics.** Decouples producer from consumer speed, protects downstream systems, enables backpressure, and is usually but not always FIFO.
+**Characteristics.** It decouples producer from consumer speed, protects downstream systems, enables backpressure, and is usually but not always FIFO.
 
 **The example.** A user uploads a video. The API responds immediately, the video is queued, and workers transcode in the background.
 

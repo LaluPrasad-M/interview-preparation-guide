@@ -15,7 +15,7 @@ Client -> Web Server
               +- Database
 ```
 
-Everything runs on one machine. Simple to build and deploy, and it works for few users and low traffic.
+Everything runs on one machine. It is simple to build and deploy, and it works for few users and low traffic.
 
 **Terminology.** A monolith bundles UI, business logic and DB tightly together. Vertical scaling, or scaling up, means increasing the CPU and RAM of the same server.
 

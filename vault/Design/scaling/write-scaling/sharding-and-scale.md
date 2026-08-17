@@ -20,7 +20,7 @@ That is the birth of partitioning and sharding.
 
 ### Partitioning against sharding
 
-Partitioning broadly means splitting data logically, sometimes still on the same physical machine, for example `orders_2024`, `orders_2025`, `orders_2026`. It improves query pruning, maintenance, archival operations, vacuum locality and index locality. Especially important in PostgreSQL for very large relational tables.
+Partitioning broadly means splitting data logically, sometimes still on the same physical machine, for example `orders_2024`, `orders_2025`, `orders_2026`. It improves query pruning, maintenance, archival operations, vacuum locality and index locality. This is especially important in PostgreSQL for very large relational tables.
 
 Sharding introduces distribution across multiple physical nodes:
 
@@ -97,7 +97,7 @@ Read replicas were relatively manageable. Once systems introduced multiple writa
 
 **Clocks became dangerous.** Clocks cannot be fully trusted, because servers drift, skew and disagree. That makes timestamp based ordering dangerous in distributed systems, which introduced Lamport clocks, logical clocks and vector clocks.
 
-**CRDTs.** Conflict free replicated data types safely merge distributed counters, collaborative state and independently updated replicas. Important for collaborative editing, distributed synchronisation and eventually consistent merges.
+**CRDTs.** Conflict free replicated data types safely merge distributed counters, collaborative state and independently updated replicas. They are important for collaborative editing, distributed synchronisation and eventually consistent merges.
 
 **Observability became much harder.** Earlier debugging involved a single database. Now systems have regional lag, stale replicas, split brain risks, quorum failures, partition handling, clock skew and cross region retries.
 
@@ -192,7 +192,7 @@ db.posts.updateOne(
 )
 ```
 
-Originally 2 million DB writes; now a few hundred aggregated writes. The DB load is transformed completely.
+Originally there were 2 million DB writes; now there are a few hundred aggregated writes. The DB load is transformed completely.
 
 **Step 7, the database.** The DB acts as durable long term storage, not a realtime ingestion layer. PostgreSQL stores durable counters, relational consistency, analytics and transactional correctness. MongoDB stores document snapshots, denormalised profile or post state, and scalable retrieval.
 
