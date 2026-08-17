@@ -95,7 +95,7 @@ If you create a new function on every render, child components see a different f
 **Code splitting.** Fix large bundle sizes using `React.lazy` and `<Suspense>`.
 Component code downloads only when needed, not up front.
 
-**Debouncing and throttling.** Debouncing delays execution until activity stops: wait 500 ms after the user stops typing before calling the search API.
+**[[debouncing-and-throttling|Debouncing and throttling]].** Debouncing delays execution until activity stops: wait 500 ms after the user stops typing before calling the search API.
 Throttling caps execution: handle a scroll event at most once every 200 ms.
 
 **API caching.** Use TanStack Query or SWR to prevent repeated fetches.

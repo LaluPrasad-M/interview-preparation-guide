@@ -154,7 +154,7 @@ function TodoApp() {
 
 ## 4. Debounced search
 
-**What it tests:** `useEffect`, cleanup functions, and debouncing.
+**What it tests:** `useEffect`, cleanup functions, and [[debouncing-and-throttling|debouncing]].
 
 ```jsx
 import { useEffect, useState } from "react";
