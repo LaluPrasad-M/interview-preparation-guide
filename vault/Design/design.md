@@ -133,7 +133,7 @@
 | Note | Covers |
 | --- | --- |
 | [[checkout-worked-example]] | four patterns wired together, plus the pattern mapping table |
-| [[ride-booking-worked-example]] | the six steps end to end, the request trace, the composition root |
+| [[ride-booking]] | the six steps end to end, the request trace, the composition root |
 
 ---
 

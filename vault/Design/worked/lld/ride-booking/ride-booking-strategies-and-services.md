@@ -3,7 +3,7 @@
 > [!tldr]
 > Repositories abstract persistence, strategies abstract behavior variation, services orchestrate the workflow.
 
-Part of [[ride-booking-worked-example]].
+Part of [[ride-booking]].
 
 ---
 

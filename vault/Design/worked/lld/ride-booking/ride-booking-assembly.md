@@ -3,7 +3,7 @@
 > [!tldr]
 > Wire the object graph in one place at startup, then inject the same instance everywhere.
 
-Part of [[ride-booking-worked-example]].
+Part of [[ride-booking]].
 
 ---
 

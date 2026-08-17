@@ -3,7 +3,7 @@
 > [!tldr]
 > Define the domain entities and the state transitions they enforce, before writing services.
 
-Part of [[ride-booking-worked-example]].
+Part of [[ride-booking]].
 
 ---
 
