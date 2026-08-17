@@ -89,7 +89,7 @@ Why microservices? Managing data inconsistency. Database choices and the reasoni
 
 ## ZoomInfo, round 1
 
-Missed the webhooks part, and got confused about where to put Kafka.
+I missed the webhooks part, and got confused about where to put Kafka.
 
 ### The prompt
 
@@ -101,7 +101,7 @@ Design an endpoint that receives webhook events from a CRM whenever a contact is
 
 **Functional requirements.** The API. Idempotency. Events unordered. Multi tenancy.
 
-**Non functional.** Scale is write heavy. Performance means optimising latency. Highly available.
+**Non functional.** Scale is write heavy. Performance means optimising latency. It is highly available.
 
 ```text
 +-------------+        +--------------+         +---------+

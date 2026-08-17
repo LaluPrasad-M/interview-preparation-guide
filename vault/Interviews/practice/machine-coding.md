@@ -49,7 +49,7 @@ How do you build the tools other developers use?
 
 ## Level 4: text processing and routing
 
-Heavily algorithmic. Tests your ability to organise string data efficiently.
+This is heavily algorithmic. It tests your ability to organise string data efficiently.
 
 | Priority | Problem | The concept | The senior mental trigger |
 | --- | --- | --- | --- |
@@ -62,7 +62,7 @@ Heavily algorithmic. Tests your ability to organise string data efficiently.
 
 ## Level 5: concurrency and multithreading
 
-Mandatory if you code in Java, C++, Go or Rust.
+This is mandatory if you code in Java, C++, Go or Rust.
 
 | Priority | Problem | The concept | The senior mental trigger |
 | --- | --- | --- | --- |
@@ -77,7 +77,7 @@ See [[singleton]] for a worked connection pool.
 
 ## Level 6: advanced in memory and storage algorithms
 
-Often asked at database companies or high frequency trading firms.
+This is often asked at database companies or high frequency trading firms.
 
 | Priority | Problem | The concept | The senior mental trigger |
 | --- | --- | --- | --- |

@@ -26,7 +26,7 @@ By mapping dependencies, imports and function signatures, the system injects onl
 
 ## Headroom, input and context compression
 
-An optimisation proxy layer, often integrated with a gateway. It intercepts what the model is about to read, such as massive tool outputs, 500 line error logs or dense retrieval payloads, and aggressively compresses them before forwarding.
+It is an optimisation proxy layer, often integrated with a gateway. It intercepts what the model is about to read, such as massive tool outputs, 500 line error logs or dense retrieval payloads, and aggressively compresses them before forwarding.
 
 It ensures the model has the headroom it needs to reason, without drowning in verbose system logs.
 
@@ -34,7 +34,7 @@ It ensures the model has the headroom it needs to reason, without drowning in ve
 
 ## Caveman, semantic and output compression
 
-A prompt and memory compression methodology that strips predictable grammar, conversational padding and formatting fluff.
+It is a prompt and memory compression methodology that strips predictable grammar, conversational padding and formatting fluff.
 
 Instead of a model outputting "Certainly! Here is the function you requested to filter users", Caveman enforces strict primitive constraints: "Filter function. Input: User[]. Output: User[]. No explanation".
 
