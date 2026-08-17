@@ -48,7 +48,7 @@ AWS itself runs cloud native applications on EKS, integrating it with these serv
 | **Scaling** | pods and nodes | tasks | instant |
 | **Best for** | multi cloud, and teams who already know Kubernetes | AWS native container workloads | event driven tasks |
 
-The honest way to choose between EKS and ECS: ECS is simpler and ties you to AWS, while EKS is more work and gives you a skill and a configuration that move to another cloud. If nobody on the team knows Kubernetes and nobody plans to leave AWS, ECS wins. Full comparison including EC2 in [[ec2-ecs-lambda]].
+The honest way to choose between EKS and ECS: ECS is simpler and ties you to AWS. EKS is more work, but the skill and the configuration both move to another cloud. If nobody on the team knows Kubernetes and nobody plans to leave AWS, ECS wins. Full comparison including EC2 in [[ec2-ecs-lambda]].
 
 ---
 

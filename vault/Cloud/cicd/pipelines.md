@@ -7,7 +7,7 @@
 
 ## The one paragraph version
 
-Code push triggers CI, which builds and stores a Docker image. Kubernetes deploys that image as pods using a deployment. A service routes traffic to the pods, and Kubernetes handles scaling, rolling updates, and automatic recovery from failures.
+Code push triggers CI, which builds and stores a Docker image. Kubernetes deploys that image as pods using a deployment. A service routes traffic to the pods. Kubernetes handles scaling, rolling updates, and automatic recovery from failures.
 
 > [!tip] The full spoken version
 > When a developer pushes code, it triggers a CI pipeline. The pipeline builds a Docker image by packaging the application with its dependencies, then pushes that image to a container registry.

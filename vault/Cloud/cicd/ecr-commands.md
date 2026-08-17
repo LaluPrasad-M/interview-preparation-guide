@@ -66,4 +66,4 @@ docker push "${ECR_REGISTRY}:latest"
 ---
 
 > [!warning] Two things were redacted from the original notes
-> The real 12 digit AWS account ID and the real repository name are replaced with `<account-id>` and `<repository-name>`. An account ID is not secret the way a key is, but it identifies the account to anyone probing it, and the repository name named an internal service. Neither belongs in a repo other people clone.
+> The real 12 digit AWS account ID and the real repository name are replaced with `<account-id>` and `<repository-name>`. An account ID is not secret the way a key is, but it identifies the account to anyone probing it. The repository name named an internal service. Neither belongs in a repo other people clone.
