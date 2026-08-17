@@ -7,15 +7,14 @@
 
 ## The problem
 
-An object requires many constructor parameters, some optional, leading to the messy `new Order("Rahul", null, null, true, "123 Main st")` anti pattern.
+> [!tip] The trigger
+> An object requires many constructor parameters, some optional, leading to the messy `new Order("Rahul", null, null, true, "123 Main st")` anti pattern.
 
 ---
 
 ## The solution
 
 Construct complex objects step by step using method chaining, returning `this`.
-
----
 
 ---
 

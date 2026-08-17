@@ -7,7 +7,8 @@
 
 ## The problem
 
-You have massive `if/else` logic dictating behaviour.
+> [!tip] The trigger
+> You have massive `if/else` logic dictating behaviour.
 
 ---
 

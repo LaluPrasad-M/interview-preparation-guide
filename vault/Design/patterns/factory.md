@@ -7,7 +7,8 @@
 
 ## The problem
 
-The logic to instantiate objects is scattered, complex, or requires conditional checks.
+> [!tip] The trigger
+> The logic to instantiate objects is scattered, complex, or requires conditional checks.
 
 ---
 

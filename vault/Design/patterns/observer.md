@@ -7,7 +7,8 @@
 
 ## The problem
 
-When one part of your system changes, multiple other unrelated systems need to react, but you do not want tight coupling.
+> [!tip] The trigger
+> When one part of your system changes, multiple other unrelated systems need to react, but you do not want tight coupling.
 
 ---
 

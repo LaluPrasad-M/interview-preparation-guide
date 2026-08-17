@@ -7,7 +7,8 @@
 
 ## The problem
 
-You need exactly one instance of a class across the entire application.
+> [!tip] The trigger
+> You need exactly one instance of a class across the entire application.
 
 **When to use.** Database connections, loggers, config managers.
 
