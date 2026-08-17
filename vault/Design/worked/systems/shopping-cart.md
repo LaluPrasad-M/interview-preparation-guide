@@ -190,3 +190,57 @@ POST /cart/items
 ```
 
 The client sends back the `version` it read, which is what makes the write idempotent and detects a concurrent modification. See [[idempotency]].
+
+---
+
+## Checkout consistency
+
+Everything before checkout is optimistic and cheap: add, update, and remove only touch the cart tables. Checkout is the one place that needs a real transaction.
+
+```text
+BEGIN TRANSACTION
+  Lock inventory rows
+  Validate quantities
+  Decrement inventory
+  Mark cart as checked_out
+COMMIT
+```
+
+Locking the inventory rows first means a second checkout for the same product waits instead of reading a stale `available_quantity`. If validation fails, the whole transaction rolls back and the cart stays active.
+
+---
+
+## Caching the cart
+
+Reads happen far more often than writes, so the cart sits behind a cache.
+
+| Setting | Value |
+| --- | --- |
+| Key | `cart:{userId}` |
+| TTL | 30 to 60 seconds |
+| Read | cache aside |
+| Write | invalidate |
+
+The database stays the source of truth. The cache only shortens the common read path, it is never consulted for correctness.
+
+---
+
+## What can go wrong in production
+
+| Problem | Fix |
+| --- | --- |
+| Lost updates | optimistic locking |
+| Duplicate items | a database unique constraint |
+| Overselling | validate at checkout |
+| Stale cache | write through invalidation |
+| High retries | backoff plus a retry limit |
+
+---
+
+## Observability
+
+**Metrics.** Cart update conflicts, and inventory validation failures at checkout.
+
+**Logs.** `cart_id` as the correlation id, so one cart's whole history is a single grep away.
+
+**Alerts.** A spike in update conflicts, and any checkout that reports an inventory mismatch.

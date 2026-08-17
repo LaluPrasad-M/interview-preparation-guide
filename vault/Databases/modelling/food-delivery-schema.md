@@ -5,6 +5,8 @@
 
 Walk [[schema-design-questions]] alongside this. Each table below names the question that produced it.
 
+The same domain modelled as documents, restaurants, menus, payments and reviews, lives in [[schema-design]].
+
 ---
 
 ## The eight tables
