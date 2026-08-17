@@ -18,8 +18,14 @@ trap 'rm -f "$NOWLINES" "$NOWBLOCKS"' EXIT
 # Every fenced code block's lines, trimmed and blanks dropped, one block per
 # paragraph (blocks are separated by a blank output line). No length filter:
 # a one-line block counts. Tolerates indented fences. Reads stdin.
+#
+# Callout markers are stripped before anything else, because wrapping a code
+# block in a "> [!example]-" callout prefixes every line with "> ". That is a
+# presentation change, not a code change, and without this the whole block
+# reads as missing.
 blocks() {
   awk '
+    { sub(/^[ \t]*>[ \t]?/, "") }
     /^ *```/ {
       if (fence) {
         if (n > 0) { for (i = 1; i <= n; i++) print lines[i]; print "" }

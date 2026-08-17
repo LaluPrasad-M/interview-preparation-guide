@@ -108,6 +108,8 @@ This is the classic scope question wearing a timer costume. Three versions, same
 
 Two different fixes for the same symptom. Only one is about scope. An interviewer who shows version 2 is checking whether you reach for "closure" as a reflex.
 
+All three outputs verified on Node v22.16.0.
+
 ### The same thing at ten
 
 ```js
