@@ -9,7 +9,7 @@
 
 A massive source of confusion is treating Kafka like a traditional pub/sub system. Kafka is a distributed durable log.
 
-Internally it stores data in segment files, uses a leader and follower architecture, supports exactly once semantics, and achieves extremely high throughput through sequential disk writes, page cache and zero copy.
+Internally it stores data in segment files, uses a leader-follower architecture and supports exactly once semantics. It achieves extremely high throughput through sequential disk writes, page cache and zero copy.
 
 ---
 
@@ -112,7 +112,7 @@ Kafka is not a queue that deletes on consumption. Retention policies are time ba
 
 ## Common operational terms
 
-**Broker** is a server instance. **Cluster** is multiple brokers. **Zookeeper or KRaft** holds metadata and the controller, and new clusters use KRaft with no Zookeeper. **Controller broker** manages partition leadership. **Rebalancing** is redistribution of partitions when the consumer group changes.
+**Broker** is a server instance. **Cluster** is multiple brokers. **Zookeeper or KRaft** holds metadata and the controller. New clusters use KRaft, with no Zookeeper. **Controller broker** manages partition leadership. **Rebalancing** is redistribution of partitions when the consumer group changes.
 
 ---
 
@@ -143,7 +143,7 @@ Use idempotent producers to avoid duplicates. Use `acks=all` plus proper replica
 
 ## Kafka Streams, briefly
 
-A Java library for stream processing that provides windowing, joins, state stores and exactly once semantics, and uses RocksDB for local state.
+A Java library for stream processing that provides windowing, joins, state stores and exactly once semantics. It uses RocksDB for local state.
 
 ---
 

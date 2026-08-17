@@ -30,7 +30,7 @@
 
 **5. Smaller scale systems.** Often simpler operationally for medium throughput enterprise and internal systems.
 
-**6. Strict consumer delivery semantics.** Good when every task matters and job execution tracking matters, for example payment processing, email jobs and order workflows.
+**6. Strict consumer delivery semantics.** Good when every task matters. Job execution tracking matters too, for example payment processing, email jobs and order workflows.
 
 ---
 
