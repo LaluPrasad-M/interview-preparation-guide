@@ -1,7 +1,7 @@
 # Encryption
 
 > [!tldr]
-> Symmetric encryption uses one key for both directions and is fast. Asymmetric uses a public key to encrypt and a private key to decrypt, and is slow. Real systems use both.
+> Symmetric encryption uses one key for both directions and is fast. Asymmetric uses a public key to encrypt and a private key to decrypt. It is slower, and real systems use both.
 
 ---
 
