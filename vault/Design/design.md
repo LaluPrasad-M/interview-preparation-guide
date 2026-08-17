@@ -29,8 +29,8 @@
 | [[strategy]] | massive `if/else` logic dictating behaviour |
 | [[factory]] | scattered or conditional object instantiation |
 | [[observer]] | many unrelated systems reacting to one change |
-| [[builder]] | too many constructor parameters, some optional |
-| [[singleton]] | exactly one instance across the application |
+| [[builder]] | too many constructor parameters, some optional; in three parts: foundation, and nested worked example |
+| [[singleton]] | exactly one instance across the application; in three parts: patterns and examples, advanced examples |
 | [[patterns-js-vs-ts]] | each pattern in both languages, the Node module cache pitfall, three interview answers |
 
 ---
@@ -39,11 +39,11 @@
 
 | Note | Covers |
 | --- | --- |
-| [[zero-to-millions]] | the nine stages, the stateless web tier, and the scaling ladders per workload |
-| [[read-scaling]] | twenty stages from a single DB to query planners and observability |
-| [[write-scaling]] | WAL and fsync, batching, MVCC pressure, sharding, and the viral counter |
-| [[service-layer]] | latency amplification, retry storms, circuit breakers, event loop lag |
-| [[distributed-transactions]] | 2PC, Saga, compensation, the outbox pattern and its relay |
+| [[zero-to-millions]] | the nine stages and stateless web tier, in three parts: scaling stages, scaling ladders |
+| [[read-scaling]] | twenty stages from single DB to query planners and observability, in three parts: caching and resilience, query optimization |
+| [[write-scaling]] | WAL and fsync, batching, MVCC pressure, sharding, in three parts: write path basics, sharding and scale |
+| [[service-layer]] | latency amplification, retry storms, circuit breakers, event loop lag, in four parts: latency and retries, timeouts and circuit breakers, event loop lag |
+| [[distributed-transactions]] | 2PC, Saga, compensation, the outbox pattern, in three parts: saga pattern, outbox pattern |
 
 ---
 
@@ -133,7 +133,7 @@
 | Note | Covers |
 | --- | --- |
 | [[checkout-worked-example]] | four patterns wired together, plus the pattern mapping table |
-| [[ride-booking]] | the six steps end to end, the request trace, the composition root |
+| [[ride-booking]] | the six steps end to end, the request trace, the composition root, in four parts: entities and states, strategies and services, assembly |
 
 ---
 

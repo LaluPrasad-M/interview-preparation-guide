@@ -23,7 +23,7 @@
 | [[two-pointers]] | when coordinated indices collapse O(n squared) to O(n) |
 | [[sliding-window]] | six sub variants, templates, and the exact k conversion |
 | [[prefix-sum]] | counting subarrays with an exact sum, and the two mistakes that break it |
-| [[monotonic-stack]] | next greater and smaller, greedy plus stack, and the deque sibling |
+| [[monotonic-stack]] | next greater and smaller, greedy plus stack, and the deque sibling, in two parts: theory and problems |
 | [[intervals]] | five interval types and the sorting strategy each one needs |
 | [[matrix-basics]] | 2D traversal, boundaries, spiral order |
 

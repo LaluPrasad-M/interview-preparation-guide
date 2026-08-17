@@ -50,6 +50,19 @@ vault/Design/
 
 Folders in that table only exist once they hold a real note. Empty folders and title-only placeholder files are not kept, because a sidebar full of empty files is tiring to read and tells you nothing about what is actually written.
 
+When a note grows too long and gets split into parts, each cluster gets its own folder named after the topic, with the parent note inside it as the entry point. The parent links to its parts, and each part links back with "Part of [[parent]]." A note that has not been split stays a single file in its area folder. One file does not earn a folder.
+
+Example cluster structure:
+
+```text
+vault/Design/patterns/
+  singleton/
+    singleton.md                      the parent entry point
+    singleton-pattern-and-examples.md
+    singleton-advanced-examples.md
+  builder.md                          not split, stays as a file
+```
+
 The judgment calls, and how to settle them:
 
 **A thing against a move you make.** In `DSA/`, if you would describe it as "a thing" it goes in the structure folder, if you would describe it as "a move you make" it goes in the pattern folder.

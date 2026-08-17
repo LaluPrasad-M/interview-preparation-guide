@@ -9,9 +9,9 @@
 
 | Note | Covers |
 | --- | --- |
-| [[api-design]] | the design flow, pagination, filtering, sorting, auth, why injection happens, status codes, observability, versioning |
+| [[api-design]] | the design flow, pagination, filtering, sorting, auth, why injection happens, status codes, observability, versioning, in four parts: fundamentals, advanced, security and observability |
 | [[idempotency]] | the techniques, partial failures, async consumers, and the seven point failure checklist |
-| [[api-failure-scenarios]] | seven APIs, seven failures, and the 22 row correctness toolbox |
+| [[api-failure-scenarios]] | seven APIs, seven failures, and the 22 row correctness toolbox, in three parts: distributed failures, financial failures |
 | [[http-status-codes]] | the master table plus the pairs that get asked |
 
 ---

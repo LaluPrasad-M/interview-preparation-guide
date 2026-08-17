@@ -24,11 +24,11 @@
 
 | Note | Covers |
 | --- | --- |
-| [[schema-design]] | access patterns first, aggregate roots, embed against reference, denormalisation, the checklist |
+| [[schema-design]] | access patterns first, aggregate roots, embed against reference, denormalisation, the checklist, in four parts: embedding and referencing, design patterns, food delivery schema |
 | [[consistency-and-transactions]] | document atomicity, transactions and their cost, write and read concern |
 | [[sharding]] | shard key properties, scatter gather, hot shards |
 | [[indexing]] | explain, the left prefix rule, ESR, covered queries, TTL and sparse indexes |
-| [[aggregation]] | find operators, every pipeline stage, cursor streaming, change streams |
+| [[aggregation]] | find operators, every pipeline stage, cursor streaming, change streams, in four parts: query basics, pipeline stages, cursors and streams |
 
 ---
 
