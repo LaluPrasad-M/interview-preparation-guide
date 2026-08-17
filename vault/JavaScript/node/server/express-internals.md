@@ -16,7 +16,7 @@ It hides `http.createServer`, manual routing and manual middleware chaining. Int
 
 ## When to stream a request body
 
-Stream when the payload is large. Stream when you do not want it fully in memory. Stream when you want **backpressure** or progressive processing.
+Stream when the payload is large. Stream when you do not want it fully in memory. Stream when you want **[[backpressure]]** or progressive processing.
 
 > [!warning] The rule that catches everyone
 > If you use `req.on('data')`, you must not use `express.json()` on that route. The body stream can be consumed only once.

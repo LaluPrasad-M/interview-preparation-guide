@@ -1,7 +1,7 @@
 # Utility Polyfills, Function Utilities
 
 > [!tldr]
-> Five function utility polyfills showing higher-order function patterns: once, memoize, debounce, slice, and splice.
+> Five function utility polyfills showing higher-order function patterns: once, memoize, [[debouncing-and-throttling|debounce]], slice, and splice.
 
 Part of [[utility-polyfills]].
 

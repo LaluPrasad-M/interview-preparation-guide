@@ -82,4 +82,4 @@ const add = a => b => a + b;
 
 ## Why interviewers ask about closures
 
-Closures give you private state without a `private` keyword. The counter inside an IIFE, the `release` function a mutex hands back, the callback that remembers which request it belongs to: all of them work through the same mechanism.
+Closures give you private state without a `private` keyword. The counter inside an [[immediately-invoked-function-expression|IIFE]], the `release` function a mutex hands back, the callback that remembers which request it belongs to: all of them work through the same mechanism.

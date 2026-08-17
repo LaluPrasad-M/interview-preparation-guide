@@ -177,7 +177,7 @@ type MyOmit<T, K extends keyof any> = MyPick<T, Exclude<keyof T, K>>;
 
 ### The `enum` trap
 
-Unlike interfaces, `enum` is one of the rare TypeScript features that generates real JavaScript. It creates an IIFE and a two-way mapping object, which bloats bundle size and behaves oddly with number assignments.
+Unlike interfaces, `enum` is one of the rare TypeScript features that generates real JavaScript. It creates an [[immediately-invoked-function-expression|IIFE]] and a two-way mapping object, which bloats bundle size and behaves oddly with number assignments.
 
 The modern alternative is `as const`:
 

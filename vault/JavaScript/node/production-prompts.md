@@ -7,7 +7,7 @@
 
 ## 1. LRU cache with TTL
 
-**The prompt.** Design an in memory LRU cache supporting `get` and `put`, where each entry expires after a configurable TTL.
+**The prompt.** Design an in memory LRU cache supporting `get` and `put`, where each entry expires after a configurable [[ttl|TTL]].
 
 **What they are evaluating.** `get` and `put` must be constant time. Expired keys must not be returned. The cache evicts the least recently used item when over capacity. Single process, no Redis.
 
@@ -181,7 +181,7 @@ class RequestDeduplicator {
 ```
 
 > [!tip] This is the same pattern as the OAuth refresh manager
-> [[oauth-token-lifecycle]] uses exactly this to stop 100 concurrent 401s becoming 100 refresh calls. It is also the in process answer to the cache stampede in [[caching-problems]].
+> [[oauth-token-lifecycle]] uses exactly this to stop 100 concurrent 401s becoming 100 refresh calls. It is also the in process answer to the [[thundering-herd|cache stampede]] in [[caching-problems]].
 
 ---
 

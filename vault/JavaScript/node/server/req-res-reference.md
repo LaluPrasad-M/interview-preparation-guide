@@ -14,7 +14,7 @@
 | Event | `close` | connection terminated | cleanup, aborted uploads |
 | Event | `error` | stream failure | malformed stream, network issue |
 | Method | `pipe()` | forward the request stream | `req.pipe(fs.createWriteStream())` |
-| Method | `pause()` | pause the flow | backpressure handling |
+| Method | `pause()` | pause the flow | [[backpressure]] handling |
 | Method | `resume()` | resume the flow | controlled streaming |
 | Method | `destroy()` | terminate the stream | rejecting an invalid upload |
 | Property | `req.method` | the HTTP method | routing, logging |
