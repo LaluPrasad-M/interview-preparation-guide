@@ -66,11 +66,11 @@ POST /v1/leads
 
 ## Call centre integration
 
-1. Outbound requests from LMS to CRM.
-2. Callback APIs.
-3. Response acknowledgement.
-4. Error retries.
-5. SLA tracking.
+1. Send outbound requests from LMS to CRM.
+2. Provide callback APIs.
+3. Acknowledge the response.
+4. Retry on errors.
+5. Track the SLA.
 
 ---
 
@@ -82,16 +82,16 @@ POST /v1/leads
 4. Trigger a notification.
 5. Persist the meeting link.
 
-The meeting link being persisted is the step that matters for recovery. If the notification fails, the link still exists and can be resent, rather than the meeting being lost because its only copy was in a push message.
+Persisting the meeting link is the step that matters for recovery. If the notification fails, the link still exists and can be resent, rather than the meeting being lost because its only copy was in a push message.
 
 ---
 
 ## Metric service integration
 
-1. Elasticsearch queries.
-2. Bulk inserts.
-3. Pagination.
-4. Index optimisation.
+1. Query Elasticsearch.
+2. Insert in bulk.
+3. Paginate results.
+4. Optimise the index.
 
 Bulk insert rather than one document per call is the difference between Elasticsearch keeping up and falling behind, since each request carries indexing overhead that batching amortises.
 

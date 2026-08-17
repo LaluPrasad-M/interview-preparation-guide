@@ -84,11 +84,11 @@ rideService.completeRide("ride1")
 
 **Step 3, the repository.** Internally it may do a Redis lookup, a Mongo query, a SQL query or a cache lookup. The service does not care. That is the boundary.
 
-**Step 4, the matching strategy.** `matchingStrategy.findDriver()`. The service does not know nearest logic, surge aware logic or pooling logic. Only "find me the best driver".
+**Step 4, the matching strategy.** `matchingStrategy.findDriver()`. The service does not know nearest logic, surge aware logic or pooling logic. It only knows to find the best driver.
 
 **Step 5, entity state mutation.** `ride.assignDriver(driver)`. Ride itself controls legal transitions and internal consistency. The service never writes `ride.status = ...` directly. That is the encapsulation boundary.
 
-**Step 6, pricing.** `pricingStrategy.calculateFare()`, another independent abstraction boundary.
+**Step 6, pricing.** `pricingStrategy.calculateFare()` is another independent abstraction boundary.
 
 **Step 7, persistence.** `rideRepository.save(ride)`. The service does not know the database engine, schema, SQL or ORM.
 

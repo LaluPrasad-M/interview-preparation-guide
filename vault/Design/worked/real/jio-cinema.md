@@ -45,7 +45,7 @@ Before the match, the system calls the APIs that provide match details, lineups 
 }
 ```
 
-When one of those APIs dies mid match, the system enters **panic mode** and serves the snapshot instead of an error. Slightly stale, but the user sees teams, venue and start time rather than a blank screen. Live data resumes when the API recovers.
+When one of those APIs dies mid match, the system enters **panic mode** and serves the snapshot instead of an error. It is slightly stale, but the user sees teams, venue and start time rather than a blank screen. Live data resumes when the API recovers.
 
 > [!tip] Generalise it
 > For data that changes rarely, a stale answer beats an error every time.

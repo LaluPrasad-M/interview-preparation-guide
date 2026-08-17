@@ -25,7 +25,7 @@ Two things make this work. The batch path upserts rather than inserts, so a lead
 
 ## Check the cache, take the lock, check again
 
-The pattern from [[locks]], applied here as: read cache, on a miss do the expensive work, write the cache.
+The pattern from [[locks]] applies here as: read the cache, on a miss do the expensive work, then write the cache.
 
 Under concurrency you want the second check after acquiring the lock, or every waiter repeats the work the first one just finished.
 

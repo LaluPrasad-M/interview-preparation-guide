@@ -7,13 +7,13 @@
 
 ## What each pattern does here
 
-**Builder.** Creates the complex `Order` payload.
+**Builder.** It creates the complex `Order` payload.
 
-**Factory.** Instantiates the correct payment method.
+**Factory.** It instantiates the correct payment method.
 
-**Strategy.** Processes the specific payment logic.
+**Strategy.** It processes the specific payment logic.
 
-**Observer.** Triggers post payment asynchronous actions such as email and analytics.
+**Observer.** It triggers post payment asynchronous actions such as email and analytics.
 
 ---
 

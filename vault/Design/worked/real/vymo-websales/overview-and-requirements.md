@@ -21,7 +21,7 @@
 - Leads are visible to agents and officers, meaning Branch Managers, Trainer Managers, ZTMs and Circle Managers, according to role based access control.
 
 > [!question] Open question from the original notes
-> Whether the assignment rules belonged to the call centre rather than to LMS. Worth resolving before using this as a reference, because it changes who owns the routing logic.
+> It was unclear whether the assignment rules belonged to the call centre rather than to LMS. Worth resolving before using this as a reference, because it changes who owns the routing logic.
 
 ### 3. Lead data synchronisation
 
@@ -30,7 +30,7 @@
 - Leads are created or updated in LMS, and status updates are pushed to the TATA-AIA call centre.
 
 > [!question] Also unresolved
-> Exactly how DDP processes the file asynchronously. The [[websales-lld]] lists the stages, but the queueing and parallelism inside it were not written down.
+> It is not exactly clear how DDP processes the file asynchronously. The [[websales-lld]] lists the stages, but the queueing and parallelism inside it were not written down.
 
 ### 4. Communication with leads
 
