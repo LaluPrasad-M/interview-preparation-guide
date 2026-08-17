@@ -23,7 +23,7 @@ The greedy behaviour lives on one line:
 farthest = Math.max(farthest, i + nums[i])
 ```
 
-**Insatiable appetite for the max.** At every single step you ask "can this spot push my boundary further?" If yes, you aggressively take the new boundary.
+**Always grab the farthest reach.** At every single step you ask "can this spot push my boundary further?" If yes, you take the new boundary right away.
 
 **No long term planning.** You do not care how you get to that boundary. You do not evaluate whether jumping 2 steps now sets up a better jump later than jumping 1 step.
 

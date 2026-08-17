@@ -30,7 +30,7 @@ Shows up in: rotate array with cyclic replacements, the water jug problem, fract
 
 `LCM(12, 18) = 36`, the smallest common multiple.
 
-The formula rides on GCD:
+The formula depends on GCD:
 
 ```python
 LCM(a, b) = (a * b) / GCD(a, b)
@@ -82,7 +82,7 @@ Shows up in: count primes, prime factors.
 
 Brute force is `for (let i = 1; i <= n; i++)`, which is O(n).
 
-The optimal version stops at the square root, because finding `i` hands you `n / i` for free.
+The optimal version stops at the square root, because once you find `i`, you also get `n / i` as a factor.
 
 ```ts
 function getFactors(n) {

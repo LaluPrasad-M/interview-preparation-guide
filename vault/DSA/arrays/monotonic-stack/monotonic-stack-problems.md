@@ -62,7 +62,7 @@ Correct reasoning: I want to resolve smaller elements when a larger one arrives,
 
 When an array problem uses a sliding window with left and right, and you need the current minimum or maximum while both expanding and shrinking, a monotonic deque is the right tool.
 
-The reason is that not only the entering element matters, all the old values matter too. A stack can only reach its top, never its oldest element.
+The reason is that the old values matter too, not just the one entering now. A stack can only reach its top, never its oldest element.
 
 ### Worked example: shortest subarray with sum at least K
 

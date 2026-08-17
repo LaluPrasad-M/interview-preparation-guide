@@ -66,7 +66,7 @@ Here you are not starting for free, you are making choices immediately.
 | Min Cost Climbing | minimum cost to reach i | 0 | 0 | starting is free |
 | House Robber | max money from 0..i | `nums[0]` | `max(nums[0], nums[1])` | you must choose |
 
-> [!tip] The rule to tattoo on your brain
+> [!tip] The rule worth memorising
 > Count problems have base cases of 1. Cost problems have base cases of 0.
 
 ---

@@ -62,7 +62,7 @@ The monotonicity rule stays the same, which gives the full matrix:
 
 For each day `i`, find the next day `j > i` where `temperatures[j] > temperatures[i]`. If none exists the answer is 0. This is next greater element to the right.
 
-**The key insight.** When a warmer day appears, it resolves several previous colder days at once. So you should not process day `i` independently; you delay the answer until a warmer day arrives. That screams stack.
+**The key insight.** When a warmer day appears, it resolves several previous colder days at once. So you should not process day `i` independently; you delay the answer until a warmer day arrives. That is the sign you need a stack.
 
 **Values or indices?** Indices, always. You need `j - i` for the days waited, and the temperature is already reachable through the array.
 

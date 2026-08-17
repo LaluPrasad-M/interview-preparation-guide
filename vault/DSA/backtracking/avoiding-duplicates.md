@@ -135,7 +135,7 @@ LEVEL 0 loop allows:
   start with 1 (index 1)  <- duplicate start
 ```
 
-Both lead to identical subtrees. If the loop makes a bad choice, backtracking faithfully explores a bad branch. Backtracking is innocent.
+Both lead to identical subtrees. If the loop makes a bad choice, backtracking faithfully explores a bad branch. The mistake is never in the backtracking.
 
 ---
 

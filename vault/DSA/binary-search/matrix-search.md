@@ -135,7 +135,7 @@ function searchRowSorted(matrix, target) {
 target = 14
 ```
 
-**Memory trick.** The top right corner is magic.
+**Memory trick.** The top right corner is the one cell where each move eliminates a whole row or column.
 
 Since the matrix is only row wise and column wise sorted, start at the top right corner. If the current value is larger than the target, move left to reduce it; if smaller, move down to increase it. Each step eliminates one row or one column.
 
@@ -198,7 +198,7 @@ For `target = 11` in the scenario 1 matrix, this returns `[1, 2]`.
 target = 1
 ```
 
-**Memory trick.** Rotation means find the sorted half first.
+**Memory trick.** When the array is rotated, find the sorted half first.
 
 ```js
 function rotatedBinarySearch(arr, target) {
@@ -233,6 +233,6 @@ LeetCode 33, applied per row.
 
 ## Scenario 6: unknown ordering
 
-**Memory trick.** No rules means ask questions.
+**Memory trick.** When you are not told the ordering, ask about it before writing any code.
 
 The line to say: "Can you confirm whether rows, columns, or the entire matrix is sorted?"

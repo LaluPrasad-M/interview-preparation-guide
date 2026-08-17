@@ -96,7 +96,7 @@ Roughly forty problems in total where BFS or DFS is the core skill.
 
 **The essence.** Count the number of connected components of land (`'1'`) in a 2D grid using DFS flood fill.
 
-**The correct mental model.** The outer loop finds starting points of islands. DFS wipes out the entire connected island. Each DFS call equals exactly one island.
+**The correct mental model.** The outer loop finds starting points of islands. DFS clears the entire connected island. Each DFS call equals exactly one island.
 
 > When I see unvisited land, I count one island and destroy everything connected to it.
 
