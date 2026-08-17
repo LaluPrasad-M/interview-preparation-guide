@@ -35,8 +35,8 @@ How Node executes your code, loads it, and stops two things happening at once.
 | [[modules]] | ES Modules against CommonJS, sync against async loading, the export footgun |
 | [[worker-threads]] | moving CPU heavy work off the main thread. Written from scratch, your notebook stops at the heading |
 | [[locks]] | mutex in one process, Redis lock across processes, table lock in the database |
-| [[puzzles-scheduling]] | 13 what does this print questions on the event loop, in three parts: basics, async await |
-| [[puzzles-promises]] | 15 combinator and error handling questions, in three parts: error handling, combinators |
+| [[puzzles-scheduling]] | 14 what does this print questions on the event loop, in two parts: basics and async await |
+| [[puzzles-promises]] | 15 combinator and error handling questions, in two parts: error handling and combinators |
 | [[production-prompts]] | six interview prompts: limiter, rate limiter, job queue, singleflight, graceful shutdown |
 | [[middleware-recursion]] | why a loop cannot sequence middleware, with the proof |
 
