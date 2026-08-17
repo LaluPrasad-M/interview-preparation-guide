@@ -23,7 +23,7 @@ That is classic lock based concurrency. Readers blocked writers and writers bloc
 
 Instead of forcing readers and writers to fight over the same book, the database creates versions. The reader gets an old photocopy while the writer edits a new version, so both work simultaneously.
 
-That is the core idea behind PostgreSQL and InnoDB, and why people say reads do not block writes.
+That is the core idea behind PostgreSQL and InnoDB. It is why people say reads do not block writes.
 
 > [!warning] That statement is incomplete
 > Eventually somebody must clean old versions, manage memory, synchronise indexes, coordinate metadata and preserve consistency. That is where contention returns.
@@ -91,7 +91,7 @@ FROM seats
 WHERE booked = false;
 ```
 
-Transaction B books the seat simultaneously. The database detects a logical conflict and possible inconsistency, and one transaction may abort. A read query is now part of the contention.
+Transaction B books the seat simultaneously. The database detects a logical conflict and possible inconsistency. One transaction may abort. A read query is now part of the contention.
 
 ---
 

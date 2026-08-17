@@ -46,7 +46,7 @@ JOIN departments d ON e.department_id = d.id
 WHERE salary > 50000
 ```
 
-Window functions are not allowed here, and neither are aggregates, because grouping and windowing have not happened yet.
+Window functions are not allowed here. Neither are aggregates, because grouping and windowing have not happened yet.
 
 **4. `GROUP BY`.** Create buckets. Collapse rows into groups.
 
