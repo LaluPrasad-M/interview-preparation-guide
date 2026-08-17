@@ -1,7 +1,7 @@
-# Node.js
+# JavaScript
 
 > [!tldr]
-> Index for everything under `Node/`. JavaScript is the language itself, runtime is how Node executes and loads it, snippets is code to reach for, typescript is the type system on top.
+> Index for everything under `JavaScript/`. The language itself, the Node runtime built on it, snippets to reach for, and TypeScript on top.
 
 ---
 

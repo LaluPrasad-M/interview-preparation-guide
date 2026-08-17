@@ -1,7 +1,7 @@
-# Incident Management
+# Operations
 
 > [!tldr]
-> What breaks in production, and where to look first.
+> Index for everything under `Operations/`. Right now that is what breaks in production and where to look first, since that is the only note filed here so far.
 
 ---
 

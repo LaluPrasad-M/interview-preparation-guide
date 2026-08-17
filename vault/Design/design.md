@@ -68,17 +68,11 @@
 
 ---
 
-## Terms
-
-[[cdn]], [[canary-release]], [[exponential-backoff]].
-
----
-
 ## Worked designs
 
 ### Core infrastructure
 
-| Design | The central idea |
+| Note | Covers |
 | --- | --- |
 | [[distributed-id-generation]] | 64 bit Snowflake IDs with Postgres leasing the machine ID |
 | [[api-gateway]] | the boundary between the public internet and the trusted network |
@@ -90,7 +84,7 @@
 
 ### Payments and ledgers
 
-| Design | The central idea |
+| Note | Covers |
 | --- | --- |
 | [[payment-ingestion]] | three layers of defence against a double charge |
 | [[billing-ledger]] | append only ledger, unique idempotency key, materialized balance |
@@ -100,7 +94,7 @@
 
 ### Concurrency and decoupling
 
-| Design | The central idea |
+| Note | Covers |
 | --- | --- |
 | [[appointment-scheduler]] | reject in Redis, then commit with an outbox |
 | [[campaign-messaging-engine]] | tiered topics beat a single partition key |
@@ -110,14 +104,14 @@
 
 ### Webhooks
 
-| Design | The central idea |
+| Note | Covers |
 | --- | --- |
 | [[webhook-ingestion]] | accept fast, and let the database resolve duplicates |
 | [[webhook-delivery]] | never sleep in a consumer, publish to a delay topic |
 
 ### Search and geo
 
-| Design | The central idea |
+| Note | Covers |
 | --- | --- |
 | [[typeahead-search]] | precompute prefixes, scatter gather, warm the cache |
 | [[geospatial-discovery]] | Elasticsearch for filters, Redis for volatility |
@@ -125,7 +119,7 @@
 
 ### Realtime and AI
 
-| Design | The central idea |
+| Note | Covers |
 | --- | --- |
 | [[realtime-leaderboard]] | a sorted set is a hash table plus a skip list |
 | [[voice-orchestrator]] | overlapping streams beat the 500 ms barrier |
@@ -148,7 +142,7 @@
 
 ## Case studies
 
-| Note | System |
+| Note | Covers |
 | --- | --- |
 | [[jio-cinema]] | streaming an IPL match: priority tiers, snapshots, panic modes |
 
@@ -158,7 +152,7 @@
 
 One real system, written up end to end, rather than a topic.
 
-| Example | Covers |
+| Note | Covers |
 | --- | --- |
 | [[vymo-websales]] | a website to CRM lead integration: [[overview-and-requirements]], [[hld]], [[websales-lld]], [[caching-and-errors]], and [[patterns-worth-stealing]] |
 
@@ -176,6 +170,9 @@ One real system, written up end to end, rather than a topic.
 | [[internals]] | `Kafka/` | partitioning, replication and consumer groups are Kafka mechanics, not design concepts |
 | [[cross-site-scripting]] | `Security/` | the attack and its defences, filed with the rest of security |
 | [[machine-coding]] | `Interviews/practice/` | a practice problem list, not a worked design |
+| [[cdn]] | `Dictionary/` | a short definition belongs in the dictionary, per STYLE.md Rule 5 |
+| [[canary-release]] | `Dictionary/` | a short definition belongs in the dictionary, per STYLE.md Rule 5 |
+| [[exponential-backoff]] | `Dictionary/` | a short definition belongs in the dictionary, per STYLE.md Rule 5 |
 
 ---
 
