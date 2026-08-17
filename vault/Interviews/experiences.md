@@ -101,7 +101,7 @@ Design an endpoint that receives webhook events from a CRM whenever a contact is
 
 **Functional requirements.** The API. Idempotency. Events unordered. Multi tenancy.
 
-**Non functional.** Scale is write heavy. Performance means optimising latency. It is highly available.
+**Non functional.** Write heavy. Latency matters. Highly available.
 
 ```text
 +-------------+        +--------------+         +---------+
