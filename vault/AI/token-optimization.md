@@ -38,7 +38,7 @@ A prompt and memory compression methodology that strips predictable grammar, con
 
 Instead of a model outputting "Certainly! Here is the function you requested to filter users", Caveman enforces strict primitive constraints: "Filter function. Input: User[]. Output: User[]. No explanation".
 
-This can cut memory file sizes and output token costs by over 80 percent while retaining all factual integrity.
+This can cut memory file sizes and output token costs by over 80 percent, without losing any of the facts.
 
 ---
 
