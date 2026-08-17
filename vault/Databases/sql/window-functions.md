@@ -132,7 +132,7 @@ SUM(amount) OVER (
 
 ## Edge cases
 
-**Cannot use a window function in `WHERE`.** Use a subquery.
+**Window functions in `WHERE`.** Not allowed directly. Use a subquery.
 
 **Duplicate timestamps.** Add a tie breaker: `ORDER BY created_at DESC, id DESC`.
 

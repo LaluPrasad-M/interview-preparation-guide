@@ -21,9 +21,9 @@ Look for `IXSCAN`, not `COLLSCAN`.
 { userId: 1, status: 1 }
 ```
 
-Efficient for a query on `{ userId: 123 }`, and for `{ userId: 123, status: "ACTIVE" }`.
+It is efficient for a query on `{ userId: 123 }`, and for `{ userId: 123, status: "ACTIVE" }`.
 
-Not efficient for `{ status: "ACTIVE" }` alone, because the query does not start at the left of the index.
+It is not efficient for `{ status: "ACTIVE" }` alone, because the query does not start at the left of the index.
 
 ---
 
@@ -83,19 +83,19 @@ Verify it with `totalDocsExamined = 0`.
 
 ## TTL index
 
-Automatic deletion using `expireAfterSeconds`. Useful for OTPs, sessions and temporary tokens.
+A TTL index automatically deletes documents after `expireAfterSeconds`. It is useful for OTPs, sessions and temporary tokens.
 
 ---
 
 ## Sparse index
 
-Indexes only the documents that contain the field. Useful when a field exists in a small percentage of documents, giving a smaller index and less memory use.
+A sparse index only indexes the documents that contain the field. This helps when a field exists in a small percentage of documents, because it gives a smaller index and uses less memory.
 
 ---
 
 ## Text index
 
-Supports simple text search, which is good for search bars and keyword search. It is not a replacement for Elasticsearch or OpenSearch. See [[choosing-a-datastore]].
+A text index supports simple text search, which is good for search bars and keyword search. It is not a replacement for Elasticsearch or OpenSearch. See [[choosing-a-datastore]].
 
 ---
 

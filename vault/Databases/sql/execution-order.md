@@ -86,7 +86,7 @@ They happen after grouping, after `HAVING`, and before the final `SELECT` output
 ORDER BY total DESC
 ```
 
-**10. `LIMIT`.** The final trimming step.
+**10. `LIMIT`.** Trim the final output.
 
 ---
 

@@ -7,7 +7,7 @@
 
 ## Replication
 
-A full copy of the database, with the same data on multiple nodes.
+Replication is a full copy of the database, with the same data on multiple nodes.
 
 **Purpose.** Scale reads, high availability, failover.
 
@@ -21,7 +21,7 @@ A full copy of the database, with the same data on multiple nodes.
 
 ## Partitioning
 
-Splitting a large table into smaller physical tables that logically appear as one table.
+Partitioning splits a large table into smaller physical tables that logically appear as one table.
 
 ```sql
 CREATE TABLE orders (...) PARTITION BY RANGE (created_at);
@@ -36,7 +36,7 @@ CREATE TABLE orders (...) PARTITION BY RANGE (created_at);
 
 ## Sharding
 
-Distributing data across multiple machines, where each shard contains a subset of the data.
+Sharding distributes data across multiple machines, where each shard contains a subset of the data.
 
 In MongoDB this is built in. In SQL it is usually application managed, or handled via Citus or Vitess.
 
@@ -50,7 +50,7 @@ Sharding only works if most queries include the shard key.
 
 If a query does not contain the shard key, the router performs a scatter gather. It sends the query to all shards and each shard processes it. The results are merged, sorted and returned. That kills scalability.
 
-It is worse than a single full table scan, because it becomes a parallel full scan across all shards, adding network overhead, multiplied CPU, and merge cost.
+It is worse than a single full table scan, because it becomes a parallel full scan across all shards, adding network overhead, multiplying CPU cost, and adding a merge step.
 
 > [!tip] The interview ready explanation
 > If the shard key does not align with dominant query patterns, the system performs scatter gather queries, defeating the purpose of horizontal scaling.

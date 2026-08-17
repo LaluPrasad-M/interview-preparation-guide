@@ -7,7 +7,7 @@
 
 ## Single document atomicity, the default guarantee
 
-An operation is atomic if it is applied completely or not at all. MongoDB guarantees this at the document level, so multiple fields in one document updated in one operation are always consistent.
+An operation is atomic if it is applied completely or not at all. MongoDB guarantees this at the document level, so if multiple fields in one document are updated in one operation, they are always consistent together.
 
 ```js
 db.users.updateOne(
@@ -85,7 +85,7 @@ This is why MongoDB recommends avoiding transactions unless necessary.
 > [!tip] The interviewer's favourite principle
 > In MongoDB, I first try to model data so that critical updates fit within a single document and rely on atomic updates. I only use transactions when cross document consistency is unavoidable.
 
-Use them only for payment plus order creation, and inventory reservation. Transactions hurt throughput.
+Use them only for payment plus order creation, and for inventory reservation. Transactions hurt throughput.
 
 ---
 

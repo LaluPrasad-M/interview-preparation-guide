@@ -35,7 +35,7 @@ If heartbeats stop beyond `session.timeout.ms`, the consumer is considered dead 
 
 ## What the group coordinator is
 
-A special Kafka broker responsible for tracking consumers in a consumer group, receiving heartbeats, triggering rebalances, and managing partition assignments.
+The group coordinator is a special Kafka broker responsible for tracking consumers in a consumer group, receiving heartbeats, triggering rebalances, and managing partition assignments.
 
 Think of it as the consumer group manager.
 
@@ -124,7 +124,7 @@ A rebalance storm is continuous rebalancing causing repeated pauses in consumpti
 
 **1. Tune the timeouts.** Give `session.timeout.ms` and `max.poll.interval.ms` room for your real processing time.
 
-**2. Poll frequently.** Smaller batches, async processing, and avoid long blocking work inside the poll loop. See [[lag-and-dead-letter-queues]] for head of line blocking, which is the usual cause.
+**2. Poll frequently.** Use smaller batches, process asynchronously, and avoid long blocking work inside the poll loop. See [[lag-and-dead-letter-queues]] for head of line blocking, which is the usual cause.
 
 **3. Static membership.** Set `group.instance.id` so Kafka recognises the same consumer coming back after a restart, and skips the unnecessary rebalance. This is the one people forget, and it is the direct fix for rolling deployments.
 

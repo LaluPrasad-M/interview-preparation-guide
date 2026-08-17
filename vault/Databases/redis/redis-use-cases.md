@@ -65,7 +65,7 @@ Mention the limitation against Kafka: durability and replay. See [[kafka-vs-rabb
 
 ## 6. Pub/sub for event broadcasting
 
-Real time event propagation for WebSocket notifications, cache invalidation signals, and feature flag updates.
+Broadcast events in real time: WebSocket notifications, cache invalidation signals, and feature flag updates.
 
 ```text
 Service A -> Redis Pub/Sub -> Service B, C, D
@@ -77,7 +77,7 @@ Note there is no persistence, and delivery is best effort. See [[websocket-bridg
 
 ## 7. Leaderboards and counters
 
-Atomic operations plus sorted data, using `INCR` and sorted sets with `ZADD` and `ZRANK`.
+Build leaderboards with atomic operations on sorted data, using `INCR` and sorted sets with `ZADD` and `ZRANK`.
 
 **Examples.** Top users, most viewed items, real time metrics. See [[realtime-leaderboard]].
 
@@ -99,7 +99,7 @@ Change behaviour without redeploying: enabling and disabling features, gradual r
 
 ## 10. Service coordination and metadata
 
-Lightweight shared state: active workers, heartbeats, job ownership, shard assignments.
+Keep lightweight shared state: active workers, heartbeats, job ownership, shard assignments.
 
 ---
 

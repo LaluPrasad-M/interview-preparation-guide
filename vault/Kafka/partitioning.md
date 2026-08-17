@@ -54,7 +54,7 @@ P2 -> Consumer C
 
 Messages are distributed evenly: `msg1 -> P0`, `msg2 -> P1`, `msg3 -> P2`.
 
-Even distribution and good load balancing, but no ordering guarantee.
+It gives even distribution and good load balancing, but no ordering guarantee.
 
 ### Key based, the most common
 
@@ -84,7 +84,7 @@ if (region === "INDIA") return 0;
 if (region === "US") return 1;
 ```
 
-Used for geo routing, tenant isolation and priority workloads.
+This is used for geo routing, tenant isolation and priority workloads.
 
 ---
 
@@ -168,7 +168,7 @@ if (user.isCelebrity) {
 
 **6. Producer side batching.** Tune `linger.ms`, `batch.size` and `compression.type`.
 
-**7. Consumer scaling.** More consumers, async processing, faster downstream systems.
+**7. Consumer scaling.** Add more consumers, process asynchronously, and speed up downstream systems.
 
 **8. Pre aggregation.** Instead of sending millions of raw click events, aggregate first to `user clicks = 200` and publish a summary.
 

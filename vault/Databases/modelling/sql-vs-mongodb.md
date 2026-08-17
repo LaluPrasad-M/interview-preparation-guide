@@ -64,7 +64,7 @@ That is a self contained document with no need for joins.
 
 ## What SQL gives you out of the box
 
-Four things by default, which together solve concurrency without you writing locking code.
+SQL gives you four things by default, and together they solve concurrency without you writing locking code.
 
 ### 1. Transactions, the foundation
 
@@ -89,7 +89,7 @@ WHERE cart_id = 'c1' AND version = 5;
 
 The database locates the row, places a lock on it, performs the update, then releases the lock. Only one transaction can modify that row at a time. This is automatic. You did not ask for it or configure it.
 
-**The timeline with two concurrent requests.** Both arrive with `WHERE version = 5`. One acquires the row lock first and updates version to 6, then releases. The second now runs, `WHERE version = 5` fails, and rows affected is 0.
+**The timeline with two concurrent requests.** Both arrive with `WHERE version = 5`. One acquires the row lock first and updates version to 6, then releases. The second request now runs, but its `WHERE version = 5` no longer matches, so it fails and affects 0 rows.
 
 No lost update, no corruption, no race condition. You did not write a mutex. The DB enforced correctness.
 
@@ -107,7 +107,7 @@ Readers see a snapshot. Writers do not block readers, and readers do not block w
 
 **Read plus write.** No blocking. The reader sees the last committed version and the writer creates a new version.
 
-**Write plus write on the same row.** A row level lock, so the second writer waits, or gets a serialisation error at stricter levels. Writes are always serialised.
+**Write plus write on the same row.** A row level lock kicks in, so the second writer waits, or gets a serialisation error at stricter levels. Writes are always serialised.
 
 ### 4. Constraints, database level validation
 
@@ -115,7 +115,7 @@ Readers see a snapshot. Writers do not block readers, and readers do not block w
 UNIQUE (cart_id, product_id)
 ```
 
-Two concurrent inserts of the same product: one succeeds, one fails. No application logic and no race window, because the DB enforces the invariant.
+Two concurrent inserts of the same product: one succeeds, one fails. There is no application logic and no race window, because the database enforces the invariant.
 
 **Why this feels automatic in SQL.** SQL was designed for shared mutable state. Concurrency is not an afterthought, it is the core problem SQL was built to solve.
 
@@ -127,7 +127,7 @@ By default Mongo gives single document atomicity only, no row level locking acro
 
 So if cart and cart items live in different documents, you must manage consistency yourself. You end up writing retry logic and detecting conflicts by hand.
 
-Mongo can do transactions now, but with higher overhead, more complexity, and not naturally the way SQL is. That is why people say Mongo requires more care for concurrent state updates.
+Mongo can do transactions now, but with more overhead and complexity, and it does not come as naturally as it does in SQL. That is why people say Mongo requires more care for concurrent state updates.
 
 > [!tip] The interviewer level explanation
 > Relational databases handle concurrency using transactions, row level locking, and MVCC. When we use optimistic locking with a version column, the database ensures that only one concurrent update succeeds, while others safely fail and retry. This avoids explicit distributed locks and keeps cart updates correct.

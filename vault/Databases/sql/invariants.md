@@ -73,7 +73,7 @@ The database rejects duplicates automatically. The mental model is database assi
 amount DECIMAL(10,2) NOT NULL
 ```
 
-Prevents partially invalid rows.
+This prevents partially invalid rows.
 
 ---
 
@@ -147,7 +147,7 @@ Isolation plus locking prevents the race. See [[locking-strategies]] for when an
 
 **Invalid state.** A product price changes from 200 to 300 and old orders suddenly show 300. That is historical corruption.
 
-**The solution.** Snapshotting, which is intentional denormalisation.
+**The solution.** This is snapshotting, which is intentional denormalisation.
 
 ```sql
 order_items (

@@ -37,9 +37,9 @@ In `DECIMAL(10,2)`, the 10 is total digits and the 2 is digits after the decimal
 | `MEDIUMTEXT` | bigger text | variable | articles | MySQL specific |
 | `LONGTEXT` | very large text | variable | documents | huge storage |
 
-**`CHAR`.** `CHAR(5)` storing `AB` is actually stored padded. Good when the size is constant, for example a PIN, a country code, or fixed identifiers.
+**`CHAR`.** `CHAR(5)` storing `AB` is actually stored padded. It works well when the size is constant, for example a PIN, a country code, or fixed identifiers.
 
-**`VARCHAR`.** Stores only the actual content, efficient for varying lengths. Best for names, emails and addresses.
+**`VARCHAR`.** It stores only the actual content, which is efficient for varying lengths, and it works best for names, emails and addresses.
 
 **Why not `VARCHAR(10000)` everywhere?** Larger possible row size, memory inefficiency, and index overhead. Proper sizing matters.
 
@@ -112,9 +112,9 @@ In modern SQL databases, arrays are commonly stored inside a JSON column. A `tag
 
 ## UUID
 
-Very important in distributed systems. Example: `550e8400-e29b-41d4-a716-446655440000`.
+UUIDs are very important in distributed systems. Example: `550e8400-e29b-41d4-a716-446655440000`.
 
-**Benefits.** Avoids centralised ID generation and is safer for distributed systems.
+**Benefits.** They avoid centralised ID generation and are safer for distributed systems.
 
 **Trade off.** Larger indexes and fragmentation issues.
 
@@ -122,7 +122,7 @@ Very important in distributed systems. Example: `550e8400-e29b-41d4-a716-4466554
 
 ## ENUM
 
-Restricts allowed values:
+ENUM restricts allowed values:
 
 ```sql
 status ENUM('PENDING', 'DONE', 'FAILED')

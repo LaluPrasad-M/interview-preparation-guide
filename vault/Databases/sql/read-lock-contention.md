@@ -112,7 +112,7 @@ The database may lock the existing rows and the insertion gaps, so inserts start
 
 ## Hot index contention
 
-At scale even internal memory structures become bottlenecks. One viral product, one trending post, one hot inventory item, and millions of users read the same records.
+At scale even internal memory structures become bottlenecks. Take one viral product, one trending post or one hot inventory item: millions of users then read the same records.
 
 Database threads then compete for index pages, memory latches and cache synchronisation. This is not a SQL lock exactly, it is engine level contention, and knowing the distinction is the senior signal.
 
@@ -122,7 +122,7 @@ Database threads then compete for index pages, memory latches and cache synchron
 
 **Logical transaction contention.** The classic kind: a transaction waits, locks conflict, a write lock blocks a read.
 
-**Internal engine contention.** Database internals fighting over memory pages, cache structures, latches and synchronisation primitives. This becomes huge at scale.
+**Internal engine contention.** Database internals fight over memory pages, cache structures, latches and synchronisation primitives. This becomes huge at scale.
 
 ---
 

@@ -7,7 +7,7 @@
 
 ## What normalisation is
 
-A database design technique used mainly in relational databases to organise data so as to reduce duplication and avoid inconsistency.
+Normalisation is a database design technique used mainly in relational databases. It organises data so it reduces duplication and avoids inconsistency.
 
 In short: store each fact only once, split data into multiple related tables, and use joins to combine data.
 

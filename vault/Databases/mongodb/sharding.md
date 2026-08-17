@@ -26,7 +26,7 @@ Sharding is splitting one large collection into smaller pieces and storing those
 
 ## Good shard key properties
 
-High cardinality. Even distribution. Appears in the query filter. Immutable.
+A good shard key has high cardinality, has an even distribution, appears in the query filter, and stays immutable.
 
 **Avoid** low cardinality fields such as `status` or `isActive`, and monotonic values such as `createdAt` or `_id`.
 
@@ -54,7 +54,7 @@ Avoid monotonic keys such as timestamps, and avoid `restaurantId` as the shard k
 If a query does not contain the shard key, the router sends it to all shards and each shard processes it. The results are merged, sorted and returned. That is a scatter gather query, and it kills scalability.
 
 > [!warning] It is worse than a full table scan
-> It becomes a parallel full scan across all shards, which adds network overhead, multiplied CPU, and merge cost on top.
+> It becomes a parallel full scan across all shards, which adds network overhead, multiplies CPU cost, and adds a merge step on top.
 
 > [!tip] The interview ready line
 > If the shard key does not align with dominant query patterns, the system performs scatter gather queries, defeating the purpose of horizontal scaling.

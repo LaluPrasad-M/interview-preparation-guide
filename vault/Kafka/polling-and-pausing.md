@@ -29,8 +29,8 @@ Pause does not mean freezing the process like a `sleep()`. It means telling the 
 
 A Kafka consumer does two things under the hood:
 
-1. **Fetching.** Pulling new data from the broker.
-2. **Heartbeating.** Pinging the broker every 3 seconds saying "I am still alive, do not kick me out."
+1. **Fetching.** It pulls new data from the broker.
+2. **Heartbeating.** It pings the broker every 3 seconds, saying "I am still alive, do not kick me out."
 
 Calling `consumer.pause()` says: stop fetching new messages, but keep sending heartbeats.
 

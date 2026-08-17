@@ -34,7 +34,7 @@ Requests repeatedly query data that does not exist, so invalid keys bypass the c
 
 **Negative caching.** Cache the `NULL` or `NOT_FOUND` result for a short TTL.
 
-**Bloom filters.** Used before the database lookup. A bloom filter answers either definitely not present, or maybe present. There are no false negatives, so it massively reduces useless database queries.
+**Bloom filters.** These run before the database lookup. A bloom filter answers either definitely not present, or maybe present. There are no false negatives, so it massively reduces useless database queries.
 
 ---
 
@@ -147,7 +147,7 @@ Redis executes commands mostly single threaded, so one expensive command blocks 
 
 ## The 20 percent hit ratio question
 
-A classic senior debugging prompt. A hit ratio of 20 percent means 80 percent of requests still reach the database, so either the cache is not useful, it is misconfigured, or the workload does not benefit from caching.
+This is a classic senior debugging prompt. A hit ratio of 20 percent means 80 percent of requests still reach the database, so either the cache is not useful, it is misconfigured, or the workload does not benefit from caching.
 
 ### Step 1: clarify the context first
 
@@ -211,7 +211,7 @@ These solve different problems and are often confused.
 
 The write policy table above covers write through, write behind and write around. The fourth option is refresh ahead: the cache refreshes the value **before** the TTL expires.
 
-Good for frequently read values, and it avoids the stale window entirely, at the cost of refreshing things nobody asked for.
+This is good for frequently read values, and it avoids the stale window entirely, at the cost of refreshing things nobody asked for.
 
 ---
 

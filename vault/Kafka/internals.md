@@ -124,7 +124,7 @@ Event sourcing, log aggregation, change data capture using Debezium, streaming E
 
 ## Common performance bottlenecks
 
-Too many partitions per broker. Small batch sizes lowering throughput. Sync flush on the producer without batching. ISR shrink due to network latency. Large message size causing memory pressure.
+Too many partitions per broker. Small batch sizes that lower throughput. Sync flush on the producer without batching. ISR shrinkage due to network latency. Large message size that causes memory pressure.
 
 ---
 
@@ -143,7 +143,7 @@ Use idempotent producers to avoid duplicates. Use `acks=all` plus proper replica
 
 ## Kafka Streams, briefly
 
-A Java library for stream processing that provides windowing, joins, state stores and exactly once semantics. It uses RocksDB for local state.
+Kafka Streams is a Java library for stream processing that provides windowing, joins, state stores and exactly once semantics. It uses RocksDB for local state.
 
 ---
 

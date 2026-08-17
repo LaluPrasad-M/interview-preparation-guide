@@ -9,7 +9,7 @@ Part of [[schema-design]].
 
 ## Denormalisation
 
-Denormalisation in MongoDB is the intentional duplication of data to optimise read performance and preserve atomicity. It is not only copying raw fields, it also includes storing derived or aggregated data.
+Denormalisation in MongoDB is the intentional duplication of data to optimise read performance and preserve atomicity. It is not just copying raw fields. It also includes storing derived or aggregated data.
 
 The key word is intentional. It is not accidental redundancy, it is a design choice.
 
@@ -23,7 +23,7 @@ MongoDB prefers duplication over joins.
 
 ## Index strategy, mandatory
 
-Every query backed by an index. Compound indexes follow filter, then sort, then projection. Avoid over indexing write heavy collections. Use partial indexes where possible.
+Every query should be backed by an index. Compound indexes follow filter, then sort, then projection. Avoid over indexing write heavy collections. Use partial indexes where possible.
 
 ```js
 { userId: 1, createdAt: -1 }

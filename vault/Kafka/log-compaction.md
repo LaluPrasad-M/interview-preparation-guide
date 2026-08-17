@@ -37,6 +37,6 @@ This guarantees the log contains a full snapshot of the final value for every ke
 
 **Database change subscriptions.** You may have the same data set in multiple systems, for example a cache, a search cluster and Hadoop. For real time updates you only need the recent log, but to reload the cache or restore a failed search node you need the complete data set.
 
-**Event sourcing.** Compaction does not enable event sourcing, but it does ensure you always know the latest state of each key, which matters for it.
+**Event sourcing.** Compaction does not enable event sourcing, but it does ensure you always know the latest state of each key, which matters when you build event sourcing on top of it.
 
 **Journaling for high availability.** A process doing local computation can be made fault tolerant by logging out the changes it makes to local state, so another process can reload those changes and carry on if it fails. A concrete example is handling counts, aggregations and other group by style processing in a stream processor. Kafka Streams uses this feature for exactly that.

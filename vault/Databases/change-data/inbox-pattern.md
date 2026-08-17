@@ -1,7 +1,7 @@
 # The Inbox Pattern
 
 > [!tldr]
-> Outbox is my service to the world. Inbox is the world to my service. Same dual write problem, opposite direction.
+> Outbox is my service to the world. Inbox is the world to my service. Both sides face the same dual write problem, just in opposite directions.
 
 The outbox side is covered in [[distributed-transactions]]. This note is the mirror image and the comparison.
 
@@ -126,4 +126,4 @@ Outbox
 Kafka
 ```
 
-Very common in fintech, e-commerce, banking and order systems. See [[webhook-ingestion]] for the receiving end built this way.
+This shows up a lot in fintech, e-commerce, banking and order systems. See [[webhook-ingestion]] for the receiving end built this way.

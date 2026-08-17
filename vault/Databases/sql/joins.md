@@ -83,7 +83,7 @@ INNER JOIN payments p
 WHERE p.status = 'SUCCESS';
 ```
 
-**Case 2, admin dashboard.** "Show all users and whether they paid." Now unmatched users matter, because the product team wants active users, unpaid users, the conversion funnel, free against paid. So the filter belongs in `ON`.
+**Case 2, admin dashboard.** "Show all users and whether they paid." Now unmatched users matter, because the product team wants to see active users, unpaid users, the conversion funnel, and the free versus paid split. So the filter belongs in `ON`.
 
 ```sql
 SELECT *
@@ -99,7 +99,7 @@ Now users without payments still appear.
 
 ## Right join
 
-Same as `LEFT JOIN`, reversed.
+`RIGHT JOIN` works the same as `LEFT JOIN`, reversed.
 
 ---
 

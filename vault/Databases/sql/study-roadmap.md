@@ -23,7 +23,7 @@ Understand deeply: what a B-tree is, clustered against non clustered index, the 
 
 ### 3. Transactions and concurrency
 
-Pure SDE2 territory. ACID properties deeply understood. Isolation levels and their anomalies: dirty read, non repeatable read, phantom read. `SELECT ... FOR UPDATE`. Row level against table level locking. Deadlocks and why they happen. Optimistic against pessimistic locking.
+Pure SDE2 territory. Deep understanding of ACID properties. Isolation levels and their anomalies: dirty read, non repeatable read, phantom read. `SELECT ... FOR UPDATE`. Row level against table level locking. Deadlocks and why they happen. Optimistic against pessimistic locking.
 
 Be able to design a seat booking system, a bank transfer, and prevention of double payment.
 

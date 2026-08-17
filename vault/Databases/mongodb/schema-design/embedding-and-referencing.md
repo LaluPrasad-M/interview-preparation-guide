@@ -194,7 +194,7 @@ const order = await Order.findById(orderId);
 const user = await User.findById(order.userId);
 ```
 
-Simple, cacheable and flexible. The trade off is two network calls.
+This approach is simple, cacheable and flexible. The trade off is two network calls.
 
 **Option 2, aggregation with `$lookup`, MongoDB's join.**
 

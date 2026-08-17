@@ -42,7 +42,7 @@ Typical systems: user profiles, catalogs, content systems, CMS, metadata storage
 | time series data | frequent schema evolution |
 | telemetry | transaction heavy systems |
 
-**The example.** Telemetry at 10 million metrics per second. Postgres starts sweating, Cassandra starts smiling, because Cassandra optimises for write availability rather than relational queries.
+**The example.** Telemetry at 10 million metrics per second. Postgres struggles at that rate, and Cassandra handles it easily, because Cassandra optimises for write availability rather than relational queries.
 
 **The trade off.** You gain massive write scale. You lose joins, transactions and easy querying.
 
@@ -117,7 +117,7 @@ See [[redis-use-cases]] for the ten use cases, and [[caching-problems]] for the 
 
 Examples: an email queue, PDF generation, background jobs.
 
-**The trade off.** Excellent routing, poor event replay story.
+**The trade off.** It has excellent routing, but a poor story for event replay.
 
 ### Kafka
 
@@ -148,7 +148,7 @@ See [[kafka-vs-rabbitmq]] for the full comparison.
 | backups | joins |
 | data lakes | relational workloads |
 
-**The trade off.** Virtually infinite scale, but not designed for `SELECT * WHERE ...` queries.
+**The trade off.** It offers virtually infinite scale, but it is not designed for `SELECT * WHERE ...` queries.
 
 ---
 
@@ -174,7 +174,7 @@ The questions it answers: who is leader, and which node owns which shard.
 
 Examples: CPU, memory, latency, Kafka lag.
 
-**The trade off.** Amazing for metrics, terrible for logs.
+**The trade off.** It is amazing for metrics, but terrible for logs.
 
 ---
 

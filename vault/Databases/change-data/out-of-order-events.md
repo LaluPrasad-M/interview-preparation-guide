@@ -25,7 +25,7 @@ Because the internet is chaotic, event B arrives at your server first.
 
 **Version numbers, optimistic locking.** Every event has a version, `v1`, `v2`, `v3`. The rule is simply `UPDATE ... WHERE incoming_version > current_version`.
 
-**State machines.** Useful for e-commerce. You have states `CREATED -> PAID -> SHIPPED`. If a `SHIPPED` webhook arrives before the `PAID` webhook, your code checks the strict hierarchy. It allows the DB to jump to `SHIPPED`, and when the `PAID` event finally arrives it is ignored, because `SHIPPED` is a higher terminal state.
+**State machines.** Useful for e-commerce. You have states `CREATED -> PAID -> SHIPPED`. If a `SHIPPED` webhook arrives before the `PAID` webhook, your code checks the strict hierarchy. It allows the database to jump straight to `SHIPPED`. When the `PAID` event finally arrives, it gets ignored, because `SHIPPED` is already a higher, terminal state.
 
 ---
 

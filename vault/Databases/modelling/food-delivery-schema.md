@@ -31,13 +31,13 @@ users (
 
 **Why `UNIQUE(email)`?** It is a business level uniqueness requirement, enforced by the database rather than by code.
 
-**Why `BIGINT`?** These systems scale heavily, so avoid exhausting a smaller integer type.
+**Why `BIGINT`?** These systems scale heavily, so a smaller integer type would run out too soon.
 
 ---
 
 ## restaurants
 
-Restaurants onboard independently, manage timings, receive orders and update menus. Independent lifecycle again.
+Restaurants onboard independently, manage timings, receive orders and update menus. That is an independent lifecycle again.
 
 ```sql
 restaurants (
@@ -156,7 +156,7 @@ One order may have multiple payment attempts. That alone justifies a separate ta
 
 ## drivers
 
-Drivers onboard independently, go online and offline, and accept deliveries. Independent lifecycle.
+Drivers onboard independently, go online and offline, and accept deliveries. That is an independent lifecycle too.
 
 ```sql
 drivers (

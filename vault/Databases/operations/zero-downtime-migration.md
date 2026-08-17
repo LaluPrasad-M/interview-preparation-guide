@@ -67,21 +67,21 @@ Contract
 
 ## The five backfill strategies
 
-**1. Batch migration.** A thousand rows at a time. The most common.
+**1. Batch migration.** Move a thousand rows at a time. This is the most common approach.
 
-**2. Lazy migration.** Migrate only when a record is accessed: the user logs in, the old format is converted, the new format is saved. Common in document stores.
+**2. Lazy migration.** Migrate only when a record is accessed: the user logs in, the old format is converted, the new format is saved. This is common in document stores.
 
-**3. Dual read plus dual write.** Read preferring new with a fallback to old, and write to both.
+**3. Dual read plus dual write.** Read from the new source first, falling back to the old one, and write to both.
 
-**4. Event driven migration.** An event fires, a consumer updates the new schema. Useful for huge systems.
+**4. Event driven migration.** An event fires, a consumer updates the new schema. This is useful for huge systems.
 
-**5. Snapshot plus CDC.** Snapshot the existing data, capture ongoing changes, replay them. Used in massive migrations. See [[change-data-capture]].
+**5. Snapshot plus CDC.** Snapshot the existing data, capture ongoing changes, replay them. This is used in massive migrations. See [[change-data-capture]].
 
 ---
 
 ## Idempotency and progress
 
-Migration jobs must be rerunnable. Never a bare `INSERT`. Use an upsert, `INSERT ... ON CONFLICT`, or `MERGE`.
+Migration jobs must be rerunnable. Never use a bare `INSERT`. Use an upsert, `INSERT ... ON CONFLICT`, or `MERGE`.
 
 Why: the worker crashes after rows 1 and 2 succeed, then row 3 fails. You need to restart safely.
 
@@ -109,11 +109,11 @@ Batch it instead, deleting 1000 at a time and repeating.
 
 **An archive table.** Move `orders` to `orders_archive`, then delete from the main table.
 
-**An archive database.** Production to a separate archive store.
+**An archive database.** Move production data to a separate archive store.
 
-**Object storage or a data lake.** Very common. Hot data in the database, cold data in S3 as CSV, Parquet, Avro or JSON.
+**Object storage or a data lake.** This is very common. Hot data stays in the database, and cold data moves to S3 as CSV, Parquet, Avro or JSON.
 
-**Soft delete.** A `deleted_at` column instead of deleting. Easy recovery, but the table and its indexes keep growing.
+**Soft delete.** Add a `deleted_at` column instead of deleting. This gives easy recovery, but the table and its indexes keep growing.
 
 ### Recovery
 

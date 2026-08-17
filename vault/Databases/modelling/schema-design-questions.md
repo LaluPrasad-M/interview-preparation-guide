@@ -44,7 +44,7 @@ Relationships define foreign keys, join tables and cardinality.
 > Many to many almost always needs a join table, for example `order_items`.
 
 > [!warning] The common mistake
-> Storing repeating columns like `item1, item2, item3`. That breaks scalability immediately.
+> Storing repeating columns like `item1, item2, item3` breaks scalability immediately.
 
 ---
 
@@ -83,7 +83,7 @@ Say `users` holds name, email and `current_location`. If location updates every 
 > A different update frequency may justify separation.
 
 > [!warning] The common mistake
-> Keeping static profile data and highly volatile live data in the same table forever.
+> People often keep static profile data and highly volatile live data in the same table forever.
 
 ---
 

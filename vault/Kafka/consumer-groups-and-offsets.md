@@ -118,7 +118,7 @@ If your consumer reads from one Kafka topic and writes to another, the consume t
 
 ### 4. Versioning or optimistic locking
 
-Vital when the order of updates matters or when multiple consumers might touch the same record. Each message includes a version number or timestamp, and the consumer only updates the database if the incoming version is greater than the current version.
+This is vital when the order of updates matters or when multiple consumers might touch the same record. Each message includes a version number or timestamp, and the consumer only updates the database if the incoming version is greater than the current version.
 
 If version 5 arrives after version 6 due to a retry, the database rejects version 5 as stale.
 
