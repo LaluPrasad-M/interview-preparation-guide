@@ -58,10 +58,7 @@
 | [[fault-tolerance]] | circuit breakers, bulkheads, load shedding, graceful degradation |
 | [[monolith-vs-microservice]] | the comparison table and why nanoservices are an anti pattern |
 | [[workflow-engines]] | durable workflows, why Kafka alone is not enough |
-| [[backend-design]] | the backend layer of a design |
-| [[database-design]] | the data layer of a design |
-| [[frontend-design]] | the client layer of a design |
-| [[infrastructure-design]] | the deployment layer of a design |
+| [[designing-the-four-layers]] | the client, backend, data and deployment layers of a design |
 | [[third-party-integrations]] | designing around systems you do not control |
 | [[message-ordering]] | when order matters and how to keep it |
 | [[card-payment-flow]] | the five players, authorization against settlement |

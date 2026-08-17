@@ -18,4 +18,4 @@
 
 | Note | Where | Why there |
 | --- | --- | --- |
-| [[frontend-design]] | `Design/system-design/` | the system design layer for the client, not React specifics |
+| [[designing-the-four-layers]] | `Design/system-design/` | the system design layer for the client, not React specifics |

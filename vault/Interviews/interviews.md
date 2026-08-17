@@ -10,7 +10,7 @@
 | Note | Covers |
 | --- | --- |
 | [[experiences]] | what each round asked, and where it went wrong |
-| [[prep-checklist]] | seven blocks with priorities, mapped to the notes that cover them |
+| [[prep-checklist]] | seven blocks with priorities, mapped to the notes that cover them, plus the 48 hour sprint list |
 
 ---
 
@@ -20,7 +20,6 @@
 | --- | --- |
 | [[dsa-problems]] | problems paired with the one sentence that unlocks each |
 | [[machine-coding]] | seven levels of LLD problems with their mental triggers |
-| [[sprint-list]] | the finite DSA and HLD list for a short loop |
 
 ---
 

@@ -75,4 +75,4 @@ Either save first and then publish, or write the event into the same transaction
 
 ## Where these came from
 
-Extracted from [[vymo-websales]]. The concepts they lean on are in [[backend-design]], [[database-design]], [[message-ordering]] and [[locks]].
+Extracted from [[vymo-websales]]. The concepts they lean on are in [[designing-the-four-layers]], [[message-ordering]] and [[locks]].

@@ -10,7 +10,7 @@
 | Term | Meaning |
 | --- | --- |
 | [[canary-release]] | ship a new version to a small group of users first, then widen it if nothing breaks |
-| [[cdn]] | a cache layer near the user that serves copies of your static files instead of hitting your servers |
+| [[cdn]] | a cache layer in front of your load balancer, serving copies of your static files from a machine near the user |
 | [[exponential-backoff]] | double the wait between retries so you stop hammering a service that is already struggling |
 
 Only three terms are filled in so far. The rest get added as the rewrite surfaces words that need one, not all at once.

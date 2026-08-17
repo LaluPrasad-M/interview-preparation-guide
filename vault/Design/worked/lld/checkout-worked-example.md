@@ -96,13 +96,13 @@ User -> CheckoutService (Orchestrator)
 
 ## Pattern mapping, memorise this
 
-| If the problem is | Use pattern | Example |
-| --- | --- | --- |
-| Controlling global access | [[singleton]] | DB connection pool |
-| Complex object instantiation | [[factory]] | creating UI buttons or payment types |
-| Swappable conditional logic | [[strategy]] | sorting algorithms, payment providers |
-| Asynchronous event handling | [[observer]] | post checkout webhooks, UI updates |
-| Step by step construction | [[builder]] | order creation, HTTP requests |
+| If the problem is            | Use pattern   | Example                               |
+| ---------------------------- | ------------- | ------------------------------------- |
+| Controlling global access    | [[singleton]] | DB connection pool                    |
+| Complex object instantiation | [[factory]]   | creating UI buttons or payment types  |
+| Swappable conditional logic  | [[strategy]]  | sorting algorithms, payment providers |
+| Asynchronous event handling  | [[observer]]  | post checkout webhooks, UI updates    |
+| Step by step construction    | [[builder]]   | order creation, HTTP requests         |
 
 ---
 

@@ -30,9 +30,9 @@
 
 | Note | Covers |
 | --- | --- |
-| [[kubernetes-basics]] | container, pod, node, cluster, and what Kubernetes actually does |
+| [[kubernetes-basics]] | container, pod, node, cluster, the core objects, probes, zero downtime deployments, the scaling chain, observability, and what Kubernetes actually does |
 | [[eks]] | Kubernetes managed by AWS, and how it compares with ECS and Lambda |
-| [[kubernetes-docker-cicd]] | the core objects, probes, zero downtime deployments, the scaling chain, observability, the interview answers |
+| [[docker]] | images, containers and the Dockerfile, and containers against virtual machines |
 
 ---
 
@@ -41,6 +41,7 @@
 | Note | Covers |
 | --- | --- |
 | [[deploy-pipeline]] | Git to CI/CD to ECR to EKS, the three phases, replicas and the Service object |
+| [[pipelines]] | the push to pod flow, Infrastructure as code and GitOps, a pipeline file in practice |
 | [[ecr-commands]] | login, batch delete, push, and why the token goes through stdin |
 | [[github-actions]] | the restaurant analogy, caching and artifacts, reusable workflows, OIDC, and how it compares to Jenkins and GitLab |
 
