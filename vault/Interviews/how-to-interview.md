@@ -3,7 +3,7 @@
 > [!tldr]
 > The non technical half of an interview: what to research before, the four kinds of question you will get, and the thank you note most people skip.
 
-Everything here is a skill you can practise, not a personality you either have or do not have. Confidence, enthusiasm and thinking on your feet are the things interviewers say they are watching for, and all three get easier with rehearsal.
+Everything here is a skill you can practise, rather than a personality you either have or do not have. Confidence, enthusiasm and thinking on your feet are the things interviewers say they are watching for, and all three get easier with rehearsal.
 
 ---
 

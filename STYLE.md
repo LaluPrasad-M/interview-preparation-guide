@@ -26,6 +26,38 @@ The precise terms stay: *amortised*, *idempotent*, *backpressure*. You need them
 
 Simple language, precise vocabulary. Both.
 
+### Long is fine. Complicated is not.
+
+The problem was never sentence length. A long sentence made of short plain clauses is easy to read. A short sentence with a clever construction is not.
+
+Write for a reader whose English is excellent but is not their first language, which describes most people who will ever read these notes, including you at 1am. That reader parses straightforward word order quickly and stumbles on anything cute.
+
+| Avoid | Because | Instead |
+| --- | --- | --- |
+| Idioms and metaphors | "a scope question wearing a timer costume" makes the reader decode the joke before the point | say the point |
+| Clever inversions | "Stateless things you restart" puts the object first for effect | "You restart stateless things" |
+| Clause bolted onto a comparison | "X is faster than Y, because the dropped connection is the signal rather than a missed heartbeat" | two sentences |
+| Rare words when a common one exists | *ameliorate*, *myriad*, *leverage*, *utilise* | *improve*, *many*, *use* |
+| Phrasal verbs with a plain equivalent | *bite hardest*, *nurse it along* | *hurt most*, *keep it running* |
+
+Keep the subject, then the verb, then the object. Say who does what to what. Most confusing sentences are confusing because that order got rearranged for style.
+
+### Clear, not clipped
+
+Simplifying does not mean chopping words out until the sentence reads like a telegram. "Worst in a single threaded runtime" saves three words and costs the reader the thought.
+
+Write full sentences the way a person actually writes them, with the small joining words in place. *The*, *a*, *is*, *that*, *which* are not padding; they are what makes a sentence flow on first read.
+
+| Too clipped | Written like a person |
+| --- | --- |
+| Worst in a single threaded runtime. | This hurts most in a single threaded runtime, because there is no other thread to pick up the work. |
+| State cannot. | State does not work that way. |
+| Lock on the turn, not the arguments. | Lock on the conversation turn rather than on the arguments. |
+
+The test is the same one as always: read it out loud. A telegram sounds wrong out loud, and you are going to say these things out loud.
+
+The technical terms are the exception and they always stay, per Rule 4. *Backpressure* is not a hard word to be replaced; it is the correct word, and the sentence around it does the work.
+
 ### Examples
 
 **Complexity**

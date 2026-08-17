@@ -64,7 +64,7 @@ let l = 'second';   // SyntaxError: Identifier 'l' has already been declared
 
 ## The loop question
 
-This is the classic scope question wearing a timer costume. Three versions, same loop bounds, three different outputs.
+This is the classic scope question. The timer is there to hide it. Three versions, same loop bounds, three different outputs.
 
 > [!example]-
 > **Version 1: `var` with a closure.**

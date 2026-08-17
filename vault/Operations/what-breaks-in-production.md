@@ -12,7 +12,7 @@
 | **Database and storage** | state is the hardest component to scale, migrate and fix during an outage |
 | **Microservices and APIs** | cascading failures, timeouts, and network boundaries deciding how resilient the whole system is |
 | **Async processing and queues** | event driven complexity: Kafka pipelines, ordering, backpressure |
-| **Memory** | heap exhaustion, memory leaks, garbage collection thrashing, which bite hardest in a single threaded runtime |
+| **Memory** | heap exhaustion, memory leaks, and garbage collection thrashing, which hurt most in a single threaded runtime |
 | **CPU** | event loop blocking, thread pool exhaustion, compute bottlenecks |
 | **Infrastructure and cloud** | cloud native failures, autoscaling thrashing, IAM problems |
 | **Caching and performance** | stampedes, penetration, and invalidation going wrong |
@@ -26,7 +26,7 @@
 
 Everything else on that list can be restarted. A stuck pod gets killed, a hot cache gets flushed, a thrashing autoscaler gets pinned.
 
-State cannot. A slow database is still the only copy of the data. You cannot turn it off and on again. You cannot add a second one halfway through an incident either.
+State does not work that way. A database that is slow under load is still the only copy of your data, so you cannot just turn it off and on again. You cannot add a second one halfway through an incident either, because the new one would start empty.
 
 > [!tip] The one line to say out loud
-> Stateless things you restart. Stateful things you nurse.
+> If a service is stateless you can just restart it. If it holds state, you have to keep it alive while you fix it.
