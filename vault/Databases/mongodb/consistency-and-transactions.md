@@ -135,7 +135,7 @@ MongoDB supports it through reads from secondaries, async replication, and denor
 Use it when read volume is high, slight staleness is acceptable, and performance matters more than exact accuracy. In food delivery that means restaurant ratings, menu views, delivery ETA and the order history page.
 
 > [!tip] The interview perfect answer
-> In a food delivery system, I would use strong consistency for transactional flows like orders and payments, and eventual consistency for read heavy features like restaurant listings, ratings and analytics.
+> In a food delivery system, I would use strong consistency for transactional flows like orders and payments. I would use eventual consistency for read heavy features like restaurant listings, ratings and analytics.
 
 ---
 

@@ -34,7 +34,7 @@ An aggregate root is a boundary within which data must be strongly consistent an
 
 Everything inside it changes together, is read together, and is updated atomically.
 
-MongoDB guarantees atomicity at the document level and fast single document reads and writes, so it pushes you to ask: what data must always stay consistent together? That group becomes an aggregate.
+MongoDB guarantees atomicity at the document level. It also gives fast single document reads and writes. That pushes you to ask: what data must always stay consistent together? That group becomes an aggregate.
 
 **Aggregate is not collection.** An aggregate is a logical boundary, a design concept. A collection is physical storage. Usually one aggregate root maps to one collection, but not always.
 

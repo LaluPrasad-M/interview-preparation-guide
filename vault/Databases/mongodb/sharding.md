@@ -51,7 +51,7 @@ Avoid monotonic keys such as timestamps, and avoid `restaurantId` as the shard k
 
 ## When the shard key is wrong
 
-If a query does not contain the shard key, the router sends it to all shards, each shard processes it, and the results are merged, sorted and returned. That is a scatter gather query, and it kills scalability.
+If a query does not contain the shard key, the router sends it to all shards and each shard processes it. The results are merged, sorted and returned. That is a scatter gather query, and it kills scalability.
 
 > [!warning] It is worse than a full table scan
 > It becomes a parallel full scan across all shards, which adds network overhead, multiplied CPU, and merge cost on top.
