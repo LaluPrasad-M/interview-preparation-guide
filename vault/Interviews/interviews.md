@@ -9,6 +9,7 @@
 
 | Note | Covers |
 | --- | --- |
+| [[how-to-interview]] | researching them, the four question types, STAR with numbers, and the 24 hour thank you note |
 | [[experiences]] | what each round asked, and where it went wrong |
 | [[prep-checklist]] | seven blocks with priorities, mapped to the notes that cover them, plus the 48 hour sprint list |
 
