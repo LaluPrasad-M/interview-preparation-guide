@@ -170,7 +170,7 @@ One real system, written up end to end, rather than a topic.
 | [[vymo-websales]] | a website to CRM lead integration: [[overview-and-requirements]], [[hld]], [[websales-lld]], [[caching-and-errors]], and [[patterns-worth-stealing]] |
 
 > [!warning] The Vymo example contains work material
-> Real client name, SLA, encryption standard and cache TTLs. Fine in a private repo, and to be reviewed before this repo is ever public. [[patterns-worth-stealing]] is the sanitised version, safe to discuss anywhere.
+> Real client name, SLA, encryption standard and cache TTLs. This is fine in a private repo, and it should be reviewed before this repo is ever public. [[patterns-worth-stealing]] is the sanitised version, safe to discuss anywhere.
 
 ---
 

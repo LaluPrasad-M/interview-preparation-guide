@@ -32,7 +32,7 @@ Heap fetches expensive -> covering indexes
 
 ## The read heavy problem catalogue
 
-Worth recognising the shapes these problems come in.
+It is worth recognising the shapes these problems come in.
 
 **Read heavy social and feed systems.** Celebrity profile systems under viral traffic, infinite scroll feeds, personalised news feeds, trending post ranking, homepage recommendation retrieval, follower and following retrieval, activity feed and timeline reads, comment reading under heavy concurrency, notification read systems, real time trending hashtag discovery.
 

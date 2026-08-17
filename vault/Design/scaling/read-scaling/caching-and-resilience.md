@@ -104,7 +104,7 @@ Many systems appear down when the actual issue is connection occupancy exhaustio
 > [!warning] The insight to keep
 > Resources are not merely consumed by work. They are consumed by waiting.
 
-This introduces pool sizing, queue limits, admission control, request cancellation, and timeout strategy. Another layer of protection architecture.
+This introduces pool sizing, queue limits, admission control, request cancellation, and timeout strategy, another layer of protection architecture.
 
 ---
 

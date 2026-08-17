@@ -48,7 +48,7 @@ Used for order tracking, shipment tracking, payment status tracking.
 
 ## 4. Eventual consistency
 
-**The promise.** All replicas will eventually converge. No guarantee about when.
+**The promise.** All replicas will eventually converge. There is no guarantee about when.
 
 **The example.** Likes on a post. You like it, some users see 100 likes and others see 101 for a few seconds, and eventually everyone sees 101.
 

@@ -1,7 +1,7 @@
 # Scaling from Zero to Millions of Users
 
 > [!tldr]
-> Nine stages from a single server monolith to a fully distributed system. Each stage exists because the previous one broke.
+> Nine stages take you from a single server monolith to a fully distributed system. Each stage exists because the previous one broke.
 
 ---
 

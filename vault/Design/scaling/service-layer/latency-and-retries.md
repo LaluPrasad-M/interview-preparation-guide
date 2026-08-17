@@ -27,7 +27,7 @@ Suddenly you have 300ms or more of request latency, before retries, GC pauses, q
 
 ### Pending promise accumulation
 
-Suppose 20k requests per second arrive and the Payment Service latency is 5 seconds. You may now have 100k or more pending promises alive simultaneously, which creates heap growth, GC pauses, event loop lag and timeout amplification. One of the most common Node.js production failures.
+Suppose 20k requests per second arrive and the Payment Service latency is 5 seconds. You may now have 100k or more pending promises alive simultaneously, which creates heap growth, GC pauses, event loop lag and timeout amplification. This is one of the most common Node.js production failures.
 
 **The realisation.** Microservices distribute latency instead of eliminating complexity, and synchronous dependency chains amplify pressure across systems.
 

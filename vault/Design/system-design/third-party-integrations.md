@@ -1,7 +1,7 @@
 # Third Party Integrations
 
 > [!tldr]
-> Every integration is a piece of your product you no longer control. Often worth it, as long as you make the trade knowingly.
+> Every integration is a piece of your product you no longer control. It is often worth it, as long as you make the trade knowingly.
 
 ---
 

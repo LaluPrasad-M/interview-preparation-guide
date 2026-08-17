@@ -1,7 +1,7 @@
 # Repositories, Strategies, and Services
 
 > [!tldr]
-> Repositories abstract persistence, strategies abstract behavior variation, services orchestrate the workflow.
+> Repositories abstract persistence. Strategies abstract behavior variation. Services orchestrate the workflow.
 
 Part of [[ride-booking]].
 

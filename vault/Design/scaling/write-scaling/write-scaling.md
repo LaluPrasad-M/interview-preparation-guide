@@ -16,7 +16,7 @@
 
 ## Stage 4: MVCC pressure
 
-Loosely translated: transaction ID pressure, meaning you maintain as many versions of transaction IDs as are in use. Long running queries such as analytics can add further pressure.
+In loose translation, this is transaction ID pressure: you maintain as many versions of transaction IDs as are in use. Long running queries such as analytics can add further pressure.
 
 During lock contention we saw that as concurrency increased, readers waited, writers waited, queues formed, retries amplified, p99 exploded and connection pools saturated. If every read and write blocks every other operation, large scale systems become impossible.
 
@@ -31,7 +31,7 @@ This is why PostgreSQL can give you concurrent reads and writes, snapshot isolat
 > [!tip] The deepest lesson of this stage
 > Scalability almost never removes cost. It redistributes cost. Earlier the system paid through blocking. Now it pays through version churn, cleanup, storage pressure and vacuum overhead.
 
-**Dead tuples became a real system.** Under high update workloads, `UPDATE users SET last_seen = NOW()` executed millions of times. Naively developers imagine the same row being continuously overwritten, but internally PostgreSQL creates many tuple versions, generating dead tuples, WAL amplification, index churn, visibility bookkeeping and storage growth.
+**Dead tuples became a real system.** Under high update workloads, `UPDATE users SET last_seen = NOW()` executed millions of times. Developers naively imagine the same row being continuously overwritten, but internally PostgreSQL creates many tuple versions, generating dead tuples, WAL amplification, index churn, visibility bookkeeping and storage growth.
 
 **Long running transactions became dangerous.** Old tuple versions cannot be removed while older snapshots may still need them. Hanging analytics queries, forgotten ORM transactions, idle DB connections and long running reports can silently prevent cleanup, causing table bloat, index bloat, scan slowdown, cache inefficiency and vacuum pressure explosion. This is one of the most common real world PostgreSQL production failures, and a very high interview return topic.
 
@@ -135,4 +135,4 @@ That introduced idempotence: repeating the same operation should not change the 
 
 **The exactly once myth.** True global exactly once processing is nearly impossible under failures, because ACKs can fail, networks partition, consumers crash, and ambiguity always exists. Real systems usually implement at least once delivery plus idempotent processing.
 
-**Ordering problems.** Replay ordering, out of order events, partition ordering and stale event overwrites, which makes Kafka partition keys, sequencing and ordering guarantees extremely important.
+**Ordering problems.** These are replay ordering, out of order events, partition ordering and stale event overwrites, which makes Kafka partition keys, sequencing and ordering guarantees extremely important.

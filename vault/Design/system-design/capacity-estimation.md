@@ -1,7 +1,7 @@
 # Capacity Estimation
 
 > [!tldr]
-> The interviewer cares far more about what breaks first than about the exact QPS. Capacity planning exists to find the bottleneck, not to produce a number.
+> The interviewer cares far more about what breaks first than about the exact [[qps|QPS]]. Capacity planning exists to find the bottleneck, not to produce a number.
 
 ---
 
@@ -99,7 +99,7 @@ This ratio drives your database, cache and replica decisions.
 
 **Server count.** Assume one server handles 1,000 QPS. For 10,000 peak QPS that is 10 servers, plus redundancy, so 15 to 20.
 
-**CDN.** 1 million videos a day at 100 MB is 100 TB a day of upload storage. If each is watched 10 times, that is 1,000 TB a day of delivery. Storage is small, delivery is huge, which is why a CDN becomes mandatory.
+**CDN.** 1 million videos a day at 100 MB is 100 TB a day of upload storage. If each is watched 10 times, that is 1,000 TB a day of delivery. Storage is small, delivery is huge, which is why a [[cdn|CDN]] becomes mandatory.
 
 **Database capacity.** 100 million user rows at 1 KB is 100 GB. Replication times 3 is 300 GB. Indexes may double it to 600 GB.
 
@@ -142,7 +142,7 @@ Users -> Traffic -> QPS -> Storage -> Bandwidth
 
 **Storage.** Short URL 10 bytes, long URL 200 bytes, metadata 100 bytes, so about 300 bytes, rounded to 500. That is `10M x 500 bytes`, roughly 5 GB a day, 1.8 TB a year, 5.4 TB with replication, and about 8 TB after adding 50 percent for indexes.
 
-**What it revealed.** 600 write QPS against 60,000 read QPS, a 100:1 ratio. Overwhelmingly read heavy.
+**What it revealed.** 600 write QPS against 60,000 read QPS, a 100:1 ratio. This is overwhelmingly read heavy.
 
 **Decisions driven by the numbers.** Because reads dominate, Redis cache, read replicas and a KV database matter. Because storage is tiny at 8 TB a year, storage is not a concern. Because bandwidth is around 60 MB per second at peak, a CDN is unnecessary.
 

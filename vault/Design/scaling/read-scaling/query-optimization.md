@@ -149,7 +149,7 @@ If the optimizer estimates 10 rows and reality is 10 million, it may choose nest
 
 **The stale statistics problem.** Initially 1 percent of rows are `PENDING`; later 80 percent are. If statistics are stale, the optimizer still assumes high selectivity and chooses a terrible plan. This is one of the biggest real world DB performance problems.
 
-**The production insight.** The same query can suddenly become slow because the table grew, the distribution changed, statistics went stale, and the optimizer's assumptions became invalid. No code change required.
+**The production insight.** The same query can suddenly become slow because the table grew, the distribution changed, statistics went stale, and the optimizer's assumptions became invalid. No code change is required.
 
 **Plan instability.** The optimizer may alternate between sequential scan and index scan, causing unstable latency and unpredictable performance. This is called plan flapping.
 
@@ -175,11 +175,11 @@ This is why denormalisation appeared earlier: repeated joins under heavy read tr
 
 ## Stage 18: N+1 query amplification
 
-One API request silently creates hundreds or thousands of downstream queries. Very common in ORMs, GraphQL and microservices.
+One API request silently creates hundreds or thousands of downstream queries. This is very common in ORMs, GraphQL and microservices.
 
 **The classic example.** Fetch 100 users, then for each user fetch their orders. That is 1 query plus 100 queries.
 
-**Why it is dangerous.** Not just the query count, but repeated network trips, repeated parsing, repeated connection usage, repeated execution overhead and repeated memory allocations. Under concurrency, N+1 amplifies connection exhaustion, queue buildup, tail latency and retries.
+**Why it is dangerous.** It is not just the query count, but repeated network trips, repeated parsing, repeated connection usage, repeated execution overhead and repeated memory allocations. Under concurrency, N+1 amplifies connection exhaustion, queue buildup, tail latency and retries.
 
 **The ORM danger.** `user.orders` may silently trigger an extra DB query, and loops accidentally create thousands of hidden queries.
 

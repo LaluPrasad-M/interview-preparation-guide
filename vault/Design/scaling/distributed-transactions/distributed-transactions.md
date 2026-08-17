@@ -99,7 +99,7 @@ Notice how many previous stages appear: Kafka, async processing, retries, idempo
 
 ## Common questions
 
-What is a distributed transaction? Why is it harder than a DB transaction? What is two phase commit? Why is 2PC uncommon in large scale systems? What is a Saga? What is a compensating transaction? Difference between rollback and compensation? Orchestration against choreography? What is the outbox pattern? Why do we need it? How do you guarantee reliable Kafka event publishing? Why is idempotency critical in event driven systems?
+What is a distributed transaction? Why is it harder than a DB transaction? What is two phase commit? Why is 2PC uncommon in large scale systems? What is a Saga? What is a compensating transaction? What is the difference between rollback and compensation? What is the difference between orchestration and choreography? What is the outbox pattern? Why do we need it? How do you guarantee reliable Kafka event publishing? Why is idempotency critical in event driven systems?
 
 These are among the highest frequency senior backend interview questions.
 
