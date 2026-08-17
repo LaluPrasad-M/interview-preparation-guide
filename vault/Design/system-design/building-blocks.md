@@ -17,7 +17,7 @@ Split into four blocks so the tables stay readable.
 
 **The trade off.** Cache invalidation is notoriously difficult. If the database updates but the cache does not, users see stale data.
 
-**The curveball.** What happens if our most popular celebrity goes viral and all requests hit just one node, the hot key problem?
+**The curveball.** What happens if our most popular celebrity goes viral and all requests hit just one node, the [[hot-key|hot key]] problem?
 
 ### Rate limiter, at the gateway layer
 
@@ -59,7 +59,7 @@ See [[distributed-id-generation]].
 
 **The analogy.** The database holds the index card. Blob storage is the physical warehouse holding the heavy, unsearchable crate.
 
-**The mechanics.** Files are stored as immutable objects in buckets. A CDN caches them at edge servers globally, slashing latency for distant users.
+**The mechanics.** Files are stored as immutable objects in buckets. A [[cdn|CDN]] caches them at edge servers globally, slashing latency for distant users.
 
 **The trade off.** Immutability. To change a single pixel in a 5 GB video, you upload a completely new 5 GB file.
 
@@ -97,7 +97,7 @@ See [[typeahead-search]] for the scatter gather answer.
 
 **The mechanics.** Consensus algorithms such as Paxos or Raft, or distributed locks such as Redis Redlock, ensure multiple workers do not execute the same scheduled task simultaneously.
 
-**The trade off.** High complexity. If a worker grabs a lock and dies before releasing it, the system halts unless TTLs are set.
+**The trade off.** High complexity. If a worker grabs a lock and dies before releasing it, the system halts unless [[ttl|TTLs]] are set.
 
 **The curveball.** If a task takes 10 minutes but the lock TTL is 5 minutes, how do you stop a second worker starting halfway through?
 

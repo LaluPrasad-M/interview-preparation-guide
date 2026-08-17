@@ -11,7 +11,7 @@ Every distributed system needs unique IDs for users and orders.
 
 A single PostgreSQL `AUTO_INCREMENT` table will lock and crash if you ask it for 100,000 IDs per second.
 
-`UUIDv4` strings are 128 bit random characters. Inserting massive random strings into a relational database destroys B-tree indexes through write amplification, because the database constantly re sorts the index tree.
+`UUIDv4` strings are 128 bit random characters. Inserting massive random strings into a relational database destroys B-tree indexes through [[write-amplification|write amplification]], because the database constantly re sorts the index tree.
 
 **The objective.** Build a decentralised REST API generating billions of IDs per second. The IDs must be 64 bit integers, so they fit standard `BIGINT` columns, and time sortable, so database indexes stay balanced.
 

@@ -12,12 +12,12 @@
 | Strong consistency plus low latency | correctness | payments, wallets, inventory locks | sync, transactional, single writer | direct DB or cache | Postgres or MySQL, for ACID and isolation | sync REST or gRPC | modular monolith or few services | Kafka only after commit | Redis, read through only | avoid retries | Stripe, payment authorization |
 | Low latency plus high availability plus eventual consistency | speed and uptime | likes, comments, presence, counters | local sync writes | local reads | DynamoDB or Cassandra, for local writes and async replication | sync, local only | stateless, region isolated | Kafka or streams for replication | heavy regional caching | rare | Instagram likes, WhatsApp presence |
 | High throughput plus high availability | durability | event ingestion, analytics | async, buffered | eventually consistent | Kafka as truth plus Cassandra or DynamoDB | fire and ack APIs | microservices with consumer groups | Kafka mandatory | minimal | no | LinkedIn activity pipeline |
-| Ultra low latency plus read heavy scale | fast reads | feeds, timelines, catalogs | async fan out | cache first | Redis or DynamoDB, for constant time reads | sync reads, async writes | read and write separated services | Kafka for fan out | aggressive, Redis plus CDN | no | Twitter home timeline |
+| Ultra low latency plus read heavy scale | fast reads | feeds, timelines, catalogs | async fan out | cache first | Redis or DynamoDB, for constant time reads | sync reads, async writes | read and write separated services | Kafka for fan out | aggressive, Redis plus [[cdn|CDN]] | no | Twitter home timeline |
 | High availability plus global scale plus eventual consistency | always writable | messaging, social graphs | local writes, async global sync | local reads | DynamoDB Global or Cassandra multi DC | local sync APIs | regional microservices | Kafka for cross region sync | regional caches | no | WhatsApp message delivery |
 | Scalability plus team autonomy | team velocity | large SaaS platforms | service owned writes | service owned reads | a database per service, any type | REST or gRPC plus async events | true microservices | Kafka for integration events | per service | no | Netflix service ecosystem |
 | Long running reliability plus retries | completion | orders, onboarding, trip lifecycle | step wise, durable | query workflow state | workflow engine internal state | API triggers a workflow | microservices coordinated by the workflow | Kafka for signals and events | optional | workflow engine mandatory | Uber trip lifecycle |
 | Search heavy plus flexible queries | query power | product search, log search | index writes async | query the index | Elasticsearch, for the inverted index | sync search APIs | search as an isolated service | Kafka for indexing | query cache | no | Amazon product search |
-| Analytics and reporting, OLAP | insight accuracy | dashboards, BI | batch or stream ingest | analytical queries | BigQuery or Snowflake, columnar | async ingestion | a separate analytics stack | Kafka into ETL | no | no | Netflix viewing analytics |
+| Analytics and reporting, [[oltp-and-olap|OLAP]] | insight accuracy | dashboards, BI | batch or stream ingest | analytical queries | BigQuery or Snowflake, columnar | async ingestion | a separate analytics stack | Kafka into [[etl|ETL]] | no | no | Netflix viewing analytics |
 
 ---
 
@@ -109,7 +109,7 @@ Region A             Region B
        Async Replication
 ```
 
-**The stack.** Async replication streams, conflict resolution by last write wins or version vectors, regional Redis. No distributed transactions and no global locks.
+**The stack.** Async replication streams, conflict resolution by [[last-write-wins|last write wins]] or version vectors, regional Redis. No distributed transactions and no global locks.
 
 **Real product.** WhatsApp, where messages are written locally, delivered asynchronously, and synced across devices eventually.
 
@@ -191,7 +191,7 @@ Client -> API -> Queue/Buffer -> Worker(s) -> Service
 
 **Use cases.** Background jobs, video and image processing, email sending, payment retries, batch writes.
 
-**Characteristics.** It decouples producer from consumer speed, protects downstream systems, enables backpressure, and is usually but not always FIFO.
+**Characteristics.** It decouples producer from consumer speed, protects downstream systems, enables [[backpressure]], and is usually but not always FIFO.
 
 **The example.** A user uploads a video. The API responds immediately, the video is queued, and workers transcode in the background.
 

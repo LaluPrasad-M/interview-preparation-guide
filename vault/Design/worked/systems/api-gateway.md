@@ -33,7 +33,7 @@ If every microservice is exposed to the public internet, handles HTTPS certifica
 
 | Dimension | Requirement |
 | --- | --- |
-| Scale and traffic | the highest traffic component in the company, 100 percent of external traffic, target above 1,000,000 QPS |
+| Scale and traffic | the highest traffic component in the company, 100 percent of external traffic, target above 1,000,000 [[qps|QPS]] |
 | Performance | under 5 ms of overhead, which rules out slow languages for the gateway layer |
 | Availability against consistency | absolute availability. If the gateway is down, revenue is zero. A massively horizontally scaled cluster behind an L4 load balancer |
 | Concurrency | hundreds of thousands of simultaneous open TCP connections, the C10K and C100K problem |
@@ -87,7 +87,7 @@ If every microservice is exposed to the public internet, handles HTTPS certifica
 
 ## The request lifecycle, step by step
 
-**1. SSL termination at layer 7.** The TCP connection from the mobile app hits gateway node 1, which holds the actual `.pem` certificate and decrypts the HTTPS traffic to plaintext HTTP. The internal network then uses fast unencrypted HTTP or mTLS.
+**1. SSL termination at layer 7.** The TCP connection from the mobile app hits gateway node 1, which holds the actual `.pem` certificate and decrypts the HTTPS traffic to plaintext HTTP. The internal network then uses fast unencrypted HTTP or [[mutual-tls|mTLS]].
 
 **2. Auth validation, filter chain step 1.** Node 1 intercepts the `Authorization: Bearer <JWT>` header, checks its local RAM for the auth service public key from `jwks.json`, and mathematically verifies the signature in under 0.1 ms. See [[jwt]].
 
@@ -95,7 +95,7 @@ If every microservice is exposed to the public internet, handles HTTPS certifica
 
 **4. Header mutation.** Node 1 strips the JWT, so internal services cannot accidentally leak it, and injects `X-User-ID` and `X-Correlation-ID`, a UUID used for distributed tracing.
 
-**5. Service discovery.** The user requested `/v1/search`, so node 1 asks the local service mesh sidecar, Kubernetes DNS or Consul, for the internal IP of a healthy search pod.
+**5. Service discovery.** The user requested `/v1/search`, so node 1 asks the local [[service-mesh|service mesh]] sidecar, Kubernetes DNS or Consul, for the internal IP of a healthy search pod.
 
 **6. Reverse proxying.** Node 1 opens a keep alive HTTP connection to the search pod, forwards the modified request, buffers the response, and streams it back to the client.
 

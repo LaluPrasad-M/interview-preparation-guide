@@ -116,7 +116,7 @@ In a standard REST API the client opens a connection, sends data, gets a respons
 
 **Multiple concurrent calls.** Each call has its own long lived stream and state. The orchestrator handles thousands of concurrent connections asynchronously. Do not confuse this with multiple requests on one HTTP connection.
 
-The key additions to mention are connection lifecycle, a per call `call_id`, cancellation and backpressure, and streaming state management.
+The key additions to mention are connection lifecycle, a per call `call_id`, cancellation and [[backpressure]], and streaming state management.
 
 ```protobuf
 // The bidirectional stream for speech to text

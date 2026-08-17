@@ -31,9 +31,9 @@ This dramatically reduces repeated DB reads, query execution load, connection pr
 
 But now `DB state != Cache state` becomes possible. A user updates their profile, PostgreSQL is updated, the Redis update fails, and stale data appears. So Redis reduced DB pressure but introduced synchronisation complexity, invalidation problems, and stale reads. That is the first major tradeoff.
 
-Then another issue appears. A celebrity profile goes viral, the cache entry expires, and millions of requests miss the cache simultaneously. All of them hit the DB together, which is a cache stampede.
+Then another issue appears. A celebrity profile goes viral, the cache entry expires, and millions of requests miss the cache simultaneously. All of them hit the DB together, which is a [[thundering-herd|cache stampede]].
 
-This is why systems introduce TTL jitter, stale while revalidate, request coalescing, and background refresh. Notice the pattern: every optimisation introduces another protection layer. This is exactly how real systems evolve.
+This is why systems introduce [[ttl|TTL]] jitter, stale while revalidate, request coalescing, and background refresh. Notice the pattern: every optimisation introduces another protection layer. This is exactly how real systems evolve.
 
 ---
 
@@ -112,6 +112,6 @@ This introduces pool sizing, queue limits, admission control, request cancellati
 
 The architecture is no longer merely optimised; it must become resilient under overload.
 
-This introduces backpressure, load shedding, circuit breakers, graceful degradation, stale reads and prioritisation.
+This introduces [[backpressure]], load shedding, circuit breakers, graceful degradation, stale reads and prioritisation.
 
 The system begins intentionally sacrificing freshness, completeness and low priority traffic in order to preserve core functionality. That is mature distributed systems engineering.

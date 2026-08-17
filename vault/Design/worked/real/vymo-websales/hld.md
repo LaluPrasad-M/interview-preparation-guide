@@ -107,5 +107,5 @@ sequenceDiagram
 
 In words: the lead creates a profile, the website posts it to LMS, LMS validates and creates the record, assigns it to an agent by predefined rules, the agent gets a push notification through FCM, the agent contacts the lead or books a Zoom meeting, and LMS reports the status back to the call centre.
 
-> [!tip] Where the design earns the SLA
+> [!tip] Where the design earns the [[sli-slo-and-sla|SLA]]
 > Everything the website waits for is on the left of the first Kafka arrow. Validation, storage and assignment are synchronous, and notification, scheduling and reporting are not. That split is what makes a 30 second end to end SLA achievable without making the website wait for a push notification to be delivered.

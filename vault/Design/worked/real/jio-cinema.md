@@ -72,5 +72,5 @@ Partition counts get chosen by comparing how fast producers write to how fast co
 - **Panic modes everywhere.** Always have plan B, C and D.
 - **Handle sudden spikes**, the ones shaped like a hockey stick.
 - **Never scale down mid match.** Scale down afterwards, gradually, one step at a time.
-- **Multiple CDNs**, with a Multi CDN Optimizer service that watches how hot each CDN is and distributes load between them. Separate handling for video, API and image traffic.
+- **Multiple [[cdn|CDNs]]**, with a Multi CDN Optimizer service that watches how hot each CDN is and distributes load between them. Separate handling for video, API and image traffic.
 - **Heavy use of Kafka** for async work.

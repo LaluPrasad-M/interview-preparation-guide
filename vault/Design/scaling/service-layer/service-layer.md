@@ -83,7 +83,7 @@ The producer says "I have recorded the event, my responsibility is complete". Co
 
 Checkout completes but the notification consumer has not processed the event yet, so temporarily the order exists and the notification is absent. The system disagrees with itself. A few seconds later the consumer catches up and the state converges.
 
-You will keep seeing this concept in Kafka, Redis, CQRS, replication, projections and event driven systems.
+You will keep seeing this concept in Kafka, Redis, [[cqrs|CQRS]], replication, projections and event driven systems.
 
 **Async failures are harder to debug.** A synchronous failure means the request failed immediately, which is simple. An asynchronous failure means the request succeeded and the consumer failed 30 minutes later. Now engineers need tracing, replay, dead letter queues, lag monitoring and event correlation.
 
@@ -226,7 +226,7 @@ await Promise.all(
 );
 ```
 
-Maximum 20 concurrent operations. This combines stage 3 backpressure with stage 6 fanout control.
+Maximum 20 concurrent operations. This combines stage 3 [[backpressure]] with stage 6 fanout control.
 
 ### Precomputation
 
@@ -273,7 +273,7 @@ The same pattern, different resource:
 
 | Resource | The chain |
 | --- | --- |
-| Memory | allocate, retain objects, heap growth, GC pressure, OOM |
+| Memory | allocate, retain objects, heap growth, GC pressure, [[out-of-memory-kill|OOM]] |
 | Database connections | acquire, forget release, pool exhaustion, request blocking |
 | Kafka | produce messages, consumer falls behind, lag grows, queue collapse |
 | Sockets | open socket, forget cleanup, file descriptor exhaustion, network failures |
@@ -322,7 +322,7 @@ const cache = new Map();
 cache.set(id, user);
 ```
 
-No TTL, no eviction, no size limit. Looks harmless. Eventually the cache grows infinitely, which is effectively a memory leak with a nicer name.
+No [[ttl|TTL]], no eviction, no size limit. Looks harmless. Eventually the cache grows infinitely, which is effectively a memory leak with a nicer name.
 
 > [!warning] Caches are often memory leaks
 > A cache without a TTL, eviction, or capacity limits is a controlled memory leak. Interviewers love this observation.

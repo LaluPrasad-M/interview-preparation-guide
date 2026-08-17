@@ -1,7 +1,7 @@
 # Geospatial Discovery API
 
 > [!tldr]
-> CQRS in its purest form. Elasticsearch answers "which ones are near me and match my filters", Redis answers "how busy are those exact ones right now".
+> [[cqrs|CQRS]] in its purest form. Elasticsearch answers "which ones are near me and match my filters", Redis answers "how busy are those exact ones right now".
 
 ---
 
@@ -31,7 +31,7 @@ Querying a database for geographic proximity requires calculating the Haversine 
 
 | Dimension | Requirement |
 | --- | --- |
-| Scale and traffic | extremely read heavy, roughly 100 reads per write. Map panning triggers heavy traffic. Target 20,000 read QPS |
+| Scale and traffic | extremely read heavy, roughly 100 reads per write. Map panning triggers heavy traffic. Target 20,000 read [[qps|QPS]] |
 | Performance | under 100 ms at p99, so the map UI feels fluid |
 | Availability against consistency | high availability for the read path, and eventual consistency is fine. A wait time that says 15 minutes but jumped to 20 five seconds ago is acceptable for discovery |
 | Concurrency | high concurrent reads during morning rushes |
@@ -103,7 +103,7 @@ Querying a database for geographic proximity requires calculating the Haversine 
 
 **1. Source of truth.** A clinic admin changes the wait time from 15 to 30 minutes, or updates accepted insurances. This writes directly to PostgreSQL.
 
-**2. CDC extraction.** Debezium tails the write ahead log. The moment the commit finishes, it extracts the row change and publishes to `clinic.state.updates`.
+**2. CDC extraction.** Debezium tails the [[write-ahead-log|write ahead log]]. The moment the commit finishes, it extracts the row change and publishes to `clinic.state.updates`.
 
 **3. Targeted updates.**
 
@@ -219,7 +219,7 @@ Because we use Kafka and CDC to update the read models, there is a 1 to 3 second
 
 **Q.** If a user drags the map 10 times in 3 seconds, they trigger 10 heavy Elasticsearch queries. How do you protect the backend?
 
-**A.** Defences at two layers. On the client, debouncing: the app waits roughly 300 ms after the user stops dragging before firing. On the gateway, a token bucket rate limiter keyed by user ID or IP, capping discovery searches to 30 per minute to prevent scraping or UI bugs from overwhelming the cluster.
+**A.** Defences at two layers. On the client, [[debouncing-and-throttling|debouncing]]: the app waits roughly 300 ms after the user stops dragging before firing. On the gateway, a token bucket rate limiter keyed by user ID or IP, capping discovery searches to 30 per minute to prevent scraping or UI bugs from overwhelming the cluster.
 
 ### Elasticsearch outage
 

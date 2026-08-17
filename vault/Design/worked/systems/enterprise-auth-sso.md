@@ -115,7 +115,7 @@ If the gateway makes an HTTP call to the auth service to validate the JWT on eve
 
 **7. The API call.** The client sends `GET /orders` with the JWT in the header.
 
-**8. The JWKS cache.** The gateway periodically calls `GET /.well-known/jwks.json` to download the public keys, and caches them in local RAM.
+**8. The [[jwks|JWKS]] cache.** The gateway periodically calls `GET /.well-known/jwks.json` to download the public keys, and caches them in local RAM.
 
 **9. Zero hop validation.** The gateway uses the cached public key to mathematically verify the signature. If the maths checks out, the gateway knows the token was created by the auth service and has not been tampered with. Under 1 millisecond and zero network calls.
 
@@ -161,7 +161,7 @@ Follow RFC standard OAuth 2.0 endpoints. Do not invent your own authentication r
 
 **Table `oauth_clients`, PostgreSQL.** `client_id` VARCHAR primary key, `client_secret_hash` VARCHAR, and `allowed_redirect_uris` JSONB.
 
-**Refresh tokens, Redis.** Key `refresh_token:ref_99a8b7c6`, value `{ "user_id": "123", "client_id": "web_app_01" }`, TTL 30 days.
+**Refresh tokens, Redis.** Key `refresh_token:ref_99a8b7c6`, value `{ "user_id": "123", "client_id": "web_app_01" }`, [[ttl|TTL]] 30 days.
 
 Why Redis? Because querying Postgres to validate a refresh token during a high traffic renewal spike is too slow.
 
@@ -258,4 +258,4 @@ The gateway, after validating the signature in RAM, makes a 1 millisecond check 
 
 **Q.** If the gateway passes `X-User-ID: 123` internally, what stops a compromised internal container from spoofing that header and making requests as the CEO?
 
-**A.** The classic zero trust problem. We cannot trust HTTP headers, even internally. Implement a service mesh with mutual TLS. The gateway uses mTLS to authenticate its identity to downstream services, and those services are configured to only accept the `X-User-ID` header if the request cryptographically proves it originated from the gateway, rejecting spoofed requests from rogue containers.
+**A.** The classic zero trust problem. We cannot trust HTTP headers, even internally. Implement a [[service-mesh|service mesh]] with [[mutual-tls|mutual TLS]]. The gateway uses mTLS to authenticate its identity to downstream services, and those services are configured to only accept the `X-User-ID` header if the request cryptographically proves it originated from the gateway, rejecting spoofed requests from rogue containers.

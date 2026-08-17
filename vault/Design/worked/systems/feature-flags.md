@@ -212,7 +212,7 @@ We trade infrastructure cost, running lots of streaming servers, for instant rea
 
 **The scenario.** A network blip drops the SSE connection, so the SDK misses a kill switch event.
 
-**The defence, fallback and reconnect.** The SDK continues evaluating using its last known RAM state, choosing availability over consistency. It uses exponential backoff to reconnect. As a last resort we implement an async local disk cache, so if the pod reboots while the streaming server is down it reads flags from local disk and survives the total outage.
+**The defence, fallback and reconnect.** The SDK continues evaluating using its last known RAM state, choosing availability over consistency. It uses [[exponential-backoff]] to reconnect. As a last resort we implement an async local disk cache, so if the pod reboots while the streaming server is down it reads flags from local disk and survives the total outage.
 
 ---
 
@@ -226,7 +226,7 @@ Last known good state is vastly superior to a default state. Three industry stan
 
 Every time the SDK receives an event and updates RAM, it also asynchronously overwrites a file on local disk, for example `/var/lib/flags/last_known_rules.json`.
 
-**The cold start.** On restart the SDK tries the central flag service. On a `503`, it reads the local file and loads those rules back into RAM.
+**The [[cold-start|cold start]].** On restart the SDK tries the central flag service. On a `503`, it reads the local file and loads those rules back into RAM.
 
 **The Kubernetes trap.** If the pod is destroyed and rescheduled onto a different worker node, the local disk is wiped. To make this work you must mount a persistent volume, which adds deployment complexity.
 
@@ -272,6 +272,6 @@ That guarantees a user never randomly loses access to a feature just because an 
 
 ### A hundred thousand flags
 
-**Q.** With 100,000 flags, the JSON payload downloaded on boot will be massive. How do we prevent OOM crashes?
+**Q.** With 100,000 flags, the JSON payload downloaded on boot will be massive. How do we prevent [[out-of-memory-kill|OOM]] crashes?
 
 **A.** In a mature system you rarely need 100k active flags. The real solution is lifecycle management. Flags are temporary technical debt. We track in the SDKs when a flag evaluates to 100 percent true for 30 consecutive days, automatically tag it stale, and open tickets forcing developers to rip it out of the code and delete it, keeping the active rule set lean and fast.

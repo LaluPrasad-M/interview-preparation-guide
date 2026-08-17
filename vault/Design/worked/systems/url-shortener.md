@@ -101,9 +101,9 @@ We cache first because reads dominate, latency needs to be sub millisecond, and 
 
 **Replication.** The leader handles writes, replicas serve reads, and the cache absorbs most reads anyway.
 
-**Cache.** Key `shortCode` to `longUrl`, LRU eviction, TTL aligned with expiry. Mitigate a miss storm with cache warmup and request coalescing. See [[caching-problems]].
+**Cache.** Key `shortCode` to `longUrl`, LRU eviction, [[ttl|TTL]] aligned with expiry. Mitigate a miss storm with cache warmup and request coalescing. See [[caching-problems]].
 
-**CDN.** Caching redirect responses at the edge reduces global latency and offloads an enormous share of reads.
+**[[cdn|CDN]].** Caching redirect responses at the edge reduces global latency and offloads an enormous share of reads.
 
 **Analytics.** Never update the database synchronously on redirect. Fire an event to Kafka and let an analytics service consume it.
 

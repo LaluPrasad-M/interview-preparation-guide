@@ -54,7 +54,7 @@
 | --- | --- |
 | Scalability | microservices, with Kafka for asynchronous communication |
 | High availability | Redis caching and Kafka based reprocessing |
-| Data consistency | a 30 second SLA for lead data synchronisation |
+| Data consistency | a 30 second [[sli-slo-and-sla|SLA]] for lead data synchronisation |
 | Security | AES-256 encryption for sensitive lead information |
 | Re-trigger | for failed file processing |
 | Monitoring and alerts | Datadog for performance and errors |

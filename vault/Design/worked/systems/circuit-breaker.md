@@ -11,7 +11,7 @@ The technique in one paragraph is in [[fault-tolerance]]. This note is the full 
 
 You are building a service that depends on a third party payment API. It is sometimes slow, sometimes failing, occasionally down. Design a circuit breaker to prevent cascading failures, protect your service from overload, and allow recovery.
 
-**Constraints to assume, or ask for.** Traffic of 5k to 20k RPS. The external API has a p99 of 2 to 5 seconds during failures, with timeouts, 5xx errors and partial outages. Your service must respond within 200 ms and must not go down because of this dependency. You may use in memory state, Redis, and background jobs, in a multi instance stateless environment behind a load balancer.
+**Constraints to assume, or ask for.** Traffic of 5k to 20k [[qps|RPS]]. The external API has a p99 of 2 to 5 seconds during failures, with timeouts, 5xx errors and partial outages. Your service must respond within 200 ms and must not go down because of this dependency. You may use in memory state, Redis, and background jobs, in a multi instance stateless environment behind a load balancer.
 
 ---
 
@@ -97,7 +97,7 @@ The interviewer will ask this.
 **Redis, shared.** Consistent behaviour, but adds latency.
 
 > [!tip] The answer that lands
-> Keep counters locally for speed and periodically sync breaker state to Redis, which avoids thundering herd problems without putting Redis on the hot path.
+> Keep counters locally for speed and periodically sync breaker state to Redis, which avoids [[thundering-herd|thundering herd]] problems without putting Redis on the hot path.
 
 ---
 
@@ -121,6 +121,6 @@ The interviewer will ask this.
 
 **Metrics.** Circuit state transitions, failure rate, external latency.
 
-**Alerts.** Circuit open too long, dependency SLA breach.
+**Alerts.** Circuit open too long, dependency [[sli-slo-and-sla|SLA]] breach.
 
 **Dashboards.** Error budgets, dependency health.

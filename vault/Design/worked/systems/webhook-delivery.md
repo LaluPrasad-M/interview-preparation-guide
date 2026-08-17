@@ -102,7 +102,7 @@ On success it commits the Kafka offset and marks the status `DELIVERED` in our d
 
 On failure, a 503 or timeout, the dispatcher **does not sleep**, because sleeping blocks the queue. Instead it publishes the same message to a `retry_1m` topic and moves on to the next message.
 
-**4. The retry loop.** A separate worker listens to `retry_1m`. After 1 minute it tries again. If it fails, it pushes to `retry_1h`. That is exponential backoff. See [[polling-and-pausing]] for how the delay is actually enforced without dying.
+**4. The retry loop.** A separate worker listens to `retry_1m`. After 1 minute it tries again. If it fails, it pushes to `retry_1h`. That is [[exponential-backoff]]. See [[polling-and-pausing]] for how the delay is actually enforced without dying.
 
 **5. The DLQ.** If the hospital is down for 24 hours, or our payload is missing a required field and returns `400 Bad Request`, retrying will not help. The system pushes the message to the DLQ, an alert fires, and an engineer fixes the JSON and clicks a button to replay it.
 

@@ -135,7 +135,7 @@ This gives high throughput, and you never lock the read tables. The downside is 
 
 **Who.** A streaming platform, Kafka paired with Debezium.
 
-The database is the single source of truth and the application only inserts into `billing_events`. Debezium watches the PostgreSQL write ahead log at the system level, and when it sees a new ledger row it fires an event to Kafka. A dedicated microservice consumes that event and updates `tenant_balances` or a Redis cache.
+The database is the single source of truth and the application only inserts into `billing_events`. Debezium watches the PostgreSQL [[write-ahead-log|write ahead log]] at the system level, and when it sees a new ledger row it fires an event to Kafka. A dedicated microservice consumes that event and updates `tenant_balances` or a Redis cache.
 
 This is the most robust and scalable pattern. It completely decouples the heavy writing from the maths, but it introduces the operational complexity of managing Kafka and Debezium. See [[change-data-capture]].
 

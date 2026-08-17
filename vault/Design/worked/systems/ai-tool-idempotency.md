@@ -31,10 +31,10 @@ The orchestrator forwards this to the airline's external API. The airline proces
 
 | Dimension | Requirement |
 | --- | --- |
-| Scale and traffic | 10,000 active agents executing 1 tool per second, so 10,000 QPS |
+| Scale and traffic | 10,000 active agents executing 1 tool per second, so 10,000 [[qps|QPS]] |
 | Performance | the idempotency check must add under 5 ms before hitting the external API |
 | Availability against consistency | strict consistency is absolute. If the locking cluster is down we fail closed. Better for the AI to say "I cannot process refunds right now" than to charge a card twice |
-| Concurrency | defending against thundering herds of retries, the LLM firing 3 identical calls in parallel due to an async orchestration bug |
+| Concurrency | defending against [[thundering-herd|thundering herds]] of retries, the LLM firing 3 identical calls in parallel due to an async orchestration bug |
 | Edge cases | semantic hallucination, where the LLM retries but slightly alters the argument, `50` against `50.00` |
 
 ---
@@ -112,7 +112,7 @@ message ToolResponse {
 
 ## Database design
 
-**Redis, the lock layer.** Use `SETNX` strictly, set if not exists, with an expiry TTL of 30 seconds. That prevents permanent deadlocks if the tool engine pod is OOM killed while holding the lock.
+**Redis, the lock layer.** Use `SETNX` strictly, set if not exists, with an expiry [[ttl|TTL]] of 30 seconds. That prevents permanent deadlocks if the tool engine pod is [[out-of-memory-kill|OOM]] killed while holding the lock.
 
 **PostgreSQL, the state and cache layer. Table `tool_executions`.**
 

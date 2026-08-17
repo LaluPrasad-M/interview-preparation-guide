@@ -1,7 +1,7 @@
 # Write Scaling, Stage by Stage
 
 > [!tldr]
-> Reads retrieve shared state; writes modify it. That single difference makes durability, locking, MVCC and coordination the bottlenecks instead of retrieval.
+> Reads retrieve shared state; writes modify it. That single difference makes durability, locking, [[multi-version-concurrency-control|MVCC]] and coordination the bottlenecks instead of retrieval.
 
 ---
 
@@ -9,7 +9,7 @@
 
 | Note | Covers |
 | --- | --- |
-| [[write-path-basics]] | WAL, fsync, batching, lock contention and the first bottlenecks |
+| [[write-path-basics]] | [[write-ahead-log|WAL]], [[fsync]], batching, lock contention and the first bottlenecks |
 | [[sharding-and-scale]] | partitioning, sharding, hotspot management and the viral like counter |
 
 ---
@@ -112,7 +112,7 @@ Systems optimised by reducing pressure rather than blindly distributing it.
 
 ### Redis introduced new bottlenecks
 
-Redis solved mutation frequency, aggregation pressure and hot counter updates. But Redis itself became a hot mutable state bottleneck for celebrity counters, viral posts, hot keys and massive INCR traffic, producing Redis CPU saturation, single thread bottlenecks, replication lag and hot key pressure.
+Redis solved mutation frequency, aggregation pressure and hot counter updates. But Redis itself became a hot mutable state bottleneck for celebrity counters, viral posts, [[hot-key|hot keys]] and massive INCR traffic, producing Redis CPU saturation, single thread bottlenecks, replication lag and hot key pressure.
 
 Every scaling optimisation creates new pressure elsewhere. This recurring law keeps appearing.
 

@@ -23,7 +23,11 @@ trap 'rm -f "$NOW" "$OLD"' EXIT
 #   a percentage                 15%
 #   an acronym of 3 or more caps WAL, MVCC, HMAC, OIDC
 facts() {
-  grep -ohE 'v?[0-9]+\.[0-9]+(\.[0-9]+)?|[0-9][0-9,]* ?(ms|s|MB|GB|KB|TB|QPS|RPS|percent|%|bytes|bit|bits)\b|\b[A-Z]{3,}\b' "$@" 2>/dev/null \
+  # Unwrap wikilinks first. Linking a unit turns "1,000,000 QPS" into
+  # "1,000,000 [[qps|QPS]]", which splits the number from its unit and reads as
+  # a lost fact. [[a|b]] becomes b, [[a]] becomes a.
+  sed -e 's/\[\[[^]|]*|\([^]]*\)\]\]/\1/g' -e 's/\[\[\([^]]*\)\]\]/\1/g' "$@" 2>/dev/null \
+    | grep -ohE 'v?[0-9]+\.[0-9]+(\.[0-9]+)?|[0-9][0-9,]* ?(ms|s|MB|GB|KB|TB|QPS|RPS|percent|%|bytes|bit|bits)\b|\b[A-Z]{3,}\b' \
     | sed 's/[[:space:]]\{1,\}/ /g' | sort -u
 }
 

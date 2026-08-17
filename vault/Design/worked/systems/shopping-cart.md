@@ -217,7 +217,7 @@ Reads happen far more often than writes, so the cart sits behind a cache.
 | Setting | Value |
 | --- | --- |
 | Key | `cart:{userId}` |
-| TTL | 30 to 60 seconds |
+| [[ttl|TTL]] | 30 to 60 seconds |
 | Read | cache aside |
 | Write | invalidate |
 

@@ -220,7 +220,7 @@ Users -> Traffic -> QPS -> Storage -> Bandwidth
 
 **What it revealed.** The business operation, booking a ride, is not the scaling problem. Location updates are.
 
-**Decisions driven by the numbers.** An in memory location store, geospatial indexes, regional sharding and streaming infrastructure. Storing every location update permanently is impossible, so you need aggressive TTL, storing only the latest location rather than full history.
+**Decisions driven by the numbers.** An in memory location store, geospatial indexes, regional sharding and streaming infrastructure. Storing every location update permanently is impossible, so you need aggressive [[ttl|TTL]], storing only the latest location rather than full history.
 
 **The learning.** Background traffic dominates user facing traffic.
 

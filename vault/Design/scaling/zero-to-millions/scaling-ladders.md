@@ -21,7 +21,7 @@ Examples: news websites, e-commerce catalogs, movie databases, product search, p
 | 5x | indexes | faster queries |
 | 10x | read replicas | offload reads |
 | 100x | Redis | memory speed reads |
-| 1000x | CDN plus Redis plus multiple replicas | the DB is rarely hit |
+| 1000x | [[cdn|CDN]] plus Redis plus multiple replicas | the DB is rarely hit |
 
 The ladder: primary DB, then indexes, then read replicas, then Redis, then CDN.
 
@@ -119,7 +119,7 @@ Never jump to sharding first. If you jump directly to sharding, the interviewer 
 6. Denormalisation and materialized views
 7. Partitioning
 8. Async processing via Kafka
-9. CQRS, if needed
+9. [[cqrs|CQRS]], if needed
 10. Sharding, as a last resort
 
 ---
@@ -151,7 +151,7 @@ Never jump to sharding first. If you jump directly to sharding, the interviewer 
 | Async replication | faster writes, but eventual consistency and stale reads are possible |
 | CDN plus edge caching | push frequently accessed content closer to users |
 | Single writer per region | reduce cross region coordination |
-| Quorum based systems | balance consistency against latency with read and write quorums |
+| [[quorum|Quorum]] based systems | balance consistency against latency with read and write quorums |
 | Regional inventory allocation | prevent global coordination bottlenecks |
 | Request routing | route users to the nearest healthy region |
 | Conflict free models (CRDTs) | allow concurrent geo updates for mergeable data |

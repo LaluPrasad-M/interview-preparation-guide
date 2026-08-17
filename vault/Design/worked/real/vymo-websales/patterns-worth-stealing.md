@@ -41,7 +41,7 @@ Not from traffic, and not from a default.
 | whenever someone reassigns it | tens of minutes |
 | read within minutes | a few minutes |
 
-Where an explicit invalidation exists, the TTL is the safety net for a missed invalidation rather than the primary mechanism. Say that out loud, because "why both" is the follow up question.
+Where an explicit invalidation exists, the [[ttl|TTL]] is the safety net for a missed invalidation rather than the primary mechanism. Say that out loud, because "why both" is the follow up question.
 
 ---
 

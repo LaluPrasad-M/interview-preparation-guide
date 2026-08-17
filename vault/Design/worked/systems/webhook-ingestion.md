@@ -210,7 +210,7 @@ This is the outbox shape from [[distributed-transactions]]: insert the event row
 
 ## Observability
 
-**Watch these.** Webhook QPS per provider, signature failure rate, duplicate rate, Kafka consumer lag, DLQ count.
+**Watch these.** Webhook [[qps|QPS]] per provider, signature failure rate, duplicate rate, Kafka consumer lag, DLQ count.
 
 A spike in signature failure rate means either a secret rotated without you knowing or someone is probing the endpoint. A spike in duplicate rate is usually just a provider's retry storm, not a bug, so alert on a sudden change in the rate rather than on any duplicate existing at all.
 
@@ -222,7 +222,7 @@ A spike in signature failure rate means either a secret rotated without you know
 
 **Q.** Our consumer will hit Postgres 5 times. Can we optimise this?
 
-**A.** Yes, with micro batching or debouncing. The consumer pulls a batch of 5,000 messages into memory, groups the array by `contact_id`, and if it finds 5 updates for the same ID it keeps only the object with the highest `occurredAt`, discarding the other 4 in memory. Then it performs a bulk upsert, drastically reducing DB load.
+**A.** Yes, with micro batching or [[debouncing-and-throttling|debouncing]]. The consumer pulls a batch of 5,000 messages into memory, groups the array by `contact_id`, and if it finds 5 updates for the same ID it keeps only the object with the highest `occurredAt`, discarding the other 4 in memory. Then it performs a bulk upsert, drastically reducing DB load.
 
 ### A hacker spams the endpoint
 

@@ -23,7 +23,7 @@ From the low level design, with what invalidates each one:
 | Lead assignments | Redis | 30 minutes | agent reassignment |
 | Lead notifications | Redis | 5 minutes | read acknowledgement |
 
-> [!tip] The TTL follows the change rate, not the traffic
+> [!tip] The [[ttl|TTL]] follows the change rate, not the traffic
 > The officer hierarchy arrives once a week, so a 24 hour TTL risks at most a day of staleness on data that changes weekly. Lead assignments change whenever a lead is reassigned, so 30 minutes. Notifications are read within minutes, so 5.
 >
 > That is the reasoning to reproduce in an interview: pick the TTL from how quickly the truth moves, then check the invalidation path covers the cases where it moves sooner.

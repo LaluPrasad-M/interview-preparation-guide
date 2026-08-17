@@ -200,7 +200,7 @@ Given a mature platform that needs search indexing and analytics alongside notif
 
 **Q.** Why not pass the array of 500 IDs in a single Kafka message and let the dispatcher loop through them?
 
-**A.** If we pass an array of 500 to one worker and that worker crashes on ID 250, from an OOM error or a provider timeout, the whole message fails. On retry it starts from the beginning and we double spam the first 249 users.
+**A.** If we pass an array of 500 to one worker and that worker crashes on ID 250, from an [[out-of-memory-kill|OOM]] error or a provider timeout, the whole message fails. On retry it starts from the beginning and we double spam the first 249 users.
 
 By executing the fan out pattern, breaking the array into 500 atomic Kafka messages, we guarantee independent failure domains. If one user's push fails, only that message is retried. It perfectly isolates failures.
 

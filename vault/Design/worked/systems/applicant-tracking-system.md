@@ -112,7 +112,7 @@ stage_history          -- append only audit log
 **The problem.** Two recruiters update the same application simultaneously. Without control, one update is silently lost.
 
 > [!warning] A transaction alone is not enough
-> Transactions prevent simultaneous writes. They do not prevent a logical overwrite, where the last write wins and the first recruiter's change vanishes.
+> Transactions prevent simultaneous writes. They do not prevent a logical overwrite, where the [[last-write-wins|last write wins]] and the first recruiter's change vanishes.
 
 **The solution, optimistic locking.**
 

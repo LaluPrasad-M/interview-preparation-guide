@@ -10,7 +10,7 @@
 | Note | Covers |
 | --- | --- |
 | [[caching-and-resilience]] | caching, replicas and the evolution toward resilience under concurrent load |
-| [[query-optimization]] | expensive queries, query planning, denormalisation, CQRS, materialized views and observability |
+| [[query-optimization]] | expensive queries, query planning, denormalisation, [[cqrs|CQRS]], materialized views and observability |
 
 ---
 
@@ -36,7 +36,7 @@ It is worth recognising the shapes these problems come in.
 
 **Read heavy social and feed systems.** Celebrity profile systems under viral traffic, infinite scroll feeds, personalised news feeds, trending post ranking, homepage recommendation retrieval, follower and following retrieval, activity feed and timeline reads, comment reading under heavy concurrency, notification read systems, real time trending hashtag discovery.
 
-**Cache, CDN and hot key systems.** Redis architecture for heavy read systems, layered CDN plus Redis plus DB reads, hot key resistant caching for viral content, cache invalidation strategy, distributed cache consistency with stale read handling.
+**Cache, [[cdn|CDN]] and [[hot-key|hot key]] systems.** Redis architecture for heavy read systems, layered CDN plus Redis plus DB reads, hot key resistant caching for viral content, cache invalidation strategy, distributed cache consistency with stale read handling.
 
 **Database and query optimisation.** Cursor pagination for billion row datasets, CQRS read optimised architecture, denormalised read models, materialized view driven dashboards, join heavy reporting, `EXPLAIN ANALYZE` debugging, slow query optimisation, replica lag aware read routing.
 

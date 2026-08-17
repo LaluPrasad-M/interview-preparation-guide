@@ -13,7 +13,7 @@ Part of [[write-scaling]].
 
 At small scale this architecture is good. The maturity point is: do not prematurely introduce Kafka, sharding, buffering or distributed transactions. PostgreSQL already handles transactions, concurrency, indexes, MVCC and durability extremely well at moderate scale.
 
-**The first realisation.** A write is not merely `INSERT INTO ...`. Internally the DB must acquire locks, allocate transaction metadata, modify heap pages, update indexes, generate WAL, flush durability logs, maintain MVCC visibility and replicate changes. Writes are significantly more expensive than reads.
+**The first realisation.** A write is not merely `INSERT INTO ...`. Internally the DB must acquire locks, allocate transaction metadata, modify heap pages, update indexes, generate [[write-ahead-log|WAL]], flush durability logs, maintain [[multi-version-concurrency-control|MVCC]] visibility and replicate changes. Writes are significantly more expensive than reads.
 
 ---
 
@@ -31,13 +31,13 @@ At high scale, the durability guarantees themselves limit throughput. That is th
 
 ## Stage 2: batching and write amplification
 
-**Why batching appears.** If every write individually performs a WAL append plus an fsync, it is extremely expensive. Batching multiple writes together amortises one fsync across many writes, massively improving throughput.
+**Why batching appears.** If every write individually performs a WAL append plus an [[fsync]], it is extremely expensive. Batching multiple writes together amortises one fsync across many writes, massively improving throughput.
 
-**The core systems principle.** Amortise fixed costs across many operations. This appears everywhere: databases, Kafka, networking, distributed systems, storage engines.
+**The core systems principle.** [[amortised-analysis|Amortise]] fixed costs across many operations. This appears everywhere: databases, Kafka, networking, distributed systems, storage engines.
 
 **The tradeoff.** Batching improves throughput but worsens latency and potentially the durability window. A crash before flush means more data loss is possible. That creates the core tension between throughput and durability guarantees.
 
-**Index write amplification.** During read scaling indexes looked beneficial. During write scaling they become expensive, because every insert or update must modify the heap, update every index, rebalance B trees and generate additional WAL.
+**Index [[write-amplification|write amplification]].** During read scaling indexes looked beneficial. During write scaling they become expensive, because every insert or update must modify the heap, update every index, rebalance B trees and generate additional WAL.
 
 Write amplification means one logical write becomes many physical writes.
 
@@ -85,7 +85,7 @@ The interview insight: the same coordination problem can fail through different 
 
 Throughput depends not only on volume but also on distribution.
 
-This connects back to Redis hot keys, hot Kafka partitions, viral celebrity traffic, uneven shards and hot DB rows. It is where the whole distributed systems worldview starts becoming unified.
+This connects back to Redis [[hot-key|hot keys]], hot Kafka partitions, viral celebrity traffic, uneven shards and hot DB rows. It is where the whole distributed systems worldview starts becoming unified.
 
 ### The evolution so far
 

@@ -10,7 +10,7 @@
 > [!tip] Say this early
 > We need a reliable, scalable, asynchronous notification system that guarantees at least once delivery, tolerates provider failures, and supports high throughput with observability. This is an event driven system that prioritises at least once delivery, fault tolerance and scalability over real time guarantees.
 
-This is not "send email". It is distributed systems, event processing, failure isolation and backpressure.
+This is not "send email". It is distributed systems, event processing, failure isolation and [[backpressure]].
 
 ---
 
@@ -26,7 +26,7 @@ This is not "send email". It is distributed systems, event processing, failure i
 | Horizontal scalability | millions per day |
 | Fault isolation | a provider outage is not a system outage |
 | Ordering per notification | avoid duplicate sends |
-| Observability | debugging and SLA |
+| Observability | debugging and [[sli-slo-and-sla|SLA]] |
 
 ---
 
@@ -211,9 +211,9 @@ Kafka retries mean duplicate sends. The key is `hash(notification_id + channel)`
 
 **Provider partial failure.** The API returns 200 but the message is never delivered. Use provider delivery receipts and reconciliation jobs.
 
-**The database becomes the bottleneck.** Retries cause write amplification. Batch the updates, make status updates async, and split read and write.
+**The database becomes the bottleneck.** Retries cause [[write-amplification|write amplification]]. Batch the updates, make status updates async, and split read and write.
 
-**Poison messages.** A bad payload always fails. Use schema validation and route to the DLQ after max retries.
+**[[poison-message|Poison messages]].** A bad payload always fails. Use schema validation and route to the DLQ after max retries.
 
 **Retry storm after recovery.** Everything retries the moment the provider comes back. Apply exponential backoff plus jitter. See [[exponential-backoff]].
 

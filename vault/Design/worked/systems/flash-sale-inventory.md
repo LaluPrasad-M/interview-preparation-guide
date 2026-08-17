@@ -1,7 +1,7 @@
 # Flash Sale Inventory
 
 > [!tldr]
-> The Redis layer here is not a cache. It is an operational concurrency layer, which is why the usual TTL and stampede advice does not apply.
+> The Redis layer here is not a cache. It is an operational concurrency layer, which is why the usual [[ttl|TTL]] and stampede advice does not apply.
 
 ---
 
@@ -185,7 +185,7 @@ async function flushInventory(productId) {
 
 Flush every 5 seconds, or every 50,000 updates, or on a memory threshold.
 
-**The gain.** A million `UPDATE` statements becomes roughly a hundred batched updates. That is a massive reduction in WAL volume, lock contention and fsync calls. See [[write-scaling]].
+**The gain.** A million `UPDATE` statements becomes roughly a hundred batched updates. That is a massive reduction in [[write-ahead-log|WAL]] volume, lock contention and [[fsync]] calls. See [[write-scaling]].
 
 ---
 
@@ -229,7 +229,7 @@ That is why the advice in [[caching-problems]] about randomised TTLs does not tr
 
 ## The five Redis failure modes
 
-**1. Hot key.** `inventory:ps5` takes millions of requests. Mitigate with Redis Cluster and sharding keys across nodes. See [[redis-cluster]].
+**1. [[hot-key|Hot key]].** `inventory:ps5` takes millions of requests. Mitigate with Redis Cluster and sharding keys across nodes. See [[redis-cluster]].
 
 **2. Single thread saturation.** The core saturates. Mitigate with clustering, request shedding, local buffering and partitioning.
 

@@ -13,7 +13,7 @@ A company runs 10,000 pods globally. An external AI provider starts throttling r
 
 **Redeploy.** Changing the environment variable and redeploying 10,000 pods takes 45 minutes. The system bleeds money throughout.
 
-**Database polling.** Put the config in a database and have 10,000 pods run a `setInterval` querying every second. You just generated 10,000 QPS of useless read traffic, effectively attacking your own database.
+**Database polling.** Put the config in a database and have 10,000 pods run a `setInterval` querying every second. You just generated 10,000 [[qps|QPS]] of useless read traffic, effectively attacking your own database.
 
 **The objective.** Build a push based configuration service. An engineer updates a JSON payload in a UI, and that payload streams into the local RAM of all 10,000 pods globally in under 5 seconds, with guaranteed fallback if the network drops.
 
@@ -258,4 +258,4 @@ The result is that the app knows nothing about networks, SSE or retries, and its
 
 **A.** Jitter in the reconnection logic. A disconnected sidecar does not reconnect instantly. It uses exponential backoff with randomised jitter, `Wait Time = Base * 2^attempt + Random(0, 1000ms)`, smearing 10,000 reconnections across a 30 second window.
 
-Furthermore, the streaming fleet uses an in memory LRU cache with a 1 second TTL. The first sidecar request fetches from Redis, and the other 9,999 requests in that second are served from the streaming node's local memory, completely shielding Redis.
+Furthermore, the streaming fleet uses an in memory LRU cache with a 1 second [[ttl|TTL]]. The first sidecar request fetches from Redis, and the other 9,999 requests in that second are served from the streaming node's local memory, completely shielding Redis.

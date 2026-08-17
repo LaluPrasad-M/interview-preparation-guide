@@ -29,7 +29,7 @@ When an AI agent is running it might emit dozens of telemetry events per second:
 
 ## Database modelling: time series and ClickHouse
 
-PostgreSQL and MongoDB will choke if you constantly insert thousands of records per second while simultaneously running massive aggregations such as average latency over 30 days. You need an OLAP database.
+PostgreSQL and MongoDB will choke if you constantly insert thousands of records per second while simultaneously running massive aggregations such as average latency over 30 days. You need an [[oltp-and-olap|OLAP]] database.
 
 ClickHouse is the right tool here. It is column oriented and built precisely for this use case.
 

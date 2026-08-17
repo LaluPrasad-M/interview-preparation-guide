@@ -21,7 +21,7 @@ We are the orchestration backend, sitting between the patient's mobile app and t
 
 **Confirm.** The patient submits intake forms, converting the reservation into a finalised appointment.
 
-**TTL release.** If the patient abandons the app, the 10 minute hold expires and the slot is released.
+**[[ttl|TTL]] release.** If the patient abandons the app, the 10 minute hold expires and the slot is released.
 
 **EHR sync.** Confirmed appointments are asynchronously synced to the hospital's EHR.
 
@@ -31,7 +31,7 @@ We are the orchestration backend, sitting between the patient's mobile app and t
 
 | Dimension | Requirement |
 | --- | --- |
-| Scale and traffic | 50,000 write QPS burst at exactly 8:00:00 |
+| Scale and traffic | 50,000 write [[qps|QPS]] burst at exactly 8:00:00 |
 | Performance | the reserve API must return in under 50 ms at p99 |
 | Availability against consistency | strict CP. Double booking a doctor is a critical operational and legal failure, so we reject requests to protect the schedule |
 | Concurrency | extreme lock contention risk |
@@ -138,7 +138,7 @@ COMMIT;
 
 If the DB crashes, both fail. If it succeeds, both succeed. Zero dual write risk.
 
-**6. Change data capture.** Debezium constantly monitors PostgreSQL's write ahead log. The millisecond that transaction commits, it detects the new row in `outbox_events` and streams the payload into Kafka.
+**6. Change data capture.** Debezium constantly monitors PostgreSQL's [[write-ahead-log|write ahead log]]. The millisecond that transaction commits, it detects the new row in `outbox_events` and streams the payload into Kafka.
 
 **7. Decoupled delivery.** The EHR sync worker polls Kafka, picks up the appointment, decrypts the data, and makes the slow HTTPS call to the legacy system. If that system is down for maintenance, the worker fails and Kafka retains the message for automatic retry. No data is lost, and the user's experience is unaffected.
 

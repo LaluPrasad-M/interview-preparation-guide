@@ -9,9 +9,9 @@ Part of [[write-scaling]].
 
 ## Stage 7: partitioning, sharding and hotspot management
 
-This began once we exhausted almost every single node write optimisation: Kafka buffering, Redis aggregation, write coalescing, batching, append only ingestion, CQRS and materialized projections.
+This began once we exhausted almost every single node write optimisation: Kafka buffering, Redis aggregation, write coalescing, batching, append only ingestion, [[cqrs|CQRS]] and materialized projections.
 
-All those dramatically reduced synchronous pressure, mutation frequency, WAL amplification, lock contention and MVCC churn. But eventually a hard physical reality appeared: one machine cannot scale forever. CPU, memory, disk bandwidth, WAL throughput and network are all finite.
+All those dramatically reduced synchronous pressure, mutation frequency, [[write-ahead-log|WAL]] amplification, lock contention and [[multi-version-concurrency-control|MVCC]] churn. But eventually a hard physical reality appeared: one machine cannot scale forever. CPU, memory, disk bandwidth, WAL throughput and network are all finite.
 
 That is the birth of partitioning and sharding.
 
@@ -40,7 +40,7 @@ A well distributed shard key such as `user_id` often spreads traffic evenly. Bad
 
 ### Hotspot management
 
-Distributed systems often fail due to hot mutable state. The same pattern already appeared as Redis hot keys, lock contention, hot rows and counter bottlenecks. Now the exact same problem reappears at distributed storage level.
+Distributed systems often fail due to hot mutable state. The same pattern already appeared as Redis [[hot-key|hot keys]], lock contention, hot rows and counter bottlenecks. Now the exact same problem reappears at distributed storage level.
 
 **Counter sharding.** Instead of `post:123:likes`, systems evolved toward `post:123:likes:1`, `post:123:likes:2`, `post:123:likes:3` and so on. This distributes writes, Redis pressure, Kafka partition pressure and DB mutation pressure, and it is one of the most important hotspot mitigation strategies.
 
@@ -87,13 +87,13 @@ To reduce latency, regional dependency, downtime risk and availability problems,
 
 Read replicas were relatively manageable. Once systems introduced multiple writable regions, complexity exploded: conflicting writes, concurrent updates, ordering ambiguity, clock skew and partition tolerance problems.
 
-**Write conflicts.** The same entity is updated simultaneously from two regions, so systems need conflict resolution: last write wins, application reconciliation, vector clocks, CRDT merges, timestamp ordering.
+**Write conflicts.** The same entity is updated simultaneously from two regions, so systems need conflict resolution: [[last-write-wins|last write wins]], application reconciliation, vector clocks, CRDT merges, timestamp ordering.
 
 **Single writer against multi writer.** Multi primary correctness is extremely hard, which is why many systems still prefer a single write leader with distributed read replicas. That reduces conflict complexity, ordering ambiguity and reconciliation problems.
 
 **CAP theorem became real.** Earlier CAP felt abstract; now network partitions became operational reality. During a partition, systems must trade between consistency and availability.
 
-**Quorum systems.** For example 3 replicas with 2 acknowledgments required before a write is considered successful. Quorums balance consistency, durability and availability.
+**[[quorum|Quorum]] systems.** For example 3 replicas with 2 acknowledgments required before a write is considered successful. Quorums balance consistency, durability and availability.
 
 **Clocks became dangerous.** Clocks cannot be fully trusted, because servers drift, skew and disagree. That makes timestamp based ordering dangerous in distributed systems, which introduced Lamport clocks, logical clocks and vector clocks.
 
@@ -110,7 +110,7 @@ Read replicas were relatively manageable. Once systems introduced multiple writa
 
 A celebrity post with `postId = 123` receiving 2 million likes per minute.
 
-The naive approach is `UPDATE posts SET likes = likes + 1 WHERE id = 123`, and the DB dies immediately due to row contention, fsync pressure, WAL amplification and lock queues.
+The naive approach is `UPDATE posts SET likes = likes + 1 WHERE id = 123`, and the DB dies immediately due to row contention, [[fsync]] pressure, WAL amplification and lock queues.
 
 ### The final architecture
 

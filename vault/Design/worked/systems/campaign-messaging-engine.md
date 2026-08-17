@@ -37,7 +37,7 @@ A marketing agency selects 500,000 contacts, drafts an SMS, and clicks send now.
 | Performance | purely asynchronous. The UI gets `202 Accepted` instantly, and processing may take minutes or hours |
 | Availability against consistency | exactly once semantics. We absolutely cannot send a promotional text to the same person twice |
 | Concurrency | safe state management during massive parallel processing and network failures |
-| Edge cases | complete provider outages, OOM crashes during fan out, and the noisy neighbour problem |
+| Edge cases | complete provider outages, [[out-of-memory-kill|OOM]] crashes during fan out, and the noisy neighbour problem |
 
 ---
 

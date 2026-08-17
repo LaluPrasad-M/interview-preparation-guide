@@ -55,7 +55,7 @@ directly in one document, cache or read table. Reads become dramatically faster 
 
 Engineers realise something fundamental: the best write schema is often not the best read schema.
 
-Writes want normalisation, transactional consistency and correctness. Reads want denormalisation, aggregation, fast retrieval and optimised query models. Those goals conflict, so the system evolves into `Write Model != Read Model`, which is CQRS.
+Writes want normalisation, transactional consistency and correctness. Reads want denormalisation, aggregation, fast retrieval and optimised query models. Those goals conflict, so the system evolves into `Write Model != Read Model`, which is [[cqrs|CQRS]].
 
 ```text
 Writes -> Primary DB
@@ -100,11 +100,11 @@ Add the required columns to the index so the row fetch is not required.
 
 Queries are still slow because the DB traverses the index and then fetches heap rows, and at massive scale heap fetches become expensive. Can the query be answered entirely from the index itself?
 
-With a covering index the index contains all required columns, so the heap lookup disappears. That reduces memory access, random I/O and heap traversal cost. The cost is larger indexes, slower writes and more memory usage.
+With a [[covering-index|covering index]] the index contains all required columns, so the heap lookup disappears. That reduces memory access, random I/O and heap traversal cost. The cost is larger indexes, slower writes and more memory usage.
 
 The planner recognises that all referenced columns are available in the index, and chooses an index only scan instead of an index scan plus heap fetch.
 
-> [!warning] The PostgreSQL MVCC catch
+> [!warning] The PostgreSQL [[multi-version-concurrency-control|MVCC]] catch
 > PostgreSQL stores transaction visibility in the heap row. To know whether a row is visible to your transaction, the engine may still need heap access, even if the index contains all the columns. A true index only scan requires both the required columns in the index and visibility certainty.
 
 ---
@@ -141,7 +141,7 @@ What the optimizer decides: sequential scan against index scan, join order, nest
 
 ## Stage 16: cardinality estimation failures
 
-**Cardinality estimation** means the optimizer estimating how many rows will match. It is foundational, because the execution strategy depends on the expected row count.
+**[[cardinality|Cardinality]] estimation** means the optimizer estimating how many rows will match. It is foundational, because the execution strategy depends on the expected row count.
 
 If the optimizer estimates 10 rows and reality is 10 million, it may choose nested loops, index scans and tiny memory, when reality requires hash joins, sequential scans and huge memory. A wrong estimate destroys the entire plan.
 

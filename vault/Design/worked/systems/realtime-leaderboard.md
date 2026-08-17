@@ -1,7 +1,7 @@
 # High Scale Real Time Leaderboard
 
 > [!tldr]
-> A Redis sorted set is a hash table plus a skip list. That combination gives constant time score lookup and logarithmic time ranking across 50 million players.
+> A Redis sorted set is a hash table plus a [[skip-list|skip list]]. That combination gives constant time score lookup and logarithmic time ranking across 50 million players.
 
 ---
 
@@ -33,7 +33,7 @@ And players do not just want the top 100. They want their own exact global rank,
 
 | Dimension | Requirement |
 | --- | --- |
-| Scale and traffic | 50 million daily active users, extremely read heavy, 50k write QPS against 500k read QPS |
+| Scale and traffic | 50 million daily active users, extremely read heavy, 50k write [[qps|QPS]] against 500k read QPS |
 | Performance | P99 read latency under 10 ms, P99 write latency under 20 ms |
 | Availability against consistency | availability and partition tolerance for reads, keeping the game running, but eventual durability so scores survive a crash |
 | Concurrency | safe atomic increments. Two kills in the same millisecond must both count |
@@ -234,7 +234,7 @@ For rapid recovery we use Redis RDB snapshots alongside Postgres. Redis periodic
 
 **A.** We never delete data from a live sorted set at midnight. We use time boxed keys. The August leaderboard lives in `leaderboard_2026_08`, and at midnight on 1 September the API servers seamlessly start writing and reading from `leaderboard_2026_09`.
 
-The old August key stays in memory for players viewing historical stats. We set a Redis TTL of 30 days on it, so background threads evict it weeks later without any CPU spike.
+The old August key stays in memory for players viewing historical stats. We set a Redis [[ttl|TTL]] of 30 days on it, so background threads evict it weeks later without any CPU spike.
 
 ### A bot polling the top 100
 

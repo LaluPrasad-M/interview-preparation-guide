@@ -166,7 +166,7 @@ How does the system know "Microsoft" should overtake "MicroStrategy" in the rank
 
 ### The trap: lazy loading
 
-Most developers set a 5 minute TTL on the Redis key. When it expires the key deletes itself, and the next user to search "Micr" gets a cache miss, forcing a query to Elasticsearch, a 50 ms wait, and a cache rewrite.
+Most developers set a 5 minute [[ttl|TTL]] on the Redis key. When it expires the key deletes itself, and the next user to search "Micr" gets a cache miss, forcing a query to Elasticsearch, a 50 ms wait, and a cache rewrite.
 
 **The catastrophe.** If the key expires and in that exact millisecond 10,000 users type "Micr", you get 10,000 simultaneous cache misses, so 10,000 heavy scatter gather queries hit Elasticsearch at once and the cluster melts.
 

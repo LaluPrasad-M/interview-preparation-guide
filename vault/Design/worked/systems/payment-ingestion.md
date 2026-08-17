@@ -27,12 +27,12 @@ The sender is the user clicking pay on our mobile app. The receiver is the exter
 
 | Dimension | Requirement |
 | --- | --- |
-| Scale and traffic | write heavy ingestion path, with flash sale bursts of 10,000 to 50,000 RPS |
+| Scale and traffic | write heavy ingestion path, with flash sale bursts of 10,000 to 50,000 [[qps|RPS]] |
 | Performance | return `202 Accepted` in under 50 ms at p99. Calling the provider takes 2 to 5 seconds, and waiting synchronously would exhaust all server connections |
 | Availability against consistency | the gateway and ingestion service prioritise availability, so if the provider is down we still accept and buffer the order. The financial record in PostgreSQL requires strong consistency |
 | Concurrency | high risk of race conditions if identical requests arrive in the same millisecond, so we use atomic locks to serialise them |
 | Durability | zero data loss. Once we return 202, the event must be durably written to Kafka with `acks=all` |
-| Edge cases | Kafka consumer crashes mid processing creating zombie states, and poison pill messages that crash consumers repeatedly |
+| Edge cases | Kafka consumer crashes mid processing creating zombie states, and [[poison-message|poison pill messages]] that crash consumers repeatedly |
 
 ---
 

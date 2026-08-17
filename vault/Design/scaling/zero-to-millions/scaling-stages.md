@@ -55,7 +55,7 @@ Database
 
 **Core concepts.** Horizontal scaling, or scaling out, adds more servers. Stateless servers store no user data in memory. Load balancing algorithms include round robin, least connections and IP hash.
 
-**Key terminology.** Sticky sessions are bad for scaling. Statelessness is mandatory at scale.
+**Key terminology.** [[sticky-session|Sticky sessions]] are bad for scaling. Statelessness is mandatory at scale.
 
 **The line to say.** To scale horizontally, application servers must be stateless, otherwise load balancing becomes ineffective.
 
@@ -94,7 +94,7 @@ Database
 
 **Why cache.** The DB is expensive and most requests are read heavy.
 
-**Key terms.** Cache hit and cache miss, TTL, eviction policy (LRU, LFU), hot data.
+**Key terms.** Cache hit and cache miss, [[ttl|TTL]], eviction policy (LRU, LFU), hot data.
 
 **Strategies.** Read through cache, write through cache, and cache aside (lazy loading), which is the most common.
 
@@ -152,7 +152,7 @@ Client -> App -> Queue -> Worker
 
 **Use cases.** Emails, notifications, image processing, analytics.
 
-**Key terms.** Message queue, producer and consumer, backpressure, at least once delivery.
+**Key terms.** Message queue, producer and consumer, [[backpressure]], at least once delivery.
 
 **The line to say.** Queues decouple slow or non critical work from user facing request paths.
 
@@ -179,7 +179,7 @@ Shard 3 -> User 2001-3000
 
 **The three pillars.** Logs tell you what happened. Metrics tell you how often and how much. Traces tell you the request flow.
 
-**Key terms.** SLI, SLO and SLA. Health checks. Circuit breaker. Auto scaling.
+**Key terms.** [[sli-slo-and-sla|SLI, SLO and SLA]]. Health checks. Circuit breaker. Auto scaling.
 
 ---
 

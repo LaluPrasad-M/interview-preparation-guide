@@ -70,7 +70,7 @@ POST /v1/leads
 2. Provide callback APIs.
 3. Acknowledge the response.
 4. Retry on errors.
-5. Track the SLA.
+5. Track the [[sli-slo-and-sla|SLA]].
 
 ---
 

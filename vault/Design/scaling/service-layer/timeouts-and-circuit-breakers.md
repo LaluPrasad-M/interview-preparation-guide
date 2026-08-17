@@ -1,7 +1,7 @@
 # Timeouts and Circuit Breakers
 
 > [!tldr]
-> Overloaded systems must intentionally reject work and isolate failures before they spread, through timeouts, backpressure, circuit breakers and bulkheads.
+> Overloaded systems must intentionally reject work and isolate failures before they spread, through timeouts, [[backpressure]], circuit breakers and bulkheads.
 
 Part of [[service-layer]].
 
