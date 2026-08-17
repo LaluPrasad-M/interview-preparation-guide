@@ -17,4 +17,4 @@
 
 ## Related, filed elsewhere
 
-The method for solving a problem under pressure is in [[how-to-solve]]. The LLD interview sequence is in [[six-step-framework]].
+The method for solving a problem under pressure is in [[how-to-solve]]. The LLD interview sequence is in [[how-to-do-an-lld-round]].

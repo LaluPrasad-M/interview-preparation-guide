@@ -1,7 +1,7 @@
 # Vymo Websales Integration
 
 > [!tldr]
-> A real integration, written up end to end: a life insurance website hands leads to a CRM, agents work them, and status flows back. Read this when you want to see the concepts in [[system-design]] applied to one system rather than described in the abstract.
+> A real integration, written up end to end: a life insurance website hands leads to a CRM, agents work them, and status flows back. Read this when you want to see the concepts in [[design]] applied to one system rather than described in the abstract.
 
 > [!warning] This one is from work
 > It names a real client and carries real numbers: the SLA, the encryption standard, the cache TTLs and the officer hierarchy. Fine while this repo is private. Check it before the repo is ever made public, and do not paste it into an interview answer as your employer's internals. The transferable patterns are collected in [[patterns-worth-stealing]], which is safe to talk about.

@@ -20,7 +20,7 @@ Support related questions, where the most important thing is hands on experience
 - The four pillars, in a JS and TS context with compiler and prototype deep dives. See [[four-pillars]] and [[js-vs-ts-compilation]].
 - Method overloading against overriding. See [[overloading-vs-overriding]].
 - SOLID principles. See [[solid]].
-- Design patterns: singleton, factory, strategy, observer. See [[lld]].
+- Design patterns: singleton, factory, strategy, observer. See [[design]].
 
 ---
 
@@ -32,7 +32,7 @@ Support related questions, where the most important thing is hands on experience
 - Monitoring tools
 - Ticketing workflows and the incident management lifecycle
 
-See [[categories]] for the ten incident buckets.
+See [[what-breaks-in-production]] for the ten incident buckets.
 
 ---
 
@@ -69,5 +69,5 @@ See [[categories]] for the ten incident buckets.
 
 ## Block 7: high level and low level design, P1 and P2
 
-- Microservices scalability and HLD. See [[system-design]].
-- Generic backend service LLD. See [[six-step-framework]].
+- Microservices scalability and HLD. See [[design]].
+- Generic backend service LLD. See [[how-to-do-an-lld-round]].

@@ -47,4 +47,4 @@
 ## Where to learn more
 
 - [AWS walkthrough covering S3, CloudFront, Lambda and DynamoDB](https://www.youtube.com/watch?v=pK52mfm69i0)
-- [Jio Cinema system design talk](https://www.youtube.com/watch?v=36N1Bz7qW0A), also linked from [[system-design]]
+- [Jio Cinema system design talk](https://www.youtube.com/watch?v=36N1Bz7qW0A), also linked from [[design]]

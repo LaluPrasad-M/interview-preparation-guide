@@ -3,7 +3,7 @@
 > [!tldr]
 > The six step framework applied end to end. The interesting decisions are the ones we deliberately did not make: no `User` base class, no `Vehicle` hierarchy.
 
-Follow [[six-step-framework]] alongside this. Every piece of code below maps to one of its steps.
+Follow [[how-to-do-an-lld-round]] alongside this. Every piece of code below maps to one of its steps.
 
 ---
 

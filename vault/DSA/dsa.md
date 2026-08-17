@@ -83,4 +83,4 @@
 
 | Note | Covers |
 | --- | --- |
-| [[problem-lists]] | problems paired with the one sentence that unlocks each |
+| [[dsa-problems]] | problems paired with the one sentence that unlocks each |

@@ -21,4 +21,4 @@
 
 ## Related, filed elsewhere
 
-Low level design applies all of this. See [[lld]], and in particular [[inheritance-vs-composition]] and [[abstraction-and-dependency-injection]].
+Low level design applies all of this. See [[design]], and in particular [[inheritance-vs-composition]] and [[abstraction-and-dependency-injection]].

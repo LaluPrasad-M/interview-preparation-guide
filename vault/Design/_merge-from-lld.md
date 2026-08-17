@@ -9,7 +9,7 @@
 
 | Note | Covers |
 | --- | --- |
-| [[six-step-framework]] | the sequential model for any LLD interview |
+| [[how-to-do-an-lld-round]] | the sequential model for any LLD interview |
 | [[abstraction-and-dependency-injection]] | how abstraction, DI and polymorphism connect |
 | [[inheritance-vs-composition]] | the fragile base class, the gorilla and banana, and the full interview answer |
 
@@ -34,7 +34,7 @@
 | --- | --- |
 | [[checkout-worked-example]] | four patterns wired together, plus the pattern mapping table |
 | [[ride-booking-worked-example]] | the six steps end to end, the request trace, the composition root |
-| [[machine-coding-list]] | seven levels of problems with their mental triggers |
+| [[machine-coding]] | seven levels of problems with their mental triggers |
 
 ---
 

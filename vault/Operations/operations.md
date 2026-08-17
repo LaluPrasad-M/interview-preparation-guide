@@ -9,7 +9,7 @@
 
 | Note | Covers |
 | --- | --- |
-| [[categories]] | the ten buckets most production incidents fall into |
+| [[what-breaks-in-production]] | the ten buckets most production incidents fall into |
 
 ---
 
