@@ -11,3 +11,11 @@
 | --- | --- |
 | [[react-fundamentals]] | the virtual DOM and reconciliation, state and immutability, the hooks table, performance, ten theory questions |
 | [[coding-implementations]] | counter, fetch, todo, debounced search, context, filter, form, custom hook, toggle, modal |
+
+---
+
+## Filed elsewhere
+
+| Note | Where | Why there |
+| --- | --- | --- |
+| [[frontend-design]] | `Design/system-design/` | the system design layer for the client, not React specifics |

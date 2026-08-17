@@ -79,8 +79,8 @@
 
 ---
 
-## Revision
+## Filed elsewhere
 
-| Note | Covers |
-| --- | --- |
-| [[dsa-problems]] | problems paired with the one sentence that unlocks each |
+| Note | Where | Why there |
+| --- | --- | --- |
+| [[dsa-problems]] | `Interviews/practice/` | it is a revision drill list, filed with the rest of interview practice |

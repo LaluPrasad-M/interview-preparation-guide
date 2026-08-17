@@ -42,20 +42,44 @@
 
 ---
 
-## Shared concepts
+## Modelling
 
 | Note | Covers |
 | --- | --- |
 | [[choosing-a-datastore]] | the choose when and avoid when matrix for twelve technologies, plus the cheat sheet |
 | [[sql-vs-mongodb]] | the invariants framework, what SQL gives you free, when NFRs decide |
 | [[normalization]] | the anomalies it solves, the worked example, why Mongo is called non relational |
-| [[replication-partitioning-sharding]] | three words, three problems |
-| [[locking-strategies]] | optimistic, pessimistic and the atomic update people forget |
 | [[schema-design-questions]] | the ten questions to walk in order |
 | [[food-delivery-schema]] | those ten questions applied end to end across eight tables |
-| [[zero-downtime-migration]] | expand and contract, backfill strategies, archiving, the risks |
-| [[inbox-pattern]] | reliable consumption, and how it pairs with the outbox |
 | [[clickhouse]] | columnar storage, why it is fast, and where it does not belong |
+
+---
+
+## Operations
+
+| Note | Covers |
+| --- | --- |
+| [[replication-partitioning-sharding]] | three words, three problems |
+| [[locking-strategies]] | optimistic, pessimistic and the atomic update people forget |
+| [[zero-downtime-migration]] | expand and contract, backfill strategies, archiving, the risks |
 | [[replication-lag]] | read your own writes, eventual, synchronous, monotonic reads |
+
+---
+
+## Change data
+
+| Note | Covers |
+| --- | --- |
+| [[inbox-pattern]] | reliable consumption, and how it pairs with the outbox |
 | [[out-of-order-events]] | timestamps, version numbers, state machines |
 | [[change-data-capture]] | log tailing against polling, Debezium, outage recovery, log truncation |
+
+---
+
+## Filed elsewhere
+
+| Note | Where | Why there |
+| --- | --- | --- |
+| [[read-scaling]] | `Design/scaling/` | it is the twenty stage scaling ladder for reads, not a database mechanic |
+| [[write-scaling]] | `Design/scaling/` | WAL, batching and sharding as a scaling story, not a standalone database note |
+| [[distributed-transactions]] | `Design/scaling/` | cross service transaction patterns, not a single database's mechanics |

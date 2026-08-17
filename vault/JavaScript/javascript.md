@@ -59,7 +59,7 @@ Language and utility code, the things you reach for while solving something.
 
 ### Server
 
-Under `snippets/server/`. Whole servers you can run, rather than pieces you drop into something else.
+Under `node/server/`. Whole servers you can run, rather than pieces you drop into something else.
 
 | Note | Covers |
 | --- | --- |
@@ -78,3 +78,13 @@ Under `snippets/server/`. Whole servers you can run, rather than pieces you drop
 | [[enums]] | why number enums break over a network, and what to use instead |
 | [[compiler-internals]] | type erasure, structural typing, `any` against `unknown` against `never`, `infer`, mapped types |
 | [[private-static-and-locks]] | what each keyword controls, and why async code needs a mutex |
+
+---
+
+## Filed elsewhere
+
+| Note | Where | Why there |
+| --- | --- | --- |
+| [[patterns-js-vs-ts]] | `Design/patterns/` | it compares design patterns across the two languages, not the languages themselves |
+| [[js-vs-ts-compilation]] | `Design/object-design/` | it is about what OOP pillars compile down to, not JavaScript on its own |
+| [[solid-js-vs-ts]] | `Design/object-design/` | SOLID is an OOP concept, this note just shows it in both languages |

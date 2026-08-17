@@ -15,12 +15,15 @@
 | [[encryption]] | symmetric against asymmetric, why real systems use both, digital signatures |
 | [[jwt]] | the three parts, the signature maths, the end to end flow, and the four standard questions |
 | [[webhook-signatures]] | HMAC, the raw body trap, timing attacks, replay attacks |
+| [[cross-site-scripting]] | the attack and the defences |
 
 ---
 
-## Related, filed elsewhere
+## Filed elsewhere
 
 | Note | Where | Why there |
 | --- | --- | --- |
-| [[cross-site-scripting]] | `System-Design/concepts/` | came from the system architecture document, and links closely to frontend design |
-| [[s3-security]] | `AWS/s3/` | AWS specific: bucket policies, ACLs, the four encryption options |
+| [[s3-security]] | `Cloud/aws/s3/` | AWS specific: bucket policies, ACLs, the four encryption options |
+| [[oauth-token-lifecycle]] | `Design/worked/systems/` | a worked design for refreshing tokens, not the auth mechanism itself |
+| [[webhook-delivery]] | `Design/worked/systems/` | the delivery design; this folder covers verifying the signature, not sending it |
+| [[webhook-ingestion]] | `Design/worked/systems/` | the ingestion design; same split as delivery above |

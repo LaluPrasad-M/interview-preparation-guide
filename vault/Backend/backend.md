@@ -24,6 +24,13 @@
 
 ---
 
-## Related, filed elsewhere
+## Filed elsewhere
 
-Auth tokens are in [[jwt]]. Webhook security is in [[webhook-signatures]]. The Kafka to Redis to WebSocket fan out is in [[websocket-bridge]].
+| Note | Where | Why there |
+| --- | --- | --- |
+| [[jwt]] | `Security/` | auth tokens are a security topic, not an API design one |
+| [[webhook-signatures]] | `Security/` | verifying a webhook is a signature scheme, not a transport decision |
+| [[websocket-bridge]] | `Kafka/` | the fan out design lives with the Kafka mechanics it depends on |
+| [[ai-tool-idempotency]] | `Design/worked/systems/` | a worked design applying idempotency, not the concept itself |
+| [[webhook-delivery]] | `Design/worked/systems/` | it is a full worked design, not the transport decision this folder holds |
+| [[webhook-ingestion]] | `Design/worked/systems/` | same reason: a worked design, not a protocol note |

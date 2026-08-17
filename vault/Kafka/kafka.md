@@ -34,3 +34,13 @@
 | [[topic-design]] | topics from business boundaries, ordering as a partition problem |
 | [[kafka-vs-rabbitmq]] | when each one wins |
 | [[websocket-bridge]] | Kafka to Redis to WebSocket fan out without rebalancing storms |
+
+---
+
+## Filed elsewhere
+
+| Note | Where | Why there |
+| --- | --- | --- |
+| [[inbox-pattern]] | `Databases/change-data/` | it is a consumption side database pattern, not a Kafka mechanic |
+| [[change-data-capture]] | `Databases/change-data/` | it is about getting data out of a database, Kafka is just one transport for it |
+| [[message-ordering]] | `Design/system-design/` | the general ordering concept across systems, this folder covers the partition mechanics behind it |

@@ -1,7 +1,37 @@
-# System Design
+# Design
 
 > [!tldr]
-> Concepts first, then the scaling ladders, then the worked designs. Every worked design reuses the same handful of ideas.
+> The merge of OOP, LLD and System Design. Object design and patterns first, then system design concepts and scaling ladders, then the worked designs that reuse all of it.
+
+---
+
+## Object design
+
+| Note | Covers |
+| --- | --- |
+| [[four-pillars]] | encapsulation, abstraction, inheritance, polymorphism, plus abstract methods |
+| [[solid]] | the five principles, each with its canonical bad example |
+| [[solid-js-vs-ts]] | each principle in both languages, plus two interview answers |
+| [[overloading-vs-overriding]] | prototype shadowing against overload signatures |
+| [[js-vs-ts-compilation]] | what each pillar actually compiles down to |
+| [[abstract-classes]] | abstract classes and methods, with and without, abstract class against interface |
+| [[access-modifiers]] | public, protected and private, and why TypeScript's private is not enforcement |
+| [[how-to-do-an-lld-round]] | the sequential model for any LLD interview |
+| [[abstraction-and-dependency-injection]] | how abstraction, DI and polymorphism connect |
+| [[inheritance-vs-composition]] | the fragile base class, the gorilla and banana, and the full interview answer |
+
+---
+
+## Patterns
+
+| Note | Covers |
+| --- | --- |
+| [[strategy]] | massive `if/else` logic dictating behaviour |
+| [[factory]] | scattered or conditional object instantiation |
+| [[observer]] | many unrelated systems reacting to one change |
+| [[builder]] | too many constructor parameters, some optional |
+| [[singleton]] | exactly one instance across the application |
+| [[patterns-js-vs-ts]] | each pattern in both languages, the Node module cache pitfall, three interview answers |
 
 ---
 
@@ -17,7 +47,7 @@
 
 ---
 
-## Concepts
+## System design
 
 | Note | Covers |
 | --- | --- |
@@ -35,7 +65,6 @@
 | [[third-party-integrations]] | designing around systems you do not control |
 | [[message-ordering]] | when order matters and how to keep it |
 | [[card-payment-flow]] | the five players, authorization against settlement |
-| [[cross-site-scripting]] | the attack and the defences |
 
 ---
 
@@ -108,6 +137,15 @@
 
 ---
 
+## Machine coding practice
+
+| Note | Covers |
+| --- | --- |
+| [[checkout-worked-example]] | four patterns wired together, plus the pattern mapping table |
+| [[ride-booking-worked-example]] | the six steps end to end, the request trace, the composition root |
+
+---
+
 ## Case studies
 
 | Note | System |
@@ -126,6 +164,18 @@ One real system, written up end to end, rather than a topic.
 
 > [!warning] The Vymo example contains work material
 > Real client name, SLA, encryption standard and cache TTLs. Fine in a private repo, and to be reviewed before this repo is ever public. [[patterns-worth-stealing]] is the sanitised version, safe to discuss anywhere.
+
+---
+
+## Filed elsewhere
+
+| Note | Where | Why there |
+| --- | --- | --- |
+| [[idempotency]] | `Backend/` | it is an API design technique, not a system design concept |
+| [[jwt]] | `Security/` | token structure and signature maths are a security topic |
+| [[internals]] | `Kafka/` | partitioning, replication and consumer groups are Kafka mechanics, not design concepts |
+| [[cross-site-scripting]] | `Security/` | the attack and its defences, filed with the rest of security |
+| [[machine-coding]] | `Interviews/practice/` | a practice problem list, not a worked design |
 
 ---
 

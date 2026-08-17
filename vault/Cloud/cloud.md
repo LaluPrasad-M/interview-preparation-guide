@@ -1,7 +1,7 @@
-# AWS
+# Cloud
 
 > [!tldr]
-> Index for everything under `AWS/`. Compute is choosing where code runs, S3 is storage, Kubernetes is orchestration, and Deployment is how a container gets from a Git push to a running pod.
+> Index for everything under `Cloud/`. AWS compute and storage, Kubernetes for orchestration, and CI/CD for how a container gets from a Git push to a running pod.
 
 ---
 
@@ -32,15 +32,28 @@
 | --- | --- |
 | [[kubernetes-basics]] | container, pod, node, cluster, and what Kubernetes actually does |
 | [[eks]] | Kubernetes managed by AWS, and how it compares with ECS and Lambda |
+| [[kubernetes-docker-cicd]] | the core objects, probes, zero downtime deployments, the scaling chain, observability, the interview answers |
 
 ---
 
-## Deployment
+## CI/CD
 
 | Note | Covers |
 | --- | --- |
 | [[deploy-pipeline]] | Git to CI/CD to ECR to EKS, the three phases, replicas and the Service object |
 | [[ecr-commands]] | login, batch delete, push, and why the token goes through stdin |
+| [[github-actions]] | the restaurant analogy, caching and artifacts, reusable workflows, OIDC, and how it compares to Jenkins and GitLab |
+
+---
+
+## Filed elsewhere
+
+Nothing about Kubernetes lives outside `Cloud/kubernetes/` any more. The old Deployment area is retired; its notes are folded into the sections above.
+
+| Note | Where | Why there |
+| --- | --- | --- |
+| [[circuit-breaker]] | `Design/worked/systems/` | an application level resilience pattern, not cloud infrastructure |
+| [[fault-tolerance]] | `Design/system-design/` | the concept catalog for resilience patterns, not AWS or Kubernetes specifics |
 
 ---
 
