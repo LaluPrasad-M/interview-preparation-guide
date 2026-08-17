@@ -114,17 +114,33 @@
 | [[geospatial-discovery]] | Elasticsearch for filters, Redis for volatility |
 | [[proximity-discovery]] | Mongo, then Redis GEO, then spatial grids |
 
-### Realtime and AI
+### Realtime delivery
+
+Getting something to a user while they are still waiting for it.
 
 | Note | Covers |
 | --- | --- |
 | [[realtime-leaderboard]] | a sorted set is a hash table plus a skip list |
 | [[voice-orchestrator]] | overlapping streams beat the 500 ms barrier |
+| [[notification-delivery]] | why the API and Kafka both exist, retry topics, DLQ |
+
+### AI systems
+
+Designing around a model, which is slow, expensive and not deterministic.
+
+| Note | Covers |
+| --- | --- |
 | [[ai-tool-idempotency]] | lock on the conversation turn, not the arguments |
 | [[ai-agent-orchestration]] | document state plus optimistic concurrency |
+
+### Data pipelines and observability
+
+High volume in, aggregates out, and knowing when it breaks.
+
+| Note | Covers |
+| --- | --- |
 | [[analytics-ingestion]] | batch in, Kafka through, materialized views out |
 | [[observability-platform]] | metrics and logs are different workloads, alerts off the stream |
-| [[notification-delivery]] | why the API and Kafka both exist, retry topics, DLQ |
 
 ---
 
