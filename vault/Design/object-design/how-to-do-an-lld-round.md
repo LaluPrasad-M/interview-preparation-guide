@@ -37,7 +37,7 @@ For a ride hailing app: `Ride`, `Driver`, `Rider`, `Vehicle`, `Location`.
 
 **Ask.** How are entities connected? What states exist?
 
-**Relationships.** Prefer composition and aggregation, the has a relationship, over inheritance, the is a relationship. See [[inheritance-vs-composition]].
+**Relationships.** Prefer composition and aggregation, the has-a relationship, over inheritance, the is-a relationship. See [[inheritance-vs-composition]].
 
 **State machine.** Define enums, transitions and validations, for example `REQUESTED -> ASSIGNED -> STARTED -> COMPLETED`.
 

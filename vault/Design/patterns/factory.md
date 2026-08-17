@@ -39,11 +39,11 @@ const payment = PaymentFactory.createPayment("UPI");
 
 ## The factory method pattern
 
-A creational pattern that provides an interface for creating objects in a superclass, but lets subclasses alter the type of objects created.
+The factory method pattern is a creational pattern that provides an interface for creating objects in a superclass, but lets subclasses alter the type of objects created.
 
 ### 1. Define the product interface
 
-The contract that all notification types must follow. Any code working with notifications depends only on this interface.
+This is the contract that all notification types must follow. Any code working with notifications depends only on this interface.
 
 ```ts
 interface Notification {
@@ -81,7 +81,7 @@ class SlackNotification implements Notification {
 
 ### 3. Define an abstract creator
 
-An abstract class that declares the factory method `createNotification()`, and optionally includes shared behaviour like `send()`, which defines the high level logic using whatever object `createNotification()` provides.
+This is an abstract class that declares the factory method `createNotification()`, and optionally includes shared behaviour like `send()`, which defines the high level logic using whatever object `createNotification()` provides.
 
 ```ts
 abstract class NotificationCreator {
@@ -107,4 +107,4 @@ Each concrete creator extends the abstract creator and overrides the factory met
 
 `EmailNotificationCreator` returns `new EmailNotification()`. `SMSNotificationCreator` returns `new SMSNotification()`.
 
-No more conditionals. Each class knows what it needs to create, the mapping is one to one and explicit, and the core system does not need to care.
+No more conditionals. Each class knows what it needs to create. The mapping is one to one and explicit, and the core system does not need to care.

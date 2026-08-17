@@ -33,7 +33,7 @@ function checkout(payment: Payment) {
 
 The caller knows that `Payment` has `process()`. It does not need to know about the Stripe API, authentication, HTTP calls, retry logic or serialisation.
 
-Notice something subtle: the implementation is not necessarily hidden from the developer. You can open the source and look at it. What is hidden is the implementation detail from the consumer's dependency and knowledge requirement.
+Notice something subtle: the implementation is not necessarily hidden from the developer. You can open the source and look at it. What is hidden is the implementation detail that the consumer no longer needs to know about or depend on.
 
 ---
 
@@ -123,7 +123,7 @@ Factory
 
 ## Where dependency injection fits
 
-DI simply says: do not make `checkout()` create the dependency itself, give it the dependency.
+DI simply says: do not make `checkout()` create the dependency itself. Give it the dependency instead.
 
 **Bad, tightly coupled to Stripe.**
 

@@ -7,7 +7,7 @@
 
 ## Encapsulation
 
-Hiding internal state and exposing only controlled access via methods. It protects data integrity.
+Encapsulation hides internal state and exposes only controlled access through methods, which protects the integrity of the data.
 
 > [!tip] Interview line
 > Encapsulation ensures controlled access to data and improves security by preventing external mutations.
@@ -42,7 +42,7 @@ class JSPayment {
 
 ## Abstraction
 
-Hiding implementation details and exposing only what the outside world needs. Defining what an object does, not how it does it.
+Abstraction hides implementation details and exposes only what the outside world needs. It defines what an object does, not how it does it.
 
 > [!tip] Interview line
 > Abstraction reduces system complexity by exposing only essential operations and hiding the internal mechanics.
@@ -73,7 +73,7 @@ See [[abstraction-and-dependency-injection]] for how abstraction, DI and polymor
 
 ## Inheritance
 
-A child class derives properties and behaviours from a parent class. It enables code reuse, but creates tight coupling. It models the is a relationship.
+A child class derives properties and behaviours from a parent class. It enables code reuse, but creates tight coupling. It models the is-a relationship.
 
 > [!tip] Interview line
 > Inheritance helps reuse common logic and enforce a shared structure, though we should prefer composition where possible.
@@ -95,7 +95,7 @@ class PayPalPayment extends Payment {
 
 ## Polymorphism
 
-Many forms. The ability to call the same method on different objects and have each respond in its own way.
+Polymorphism means many forms: the ability to call the same method on different objects and have each one respond in its own way.
 
 > [!tip] Interview line
 > Polymorphism enables flexible and dynamic behaviour by allowing interchangeable objects to respond to the same method call.

@@ -51,7 +51,7 @@ class MongoDB extends GenericDB {
 
 ## Method overloading, compile time polymorphism
 
-Defining multiple methods with the same name but different signatures, meaning a different number or type of parameters. It provides optional arguments while hiding the implementation from the caller.
+Method overloading defines multiple methods with the same name but different signatures, meaning a different number or type of parameters. It provides optional arguments while hiding the implementation from the caller.
 
 **JavaScript does not support it.** If you write two functions with the same name, the second completely replaces the first in memory. You simulate it by inspecting the `arguments` object or checking parameter types.
 
@@ -102,7 +102,7 @@ class DataService {
 
 "Because JavaScript is dynamically typed, it does not support method overloading. If I define `processData(id)` and immediately below define `processData(id, options)`, the engine completely overwrites the first function reference with the second. The last declaration always wins.
 
-To achieve overloading behaviour in pure JavaScript, I simulate it within a single function body. I write one method accepting the maximum possible parameters and inspect the arguments at runtime, checking `arguments.length`, verifying whether a parameter is `undefined`, or using `typeof` to determine the shape. If the second argument is a function I treat it as a callback, if it is an object I treat it as options.
+To achieve overloading behaviour in pure JavaScript, I simulate it within a single function body. I write one method accepting the maximum possible parameters and inspect the arguments at runtime, checking `arguments.length`, verifying whether a parameter is `undefined`, or using `typeof` to determine the shape. If the second argument is a function, I treat it as a callback. If it is an object, I treat it as options.
 
 In TypeScript I can achieve true overloading. I provide multiple declaration signatures defining the exact parameter shapes without bodies, followed by one implementation signature holding the logic. The compiler enforces these during development, then strips the declarations and compiles down to that single manually inspected JavaScript function."
 

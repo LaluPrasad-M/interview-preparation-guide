@@ -1,15 +1,15 @@
 # Inheritance against Composition
 
 > [!tldr]
-> Inheritance is an is a relationship and locks you into a family tree. Composition is a has a relationship and lets you build with LEGO blocks.
+> Inheritance is an is-a relationship and locks you into a family tree. Composition is a has-a relationship and lets you build with LEGO blocks.
 
 ---
 
 ## The concept
 
-Inheritance models an is a relationship, where a child class derives its structure and behaviour from a parent.
+Inheritance models an is-a relationship, where a child class derives its structure and behaviour from a parent.
 
-Composition models a has a relationship, where a class achieves complex functionality by combining instances of other independent classes.
+Composition models a has-a relationship, where a class achieves complex functionality by combining instances of other independent classes.
 
 ---
 
@@ -88,7 +88,7 @@ const kafkaProcessor = new DataPipeline(new JSONParser(), new KafkaStorage());
 
 **Question.** We often hear the principle "favour composition over inheritance". Why is this practically important in a Node.js backend, and what specific problems does inheritance introduce?
 
-**Answer.** "In backend development, favouring composition over inheritance is critical because it prioritises modularity, loose coupling and long term maintainability. Inheritance models an is a relationship, which forces a strict, rigid class hierarchy. Composition models a has a relationship, where we build complex objects by injecting smaller, independent components.
+**Answer.** "In backend development, favouring composition over inheritance is critical because it prioritises modularity, loose coupling and long term maintainability. Inheritance models an is-a relationship, which forces a strict, rigid class hierarchy. Composition models a has-a relationship, where we build complex objects by injecting smaller, independent components.
 
 Inheritance introduces several major problems as an application scales. The most significant is the fragile base class problem. Because child classes are tightly coupled to their parents, a bug fix or feature addition in the base class can cause unintended side effects across the entire application.
 

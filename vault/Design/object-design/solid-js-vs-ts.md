@@ -9,7 +9,7 @@ The principles themselves, with their bad and good examples, are in [[solid]]. T
 
 ## Single responsibility
 
-The structural implementation is identical in both languages. The difference is that TypeScript stops you accidentally passing the wrong object into a tightly scoped class, whereas JavaScript needs runtime checks or unit tests to know the injected dependencies are valid.
+The structural implementation is identical in both languages. The difference is that TypeScript stops you from accidentally passing the wrong object into a tightly scoped class. JavaScript instead needs runtime checks or unit tests to know the injected dependencies are valid.
 
 ```typescript
 // Good: separated responsibilities

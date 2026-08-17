@@ -37,7 +37,7 @@ dog.makeSound(); // Output: Bark!
 dog.move(); // Output: Moving...
 ```
 
-`move()` has a body. This is the point of an abstract class: abstract methods for what each subclass must decide, ordinary methods for the behaviour they all share. `new Animal()` would be a compile error, because there is no sound for a generic animal to make.
+`move()` has a body. This is the point of an abstract class: the abstract methods are for whatever each subclass must decide for itself, and the ordinary methods are for the behaviour they all share. `new Animal()` would be a compile error, because there is no sound for a generic animal to make.
 
 ---
 

@@ -7,7 +7,7 @@
 
 ## Encapsulation
 
-Bundling data and methods into a single unit, restricting direct outside access to internal state.
+Encapsulation bundles data and methods into a single unit, and restricts direct outside access to internal state.
 
 **The distinction.** TypeScript access modifiers `private` and `protected` only exist at compile time. Once compiled, those properties become entirely public. Modern JavaScript uses the `#` prefix, strictly enforced at runtime by the engine via hidden internal slots.
 
@@ -44,7 +44,7 @@ class JSConsumer {
 
 ## Abstraction
 
-Hiding low level implementation details and exposing only the necessary high level interface.
+Abstraction hides low level implementation details and exposes only the necessary high level interface.
 
 **The distinction.** TypeScript has native `interface` and `abstract class`. JavaScript has neither, so abstraction must be enforced at runtime by throwing errors.
 
@@ -78,7 +78,7 @@ class BaseProcessor {
 
 ## Inheritance and the prototypal conversion
 
-Acquiring properties and behaviours from a parent class. In backend work we strictly favour composition over inheritance, to avoid fragile base classes and tight coupling. See [[inheritance-vs-composition]].
+Inheritance means a class acquires properties and behaviours from a parent class. In backend work we strictly favour composition over inheritance, to avoid fragile base classes and tight coupling. See [[inheritance-vs-composition]].
 
 **The distinction.** JavaScript has no traditional classes. The ES6 `class` keyword is syntactic sugar over constructor functions and the prototype chain. When targeting older engines, the TypeScript compiler generates a helper called `__extends` to wire the chain manually.
 
@@ -132,7 +132,7 @@ class UserService {
 
 ## Polymorphism
 
-Different classes responding to the same method call based on their own implementation.
+Different classes respond to the same method call, each based on its own implementation.
 
 **The distinction.** TypeScript enforces polymorphism structurally via interfaces. JavaScript enforces it dynamically via duck typing: if it has the method, it works.
 
@@ -179,4 +179,4 @@ TypeScript handles this depending on the compilation target. Targeting modern ES
 
 Modern JavaScript introduced the `#` prefix for truly private fields. That is not stripped, it is natively understood by the engine, which stores those fields in internal slots associated with the object. Accessing a `#` field from outside its class scope at runtime throws a syntax error.
 
-So for truly sensitive backend data, such as API secrets or cryptographic keys, native `#` fields provide actual runtime security, whereas TypeScript modifiers only provide developer experience."
+So for truly sensitive backend data, such as API secrets or cryptographic keys, native `#` fields provide actual runtime security. TypeScript's modifiers only provide developer experience, not real protection at runtime."

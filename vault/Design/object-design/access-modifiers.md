@@ -27,9 +27,9 @@ class Account {
 
 ## Choosing
 
-Start at `private` and widen only when something outside genuinely needs it. That way the surface other code can depend on stays small, and small surfaces are what let you change the inside later without breaking callers.
+Start at `private` and widen only when something outside genuinely needs it. That way the surface that other code can depend on stays small, and a small surface is what lets you change the inside later without breaking callers.
 
-The mistake in the other direction is a class where everything is `public`, which technically compiles and gives you no encapsulation at all: every field becomes part of the contract, so any change to any of them is a change other code can feel.
+The mistake in the other direction is a class where everything is `public`, which technically compiles and gives you no encapsulation at all: every field becomes part of the contract, so any change to any of them is a change that other code can feel.
 
 ---
 
