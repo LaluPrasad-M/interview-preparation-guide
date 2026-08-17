@@ -49,7 +49,7 @@ LIMIT 100
 FOR UPDATE SKIP LOCKED;
 ```
 
-`FOR UPDATE` locks the rows a poller just read. `SKIP LOCKED` tells any other poller running the same query to skip those locked rows instead of blocking behind them, so it grabs the next unlocked batch instead. That is what lets you run several pollers side by side without a distributed lock coordinating them.
+`FOR UPDATE` locks the rows that a poller just read. `SKIP LOCKED` tells any other poller running the same query to skip those locked rows instead of blocking behind them, so it grabs the next unlocked batch instead. That is what lets you run several pollers side by side without a distributed lock coordinating them.
 
 ```text
                     +-- Business Table

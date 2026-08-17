@@ -234,7 +234,7 @@ Eventually companies realise: why compute everything at request time? This intro
 
 ### Write time against read time fanout
 
-One of the highest return interview discussions.
+This is one of the highest return interview discussions.
 
 | Strategy | Advantages | Disadvantages |
 | --- | --- | --- |
@@ -288,7 +288,7 @@ Arrival Rate > Processing Rate
 
 When this holds, queue growth is eventually infinite.
 
-**Example.** Incoming 20,000 messages per second, consumer 15,000 per second, difference 5,000 per second. The queue grows forever. After one minute that is 300,000 extra messages; after ten minutes, 3 million.
+**Example.** The system receives 20,000 messages per second while the consumer processes only 15,000, a difference of 5,000 per second. The queue grows forever. After one minute that is 300,000 extra messages; after ten minutes, 3 million.
 
 Nothing crashed. Kafka is healthy, consumers are healthy, the database is healthy. But the business sees orders delayed by 30 to 45 minutes. That is queue collapse.
 
@@ -350,7 +350,7 @@ try {
 
 Always release resources.
 
-**Connection pool exhaustion.** Pool size 100, leaking one connection per request, eventually 100 leaked connections. New requests cannot obtain connections, latency rises, timeouts appear, and the system looks slow. The root cause is a resource leak.
+**Connection pool exhaustion.** The pool has 100 connections; if each request leaks one, eventually all 100 leak. New requests cannot obtain connections, latency rises, timeouts appear, and the system looks slow. The root cause is a resource leak.
 
 **Socket exhaustion.** `axios.get(...)` creates connections that are never cleaned up properly, eventually thousands of sockets remain open, OS connection limits are reached, and new requests fail.
 

@@ -106,7 +106,7 @@ The map lookup form is worth remembering. It replaces the `switch` and makes add
 
 ## Strategy
 
-Very similar to factory, but factory is about creation while strategy is about behaviour and execution. TypeScript enforces the contract via interfaces, JavaScript relies on the injected object having the right method.
+Strategy is very similar to factory. Factory is about creation, and strategy is about behaviour and execution. TypeScript enforces the contract via interfaces, JavaScript relies on the injected object having the right method.
 
 ```typescript
 interface EncryptionStrategy { encrypt(data: string): string; }

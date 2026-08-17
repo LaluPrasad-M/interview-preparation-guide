@@ -145,6 +145,6 @@ runTests();
 
 ## Pros and cons
 
-**Pros.** Ensures a single instance and provides a global access point. Only one object is created, which helps for resource heavy classes. Provides a way to maintain global state. Supports lazy loading. Guarantees every object in the application uses the same global resource.
+**Pros.** It ensures a single instance and provides a global access point. Only one object is created, which helps for resource heavy classes. It provides a way to maintain global state. It supports lazy loading. It guarantees every object in the application uses the same global resource.
 
-**Cons.** Violates single responsibility, because the pattern solves two problems at once. In multithreaded environments, special care is needed to avoid race conditions. Introduces global state, which can be hard to manage. Classes using the singleton become tightly coupled to it. It makes unit testing difficult because of that global state.
+**Cons.** It violates single responsibility, because the pattern solves two problems at once. In multithreaded environments, special care is needed to avoid race conditions. It introduces global state, which can be hard to manage. Classes using the singleton become tightly coupled to it. It makes unit testing difficult because of that global state.

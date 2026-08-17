@@ -60,13 +60,13 @@ const results = await Promise.all(
 );
 ```
 
-Looks clean, looks scalable, can be disastrous. With 100,000 promises, Node must maintain state, callbacks, closures and references for all of them, so memory pressure grows rapidly.
+This looks clean and scalable, but it can be disastrous. With 100,000 promises, Node must maintain state, callbacks, closures and references for all of them, so memory pressure grows rapidly.
 
 If `users = 100,000`, `Promise.all(users.map(fetchProfile))` may start 100,000 concurrent operations, causing socket exhaustion, Redis overload, DB pool exhaustion, memory pressure and downstream collapse. This connects directly back to stage 3 backpressure and stage 6 fanout explosion.
 
 ### Event loop lag
 
-The difference between when a task should execute and when it actually executes.
+Event loop lag is the difference between when a task should execute and when it actually executes.
 
 ```js
 setTimeout(() => {
@@ -74,7 +74,7 @@ setTimeout(() => {
 }, 100);
 ```
 
-Expected 100ms, actual 3000ms, because the event loop was busy. That delay is event loop lag.
+The timer was expected to fire after 100ms; it actually fired after 3000ms, because the event loop was busy. That delay is event loop lag.
 
 **Why it matters.** Many engineers only watch CPU and memory. A Node.js service may show CPU at 40 percent and memory at 60 percent and still be unhealthy, because event loop lag is 3 seconds. Callbacks, responses, timers and promises are all delayed, and users experience terrible latency.
 

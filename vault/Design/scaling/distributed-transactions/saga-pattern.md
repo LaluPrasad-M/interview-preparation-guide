@@ -15,7 +15,7 @@ The biggest problem is that availability suffers. It is a blocking protocol, it 
 
 If asked why large internet companies do not use 2PC everywhere, the answer is: it trades too much availability and scalability for global consistency.
 
-**The modern approach.** Eventual consistency plus compensation, instead of a global distributed transaction. That leads directly to the Saga pattern.
+**The modern approach.** Use eventual consistency plus compensation, instead of a global distributed transaction. That leads directly to the Saga pattern.
 
 ---
 
