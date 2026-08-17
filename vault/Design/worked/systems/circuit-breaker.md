@@ -33,15 +33,13 @@ Detect when the external API is unhealthy. Stop sending requests once failures c
 
 ## Non functional requirements, with justification
 
-**Low latency, fail fast.** "If a dependency is slow or failing, the breaker needs to short circuit the call immediately so upstream threads are not blocked and we do not cause cascading latency."
-
-**High availability.** "The breaker itself must be highly available because it is inline with the request path. If it becomes a point of failure, it undermines the entire resilience strategy."
-
-**Fault isolation.** "When a downstream dependency becomes unhealthy, the breaker isolates that fault so other parts of the system keep responding, even with degraded functionality."
-
-**Correctness over freshness.** "During partial failure, users prefer correct but slightly stale data over a timeout or a 500. That keeps the experience functional while the system heals."
-
-**Minimal overhead per request.** "Since the breaker sits on the hot path and wraps every outbound request, it must add minimal CPU and memory overhead so it does not become a scalability bottleneck."
+| Dimension | Requirement, and why |
+| --- | --- |
+| Low latency, fail fast | if a dependency is slow or failing, the breaker has to short circuit the call immediately so upstream threads are not blocked and the latency does not cascade |
+| High availability | the breaker sits inline with the request path, so if it becomes a point of failure it undermines the whole resilience strategy |
+| Fault isolation | when a downstream dependency turns unhealthy, the breaker isolates that fault so the rest of the system keeps responding, even in a degraded state |
+| Correctness over freshness | during partial failure, users prefer correct but slightly stale data over a timeout or a 500, which keeps the experience functional while the system heals |
+| Minimal overhead per request | the breaker wraps every outbound request on the hot path, so it must add almost no CPU or memory overhead or it becomes the bottleneck |
 
 ---
 
@@ -105,13 +103,17 @@ The interviewer will ask this.
 
 ## What goes wrong in production
 
-**Thundering herd.** All instances switch to half open at once and flood the recovering API. Fix with randomised probe requests or leader based probing.
+> [!warning] Thundering herd
+> All instances switch to half open at once and flood the recovering API. Fix with randomised probe requests or leader based probing.
 
-**Flapping.** The breaker oscillates between open and closed because thresholds are badly tuned. Fix with rolling window metrics and a minimum open duration.
+> [!warning] Flapping
+> The breaker oscillates between open and closed because thresholds are badly tuned. Fix with rolling window metrics and a minimum open duration.
 
-**The circuit never closes.** Success criteria are too strict. Fix with a gradual traffic ramp up.
+> [!warning] The circuit never closes
+> Success criteria are too strict. Fix with a gradual traffic ramp up.
 
-**Shared Redis failure.** The breaker logic becomes a new single point of failure. Fix with a graceful fallback to local state.
+> [!warning] Shared Redis failure
+> The breaker logic becomes a new single point of failure. Fix with a graceful fallback to local state.
 
 ---
 

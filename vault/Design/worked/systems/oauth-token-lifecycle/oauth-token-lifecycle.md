@@ -82,13 +82,17 @@ Retry Original Request
 
 ## The production gotchas
 
-**Refresh token rotation.** Always persist the new refresh token, because the provider may invalidate the old one.
+> [!warning] Refresh token rotation
+> Always persist the new refresh token, because the provider may invalidate the old one.
 
-**Infinite retry loops.** Without the `_retry` flag, a 401 retries forever.
+> [!warning] Infinite retry loops
+> Without the `_retry` flag, a 401 retries forever.
 
-**Multiple pods.** In memory promise coordination is not enough. You need a Redis lock.
+> [!warning] Multiple pods
+> In memory promise coordination is not enough. You need a Redis lock.
 
-**Scheduler delay.** Never rely only on proactive refresh, because runtime recovery is still required.
+> [!warning] Scheduler delay
+> Never rely only on proactive refresh, because runtime recovery is still required.
 
 ---
 

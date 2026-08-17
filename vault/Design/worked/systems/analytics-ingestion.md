@@ -60,4 +60,7 @@ ORDER BY (tenant_id, timestamp)
 
 **3. Read optimisation with materialized views.** Instead of calculating average latency from raw data on every dashboard load, create a materialized view in ClickHouse. As data streams in from Kafka, the view pre aggregates it in the background, rolling data into 1 minute or 1 hour buckets.
 
-When the API queries dashboard data, it queries the aggregated view, not the raw events. That turns a query scanning millions of rows into one scanning a few dozen, giving sub second response times for enterprise clients.
+When the API queries dashboard data, it queries the aggregated view, not the raw events.
+
+> [!tip] Why this beats querying raw events
+> The materialized view turns a query that scans millions of rows into one that scans a few dozen, which is what gives enterprise clients sub second dashboard responses.

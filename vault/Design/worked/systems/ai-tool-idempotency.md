@@ -149,9 +149,10 @@ message ToolResponse {
 
 **The failure.** If our server hashes the raw JSON to create the key, call 1 and call 2 generate different hashes. The lock is bypassed and the customer is refunded twice.
 
-**The solution.** Do not hash the arguments. The idempotency key is constructed strictly from `Agent_ID + Conversation_Turn_ID + Tool_Name`.
+An AI agent can only legally execute a tool once per conversation turn, the space between the user finishing speaking and the AI replying.
 
-An AI agent can only legally execute a tool once per conversation turn, the space between the user finishing speaking and the AI replying. Locking at the turn ID level mathematically guarantees that even if the LLM hallucinates different semantic arguments on the retry, the engine intercepts it and returns the cached result of the first attempt.
+> [!tip] Key the lock off identity, not arguments
+> Do not hash the arguments. Build the idempotency key strictly from `Agent_ID + Conversation_Turn_ID + Tool_Name`. Locking at the turn ID level guarantees that even when the LLM hallucinates different arguments on the retry, the engine still catches it and returns the cached result of the first attempt.
 
 ---
 
