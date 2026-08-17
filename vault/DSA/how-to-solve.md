@@ -7,9 +7,9 @@
 
 ## The sequence
 
-Do not rush to a solution. Take time to understand the question, break it down to its basic invariants, try alternatives, test, iterate, finalise, commit, and only then code.
+Do not rush to a solution. Take time to understand the question, break down the invariants, try alternatives, test, iterate, and finalise. Only then code.
 
-The same habit applies everywhere: coding, HLD, LLD, thinking about a system design, or debugging an infra or database issue. While preparing and studying, always ask for the alternate solution too.
+The same habit applies to all work: coding, architecture planning, system design thinking, or debugging. While preparing and studying, always ask for the alternate solution too.
 
 ---
 

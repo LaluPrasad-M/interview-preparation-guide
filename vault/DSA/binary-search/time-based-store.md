@@ -9,11 +9,11 @@
 
 Store timestamps and values together, per key.
 
-```text
+```python
 key -> [ [timestamp, value], [timestamp, value], ... ]
 ```
 
-This works because timestamps are strictly increasing, so the list is always sorted and therefore binary search friendly.
+This works because timestamps are strictly increasing, so the list is always sorted and binary search friendly.
 
 ---
 
@@ -92,7 +92,7 @@ TimeMap.prototype.get = function (key, timestamp) {
 
 You are finding `max(timestamp_i)` such that `timestamp_i <= target`. The condition over the array looks like:
 
-```text
+```python
 true true true false false false
 ```
 
@@ -104,7 +104,7 @@ Binary search is exactly right for that pattern.
 
 Stored:
 
-```text
+```python
 set("foo", "bar", 1)
 set("foo", "baz", 4)
 set("foo", "abc", 7)

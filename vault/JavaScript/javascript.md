@@ -7,7 +7,7 @@
 
 ## JavaScript
 
-The language, independent of where it runs.
+The language itself, independent of where it runs.
 
 | Note | Covers |
 | --- | --- |
@@ -15,10 +15,10 @@ The language, independent of where it runs.
 | [[prototypes-and-classes]] | constructor functions, ES6 classes, the prototype chain, hasOwnProperty |
 | [[var-vs-let]] | scope, hoisting, the temporal dead zone, the setTimeout loop question |
 | [[closures]] | why a function remembers variables that should be gone |
-| [[this-binding]] | call, apply and bind, and when you need each |
+| [[this-binding]] | call, apply, and bind, and when you need each one |
 | [[iteration]] | for against for...of against for...in, switch scoping, return inside a callback |
 | [[deep-clone]] | structuredClone, the JSON trick and what it drops, writing it yourself |
-| [[object-locking]] | freeze, seal and preventExtensions |
+| [[object-locking]] | freeze, seal, and preventExtensions |
 | [[coercion-gotchas]] | the output puzzles: type juggling, sort, parseInt, falsy against nullish |
 | [[engine-internals]] | execution context and hoisting, the five `this` binding rules, `prototype` against `__proto__`, stack and heap, the TDZ |
 

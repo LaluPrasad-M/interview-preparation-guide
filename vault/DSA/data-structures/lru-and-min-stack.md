@@ -18,7 +18,7 @@ This combination is non negotiable.
 
 ### 2. The list maintains recency order
 
-```text
+```python
 HEAD -> Most Recently Used (MRU)
 TAIL -> Least Recently Used (LRU)
 ```
@@ -29,7 +29,7 @@ Whenever a key is used, in `get` or `put`, move that key's node to the head. Tha
 
 Never remove the dummy tail. The correct LRU node is `this.tail.prev`, because the layout is:
 
-```text
+```python
 HEAD(dummy) <-> ...nodes... <-> LRU <-> TAIL(dummy)
 ```
 
@@ -41,7 +41,7 @@ This avoids messy edge cases. With dummy nodes, insert is always safe, remove is
 
 Return the value, and move the node to MRU:
 
-```text
+```python
 remove(node)
 insertAtHead(node)
 ```
@@ -70,7 +70,7 @@ If the node did not store the key you could not delete it properly.
 
 Do not try to move it without removing first. The safe sequence is always:
 
-```text
+```python
 remove(node)
 insertAtHead(node)
 ```

@@ -61,7 +61,7 @@ As `k` increases, the time needed decreases. Faster speed means fewer hours.
 
 So a small `k` is impossible and a big enough `k` is possible, which is exactly the monotonic pattern:
 
-```text
+```python
 k: 1   2   3   4   5   6
    no  no  no  yes yes yes
 ```

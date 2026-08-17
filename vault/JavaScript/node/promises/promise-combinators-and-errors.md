@@ -36,7 +36,7 @@ try {
 }
 ```
 
-`Promise.all` gives up the moment anything fails. That is what you want when you need all the results, and wrong when you want to know which ones worked:
+`Promise.all` gives up the moment anything fails. Use it when you need all the results. Use `allSettled` when you want to know which ones worked:
 
 ```js
 const results = await Promise.allSettled([fetchData(1000, 'Resolved Data'), failData(500)]);
@@ -71,7 +71,7 @@ async function example() {
 example().catch(error => console.log(error.message));
 ```
 
-Three things worth holding on to. `finally` runs whether you returned, threw, or fell through. Throwing inside `catch` means the caller has to handle it, so the `async` function needs a `.catch` at the call site. And a `return` inside `catch` skips the rest of the function but still runs `finally`.
+`finally` runs whether you returned, threw, or fell through. Throwing inside `catch` means the caller has to handle it. So the `async` function needs a `.catch` at the call site. A `return` inside `catch` skips the rest of the function but still runs `finally`.
 
 ---
 

@@ -7,7 +7,7 @@
 
 ## The ten second decision map
 
-```text
+```python
 Globally sorted?        -> flatten and binary search (LC 74)
 Only rows sorted?       -> binary search each row
 Rows and cols sorted?   -> staircase from the top right (LC 240)

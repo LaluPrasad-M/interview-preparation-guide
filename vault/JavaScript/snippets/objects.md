@@ -55,4 +55,4 @@ console.log(obj2.name);                   // 'John', read through the prototype
 console.log(obj2.hasOwnProperty('name')); // false, it is not obj2's own
 ```
 
-`Object.keys`, `values` and `entries` also report only an object's own properties, so they agree with `hasOwnProperty` rather than with plain property access. The chain itself is in [[prototypes-and-classes]].
+`Object.keys`, `values`, and `entries` also report only an object's own properties. They agree with `hasOwnProperty` rather than with plain property access. The chain itself is in [[prototypes-and-classes]].

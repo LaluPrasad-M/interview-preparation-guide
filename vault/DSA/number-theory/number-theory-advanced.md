@@ -9,7 +9,7 @@ Part of [[number-theory]].
 
 ## 6. Modulo arithmetic
 
-```text
+```python
 (a + b) % m  ===  ((a % m) + (b % m)) % m
 ```
 
@@ -26,7 +26,7 @@ Shows up in: huge numbers, counting paths, dynamic programming.
 
 ## 7. Prefix sum
 
-```text
+```python
 prefix[j] - prefix[i] === sum(i+1 ... j)
 ```
 
@@ -132,7 +132,7 @@ Shows up in: maximum product subarray.
 
 ## 12. Combination formula
 
-```text
+```python
 nCr = n! / (r! * (n - r)!)
 ```
 

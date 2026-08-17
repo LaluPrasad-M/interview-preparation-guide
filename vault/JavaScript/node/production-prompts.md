@@ -9,7 +9,7 @@
 
 **The prompt.** Design an in memory LRU cache supporting `get` and `put`, where each entry expires after a configurable TTL.
 
-**What they are evaluating.** `get` and `put` must be constant time, expired keys must not be returned, the cache evicts the least recently used item over capacity, and it is single process with no Redis.
+**What they are evaluating.** `get` and `put` must be constant time. Expired keys must not be returned. The cache evicts the least recently used item when over capacity. Single process, no Redis.
 
 **Where it shows up.** Caching database queries inside an API, feature flag or config caching, avoiding repeated calls to downstream services.
 

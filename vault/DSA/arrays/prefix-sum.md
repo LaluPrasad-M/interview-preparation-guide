@@ -11,7 +11,7 @@ Build `prefix[j] = sum of nums[0..j]`.
 
 Then:
 
-```text
+```python
 sum(nums[i..j]) = prefix[j] - prefix[i-1] = k
 => prefix[i-1] = prefix[j] - k
 ```
@@ -41,7 +41,7 @@ Loop through the array, maintaining:
 
 At each step: update `prefixSum`, check how many times `prefixSum - k` has appeared, add that to `count`, and only then add the current `prefixSum` to the map.
 
-```text
+```python
 map = {0: 1}      // base case: prefix sum 0 has been seen once
 prefixSum = 0
 count = 0
@@ -144,7 +144,7 @@ At every index, count how many earlier prefix sums make the current sum differ b
 
 The mantra, in two lines:
 
-```text
+```python
 count += freq[prefixSum - k]
 freq[prefixSum]++
 ```

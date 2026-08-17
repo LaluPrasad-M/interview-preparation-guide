@@ -7,7 +7,7 @@
 
 ## The machine
 
-```text
+```python
 [ Enter State ]
       |
 [ Check: save / stop? ]   <- logic here

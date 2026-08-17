@@ -7,7 +7,7 @@
 
 ## The universal template
 
-```text
+```python
 function dfs(node) {
   if (node == null) return baseValue;
 
@@ -149,7 +149,7 @@ Used when the answer is not rooted, meaning the path may go through any node.
 
 ## The decision flow
 
-```text
+```python
 Does the parent pass info?      -> PRE-ORDER
 Does the node depend on children? -> POST-ORDER
 BST plus order?                 -> IN-ORDER

@@ -31,7 +31,7 @@
 
 ## When it is a stack, and which kind
 
-```text
+```python
 IF nearest greater or smaller           -> monotonic stack
 ELSE IF sliding window plus min or max  -> monotonic deque
 ELSE IF prefix plus inequality          -> monotonic deque or stack

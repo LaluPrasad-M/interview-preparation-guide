@@ -53,7 +53,7 @@ Task 3 is modifying shared resource: 3
 Task 3 is releasing the lock.
 ```
 
-Two things to take from it. All three tasks are started before any of them acquires, so the shared resource increments strictly one at a time rather than three tasks racing to 3. And each release lets exactly one waiter through, in the order they queued, which the library maintains for you.
+All three tasks start before any of them acquires the lock. So the shared resource increments one at a time, not three tasks racing to 3. Each release lets exactly one waiter through, in queue order. The library maintains that order for you.
 
 > [!warning] The three waiting lines all print first
 > Even when the lock is free, `await mutex.acquire()` yields to the microtask queue, so the synchronous part of all three calls runs before any of them continues. Verified on Node v22.16.0 with `async-mutex`.
@@ -69,7 +69,7 @@ Note that a mutex only helps inside one process. Two Node instances behind a loa
 
 ## Redis lock, across processes
 
-For "only one instance of this service should do this", a distributed lock in Redis. The Redlock algorithm is the usual choice, and the numbers you pass it are the whole design.
+Use Redis when you need "only one instance of this service should do this". The Redlock algorithm is the usual choice. The numbers you pass it are the whole design.
 
 | Setting | Means |
 | --- | --- |

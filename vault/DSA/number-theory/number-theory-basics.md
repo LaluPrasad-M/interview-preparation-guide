@@ -32,7 +32,7 @@ Shows up in: rotate array with cyclic replacements, the water jug problem, fract
 
 The formula rides on GCD:
 
-```text
+```python
 LCM(a, b) = (a * b) / GCD(a, b)
 ```
 

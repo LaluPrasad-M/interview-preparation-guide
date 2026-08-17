@@ -22,7 +22,7 @@ console.groupEnd();
 console.log('new section');
 ```
 
-Every `console.group` needs its own `console.groupEnd`, and the label you pass to `groupEnd` is ignored, so the pairing is purely positional.
+Every `console.group` needs its own `console.groupEnd`. The label you pass to `groupEnd` is ignored. The pairing is purely positional.
 
 ---
 

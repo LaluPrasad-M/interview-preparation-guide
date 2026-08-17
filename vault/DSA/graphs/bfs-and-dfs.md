@@ -35,7 +35,7 @@
 
 ## The decision tree
 
-```text
+```python
 Does it ask MIN / SHORTEST?
         |
        YES -> BFS
@@ -57,7 +57,7 @@ Is it reachability / cycle / islands?
 
 ## The DFS structure
 
-```text
+```python
 function dfs(state) {
   if (invalid(state)) return
   if (goal(state)) record(state)
@@ -118,7 +118,7 @@ Roughly forty problems in total where BFS or DFS is the core skill.
 
 ### Correct pseudocode
 
-```text
+```python
 dfs(r, c):
     if r or c is out of bounds:
         return

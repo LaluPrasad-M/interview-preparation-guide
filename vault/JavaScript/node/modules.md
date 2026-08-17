@@ -15,7 +15,7 @@
 | **Default export** | `export default function myFunc() {}` | `module.exports = function myFunc() {};` |
 | **Loading** | asynchronous | synchronous |
 | **Dynamic import** | `import('./mod.js').then(...)` | `require('./mod')` anywhere, including inside an `if` |
-| **Scope** | variables are not shared across modules, each one is its own scope | variables and functions can be shared through `module.exports` |
+| **Scope** | variables stay private to each module | variables and functions can be shared through `module.exports` |
 | **Top level `this`** | `undefined` | the `exports` object, so `{}` |
 | **Top level await** | allowed | not allowed |
 | **Where it fits** | browsers and modern Node | Node, mostly older code |
@@ -55,4 +55,4 @@ module.exports = { express, createServer };   // this line replaces the one abov
 
 ## Circular dependencies
 
-Both systems allow two files to import each other, and both handle it badly. With `require`, one of the two gets a partially built object, so a function you expected is `undefined` at the moment you call it. If you hit that, the fix is almost always to move the shared piece into a third module rather than to outsmart the loader.
+Both systems allow two files to import each other. Both handle it badly. With `require`, one of the two gets a partially built object. A function you expected is `undefined` when you call it. The fix is almost always to move the shared piece into a third module, not to outsmart the loader.

@@ -123,7 +123,7 @@ Before committing to greedy, ask all three.
 
 ## The formal shape
 
-```text
+```python
 S = empty solution
 while not h(S):
     x = f(C)               // choose best remaining option
@@ -151,7 +151,7 @@ Partition a string into as many parts as possible such that each character appea
 
 **The window model.**
 
-```text
+```python
 l   -> start of the current partition
 i   -> current scanning index
 end -> the farthest index the current partition is forced to go
@@ -163,7 +163,7 @@ Size is `end - l + 1`.
 
 **Why `l = i + 1` matters.** The partition ends at index `i`, and the next partition must start at the next unused character. If you set `l = i` the partitions overlap; if you leave `l` unchanged the sizes keep accumulating incorrectly. `l` is a bookmark, not a sliding pointer.
 
-```text
+```python
 Store last index of each character
 Scan string, expanding current partition end
 When index == end:

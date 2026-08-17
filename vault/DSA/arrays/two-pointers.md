@@ -36,7 +36,7 @@ In both cases you are not guessing. You are discarding a whole set of candidates
 
 ### Opposite ends
 
-```text
+```python
 l = 0; r = n - 1
 while l < r:
     compute result
@@ -45,7 +45,7 @@ while l < r:
 
 ### Same direction
 
-```text
+```python
 slow = 0
 for fast in range(n):
     if condition:

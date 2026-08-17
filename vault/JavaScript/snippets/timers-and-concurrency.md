@@ -71,7 +71,7 @@ const limited = timeLimit(t => new Promise(res => setTimeout(res, t)), 100);
 limited(150).catch(console.log); // 'Time Limit Exceeded' at 100ms
 ```
 
-Two promises race here, the real work and the timer, and whichever settles first wins. The `finally` matters: without `clearTimeout`, the timer keeps the process alive for its full duration even after the work finished.
+Two promises race here: the real work and the timer. Whichever settles first wins. The `finally` matters. Without `clearTimeout`, the timer keeps the process alive for its full duration even after the work finishes.
 
 ---
 
@@ -111,7 +111,7 @@ const allWithProgress = async (promises, progress) =>
   });
 ```
 
-Both versions take the same `progress(percent)` callback, so they are interchangeable. Worth writing the second one out once, because it shows what `Promise.all` actually does: attach a handler to every promise, count the completions, and resolve when the count matches.
+Both versions take the same `progress(percent)` callback, so they are interchangeable. Writing the second one out shows what `Promise.all` actually does. It attaches a handler to every promise, counts the completions, and resolves when the count matches.
 
 > [!warning] This version loses the input order
 > Results are pushed as they finish, so a slow first promise ends up last in the array. The `Promise.all` version keeps the original order.

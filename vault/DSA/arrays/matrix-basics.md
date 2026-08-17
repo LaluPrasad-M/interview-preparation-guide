@@ -17,7 +17,7 @@ const matrix = [
 
 Visually:
 
-```text
+```python
 Row 0:  1  2  3
 Row 1:  4  5  6
 Row 2:  7  8  9
@@ -38,7 +38,7 @@ matrix[1][2]  // 6
 
 Row and column counts:
 
-```text
+```python
 Rows    = matrix.length
 Columns = matrix[0].length
 ```
@@ -57,7 +57,7 @@ for (let row = 0; row < matrix.length; row++) {
 
 Coordinates laid out:
 
-```text
+```python
     col0 col1 col2
 row0  1    2    3
 row1  4    5    6
@@ -91,7 +91,7 @@ For this matrix:
 
 You define:
 
-```text
+```python
 top    = 0   // first row
 bottom = 2   // last row
 left   = 0   // first column
@@ -194,7 +194,7 @@ To find which 3x3 box a cell belongs to:
 box = Math.floor(r / 3) * 3 + Math.floor(c / 3)
 ```
 
-```text
+```python
 0 | 1 | 2
 --+---+--
 3 | 4 | 5

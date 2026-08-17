@@ -55,7 +55,7 @@ Wrapping the worker in a promise is the part worth copying. The events are the r
 
 ## What crosses the boundary
 
-Messages are copied, not shared, using the same algorithm as `structuredClone` (see [[deep-clone]]). So functions cannot be sent, and the object the worker receives is a separate object from the one you sent.
+Messages are copied, not shared. They use the same algorithm as `structuredClone` (see [[deep-clone]]). Functions cannot be sent. The object the worker receives is a separate object from the one you sent.
 
 The exception is `SharedArrayBuffer`, which really is shared memory. That buys speed and brings back every problem [[locks]] exists to solve, so reach for it only when copying is measurably too slow.
 

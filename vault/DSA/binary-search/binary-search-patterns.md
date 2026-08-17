@@ -9,13 +9,13 @@
 
 Monotonic means the pattern looks like one of these:
 
-```text
+```python
 false false false true true true
 ```
 
 or
 
-```text
+```python
 true true true false false false
 ```
 
@@ -25,7 +25,7 @@ If you can define such a pattern, binary search applies.
 
 As `x` increases:
 
-```text
+```python
 x:        1  2  3  4  5  6  7
 isValid:  F  F  F  T  T  T  T
 ```
@@ -34,7 +34,7 @@ Once it becomes true it stays true, so binary search finds the first T.
 
 ### Case B: find the maximum valid answer
 
-```text
+```python
 x:        1  2  3  4  5  6  7
 isValid:  T  T  T  T  F  F  F
 ```
@@ -45,7 +45,7 @@ Once it becomes false it stays false, so binary search finds the last T.
 
 ## Universal template
 
-```text
+```python
 left = LOW
 right = HIGH
 
@@ -91,7 +91,7 @@ The whole trick is choosing `LOW`, `HIGH`, `isValid`, and the direction.
 
 **Key insight.** At any index one half is always sorted, and the minimum lies in the unsorted half. Compare `nums[mid]` with `nums[right]`.
 
-```text
+```python
 if nums[mid] > nums[right]:
     minimum is in the right half
     -> l = mid + 1
@@ -103,7 +103,7 @@ else:
 > [!warning] Do not use `r = mid - 1` here
 > Because `mid` itself might be the answer. This is the difference between "search for a target" and "search for a boundary".
 
-```text
+```python
 while (l < r) {
     mid = (l + r) / 2
     if nums[mid] > nums[r]:

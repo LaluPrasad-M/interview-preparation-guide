@@ -30,7 +30,7 @@ init(50); // 20
 
 **The mistakes.** Not forwarding arguments, not preserving `this`, and not caching the return value.
 
-**Key points.** It must cache the result, forward args and preserve `this`. It is async safe, because the promise itself is what gets cached.
+**Key points.** It must cache the result. It must forward args and preserve `this`. It is async safe, because the promise itself is what gets cached.
 
 ---
 

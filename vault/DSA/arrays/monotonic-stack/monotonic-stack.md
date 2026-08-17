@@ -141,7 +141,7 @@ In `c b` with `a` arriving, you must ask about `b` before `c`, because `b` block
 
 The pattern, generalised:
 
-```text
+```python
 New element arrives.
 I may need to revoke some previous decisions.
 Revocations happen in reverse order.

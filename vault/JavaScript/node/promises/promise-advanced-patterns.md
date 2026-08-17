@@ -64,7 +64,7 @@ Part of [[promises]].
 
 A promise cannot be cancelled once created, so you wrap it with an external control mechanism.
 
-**The pieces.** A controller holding the cancellable state, a signal that flips the flag or fires an event, and a wrapper encapsulating the promise plus that control. The wrapper polls the signal, and on abort it rejects and cleans up timers, listeners and in flight requests.
+**The pieces.** A controller holding the cancellable state. A signal that flips the flag or fires an event. A wrapper encapsulating the promise plus that control. The wrapper polls the signal. On abort it rejects and cleans up timers, listeners, and in flight requests.
 
 ```js
 class CancellableTask {

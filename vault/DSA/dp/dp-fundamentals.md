@@ -7,9 +7,7 @@
 
 ## What DP actually is
 
-DP is recursion plus memory.
-
-If a problem has overlapping subproblems and optimal substructure, DP applies.
+DP is recursion plus memory. Two conditions must hold: the problem has overlapping subproblems, and optimal substructure exists.
 
 ---
 
@@ -39,7 +37,7 @@ That is DP. Nothing fancy.
 
 ## The mental flow
 
-```text
+```python
 START
  |
 Is there recursion?

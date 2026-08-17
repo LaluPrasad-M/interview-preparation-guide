@@ -14,15 +14,15 @@
 | `setTimeout(fn, 0)` | in the timers phase of the next loop iteration |
 | `setImmediate()` | in the check phase, after the poll phase where I/O is handled |
 
-Two of those names are misleading. `setImmediate` is not immediate, and `process.nextTick` does not wait for the next tick. Learn them as positions in the queue rather than as English.
+The names are misleading. `setImmediate` is not immediate. `process.nextTick` does not wait for the next tick. Learn them by their position in the queue, not by their English meaning.
 
 Three words used above are worth pinning down, because everything else builds on them.
 
 | Word | Means |
 | --- | --- |
-| **Microtask** | small work that runs between callbacks rather than waiting for a phase of its own. Both the nextTick queue and promise callbacks are microtasks |
-| **Poll** | the phase where the loop waits for I/O, so it is the one that blocks when there is nothing else to do |
-| **Check** | the phase straight after poll, which exists to run `setImmediate`. That is why `setImmediate` lands after I/O rather than before it |
+| **Microtask** | Small work that runs between callbacks, not in its own phase. Both the nextTick queue and promise callbacks are microtasks. |
+| **Poll** | The phase where the loop waits for I/O. This is where it blocks when there is nothing else to do. |
+| **Check** | The phase right after poll. It exists to run `setImmediate`. That is why `setImmediate` runs after I/O, not before. |
 
 ---
 
@@ -50,7 +50,7 @@ setTimeout
 setImmediate
 ```
 
-The two synchronous logs go first, because nothing scheduled can run while your code is still running. Then the microtasks, `nextTick` before `Promise`. Then the timer, then the check phase.
+The two synchronous logs go first. Nothing scheduled can run while your code is still running. Then the microtasks: `nextTick` before `Promise`. Then the timer, then the check phase.
 
 > [!warning] setTimeout before setImmediate is not guaranteed
 > At the top level the order between those two depends on how long the process took to start. Inside an I/O callback, `setImmediate` always wins. If an interviewer asks for a firm answer, that distinction is the answer.
@@ -81,7 +81,7 @@ console.log(6);
 
 Output is `1 2 3 5 6 4`.
 
-The body of a `new Promise` runs immediately and synchronously, so 3 and 5 print in order, and `resolve(4)` does not stop the function. `await` hands control back to the caller, so 6 prints before 4.
+The body of a `new Promise` runs immediately and synchronously. So 3 and 5 print in order. `resolve(4)` does not stop the function. `await` passes control back to the caller, so 6 prints before 4.
 
 ---
 

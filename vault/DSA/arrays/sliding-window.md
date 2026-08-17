@@ -7,9 +7,7 @@
 
 ## What it is
 
-A technique for processing contiguous ranges using two indices that keep a valid window while scanning once, in O(n).
-
-Instead of recomputing everything for each subarray, you update the state incrementally when the window grows or shrinks.
+Use two indices to track a window of contiguous elements. As the window expands and shrinks, update the state incrementally instead of recomputing it from scratch. This processes the array in one pass, O(n).
 
 ---
 
@@ -40,7 +38,7 @@ If the invariant breaks, shrink from the left until it is restored.
 
 ### Fixed window
 
-```text
+```python
 for right in range(n):
     add nums[right]
     if window > k:
@@ -51,7 +49,7 @@ for right in range(n):
 
 ### Variable window, expand and shrink
 
-```text
+```python
 left = 0
 for right in range(n):
     add nums[right]
@@ -63,7 +61,7 @@ for right in range(n):
 
 ### Frequency window
 
-```text
+```python
 left = 0
 for right in range(n):
     freq[s[right]]++

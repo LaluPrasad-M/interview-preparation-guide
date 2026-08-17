@@ -9,7 +9,7 @@
 
 You have two identical one rupee coins and one two rupee coin on a table:
 
-```text
+```python
 Coins on table (with positions):
 [ 1a , 1b , 2 ]
 ```
@@ -81,7 +81,7 @@ function backtrack(...) {
 }
 ```
 
-```text
+```python
 backtrack()   <- one level
    |
    +-- for loop (choices at this level)
@@ -103,7 +103,7 @@ Initial call: `backtrack([], index = 0)`.
 
 The loop at level 0 offers `i = 0` giving 1, `i = 1` giving 1, and `i = 2` giving 2. That loop is saying: here are the possible first choices.
 
-```text
+```python
 LEVEL 0
 path = []
 
@@ -129,7 +129,7 @@ Each `backtrack()` call represents one branch, has its own loop, and starts a ne
 
 The bug is not in the backtracking. The bug is in the loop allowing bad choices.
 
-```text
+```python
 LEVEL 0 loop allows:
   start with 1 (index 0)
   start with 1 (index 1)  <- duplicate start
@@ -147,7 +147,7 @@ if (i > index && candidates[i] === candidates[i - 1]) continue;
 
 This modifies only the loop, never the recursion. Level 0 becomes:
 
-```text
+```python
 LEVEL 0
 loop choices:
   i=0 -> 1  kept
@@ -161,7 +161,7 @@ Now the recursion only explores unique branches.
 
 ## The final mental picture
 
-```text
+```python
 FOR LOOP  ->  controls WHICH doors exist at this level
 BACKTRACK ->  walks through ONE door and explores deeper
 ```

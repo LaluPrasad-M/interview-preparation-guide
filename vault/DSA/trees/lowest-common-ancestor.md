@@ -7,7 +7,7 @@
 
 ## The mental hook
 
-```text
+```python
 No ordering?  -> wait for children -> POST-ORDER
 Has ordering? -> decide immediately -> TOP-DOWN
 ```
@@ -32,7 +32,7 @@ Has ordering? -> decide immediately -> TOP-DOWN
 
 ## Binary tree LCA, post order
 
-```text
+```python
 1. If root is null, return null
 2. If root equals p or q, return root
 3. Recurse left
@@ -47,7 +47,7 @@ Why this works: you do not know where p and q are until the children report.
 
 ## BST LCA, top down
 
-```text
+```python
 1. If p.val < root.val AND q.val < root.val -> go left
 2. If p.val > root.val AND q.val > root.val -> go right
 3. Otherwise root is the LCA
@@ -89,7 +89,7 @@ The correct answer is: post order works, but a BST allows a better top down solu
 
 ## The memory box
 
-```text
+```python
 Binary Tree LCA:
 - No order
 - Children decide

@@ -101,7 +101,7 @@ Wrong assumptions to avoid: `dp[0] = cost[0]`, `dp[1] = cost[1]`, or `dp[0] = 1`
 
 **Transition.**
 
-```text
+```python
 dp[i] = min(
   dp[i - 1] + cost[i - 1],
   dp[i - 2] + cost[i - 2]
@@ -150,13 +150,13 @@ This definition is crucial. It describes a range result, not a decision. It does
 
 **Choice 1, skip house i.** Your total money does not change, and the best money you already had up to house `i-1` is still valid.
 
-```text
+```python
 money_if_skip = dp[i - 1]
 ```
 
 **Choice 2, rob house i.** You cannot rob `i-1`, so the last house you could have robbed is at most `i-2`. Add the money in the current house.
 
-```text
+```python
 money_if_rob = dp[i - 2] + nums[i]
 ```
 
@@ -164,7 +164,7 @@ money_if_rob = dp[i - 2] + nums[i]
 
 **Why the transition is a max.** Your goal is to maximise money, not minimise cost or count paths.
 
-```text
+```python
 dp[i] = max(
   dp[i - 1],
   dp[i - 2] + nums[i]
@@ -240,7 +240,7 @@ Follow these and the formula emerges naturally.
 
 ### A: counting DP, ways and paths
 
-```text
+```python
 dp[x] = sum(dp[prev])
 ```
 
@@ -248,7 +248,7 @@ Used when counting sequences or paths. Example, Climbing Stairs: `dp[i] = dp[i-1
 
 ### B: min or max cost DP, accumulation
 
-```text
+```python
 dp[x] = min/max(dp[prev] + cost(prev -> x))
 ```
 
@@ -256,7 +256,7 @@ Used when a cost is paid during movement. Example, Min Cost Climbing Stairs. Eac
 
 ### C: choice or skip DP, binary decision
 
-```text
+```python
 dp[x] = max/min(
   skip_current,
   take_current
@@ -267,7 +267,7 @@ Used when a constraint forbids adjacent selection. Example, House Robber. Two mu
 
 ### D: feasibility DP, true or false
 
-```text
+```python
 dp[x] = OR / AND(dp[prev])
 ```
 

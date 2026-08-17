@@ -43,7 +43,7 @@ app.get('/:path1/:path2', (req, res) =>
   res.send({ message: `GET. ${req.params.path1} => ${req.params.path2}` }));
 ```
 
-Put `/:path` above `/about` and `/about` becomes unreachable, because `/:path` matches it first and Express stops at the first match.
+Put `/:path` above `/about` and `/about` becomes unreachable. `/:path` matches it first. Express stops at the first match.
 
 | | Comes from | Looks like |
 | --- | --- | --- |

@@ -67,7 +67,7 @@ The second argument to `parseInt` is the base you are reading **from**. The argu
 
 ## Big numbers lose precision, they do not overflow
 
-The interview question is usually asked the other way round: in binary search, `mid = (low + high) / 2` breaks when `low` and `high` are near the maximum integer, so use `mid = low + (high - low) / 2` instead.
+The interview question is usually asked the other way around. In binary search, `mid = (low + high) / 2` breaks when `low` and `high` are near the maximum integer. Use `mid = low + (high - low) / 2` instead.
 
 That fix is for languages with fixed width integers, like C++ or a Java `int`, where the addition wraps around into a negative number.
 
