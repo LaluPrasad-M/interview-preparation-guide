@@ -20,7 +20,7 @@
 
 Instead of dumping raw flat code files into a context window, generate an abstract syntax tree or knowledge graph of the repository before executing a search.
 
-By mapping dependencies, imports and function signatures, the system injects only the specific nodes and clusters required to answer the prompt. That prevents context poisoning, where irrelevant code confuses the model.
+By mapping dependencies, imports and function signatures, the system injects only the specific nodes and clusters required to answer the prompt. That prevents [[context-poisoning|context poisoning]], where irrelevant code confuses the model.
 
 ---
 

@@ -11,7 +11,7 @@
 | --- | --- |
 | **Database and storage** | state is the hardest component to scale, migrate and fix during an outage |
 | **Microservices and APIs** | cascading failures, timeouts, and network boundaries deciding how resilient the whole system is |
-| **Async processing and queues** | event driven complexity: Kafka pipelines, ordering, backpressure |
+| **Async processing and queues** | event driven complexity: Kafka pipelines, ordering, [[backpressure]] |
 | **Memory** | heap exhaustion, memory leaks, and garbage collection thrashing, which hurt most in a single threaded runtime |
 | **CPU** | event loop blocking, thread pool exhaustion, compute bottlenecks |
 | **Infrastructure and cloud** | cloud native failures, autoscaling thrashing, IAM problems |

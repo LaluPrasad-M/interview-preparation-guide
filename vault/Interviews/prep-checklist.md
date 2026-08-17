@@ -38,7 +38,7 @@ See [[what-breaks-in-production]] for the ten incident buckets.
 
 ## Block 3: resume defence and incident stories, P0
 
-- A security or auth failure story, covering mTLS and JWE/JWS cryptography
+- A security or auth failure story, covering [[mutual-tls|mTLS]] and JWE/JWS cryptography
 - A performance or database downtime story, covering search index optimisation
 - An infrastructure issue story, covering Kafka consumers and high volume event processing
 - A deep dive on an ingestion framework you built
@@ -125,7 +125,7 @@ The patterns behind these live in [[sliding-window]], [[prefix-sum]], [[interval
 
 **5. A distributed rate limiter.** Token bucket or sliding window log, tracking limits globally across gateways using Redis.
 
-**6. Distributed cache design and eviction.** Consistent hashing, Redis TTLs, and mitigating hot keys where viral data brings down a single node.
+**6. Distributed cache design and eviction.** Consistent hashing, Redis [[ttl|TTLs]], and mitigating [[hot-key|hot keys]] where viral data brings down a single node.
 
 **7. Top K and heavy hitters.** Processing a firehose of intent data in real time without melting server memory, using a count min sketch.
 
@@ -140,7 +140,7 @@ Mid level interviews often focus on a specific backend component and its trade o
 3. **A follow feature** in a social network. Schema and indexes for follower and followee, efficient list queries, pagination and caching.
 4. **A caching strategy for a product details service.** Write through against write around against write back, and how you invalidate when inventory changes.
 5. **A background job queue.** Producer API, queue, workers, failure queues, durability across restarts, retry logic.
-6. **A fault tolerant notification system.** Templates, preferences, status, transient provider failure, retries, backoff, dead letter queues. See [[notification-delivery]].
+6. **A fault tolerant notification system.** Templates, preferences, status, transient provider failure, retries, [[exponential-backoff|backoff]], dead letter queues. See [[notification-delivery]].
 7. **Scaling a user profile service 10x**, from 1,000 to 10,000 requests per second. Replication, sharding, caching, gateway changes.
 8. **A metrics aggregation service.** Ingesting from thousands of servers and querying aggregates. Which time series store, and how to handle write volume against range queries. See [[observability-platform]].
 9. **An e-commerce shopping cart.** Cart and item modelling, the endpoints, atomic updates under concurrency, inventory consistency.
@@ -148,7 +148,7 @@ Mid level interviews often focus on a specific backend component and its trade o
 11. **A circuit breaker for an unreliable external API.** See [[circuit-breaker]].
 12. **A centralised logging system.** Collection, a searchable store, high write throughput, efficient reads.
 13. **A sharding strategy for a large user database.** Partitioning, request routing, re sharding when one shard becomes hot.
-14. **A cache for a real time leaderboard.** Serving reads fast, invalidating on score change, staleness against write amplification. See [[realtime-leaderboard]].
+14. **A cache for a real time leaderboard.** Serving reads fast, invalidating on score change, staleness against [[write-amplification|write amplification]]. See [[realtime-leaderboard]].
 15. **A REST API for listing and filtering content.** Pagination tokens, sort order, filters, URL structure, missing resources and oversized responses. See [[api-design]].
 16. **An event booking system.** Venues, events, seats, bookings, and preventing double booking through transactions or locking. See [[appointment-scheduler]].
 17. **A high throughput counter service.** Millions of increments per second, using sharded counters, batching or approximations like HyperLogLog.
