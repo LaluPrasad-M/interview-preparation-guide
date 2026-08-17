@@ -15,7 +15,7 @@ In short: store each fact only once, split data into multiple related tables, an
 
 ## Why it exists
 
-Without normalisation the same data is stored in many places, updating data becomes risky, and bugs and inconsistencies appear.
+Without normalisation, the same data sits in many places. Updating it becomes risky, and bugs and inconsistencies creep in.
 
 Normalisation solves update anomalies, insert anomalies and delete anomalies.
 
@@ -71,7 +71,7 @@ const jsonString = JSON.stringify(obj);
 const parsedObj = JSON.parse(jsonString);
 ```
 
-In the database context, MongoDB stores data on disk as BSON, binary JSON. Clients read and write using JSON and the driver converts to and from BSON automatically. You do not need to manually stringify unless you are working with Redis, Kafka, a network API and so on.
+In the database context, MongoDB stores data on disk as BSON, binary JSON. Clients read and write using JSON. The driver converts to and from BSON automatically. You do not need to manually stringify unless you are working with Redis, Kafka, a network API and so on.
 
 Document stores are good when you do not need complex joins, you mostly store and fetch documents, and entire object graphs fit as a single document. Typical cases are logs, events, user profiles, shopping carts and analytics payloads.
 

@@ -55,7 +55,7 @@ published_at
 retry_count
 ```
 
-It prevents the case where the DB is committed but the event is lost after a crash, and it gives reliable publishing, replayability, retry safety and eventual consistency.
+It prevents the case where the DB commits but the event is lost after a crash. It also gives reliable publishing, replayability, retry safety and eventual consistency.
 
 > [!warning] The limitation
 > Outbox does not give globally exactly once delivery. Consumers must still be idempotent.

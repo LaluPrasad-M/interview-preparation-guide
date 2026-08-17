@@ -77,7 +77,7 @@ Examples: driver location, online status, `last_seen`, inventory count.
 
 **Why it matters.** Frequent updates create contention, locking, row bloat and write amplification.
 
-If `users` holds name, email and `current_location`, and location updates every few seconds, the `users` table becomes hot. Eventually `user_locations` separates out.
+Say `users` holds name, email and `current_location`. If location updates every few seconds, the `users` table becomes hot. Eventually `user_locations` separates out.
 
 > [!tip] Golden rule
 > A different update frequency may justify separation.

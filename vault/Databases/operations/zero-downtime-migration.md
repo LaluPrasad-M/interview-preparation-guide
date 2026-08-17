@@ -83,7 +83,7 @@ Contract
 
 Migration jobs must be rerunnable. Never a bare `INSERT`. Use an upsert, `INSERT ... ON CONFLICT`, or `MERGE`.
 
-Why: the worker crashes after row 1 and row 2 succeed and row 3 fails. You need to restart safely.
+Why: the worker crashes after rows 1 and 2 succeed, then row 3 fails. You need to restart safely.
 
 Maintain a `migration_status` table storing `last_processed_id`, status and timestamp, so the job can resume.
 
@@ -172,6 +172,6 @@ To archive, detach the partition. To delete, drop the partition. Both are fast, 
 ## The one liner
 
 > [!tip] Say this
-> I would first make the schema backward compatible, then use an expand and contract approach. New writes would be dual written, historical data backfilled using idempotent batch jobs with checkpoints and reconciliation, and reads would gradually move to the new schema. After validation I would decommission the old schema. Throughout, I would monitor latency, errors, replication lag, migration progress and consistency metrics.
+> I would first make the schema backward compatible, then use an expand and contract approach. New writes would be dual written. Historical data would be backfilled using idempotent batch jobs with checkpoints and reconciliation. Reads would gradually move to the new schema. After validation I would decommission the old schema. Throughout, I would monitor latency, errors, replication lag, migration progress and consistency metrics.
 
 That single answer covers most migration discussion in an interview.

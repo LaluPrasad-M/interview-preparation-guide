@@ -7,7 +7,7 @@
 
 ## Stop thinking features, think invariants
 
-Simplistic rules like "use Mongo for scale" and "use SQL for relationships" break down, because both modern SQL and MongoDB can scale, shard, replicate, index and handle large workloads.
+Simplistic rules like "use Mongo for scale" and "use SQL for relationships" break down. Both modern SQL and MongoDB can scale, shard, replicate, index and handle large workloads.
 
 So the decision is not about capability. It is about correctness guarantees, data shape, and where you want the complexity.
 
@@ -125,7 +125,7 @@ Two concurrent inserts of the same product: one succeeds, one fails. No applicat
 
 By default Mongo gives single document atomicity only, no row level locking across documents, no built in optimistic locking, and weaker constraints.
 
-So if cart and cart items live in different documents, you must manage consistency yourself, write retry logic, and detect conflicts manually.
+So if cart and cart items live in different documents, you must manage consistency yourself. You end up writing retry logic and detecting conflicts by hand.
 
 Mongo can do transactions now, but with higher overhead, more complexity, and not naturally the way SQL is. That is why people say Mongo requires more care for concurrent state updates.
 

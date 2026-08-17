@@ -218,4 +218,4 @@ Good for frequently read values, and it avoids the stale window entirely, at the
 ## The golden interview line
 
 > [!tip] Say this
-> Caching improves latency and scalability but introduces distributed systems trade offs around consistency, invalidation, synchronisation, expiration spikes and uneven traffic distribution. Production systems mitigate these with request coalescing, stale while revalidate, bloom filters, randomised TTLs, local L1 caches, event driven invalidation and careful eviction strategies.
+> Caching improves latency and scalability. But it introduces distributed systems trade offs: consistency, invalidation, synchronisation, expiration spikes and uneven traffic distribution. Production systems mitigate these with request coalescing, stale while revalidate, bloom filters, randomised TTLs, local L1 caches, event driven invalidation and careful eviction strategies.

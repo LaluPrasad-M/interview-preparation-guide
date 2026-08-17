@@ -48,7 +48,7 @@ In MongoDB this is built in. In SQL it is usually application managed, or handle
 
 Sharding only works if most queries include the shard key.
 
-If a query does not contain the shard key, the router performs a scatter gather: it sends the query to all shards, each processes it, and the results are merged, sorted and returned. That kills scalability.
+If a query does not contain the shard key, the router performs a scatter gather. It sends the query to all shards and each shard processes it. The results are merged, sorted and returned. That kills scalability.
 
 It is worse than a single full table scan, because it becomes a parallel full scan across all shards, adding network overhead, multiplied CPU, and merge cost.
 
@@ -59,7 +59,7 @@ It is worse than a single full table scan, because it becomes a parallel full sc
 
 ## Hot shards
 
-If you shard by city and Delhi has 80 percent of traffic, the Delhi shard is overloaded and the others sit idle. That happens because the shard key distribution is skewed.
+If you shard by city and Delhi has 80 percent of traffic, the Delhi shard gets overloaded while the others sit idle. That happens because the shard key distribution is skewed.
 
 **Fixes.** A composite shard key such as `(city, restaurant_id)`. A hashed shard key. Splitting the hot partition further. Regional clusters.
 

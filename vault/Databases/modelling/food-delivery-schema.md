@@ -128,7 +128,7 @@ Suppose a burger's price changes from 200 to 300. Should old orders now show 300
 That is question 5, historical snapshotting, and the answer is intentional denormalisation.
 
 > [!tip] The strong answer
-> Orders are immutable transactional records, while restaurant profiles are mutable master data. So production systems snapshot critical display and business fields such as name, address, pricing and tax info into the order itself, to preserve historical accuracy, auditability, and resilience against future entity changes or deletions.
+> Orders are immutable transactional records, while restaurant profiles are mutable master data. So production systems snapshot critical display and business fields, things like name, address, pricing and tax info, into the order itself. That preserves historical accuracy, auditability, and resilience against future entity changes or deletions.
 
 See [[invariants]] for the historical consistency invariant this enforces.
 

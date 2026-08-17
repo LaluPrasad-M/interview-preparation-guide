@@ -158,7 +158,7 @@ Four expensive calls, all unnecessary, potentially overloading the upstream.
 
 **At 1 to 2 ms.** Service A runs `SETNX lock:publicKey` and succeeds, so A is the fetcher. Services B, C and D fail the `SETNX`, so they do not fetch. They wait 100 ms and retry.
 
-**At 20 to 100 ms.** Service A starts the expensive fetch, which might take 300 to 800 ms. B, C and D keep retrying, find the cache still empty and the lock still taken, and wait again. No stampede, no duplicate requests.
+**At 20 to 100 ms.** Service A starts the expensive fetch, which might take 300 to 800 ms. B, C and D keep retrying. The cache is still empty and the lock is still taken, so they wait again. No stampede, no duplicate requests.
 
 **At 900 ms.** A finishes, sets the cache with a TTL, and deletes the lock.
 
@@ -177,7 +177,7 @@ Upstream calls reduced by 75 percent, the race condition prevented, the thunderi
 
 A acquires the lock, starts fetching, and crashes halfway without unlocking. The lock has `EX 5`, so it auto expires after 5 seconds.
 
-B, C and D keep checking, find the cache empty and the lock active, and do not fetch. After the TTL expires, B acquires the lock and fetches, and everyone else waits and gets cached data.
+B, C and D keep checking. They find the cache empty and the lock active, so they do not fetch. After the TTL expires, B acquires the lock and fetches. Everyone else waits and gets cached data.
 
 No deadlock and no system wide failure. This is why we always put a TTL on locks.
 
