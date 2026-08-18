@@ -4,6 +4,7 @@
 > How many different values a column or key actually holds. High cardinality means nearly every row is unique, low cardinality means the same handful of values repeat forever.
 
 > [!example]- The same 10 million rows, five different columns
+>
 > | Column | Distinct values | Cardinality |
 > | --- | --- | --- |
 > | `orderId` | 10,000,000 | very high, one per row |
@@ -20,4 +21,4 @@ It decides two separate things, and the same word gets used for both.
 
 The query planner also guesses cardinality when it picks a join strategy, and a bad guess is enough to wreck an otherwise fine query. Expecting 10 rows and meeting 10 million turns a nested loop that should have been a hash join into a query that never returns.
 
-**Shows up in:** [[sharding]], [[partitioning]], [[query-optimization]].
+**Shows up in:** [[sharding]], [[partitioning]], [[indexing]], [[query-optimization]], [[schema-design-questions]], [[caching-problems]], [[study-roadmap]].

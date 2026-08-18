@@ -242,7 +242,7 @@ The result is that the app knows nothing about networks, SSE or retries, and its
 
 **Q.** You pushed v45 to 10,000 pods, but it contained a typo, a string `"8000"` instead of the integer, which crashes the agent instantly. Because your push system is so fast, you brought down the entire company globally in 5 seconds. How do you prevent this?
 
-**A.** Phased rollouts plus automated health checks. Instead of pushing to 10,000 pods instantly, the streaming fleet looks at the Kubernetes labels and pushes to exactly 10 pods, the canary group. The control plane waits 60 seconds and queries the observability platform for the 5xx error rate of those 10 pods. If it spikes, the control plane aborts the rollout and pushes a rollback to v44. If healthy, it proceeds to 10 percent, then 50, then 100.
+**A.** Phased rollouts plus automated health checks. Instead of pushing to 10,000 pods instantly, the streaming fleet looks at the Kubernetes labels and pushes to exactly 10 pods, the [[canary-release|canary group]]. The control plane waits 60 seconds and queries the observability platform for the 5xx error rate of those 10 pods. If it spikes, the control plane aborts the rollout and pushes a rollback to v44. If healthy, it proceeds to 10 percent, then 50, then 100.
 
 > [!warning] Instant global fan out is an anti pattern for configuration.
 

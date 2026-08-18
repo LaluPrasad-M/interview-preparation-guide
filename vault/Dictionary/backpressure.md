@@ -33,4 +33,4 @@ The same signal exists at every layer, only the wording changes.
 > [!tip] Rejecting work is a feature
 > A system with no backpressure does not stay fast under overload, it accepts everything and then dies all at once. Saying no early is how you fail predictably instead of catastrophically.
 
-**Shows up in:** [[timeouts-and-circuit-breakers]], [[express-internals]], [[nfr-decision-table]].
+**Shows up in:** [[timeouts-and-circuit-breakers]], [[express-internals]], [[event-loop-lag]], [[scaling-stages]], [[nfr-decision-table]], [[notification-delivery]], [[what-breaks-in-production]], [[voice-orchestrator]].

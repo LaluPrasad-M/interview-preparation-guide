@@ -6,6 +6,7 @@
 You are telling the browser the guest list. The browser is the one enforcing it, which is what makes CSP useful even when your own code has already been fooled.
 
 > [!example]- A policy and what it blocks
+>
 > ```http
 > Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.example.com; frame-ancestors 'none'
 > ```
@@ -28,4 +29,4 @@ You are telling the browser the guest list. The browser is the one enforcing it,
 
 CSP is the layer behind input validation and output encoding, not a replacement for either. See [[cross-site-scripting]] for the attack it is guarding.
 
-**Shows up in:** [[cross-site-scripting]], [[designing-the-four-layers]].
+**Shows up in:** [[cross-site-scripting]], [[cross-site-request-forgery]], [[designing-the-four-layers]].

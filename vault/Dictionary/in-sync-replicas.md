@@ -6,6 +6,7 @@
 Replication factor tells you how many copies exist on paper. The ISR tells you how many are actually current. A replica that falls too far behind is removed from the set automatically, and it is added back once it catches up.
 
 > [!example]- Replication factor 3, `min.insync.replicas` 2, `acks=all`
+>
 > | State | ISR | What happens to writes |
 > | --- | --- | --- |
 > | Healthy | leader plus 2 followers | leader waits for both followers, then acknowledges |
@@ -27,4 +28,4 @@ The producer setting and the topic setting only mean something together.
 
 `acks=all` with `min.insync.replicas` left at 1 is the trap: the leader waits for an ISR that might contain only itself, so you pay the latency of strong durability and get none of it.
 
-**Shows up in:** [[replication]], [[internals]], [[lag-and-dead-letter-queues]].
+**Shows up in:** [[replication]], [[internals]], [[lag-and-dead-letter-queues]], [[where-to-look-by-component]].

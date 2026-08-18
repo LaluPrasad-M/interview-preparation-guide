@@ -22,4 +22,4 @@ A command changes data and a query reads it, and the two want opposite things. W
 
 This is a fix for one specific pain, which is a read pattern the write schema cannot serve without heavy joins at high volume. Reaching for it before that pain exists buys you two models to keep in sync and nothing else.
 
-**Shows up in:** [[query-optimization]], [[write-scaling]], [[geospatial-discovery]].
+**Shows up in:** [[query-optimization]], [[write-scaling]], [[read-scaling]], [[async-processing-and-queues]], [[sharding-and-scale]], [[scaling-ladders]], [[kafka-vs-rabbitmq]], [[geospatial-discovery]].

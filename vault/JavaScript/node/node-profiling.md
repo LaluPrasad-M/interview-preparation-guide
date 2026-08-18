@@ -87,7 +87,7 @@ node --trace-gc server.js
 | Minor GC | Scavenge | fast, sub-millisecond usually | the young generation filling up |
 | Major GC | Mark-Sweep-Compact | slow, can be tens of milliseconds | the old generation filling up, or under memory pressure |
 
-> [!tip] A Major GC pause is a common, invisible P99 cause
+> [!tip] A Major GC pause is a common, invisible [[p99-latency|P99]] cause
 > A Mark-Sweep-Compact pause stops JavaScript execution for its duration. It will not show up in application logs as an error, only as a latency spike that correlates with nothing in your own code. If P99 latency spikes line up with GC trace timestamps, that is the answer, not a downstream dependency.
 
 See [[incident-triage]] for reading this alongside CPU and event loop lag during an actual spike.

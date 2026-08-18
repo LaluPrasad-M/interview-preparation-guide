@@ -112,7 +112,7 @@ If partition P2's last committed offset is 1000, the new consumer that gets P2 r
 
 ## Rebalance storms
 
-A rebalance storm is continuous rebalancing causing repeated pauses in consumption.
+A [[rebalance-storm|rebalance storm]] is continuous rebalancing causing repeated pauses in consumption.
 
 **Common causes.** Frequent pod restarts, rolling deployments, consumer crashes, missed heartbeats, long processing times.
 

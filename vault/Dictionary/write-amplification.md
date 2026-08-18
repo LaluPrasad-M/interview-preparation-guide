@@ -30,4 +30,4 @@ Some choices make it much worse than that baseline.
 > [!tip] The read gain is paid for on the write path
 > An index makes one query faster and every write slower, which is a fine trade until you have eight of them on your busiest table. The counting exercise above is the fastest way to justify deleting one.
 
-**Shows up in:** [[write-path-basics]], [[distributed-id-generation]], [[embedding-and-referencing]].
+**Shows up in:** [[write-path-basics]], [[distributed-id-generation]], [[embedding-and-referencing]], [[schema-design-questions]], [[notification-delivery]], [[prep-checklist]].

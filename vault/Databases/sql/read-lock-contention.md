@@ -44,7 +44,7 @@ It runs for 30 minutes. Meanwhile millions of updates happen.
 
 The database now cannot delete old row versions, because that old transaction may still need them. So it preserves history until the reader finishes.
 
-That creates MVCC bloat, storage growth, index bloat, vacuum lag, slower queries and cache inefficiency. One innocent read query slowly poisons the entire system.
+That creates [[multi-version-concurrency-control|MVCC]] bloat, storage growth, index bloat, vacuum lag, slower queries and cache inefficiency. One innocent read query slowly poisons the entire system.
 
 **The key insight.** The danger is often not the read itself, it is how long the read keeps the snapshot alive. Long running reads are dangerous, especially analytics queries, reporting jobs, exports and huge scans.
 
@@ -95,7 +95,7 @@ Transaction B books the seat simultaneously. The database detects a logical conf
 
 ---
 
-## Gap locks, the invisible locks
+## [[gap-lock|Gap locks]], the invisible locks
 
 Sometimes the database locks not only rows but the gaps between them, to prevent phantom reads.
 

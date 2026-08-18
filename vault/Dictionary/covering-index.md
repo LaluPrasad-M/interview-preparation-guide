@@ -6,6 +6,7 @@
 Normally an index is a lookup table that ends in a pointer. The database walks the index to find which rows match, then follows each pointer to the actual row to read the columns you selected. That second step is the expensive part, because those rows are scattered across the disk.
 
 > [!example]- One query, one extra column in the index
+>
 > ```sql
 > SELECT status, total FROM orders WHERE userId = 42;
 > ```

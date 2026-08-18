@@ -6,6 +6,7 @@
 The three words are the three steps, in order. Extract reads from the source, usually the production database or a Kafka stream fed by Change Data Capture (CDC). Transform reshapes rows into the target schema, joining, cleaning and aggregating along the way. Load writes the result into the destination, usually a columnar warehouse such as ClickHouse or BigQuery.
 
 > [!example]- Yesterday's orders becoming a revenue dashboard
+>
 > ```text
 > extract     read yesterday's rows from orders, order_items, users
 > transform   join them, convert currency, drop test accounts, roll up per city per hour
@@ -24,4 +25,4 @@ The order is not fixed, and the variant has its own name.
 
 This is the machinery that keeps a transactional system and an analytical system apart. See [[oltp-and-olap]] for why keeping them apart matters in the first place.
 
-**Shows up in:** [[nfr-decision-table]], [[clickhouse]], [[internals]].
+**Shows up in:** [[clickhouse]], [[nfr-decision-table]], [[aggregation-cursors-and-streams]], [[internals]].

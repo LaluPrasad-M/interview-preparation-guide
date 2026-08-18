@@ -6,6 +6,7 @@
 The clicked version has no record of what you did, no review before you did it, and no way to make staging match production other than remembering. The written version is reviewed, diffed and reverted the same way application code is.
 
 > [!example]- A bucket, declared instead of clicked
+>
 > ```hcl
 > resource "aws_s3_bucket" "uploads" {
 >   bucket = "acme-uploads-prod"
@@ -31,4 +32,4 @@ Terraform works across clouds and uses its own configuration language. CloudForm
 > [!warning] Drift is the failure mode to know
 > Someone changes a setting by hand and the files no longer describe reality, so the next apply either reverts their fix or fails confusingly. [[gitops]] answers this by having a controller reconcile continuously rather than only when a human runs the tool.
 
-**Shows up in:** [[designing-the-four-layers]], [[pipelines]].
+**Shows up in:** [[designing-the-four-layers]], [[pipelines]], [[multi-region-cart]].

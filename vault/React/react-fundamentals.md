@@ -49,7 +49,7 @@ State updates are asynchronous.
 
 **Immutability.** Never mutate state directly.
 Never do `arr.push(4)`.
-React checks reference equality.
+React checks [[reference-equality|reference equality]].
 If the reference does not change, React assumes nothing changed and skips the re-render.
 Always pass a new reference: `setArr(prev => [...prev, 4])`.
 

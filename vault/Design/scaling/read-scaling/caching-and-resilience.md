@@ -56,7 +56,7 @@ Notice we are progressively moving farther away from the database, because datab
 
 ## Stage 3: the database is still under pressure
 
-Even after Redis, some requests still hit PostgreSQL: cache misses, cold starts, expired entries, uncached queries, analytical queries.
+Even after Redis, some requests still hit PostgreSQL: cache misses, [[cold-start|cold starts]], expired entries, uncached queries, analytical queries.
 
 Can we distribute reads across multiple DB instances? That introduces read replicas.
 

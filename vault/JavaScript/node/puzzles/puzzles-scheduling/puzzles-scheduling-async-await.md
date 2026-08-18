@@ -152,7 +152,7 @@ console.log('End');
 
 ---
 
-## 12. Async IIFE
+## 12. Async [[immediately-invoked-function-expression|IIFE]]
 
 ```js
 (async () => {

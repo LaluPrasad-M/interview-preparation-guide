@@ -6,6 +6,7 @@
 It is the default conflict resolution in DynamoDB and Cassandra, and it is popular because it needs no coordination: each replica can decide the winner on its own just by comparing timestamps.
 
 > [!example]- Why clock drift makes this dangerous
+>
 > ```text
 > 10:00:05.000  Mumbai region    user adds a laptop to the cart
 > 10:00:07.000  Frankfurt region user adds a phone to the cart
@@ -22,4 +23,4 @@ It is the default conflict resolution in DynamoDB and Cassandra, and it is popul
 > [!tip] Ask what the lost write was
 > Losing one of two nearly simultaneous profile picture updates is fine. Losing an item from a shopping cart or a line from an audit log is not. Last write wins is a legitimate choice, but it should be a choice, not a default you inherited.
 
-**Shows up in:** [[multi-region-cart]], [[sharding-and-scale]], [[nfr-decision-table]].
+**Shows up in:** [[multi-region-cart]], [[sharding-and-scale]], [[applicant-tracking-system]], [[nfr-decision-table]].

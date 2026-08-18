@@ -20,4 +20,4 @@ The same number sizes several different things, and the choice is a trade off in
 > [!tip] Pick it from how stale the data may be
 > Start from the product question, which is how out of date this value is allowed to look to a user, not from a number that feels safe. A price needs seconds, a country list can sit for a day.
 
-**Shows up in:** [[caching-problems]], [[redis-use-cases]], [[flash-sale-inventory]], [[realtime-leaderboard]].
+**Shows up in:** [[caching-problems]], [[redis-use-cases]], [[caching-and-errors]], [[patterns-worth-stealing]], [[appointment-scheduler]], [[flash-sale-inventory]], [[realtime-leaderboard]], [[url-shortener]].

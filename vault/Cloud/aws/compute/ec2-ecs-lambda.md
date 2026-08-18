@@ -62,7 +62,7 @@ The same three services, named by how much they hand back to you.
 
 | Model | Service | You handle |
 | --- | --- | --- |
-| Infrastructure as a Service (IaaS) | EC2 | everything: OS, networking, scaling |
+| Infrastructure as a Service ([[iaas-caas-faas|IaaS]]) | EC2 | everything: OS, networking, scaling |
 | Container as a Service (CaaS) | ECS, and [[eks]] | the containers, while AWS handles some of the infrastructure |
 | Function as a Service (FaaS) | Lambda | only the code |
 

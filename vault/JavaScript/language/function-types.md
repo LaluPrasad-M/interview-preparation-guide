@@ -12,7 +12,7 @@
 | **Named** | `function greet(name) {}`. Declared with the `function` keyword and an identifier. | Hoisted to the top of its scope, so you can call it before the line that declares it. |
 | **Anonymous** | `var greet = function(name) {}`. A function expression with no identifier. | Cannot call itself by name. Usually passed as a callback. |
 | **Arrow** | `const greet = (name) => {}`. Shorter, and it does not get its own `this`. | It borrows `this` from the surrounding scope, which is the whole point. |
-| **IIFE** | `(function(){ ... })()`. Defined and run in the same statement. | Creates a private scope without leaking names into the global object. |
+| **[[immediately-invoked-function-expression|IIFE]]** | `(function(){ ... })()`. Defined and run in the same statement. | Creates a private scope without leaking names into the global object. |
 
 Arrow functions and regular functions handle `this` differently:
 

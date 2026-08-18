@@ -98,7 +98,7 @@ During a flash sale: recommendations disabled, analytics delayed, notifications 
 
 ### Latency budgets
 
-Suppose the overall API SLO is 300ms. The budget is distributed:
+Suppose the overall API [[sli-slo-and-sla|SLO]] is 300ms. The budget is distributed:
 
 ```text
 Gateway: 20ms

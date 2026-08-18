@@ -21,4 +21,4 @@ Once you have peak QPS, everything else follows from it: how many application se
 > [!tip] Say the assumption out loud
 > Nobody is checking your arithmetic against reality, they are checking whether you know what you assumed. "20 requests per user per day, peak at 3 times average" is a defensible design; a QPS number with no stated assumptions is not.
 
-**Shows up in:** [[capacity-estimation]], [[appointment-scheduler]], [[geospatial-discovery]].
+**Shows up in:** [[capacity-estimation]], [[appointment-scheduler]], [[geospatial-discovery]], [[api-gateway]], [[circuit-breaker]], [[realtime-leaderboard]], [[multi-region-cart]], [[webhook-ingestion]].

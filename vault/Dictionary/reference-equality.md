@@ -6,6 +6,7 @@
 Comparing contents would mean walking every nested field on every render, which would be slow. Comparing references is one pointer check, so React does that and pushes the work of creating new objects onto you.
 
 > [!example]- The same array, mutated and replaced
+>
 > ```js
 > // no re-render: same array object, React sees nothing to do
 > const handleAddBroken = () => {

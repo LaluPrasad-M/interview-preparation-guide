@@ -93,6 +93,6 @@ Persisting the meeting link is the step that matters for recovery. If the notifi
 3. Paginate results.
 4. Optimise the index.
 
-Bulk insert rather than one document per call is the difference between Elasticsearch keeping up and falling behind, since each request carries indexing overhead that batching amortises.
+Bulk insert rather than one document per call is the difference between Elasticsearch keeping up and falling behind, since each request carries indexing overhead that batching [[amortised-analysis|amortises]].
 
 Caching and failure handling are in [[caching-and-errors]].

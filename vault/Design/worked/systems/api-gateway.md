@@ -89,7 +89,7 @@ If every microservice is exposed to the public internet, handles HTTPS certifica
 
 **1. SSL termination at layer 7.** The TCP connection from the mobile app hits gateway node 1, which holds the actual `.pem` certificate and decrypts the HTTPS traffic to plaintext HTTP. The internal network then uses fast unencrypted HTTP or [[mutual-tls|mTLS]].
 
-**2. Auth validation, filter chain step 1.** Node 1 intercepts the `Authorization: Bearer <JWT>` header, checks its local RAM for the auth service public key from `jwks.json`, and mathematically verifies the signature in under 0.1 ms. See [[jwt]].
+**2. Auth validation, filter chain step 1.** Node 1 intercepts the `Authorization: Bearer <JWT>` header, checks its local RAM for the auth service public key cached from its [[jwks]] endpoint, and mathematically verifies the signature in under 0.1 ms. See [[jwt]].
 
 **3. Rate limiting, filter chain step 2.** Node 1 fires a rapid Lua script to the Redis cluster to check the user's token bucket.
 

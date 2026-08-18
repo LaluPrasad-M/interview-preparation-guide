@@ -73,7 +73,7 @@ Mongo indexes each array element separately.
 
 ---
 
-## Covered query, the best case
+## [[covering-index|Covered query]], the best case
 
 The index contains everything the query needs, so no document lookup is required.
 

@@ -6,6 +6,7 @@
 Sharding assumes traffic follows keys evenly. Real traffic follows attention, and attention is never even. Adding machines does not help, because the problem is not total capacity, it is that one item can only live in one place.
 
 > [!example]- Three shapes of the same failure
+>
 > | Situation | Why it concentrates | What you see |
 > | --- | --- | --- |
 > | A celebrity posts to 50 million followers | one `userId` key is read by everyone at once | one Redis node at 100 percent CPU, the rest at 10 |
@@ -23,4 +24,4 @@ The fixes are the same three every time.
 > [!tip] Pick shard keys by spread, not by meaning
 > `country` and `status` feel like natural groupings, which is exactly why they get chosen and exactly why they fail. High [[cardinality]] keys such as `userId` and `orderId` spread; low cardinality keys concentrate.
 
-**Shows up in:** [[caching-problems]], [[partitioning]], [[flash-sale-inventory]], [[sharding]].
+**Shows up in:** [[caching-problems]], [[partitioning]], [[sharding]], [[flash-sale-inventory]], [[redis-cluster]], [[read-scaling]], [[write-path-basics]], [[where-to-look-by-component]].

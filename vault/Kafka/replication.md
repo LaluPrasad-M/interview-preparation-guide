@@ -59,6 +59,6 @@ Higher RF means higher durability, higher availability, higher storage cost, hig
 | --- | --- |
 | `acks=0` | fire and forget |
 | `acks=1` | leader only ack |
-| `acks=all` | leader plus ISR, the strongest durability |
+| `acks=all` | leader plus [[in-sync-replicas|ISR]], the strongest durability |
 
 ISR, the in sync replicas, are the replicas acknowledged to be up to date with the leader.

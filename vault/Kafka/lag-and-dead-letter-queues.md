@@ -19,7 +19,7 @@ The interview question is simply "Kafka lag is increasing". First determine: are
 
 ### Case 1, offsets are not moving
 
-**Possible causes.** A poison message, a consumer crash, a consumer stuck or hung, a database deadlock, an external dependency timeout, or an infinite retry loop.
+**Possible causes.** A [[poison-message|poison message]], a consumer crash, a consumer stuck or hung, a database deadlock, an external dependency timeout, or an infinite retry loop.
 
 **Investigation.** Check the last committed offset, consumer logs, retries, and downstream dependencies.
 

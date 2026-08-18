@@ -20,4 +20,4 @@ Running the dashboard query against the transactional database is the mistake th
 > [!tip] The standard shape is both, kept apart
 > OLTP stays the source of truth, and changes flow into the analytical store through [[etl]] or change data capture. Analysts get their scans, production keeps its latency, and neither one is tuned against its own grain.
 
-**Shows up in:** [[clickhouse]], [[nfr-decision-table]], [[choosing-a-datastore]].
+**Shows up in:** [[clickhouse]], [[choosing-a-datastore]], [[analytics-ingestion]], [[read-lock-contention]], [[nfr-decision-table]].

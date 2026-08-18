@@ -22,4 +22,4 @@ The fixes all come down to letting exactly one request do the work.
 > [!tip] It is the same shape as retry storms
 > A synchronised crowd all doing the correct thing at the identical moment is the pattern. The cure is always to break the synchronisation, with jitter, or to elect one doer, which is why this sits next to [[exponential-backoff]] and [[cold-start]].
 
-**Shows up in:** [[caching-problems]], [[appointment-scheduler]], [[redis-use-cases]].
+**Shows up in:** [[caching-problems]], [[appointment-scheduler]], [[redis-use-cases]], [[caching-and-resilience]], [[circuit-breaker]], [[ai-tool-idempotency]], [[production-prompts]].

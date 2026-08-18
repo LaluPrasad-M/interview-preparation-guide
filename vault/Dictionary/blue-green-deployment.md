@@ -22,4 +22,4 @@ The comparison worth having ready, because the interviewer usually asks why you 
 > [!warning] The database is the hard part
 > Two application environments are easy to duplicate, one database is not. Any schema change has to work with both versions at once, which is why the switch is only truly instant when your migrations are backward compatible.
 
-**Shows up in:** [[kubernetes-basics]], [[designing-the-four-layers]], [[zero-downtime-migration]].
+**Shows up in:** [[kubernetes-basics]], [[designing-the-four-layers]], [[zero-downtime-migration]], [[study-roadmap]].

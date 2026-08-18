@@ -22,7 +22,7 @@ Almost every incident is one of these four moving first, with the others followi
 
 Do not jump straight to a fix. Move in three steps:
 
-1. **Signal.** What actually changed? P99 latency jumped, error rate climbed, a queue is growing.
+1. **Signal.** What actually changed? [[p99-latency|P99 latency]] jumped, error rate climbed, a queue is growing.
 2. **Hypothesis.** What would produce that specific signal? A slow downstream dependency produces latency without errors. A bad deploy produces errors without latency. GC pressure produces latency with high CPU.
 3. **Verification.** Check the one metric that would confirm or kill the hypothesis before acting on it. Do not restart a service to "see if it helps", that destroys the evidence.
 

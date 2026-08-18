@@ -19,4 +19,4 @@ The usual fix is to move the state out rather than route around it. Sessions go 
 > [!tip] Sticky is a symptom, not a strategy
 > It is a reasonable stopgap and a poor destination. Every scaling ladder ends with stateless application servers, because they are the only kind you can add, remove and restart without thinking.
 
-**Shows up in:** [[scaling-stages]], [[websockets-and-sse]].
+**Shows up in:** [[scaling-stages]], [[websockets-and-sse]], [[where-to-look-by-component]].

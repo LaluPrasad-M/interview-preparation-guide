@@ -8,6 +8,7 @@ Every change is appended to a log file first, and the actual data pages are upda
 Appending is fast because it is one sequential write to the end of one file. Updating the real pages is slow because they sit scattered across the disk, so the database batches that work and does it in the background.
 
 > [!example]- What a crash actually costs
+>
 > ```text
 > commit   change appended to the log, flushed with fsync, client told "committed"
 > crash    power cut before the data pages were updated
@@ -26,4 +27,4 @@ The log turns out to be useful for far more than crashes, because it is an order
 > [!tip] Durability comes from the flush, not the append
 > The entry is only safe once it has actually reached the disk, which is why every commit involves an [[fsync]] and why batching those flushes is how throughput is recovered.
 
-**Shows up in:** [[write-path-basics]], [[replication]], [[change-data-capture]].
+**Shows up in:** [[write-path-basics]], [[change-data-capture]], [[write-scaling]], [[billing-ledger]], [[api-failures-financial]], [[flash-sale-inventory]], [[idempotency]], [[multi-region-cart]].

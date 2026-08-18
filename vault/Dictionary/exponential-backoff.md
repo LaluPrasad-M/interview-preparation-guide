@@ -33,4 +33,4 @@ The wait is `base * 2^attempt`, with `base` typically 100 ms to 1 second dependi
 > [!tip] Only retry what is safe to repeat
 > Backoff decides when to retry, not whether you should. A read is always safe; a payment is only safe if the endpoint is idempotent, so see [[idempotency]] before retrying a write.
 
-**Shows up in:** [[designing-the-four-layers]], [[third-party-integrations]], [[fault-tolerance]], [[hardening]], [[jio-cinema]], [[caching-and-errors]], [[notification-delivery]], [[service-layer]].
+**Shows up in:** [[designing-the-four-layers]], [[third-party-integrations]], [[fault-tolerance]], [[hardening]], [[webhook-delivery]], [[caching-and-errors]], [[notification-delivery]], [[jio-cinema]].

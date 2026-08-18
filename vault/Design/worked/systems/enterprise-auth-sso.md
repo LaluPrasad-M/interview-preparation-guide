@@ -123,7 +123,7 @@ If the gateway makes an HTTP call to the auth service to validate the JWT on eve
 
 ---
 
-## API design, standardised OIDC
+## API design, standardised [[oidc|OIDC]]
 
 Follow RFC standard OAuth 2.0 endpoints. Do not invent your own authentication routing in an interview.
 
@@ -222,7 +222,7 @@ Every identity provider must expose a public unauthenticated endpoint containing
 
 The verification flow at the gateway:
 
-1. **Read the header.** Decode the JWT header, which is Base64Url encoded, not encrypted.
+1. **Read the header.** Decode the JWT header, which is [[base64url|Base64Url]] encoded, not encrypted.
 2. **Find the `kid`.** Look for which key signed it: `{"alg": "RS256", "kid": "key-2026-08"}`.
 3. **Check the local cache.** Does the gateway have the public key for that `kid`?
 4. **Fetch if missing.** If not, make a quick GET to the JWKS endpoint, download the keys, and cache them in RAM for 24 hours.

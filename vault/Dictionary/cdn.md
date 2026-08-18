@@ -6,6 +6,7 @@
 Those nearby machines are called edge servers, and the data centres holding them are Points of Presence (PoPs). Your own server is the origin. Distance is the whole point: light in fibre is fast but not instant, and a request to another continent pays for the round trip several times over during connection setup.
 
 > [!example]- One user in Chennai, one origin in Virginia
+>
 > | Situation | Path taken | Round trip |
 > | --- | --- | --- |
 > | No CDN | Chennai to Virginia and back, every file | around 250 ms each |
@@ -21,4 +22,4 @@ You control how long the edge keeps a copy with the `Cache-Control` header, and 
 
 Spreading requests across several origin servers is something many CDNs can also do, but it is a side job, not the reason you put one in front of your system.
 
-**Shows up in:** [[zero-to-millions]], [[read-scaling]], [[building-blocks]], [[capacity-estimation]], [[s3-events]], [[designing-the-four-layers]].
+**Shows up in:** [[read-scaling]], [[building-blocks]], [[capacity-estimation]], [[designing-the-four-layers]], [[scaling-ladders]], [[jio-cinema]], [[url-shortener]], [[s3-events]].

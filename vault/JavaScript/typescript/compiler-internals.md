@@ -10,7 +10,7 @@
 `tsc` does one thing: it checks your code for logical errors, then completely erases all types, interfaces, generics and type aliases before emitting standard JavaScript.
 
 > [!warning] The `instanceof` trap
-> Because interfaces are erased at runtime, you cannot use them in runtime checks.
+> Because interfaces are [[type-erasure|erased]] at runtime, you cannot use them in runtime checks.
 > ```ts
 > interface User { name: string; }
 > const obj = { name: "Rahul" };
@@ -34,7 +34,7 @@ The keyword does two completely different things depending on context.
 
 ## Structural typing
 
-Unlike Java or C# which use nominal typing, TypeScript uses **structural typing**. If it walks like a duck and quacks like a duck, TypeScript considers it a duck.
+Unlike Java or C# which use nominal typing, TypeScript uses **[[structural-typing|structural typing]]**. If it walks like a duck and quacks like a duck, TypeScript considers it a duck.
 
 The compiler only cares about the shape of the object, not its name or ancestry.
 

@@ -16,4 +16,4 @@ In Kubernetes it appears as a pod status of `OOMKilled` with exit code 137, visi
 > [!warning] No `try/catch` will ever help here
 > There is no error thrown into your code to catch, so the fix is upstream: find what holds memory it should release, stop buffering whole files or whole result sets in memory, or raise the limit if the workload honestly needs more. Streaming a response instead of building it in memory removes a surprising share of these.
 
-**Shows up in:** [[kubernetes-basics]].
+**Shows up in:** [[kubernetes-basics]], [[memory-and-queue-collapse]], [[where-to-look-by-component]], [[campaign-messaging-engine]], [[matchmaking-fanout]], [[feature-flags]], [[ai-tool-idempotency]].

@@ -26,7 +26,7 @@ A JWT is a long string divided by two periods: `xxxxx.yyyyy.zzzzz`.
 | `zzzzz` | signature | the cryptographic lock that makes the token trustworthy |
 
 > [!warning] The header and payload are not encrypted
-> They are Base64 encoded, which is just a format computers read easily. Anyone on the internet can decode them and read your user ID.
+> They are [[base64url|Base64 encoded]], which is just a format computers read easily. Anyone on the internet can decode them and read your user ID.
 
 The magic is in the signature. The server takes the visible header, the visible payload, and a secret key only the server knows, and hashes them together.
 

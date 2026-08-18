@@ -6,6 +6,7 @@
 The alternative is locking: a writer takes the row, and readers queue behind it. MVCC avoids the queue by never overwriting in place. An update writes a new version and marks the old one as valid up to that point, so a reader that started earlier can still see the old one.
 
 > [!example]- Two transactions, one row
+>
 > ```text
 > 10:00:00  transaction A begins, reads balance = 100
 > 10:00:01  transaction B updates balance to 50 and commits
@@ -25,4 +26,4 @@ Cleanup is the part that shows up in production. Postgres calls it vacuum, and i
 > [!warning] MVCC prevents blocking, not lost updates
 > Two transactions can both read 100, both add 10, and both write 110. Getting 120 requires either `SELECT ... FOR UPDATE` or a version check, so read-modify-write still needs care. See [[locks]] for the choice.
 
-**Shows up in:** [[read-lock-contention]], [[write-path-basics]], [[query-optimization]].
+**Shows up in:** [[read-lock-contention]], [[write-path-basics]], [[query-optimization]], [[sql-vs-mongodb]], [[write-scaling]], [[sharding-and-scale]].

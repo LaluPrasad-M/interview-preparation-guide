@@ -19,4 +19,4 @@ Two fixes work together. Validate against a schema at the producer, so bad paylo
 > [!warning] A dead letter queue nobody watches is a data loss queue
 > Moving the message aside only helps if something alerts on it. Otherwise you have swapped a visible stuck consumer for an invisible pile of dropped work.
 
-**Shows up in:** [[lag-and-dead-letter-queues]], [[notification-delivery]].
+**Shows up in:** [[lag-and-dead-letter-queues]], [[notification-delivery]], [[payment-ingestion]], [[where-to-look-by-component]].

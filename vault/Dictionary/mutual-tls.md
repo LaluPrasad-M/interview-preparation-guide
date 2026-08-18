@@ -19,4 +19,4 @@ Managing certificates for every service by hand is the obvious objection, and it
 > [!tip] This is what zero trust means in practice
 > Being inside the network stops counting as proof of anything. Every hop authenticates, so one compromised pod cannot call whatever it likes just because it is on the same subnet.
 
-**Shows up in:** [[enterprise-auth-sso]], [[api-gateway]], [[kubernetes-basics]].
+**Shows up in:** [[enterprise-auth-sso]], [[api-gateway]], [[kubernetes-basics]], [[request-lifecycle]], [[prep-checklist]].

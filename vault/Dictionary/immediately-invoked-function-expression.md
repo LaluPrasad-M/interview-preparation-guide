@@ -6,6 +6,7 @@
 The wrapping parentheses are what make it an expression rather than a declaration, and the trailing `()` runs it on the spot. You never get a name to call again, which is the point.
 
 > [!example]- Before modules existed, this was the module
+>
 > ```js
 > const counter = (function () {
 >   let count = 0;                       // nobody outside can reach this

@@ -19,4 +19,4 @@ The symptom is intermittent lag spikes with no obvious cause, because the cause 
 > [!tip] Three settings cover most of it
 > Fetch smaller batches with `max.poll.records` so a batch always finishes inside the poll interval. Give consumers a stable `group.instance.id` so a restarting pod rejoins as itself instead of as a new member. Use the cooperative sticky assignor so a rebalance moves only the partitions that need moving rather than stopping the whole group.
 
-**Shows up in:** [[rebalancing]].
+**Shows up in:** [[rebalancing]], [[websocket-bridge]], [[where-to-look-by-component]].

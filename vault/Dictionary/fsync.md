@@ -22,4 +22,4 @@ Redis exposes this choice as a config setting rather than hiding it. `appendfsyn
 > [!warning] "The write returned" is not "the data is safe"
 > This is the gap behind a lot of surprising data loss: the application logged success, the disk never got the bytes, and the crash landed in between. See [[write-ahead-log]] for what the log is doing with those flushed bytes.
 
-**Shows up in:** [[write-path-basics]], [[appointment-scheduler]], [[flash-sale-inventory]].
+**Shows up in:** [[write-path-basics]], [[write-scaling]], [[appointment-scheduler]], [[flash-sale-inventory]], [[sharding-and-scale]].

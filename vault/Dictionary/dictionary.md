@@ -3,6 +3,8 @@
 > [!tldr]
 > One entry per jargon word that does not have a full note of its own. Each entry gives the full form, a plain explanation, a worked example or comparison where that helps, and a pointer to where the term actually gets used.
 
+Every entry ends with **Shows up in**, and every note listed there links back to the entry, so you can walk the connection either way. A term used in dozens of notes, TTL and hot key being the worst, keeps the eight places where it does real work rather than a wall of links; Obsidian's backlinks panel has the full list.
+
 ---
 
 ## A to Z

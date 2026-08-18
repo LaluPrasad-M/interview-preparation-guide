@@ -92,7 +92,7 @@ Application
  Dashboards
 ```
 
-The application writes to Postgres. Analytics queries run against ClickHouse. See [[change-data-capture]] for the link between them.
+The application writes to Postgres. Analytics queries run against ClickHouse. See [[change-data-capture]] and [[etl]] for how the data gets across.
 
 **Why not query Postgres directly?** Consider `SELECT COUNT(*) FROM logs WHERE timestamp >= now() - 30 days` on 5 billion rows. Postgres struggles. ClickHouse is designed exactly for that.
 

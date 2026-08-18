@@ -11,7 +11,7 @@ A [[hot-key|hot cache key]] expires and many requests hit the database simultane
 
 **Mitigations.** Request coalescing or single flight, where only one request fetches and the others wait for the result. Distributed locking with `SETNX`. Stale while revalidate. Randomised TTL, meaning jitter. Background refresh. Never expiring ultra hot keys. [[cdn|CDN]] offloading. Local in memory caching.
 
-**The insight.** A stampede is a traffic amplification problem.
+**The insight.** A [[thundering-herd|stampede]] is a traffic amplification problem.
 
 ---
 

@@ -249,9 +249,9 @@ If an admin modified the row while the user was filling out the form, `version` 
 
 **Defence.** PostgreSQL is the ultimate authority. Because of optimistic locking, when that second person reaches confirmation Postgres physically rejects them. We trade minor Redis volatility for massive throughput, protected by SQL consistency constraints.
 
-We also make Redis itself resilient rather than relying on Postgres to back it up. Run Redis Sentinel, or a managed equivalent, as a highly available cluster with primary and replica nodes spanning multiple availability zones, so if the master dies a replica is promoted in milliseconds. And configure append only file persistence with `appendfsync everysec`, so on restart a node reconstructs the reservation keys from the disk log, losing at most 1 second of data.
+We also make Redis itself resilient rather than relying on Postgres to back it up. Run Redis Sentinel, or a managed equivalent, as a highly available cluster with primary and replica nodes spanning multiple availability zones, so if the master dies a replica is promoted in milliseconds. And configure append only file persistence with `appendfsync everysec`, which [[fsync|flushes]] the append log to disk once a second, so on restart a node reconstructs the reservation keys from the disk log, losing at most 1 second of data.
 
-### The thundering herd on TTL expiry
+### The [[thundering-herd|thundering herd]] on TTL expiry
 
 **Risk.** If 500 people abandon their reservations at 8:00, 500 TTLs expire in Redis at 8:10. Using keyspace notifications to trigger functions that update Postgres back to available creates a DDoS on our own database.
 

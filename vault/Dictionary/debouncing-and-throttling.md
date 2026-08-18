@@ -11,6 +11,7 @@
 | Wrong choice looks like | a scroll handler that only fires once you stop scrolling | a search box firing one request per keystroke |
 
 > [!example]- The same 10 keystrokes, one per 100 ms
+>
 > ```text
 > keystrokes   x x x x x x x x x x            then a pause
 > debounce 500ms                     -> 1 call, after the pause
@@ -41,4 +42,4 @@ function throttle(fn, gap) {
 > [!warning] Forgetting `clearTimeout` is the classic bug
 > Without that line every call schedules its own timer, so ten keystrokes fire ten calls half a second later. You have built a delay, not a debounce, and it is easy to miss because the behaviour looks almost right.
 
-**Shows up in:** [[react-fundamentals]], [[polyfills-function-utils]].
+**Shows up in:** [[react-fundamentals]], [[polyfills-function-utils]], [[react-implementation-basics]], [[designing-the-four-layers]], [[webhook-ingestion]], [[geospatial-discovery]], [[idempotency]].

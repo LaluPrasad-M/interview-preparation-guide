@@ -19,4 +19,4 @@ That second column is the one worth remembering, because it removes stored crede
 > [!tip] The interview line is the one word difference
 > OAuth 2.0 is about authorization, which is access. OIDC is about authentication, which is identity. Building login on plain OAuth is the common mistake, because an access token tells you a caller has permission without reliably telling you who they are.
 
-**Shows up in:** [[enterprise-auth-sso]], [[github-actions]].
+**Shows up in:** [[enterprise-auth-sso]], [[oauth]], [[github-actions]].

@@ -100,7 +100,7 @@ This reduced hot row contention, lock amplification and mutation coordination pr
 
 Initially Kafka was a traffic buffer. Later it became durable replayable event memory, which mattered because Redis could fail, projections could corrupt and consumers could crash. Kafka allowed replay, reconstruction, aggregate rebuilding and projection recovery.
 
-### CQRS and materialized projections
+### [[cqrs|CQRS]] and materialized projections
 
 Systems realised read optimisation and write optimisation are fundamentally different problems, so the write side optimised for ingestion throughput and the read side for query performance. The database increasingly became a materialized projection layer generated asynchronously from event streams.
 

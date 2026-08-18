@@ -33,6 +33,14 @@ This guarantees the log contains a full snapshot of the final value for every ke
 
 ---
 
+## Deleting a key
+
+Keeping the latest value for every key leaves one question open: how do you say that a key is gone? Retention alone cannot express that, because an absent message just means nothing was ever sent.
+
+Publishing the key with a `null` value is the answer, and that record is a [[tombstone]]. Consumers read it as "this key is deleted", and compaction removes both the tombstone and the key's history once its own retention window passes.
+
+---
+
 ## Where this matters
 
 **Database change subscriptions.** You may have the same data set in multiple systems, for example a cache, a search cluster and Hadoop. For real time updates you only need the recent log, but to reload the cache or restore a failed search node you need the complete data set.

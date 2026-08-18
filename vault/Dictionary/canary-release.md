@@ -6,6 +6,7 @@
 The name comes from caged canaries carried into coal mines. The bird reacted to bad air before the miners did, so it was an early warning at small cost. Firefox does the same thing with nightly and beta builds, where a small willing group runs new code long before everyone else.
 
 > [!example]- A typical ramp
+>
 > ```text
 > 5%    for 30 minutes    watch error rate, p99 latency, and the one business metric that matters
 > 25%   for an hour       same checks, now with enough traffic for the numbers to mean something
@@ -21,4 +22,4 @@ The name comes from caged canaries carried into coal mines. The bird reacted to 
 
 Compared with [[blue-green-deployment]], a canary is cheaper because you never run two full environments, and safer because real users hit the new code gradually. The trade off is that the rollout takes hours instead of seconds, and both versions run at once, so they have to tolerate each other's data.
 
-**Shows up in:** [[designing-the-four-layers]], [[jio-cinema]], [[config-management]], [[zero-downtime-migration]].
+**Shows up in:** [[designing-the-four-layers]], [[kubernetes-basics]], [[config-management]], [[zero-downtime-migration]], [[jio-cinema]], [[design]].
