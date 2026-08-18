@@ -9,13 +9,13 @@ Authentication comes first and is a separate job, see [[authentication]].
 
 ## The models
 
-**Role-based Access Control (RBAC).** Permissions are attached to predefined roles, and users are assigned roles. Simple to manage, and granular enough for most applications.
+**Role-based Access Control (RBAC).** Permissions are attached to predefined roles, and users are assigned roles. It is simple to manage, and granular enough for most applications.
 
 **Attribute-based Access Control (ABAC).** Access is decided from attributes of the user, the resource and the environment. Policies combine things like the user's role, the user's own attributes, attributes of the resource, and environmental conditions.
 
 **Rule-based Access Control.** Rules define permissions from conditions and actions, which allows finer control than roles alone. A rule can use the time of day, the user's location, or other dynamic factors.
 
-**Permission tickets.** Authorization tokens issued for a specific resource or a specific action. They can be time limited, granting temporary access based on the permissions the ticket carries.
+**Permission tickets.** Authorization tokens are issued for a specific resource or a specific action. They can be time limited, granting temporary access based on the permissions the ticket carries.
 
 > [!warning] Two of these share the abbreviation RBAC
 > Role-based and Rule-based are both written RBAC, and they are different models. If someone says RBAC without qualifying it they almost always mean **Role**-based. Say "rule-based" in full when you mean the other one.

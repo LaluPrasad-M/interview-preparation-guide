@@ -7,3 +7,4 @@ vault/.obsidian/plugins/*/data.json
 
 # Raw dumps, local only. Reference material for note conventions, not shared notes.
 _inbox/
+vault/.obsidian/graph.json

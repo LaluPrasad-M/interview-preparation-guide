@@ -5,4 +5,5 @@
 status=0
 scripts/check-conflicts.sh || status=1
 scripts/check-style.sh || status=1
+scripts/check-links.sh || status=1
 exit $status
