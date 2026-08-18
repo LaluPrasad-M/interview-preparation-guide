@@ -40,3 +40,12 @@ Every visitor who opens that page gets the alert, because their browser reads th
 
 > [!tip] Input cleaning and output encoding are not the same rule
 > Clean on the way in so bad data never lands. Encode on the way out so data that did land is still harmless. You want both.
+
+**When you genuinely have to render HTML.** Some fields really are rich text, so encoding everything is not an option.
+Run it through a sanitiser such as DOMPurify, which parses the HTML and drops scripts, event handlers and anything else that can execute, then render the result.
+
+> [!warning] dangerouslySetInnerHTML is named that for a reason
+> In React, that prop hands your string straight to the browser as markup. It is safe only when the string has already been sanitised, and it is the standard way an XSS bug reaches a React app.
+
+**Why this decides where you keep a token.** A successful XSS runs your own JavaScript, so it can read `localStorage.getItem("token")` and post it anywhere.
+That is the whole argument for an HttpOnly cookie, which script cannot read at all, see [[jwt]].

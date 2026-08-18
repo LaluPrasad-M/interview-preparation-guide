@@ -24,6 +24,7 @@
 | max in each window | deque |
 | minimum capacity or speed | binary search on the answer |
 | max subarray sum | Kadane |
+| max product subarray | Kadane variant, tracking both running max and running min |
 | schedule, allocate, intervals | greedy |
 | frequency | hash map |
 

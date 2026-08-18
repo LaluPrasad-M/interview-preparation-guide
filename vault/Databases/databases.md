@@ -39,6 +39,7 @@
 | [[redis-use-cases]] | the ten use cases, cache aside in Node, and the lock that stops a stampede |
 | [[caching-problems]] | stampede, avalanche, penetration, invalidation, hot keys, eviction, the 20 percent hit ratio framework |
 | [[redis-cluster]] | 16384 hash slots, why it is not classic consistent hashing |
+| [[redis-internals]] | why single-threaded is fast, MULTI/EXEC against a real transaction, SLOWLOG-first debugging |
 
 ---
 

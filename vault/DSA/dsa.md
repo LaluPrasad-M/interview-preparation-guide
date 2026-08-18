@@ -47,6 +47,7 @@
 | [[recursion-patterns]] | pre order, in order, post order, and post plus global |
 | [[lowest-common-ancestor]] | why a BST allows a top down solution and a plain tree does not |
 | [[bfs-and-dfs]] | which traversal to reach for, and the number of islands walkthrough |
+| [[bfs-template]] | the one skeleton, levels, visited timing, flood fill and shortest path on a grid |
 
 ---
 

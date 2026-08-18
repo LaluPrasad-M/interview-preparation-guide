@@ -183,6 +183,40 @@ Example: sliding window maximum.
 
 ---
 
+## Worked example: Find the Longest Equal Subarray
+
+You may delete at most `k` elements from the array. Find the longest subarray where every remaining element is equal, after deletion.
+
+**The trap.** This is not "longest subarray with at most k distinct", it is "longest subarray of one repeated value after deleting up to k of the others in between". The window holds mixed values; the deletions remove the non-majority ones.
+
+**The invariant.** Track a frequency map inside the window. `maxFreq` is the count of the most frequent value currently in the window. The window is valid when `windowSize - maxFreq <= k`, meaning the deletions needed to make everything equal to the majority value fit inside the budget.
+
+```js
+function longestEqualSubarray(nums, k) {
+  const freq = new Map();
+  let left = 0, maxFreq = 0, best = 0;
+
+  for (let right = 0; right < nums.length; right++) {
+    freq.set(nums[right], (freq.get(nums[right]) || 0) + 1);
+    maxFreq = Math.max(maxFreq, freq.get(nums[right]));
+
+    while (right - left + 1 - maxFreq > k) {
+      freq.set(nums[left], freq.get(nums[left]) - 1);
+      left++;
+    }
+
+    best = Math.max(best, right - left + 1);
+  }
+
+  return best;
+}
+```
+
+> [!tip] maxFreq is allowed to go stale
+> Shrinking the window never needs to recompute `maxFreq` downward. A stale, too-high `maxFreq` only makes the shrink condition stricter, which just means the window shrinks less than it could. Since `best` is only updated at the window's largest valid size ever reached, the stale value never produces a wrong answer, it only occasionally skips checking a window that would not have beaten the best anyway.
+
+---
+
 ## The one line summary
 
 Sliding window gives you "at most K" for free. If the problem asks for exactly K, convert it using the at most difference.

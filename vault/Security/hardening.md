@@ -18,6 +18,39 @@ Two details carry most of the security. The token has to expire, because a reset
 
 ---
 
+## Storing passwords
+
+You never store a password. You store proof that someone knew it.
+
+| Approach | Verdict |
+| --- | --- |
+| Plain text | never, one database leak is every account |
+| Encrypted | no, encryption can be reversed, and whoever holds the key holds every password |
+| Hashed with a salt | yes, this is the bar |
+| Hashed with a slow algorithm, bcrypt or argon2 | yes, and this is what production means by hashing |
+
+A hash cannot be reversed, so a leak gives an attacker nothing to log in with directly.
+A salt is a random value stored with each password, so two people using the same password get different hashes and one cracked hash does not unlock the others.
+Slow is the point: bcrypt is deliberately expensive, which makes guessing billions of candidates impractical rather than merely tedious.
+
+> [!tip] The recall line
+> Passwords are hashed, not encrypted. If you can decrypt it, so can whoever steals the key.
+
+Note the side effect on your service: bcrypt is CPU work on the libuv thread pool, so a login storm shows up as latency everywhere, see [[event-loop-lag]].
+
+---
+
+## Secrets
+
+| Never | Instead |
+| --- | --- |
+| Hardcoded in source | environment variables loaded at startup |
+| Committed to git, even once | a secret manager, for example AWS Secrets Manager or Vault |
+
+A secret that ever reached a git history is leaked, since rewriting history does not reach the clones and forks already out there. The fix is rotating the secret, not deleting the commit.
+
+---
+
 ## Rate limiting
 
 Set a threshold on how many requests a user or client may make in a given time window. It prevents abuse, blunts denial of service attacks, and keeps usage fair between callers.
@@ -29,6 +62,10 @@ Set a threshold on how many requests a user or client may make in a given time w
 | Fixed window | counts requests per fixed block of time, which is simplest and allows a burst at each boundary |
 
 That boundary burst is the reason the three differ: with a fixed window, a caller can spend its whole allowance at the end of one window and again at the start of the next, so twice the limit lands in a short space of time.
+
+Login, one time password and password reset endpoints get the tightest limits of all.
+Those are the ones worth attacking: brute force, credential stuffing with a leaked password list, or using your reset endpoint to send mail on someone's behalf.
+The distributed version, one limit shared across many servers, is in [[distributed-rate-limiter]].
 
 For retries on the client side of a limit, see [[exponential-backoff]].
 

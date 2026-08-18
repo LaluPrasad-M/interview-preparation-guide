@@ -34,11 +34,13 @@ How Node executes your code, loads it, and stops two things happening at once.
 | [[promises]] | all, allSettled, race, any, how errors travel through await, the cooking chain example |
 | [[modules]] | ES Modules against CommonJS, sync against async loading, the export footgun |
 | [[worker-threads]] | moving CPU heavy work off the main thread. Written from scratch, your notebook stops at the heading |
+| [[async-local-storage]] | carrying a request id through every async hop without passing it as an argument |
 | [[locks]] | mutex in one process, Redis lock across processes, table lock in the database |
 | [[puzzles-scheduling]] | 14 what does this print questions on the event loop, in two parts: basics and async await |
 | [[puzzles-promises]] | 15 combinator and error handling questions, in two parts: error handling and combinators |
 | [[production-prompts]] | six interview prompts: limiter, rate limiter, job queue, singleflight, graceful shutdown |
 | [[middleware-recursion]] | why a loop cannot sequence middleware, with the proof |
+| [[node-profiling]] | memoryUsage, cpuUsage, monitorEventLoopDelay, CPU flamegraphs, heap snapshots, GC tracing |
 
 ---
 

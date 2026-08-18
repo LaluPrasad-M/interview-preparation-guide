@@ -135,3 +135,29 @@ Return the minimum number of jumps to reach `nums[n - 1]`. You may assume it is 
 | `[0]` | 0 | already at the last index |
 
 Constraints: `1 <= nums.length <= 10^4`, `0 <= nums[i] <= 1000`, and reaching the end is guaranteed.
+
+---
+
+## The solved inventory, by pattern
+
+Everything already solved once, so revision starts from what exists rather than from a blank list. Pick one row, rebuild it from scratch, move on.
+
+| Pattern | Problems |
+| --- | --- |
+| Sliding window | Longest Substring Without Repeating Characters, Longest Repeating Character Replacement, Minimum Window Substring, Minimum Size Subarray Sum, Max Consecutive Ones, Max Consecutive Ones III, Fruit Into Baskets, Permutation in String, Find All Anagrams in a String, Maximum Number of Vowels in a Substring of Given Length, Maximum Sum of Distinct Subarrays With Length K, Subarray Product Less Than K, Binary Subarrays With Sum, Count Number of Nice Subarrays, Contains Duplicate II, Find the Longest Equal Subarray, Shortest Subarray with Sum at Least K |
+| Prefix sum | Subarray Sum Equals K, Find Pivot Index, Product of Array Except Self, Longest Well Performing Interval |
+| Two pointers | Two Sum II, 3Sum, Container With Most Water, Boats to Save People, Valid Palindrome, Is Subsequence, Merge Sorted Array, Remove Duplicates from Sorted Array, Find the Duplicate Number |
+| Hashing | Two Sum, Contains Duplicate, Valid Anagram, Group Anagrams, Longest Consecutive Sequence, Longest Common Prefix |
+| Intervals and greedy | Merge Intervals, Partition Labels, Minimum Absolute Difference |
+| Stack | Valid Parentheses, Min Stack, Evaluate Reverse Polish Notation, Asteroid Collision |
+| Monotonic stack | Daily Temperatures, Next Greater Element I, Car Fleet |
+| Binary search | Binary Search, Search in Rotated Sorted Array, Find Minimum in Rotated Sorted Array, Search a 2D Matrix, Search a 2D Matrix II, Koko Eating Bananas, Capacity To Ship Packages Within D Days |
+| Linked list | Reverse Linked List, Linked List Cycle, Middle of the Linked List, Merge Two Sorted Lists, Remove Nth Node From End of List, Reorder List, LRU Cache |
+| Trees | Invert Binary Tree, Maximum Depth of Binary Tree, Diameter of Binary Tree, Balanced Binary Tree, Same Tree, Subtree of Another Tree, Binary Tree Level Order Traversal, Binary Tree Right Side View, Count Good Nodes in Binary Tree, Kth Smallest Element in a BST, Lowest Common Ancestor of a BST |
+| Grid and graph traversal | Number of Islands, Max Area of Island, Flood Fill, Rotting Oranges, Shortest Path in Binary Matrix, Valid Sudoku |
+| Backtracking | Subsets, Subsets II, Permutations, Combination Sum, Combination Sum II, Generate Parentheses |
+| Dynamic programming | Climbing Stairs, Min Cost Climbing Stairs, Fibonacci Number, House Robber, Coin Change, Maximum Subarray, Best Time to Buy and Sell Stock, Best Time to Buy and Sell Stock II, Palindromic Substrings |
+| Heap | Top K Frequent Elements |
+
+> [!tip] What the gaps in this table tell you
+> Heap has one entry and topological sort has none, which is exactly what the last two days should add, see [[revision-method]].

@@ -20,6 +20,12 @@ The one people get wrong is that Kubernetes does not schedule containers directl
 
 Restarting is the exception worth knowing. When a container inside a pod crashes, the kubelet restarts that container in place, according to the pod's `restartPolicy`, without recreating the pod or moving it to another node.
 
+### When one pod runs several containers
+
+Most pods run a single container, but a pod can hold more than one, sharing the same network namespace and storage volumes. The common reason is the **sidecar pattern**: a second container that supports the main one without being part of the application code itself, for example a log shipper reading the main container's log files, a proxy handling mTLS for a [[service-mesh|service mesh]], or a background file downloader keeping config in sync (see [[config-management]]).
+
+The containers in a pod always live and die together, scheduled onto the same node, restarted as a unit. That is the tradeoff: a sidecar gets simple shared access to the main container's filesystem and network, at the cost of the two being inseparable for scheduling and restart purposes.
+
 ---
 
 ## What Kubernetes actually does
@@ -67,6 +73,7 @@ Beyond the four building blocks, a handful of named objects give you control ove
 
 > [!tip] The flow, very important
 > A user request hits the ingress, routes to a service, which load balances traffic to pods managed by a deployment.
+> The deployment is not in that path. It decides which pods exist, and the service is what traffic actually goes through.
 
 **Deployment against service, the question that comes up.** The deployment manages the lifecycle of pods, the service abstracts their dynamic IPs to provide a stable network endpoint.
 
@@ -92,6 +99,17 @@ Kubernetes notices when something is broken and recreates the pod to match the d
 
 **Readiness probe.** Is the app ready to serve traffic? If it fails, Kubernetes removes it from the service load balancer until it recovers, which prevents 502 errors during startup. Pairing readiness probes with rolling updates is what gets you zero downtime deploys.
 
+### Worked example: the database goes down
+
+A pod's app is running fine, but its database dependency goes down. Does the pod get restarted?
+
+**If it uses a liveness probe that just checks the process is running,** no restart happens, the app process itself is healthy, it just cannot serve requests correctly. Restarting would not fix a dead database anyway.
+
+**If the readiness probe checks the database connection,** the readiness probe fails, Kubernetes pulls the pod out of the service's load balancer rotation, and it stops receiving traffic until the database recovers and the probe passes again. No 500s reach users, and no restart happens for a problem a restart cannot fix.
+
+> [!tip] The distinction in one line
+> Liveness answers "should this be restarted". Readiness answers "should this receive traffic right now". A downstream dependency being down is a readiness problem, not a liveness problem, restarting the pod would not help.
+
 ### Debugging CrashLoopBackOff
 
 1. Check pod status: `kubectl get pods`
@@ -101,6 +119,15 @@ Kubernetes notices when something is broken and recreates the pod to match the d
 5. Check service routing: is traffic reaching the pods correctly?
 
 **What happens when a whole node fails, not just a container?** A crashed container is restarted in place by the kubelet, per the restarting exception above. A dead node is different: the kubelet on it stops responding, the master node notices, and reschedules those pods onto healthy nodes.
+
+| What breaks | What Kubernetes does |
+| --- | --- |
+| One pod crashes | restarts it |
+| Every pod crashes | keeps recreating them, and keeps failing if the cause is in your image or config |
+| A node dies | reschedules its pods onto healthy nodes |
+
+> [!tip] The line worth remembering
+> Kubernetes heals pods, not machines. It will restart your app all day, and it will never fix the bad config that is killing it.
 
 ---
 
@@ -115,8 +142,28 @@ Scaling Kubernetes is not always the answer. Sometimes the bottleneck is the dat
 | Cluster autoscaler | scales nodes | HPA scales pods, the cluster autoscaler adds nodes when pods are pending |
 | KEDA, event driven | scales on external metrics | KEDA scales based on business events, like Kafka lag or queue depth |
 
+Scaling by hand is one command, and it is what HPA automates:
+
+```bash
+kubectl scale deployment my-app --replicas=5
+```
+
+**When VPA is the right choice.** It suits an old application that keeps state in memory, or anything that does not get faster by running more copies of it. The cost is that the pod usually has to restart to pick up the new limits, so it is not a live fix during an incident.
+
+**What KEDA scales on.** Kafka lag, RabbitMQ queue length, or an SQS backlog. Use it when the real measure of load is how much work is waiting rather than how busy the CPU is.
+
 > [!tip] The scaling chain reaction
 > Traffic spikes, HPA adds pods, nodes run out of capacity so pods stay pending, the cluster autoscaler provisions new nodes, and KEDA scales consumers based on Kafka lag.
+
+### Before you scale, find the bottleneck
+
+Read these first, and say so in an interview:
+
+CPU, memory, request rate, latency, error rate, Kafka lag, queue depth, pod restarts, node utilisation.
+
+If the queue is growing while CPU sits low, more pods will not help.
+The fix might be a cache, async processing, a queue in front, or read replicas on the database, none of which are Kubernetes settings.
+More on reading those numbers in [[where-to-look-by-component]].
 
 ---
 
@@ -135,6 +182,8 @@ Scaling Kubernetes is not always the answer. Sometimes the bottleneck is the dat
 ## Interview questions
 
 **What is etcd?** The highly available key value store acting as Kubernetes' brain, storing the entire cluster state.
+
+**What is the kubelet?** The agent running on every node. It takes the pods assigned to that node, starts their containers, restarts them when they crash, and reports back. When a node goes silent, it is the kubelet that stopped answering.
 
 ### Phrases to drop
 

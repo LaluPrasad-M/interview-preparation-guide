@@ -12,3 +12,4 @@
 | [[api-design-fundamentals]] | design flow, resources, pagination, filtering, sorting |
 | [[api-security-and-observability]] | auth, validation, injection, error handling, observability, versioning |
 | [[api-design-advanced]] | state machines, concurrency, idempotency, failure paths, distributed systems |
+| [[rest-vs-rpc-vs-graphql]] | resource-centric against action-centric against client-centric, and when each wins |

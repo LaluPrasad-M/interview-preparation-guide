@@ -31,6 +31,19 @@ Prevent race conditions across multiple service instances.
 
 Mention the Redlock algorithm even if you would not implement it.
 
+> [!warning] Only the lock's owner should release it
+> `DEL key` alone can release a lock someone else already re-acquired, if your own lock expired under load before you finished. The safe unlock checks a unique lock value before deleting, atomically, with a Lua script:
+>
+> ```lua
+> if redis.call("get", KEYS[1]) == ARGV[1] then
+>   return redis.call("del", KEYS[1])
+> else
+>   return 0
+> end
+> ```
+>
+> `ARGV[1]` is a random value your process generated when it acquired the lock. Without this check, deleting by key alone can release a lock that now belongs to a different client.
+
 ---
 
 ## 3. Rate limiting and throttling
@@ -42,6 +55,13 @@ Protect APIs from abuse and overload: login attempts, OTP requests, public APIs,
 ```text
 API Gateway -> Redis -> Allow / Reject
 ```
+
+**Token bucket, the actual data model.** A hash per limited key holding two fields, `tokens` (current count) and `lastRefill` (timestamp). On each request: compute tokens to add based on elapsed time since `lastRefill`, cap at bucket size, decrement one if available, else reject. Doing this atomically needs a Lua script, since it is a read-then-write.
+
+> [!tip] Fail open, not closed, if Redis itself is down
+> If the rate limiter's Redis instance is unreachable, the safer default is usually to let the request through rather than reject everything, since a rate limiter outage should not become a full outage of the API it was protecting. Log the failure and alert, do not silently allow it forever.
+
+Limiting by IP alone is easy to defeat behind a shared NAT or a proxy. Combining IP with a user or API key, and limiting on the pair, catches abuse without punishing every user behind the same office network.
 
 ---
 
@@ -81,6 +101,9 @@ Build leaderboards with atomic operations on sorted data, using `INCR` and sorte
 
 **Examples.** Top users, most viewed items, real time metrics. See [[realtime-leaderboard]].
 
+> [!tip] A single counter key becomes a hot key at high write volume
+> Sharding a counter into `counter:{id}:0` through `counter:{id}:9`, incrementing a random shard per write, and summing all shards on read spreads the write load across multiple keys instead of one. Worth it only once a single counter key is measurably the bottleneck, not by default.
+
 ---
 
 ## 8. Idempotency handling
@@ -100,6 +123,20 @@ Change behaviour without redeploying: enabling and disabling features, gradual r
 ## 10. Service coordination and metadata
 
 Keep lightweight shared state: active workers, heartbeats, job ownership, shard assignments.
+
+---
+
+## The production rules
+
+Seven rules that decide whether Redis helps you or takes you down with it.
+
+- Redis is fast, not free. Every call is still a network hop.
+- Every key gets a TTL, unless you can name the thing that deletes it.
+- Invalidating a cache is harder than filling one, so design that part first.
+- Redis must be allowed to fail. A cache outage should degrade the service, not stop it.
+- Prefer eventual consistency. Reach for strict correctness only where the money is.
+- Separate the workloads. Cache, sessions and locks on the same instance means one eviction storm takes all three.
+- Never assume Redis is available. Treat it as optional infrastructure, never a hard dependency.
 
 ---
 

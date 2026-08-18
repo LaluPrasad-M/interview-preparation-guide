@@ -126,6 +126,12 @@ Suppose the application uses `bcrypt.hash(...)` heavily. Traffic spikes, thousan
 > [!warning] Thread pool saturation looks like a DB issue
 > Symptoms are API latency rising, so engineers immediately inspect PostgreSQL, Redis and Kafka. The actual problem may be libuv thread pool saturation. A classic senior level debugging insight.
 
+The giveaway is CPU sitting at 30 percent, event loop lag low, and latency still high.
+Four threads are busy and the rest of the jobs are queued behind them, so nothing looks overloaded anywhere.
+
+The immediate lever is `UV_THREADPOOL_SIZE`, an environment variable read at startup, for example `UV_THREADPOOL_SIZE=32`.
+It buys headroom, it does not remove the work, so the real fix is usually moving that work off the request path entirely.
+
 ### Metrics you should watch
 
 For Node.js services, do not stop at CPU and memory. Also monitor event loop lag, GC duration, heap usage, open handles, pending promises, active requests, socket count and thread pool utilisation. These often reveal problems much earlier.

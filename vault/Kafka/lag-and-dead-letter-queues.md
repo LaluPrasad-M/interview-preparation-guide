@@ -7,6 +7,14 @@
 
 ## The lag investigation framework
 
+Lag is one subtraction per partition:
+
+```text
+lag = latest offset the producer wrote - last offset the consumer committed
+```
+
+So lag is a count of messages waiting, not a duration. It is what autoscalers watch, since it rises the moment consumption falls behind production, see [[kubernetes-basics]] for KEDA scaling on it.
+
 The interview question is simply "Kafka lag is increasing". First determine: are offsets moving?
 
 ### Case 1, offsets are not moving
@@ -73,6 +81,60 @@ After moving a message to the DLQ, commit the original offset and continue proce
 > A DLQ improves throughput by isolating permanently failing messages.
 
 DLQs are not built into Kafka. They are implemented as separate topics.
+
+---
+
+## The message envelope
+
+A message routed toward a DLQ usually carries more than the original payload, so whoever inspects it later has enough context to act:
+
+```json
+{
+  "payload": { "customerId": null },
+  "originalTopic": "orders",
+  "originalPartition": 3,
+  "originalOffset": 100,
+  "failureReason": "customerId is required",
+  "retryCount": 3,
+  "firstFailedAt": "2026-08-10T09:00:00Z"
+}
+```
+
+Without the envelope, a DLQ is just a pile of payloads with no way to tell why they failed or where they came from.
+
+---
+
+## Retryable versus permanent failures
+
+Not every failure belongs in the same retry topic chain. Before retrying, classify the failure:
+
+| Failure type | Example | Route to |
+| --- | --- | --- |
+| Retryable | downstream timeout, temporary unavailability | the retry topic chain, then DLQ if retries exhaust |
+| Permanent | malformed payload, missing required field | straight to DLQ, retrying changes nothing |
+
+Retrying a permanent failure wastes the retry chain's time budget and delays the messages behind it for no benefit, since the outcome cannot change.
+
+---
+
+## Broker level versus application level DLQs
+
+| | Broker level | Application level |
+| --- | --- | --- |
+| Example | SQS, RabbitMQ | Kafka |
+| DLQ is | a native feature you configure | a topic you create and route to yourself |
+| Who decides "retried enough" | the broker, via a max-receive-count setting | your consumer code |
+
+Kafka has no built-in DLQ. The retry topic chain and the DLQ itself, shown above, are both topics your application creates and manages, with your consumer code deciding when a message has failed enough times to stop retrying.
+
+---
+
+## Consuming and replaying the DLQ
+
+A DLQ is not a place messages go to disappear. Once the underlying issue is fixed, for example a downstream service recovers or a bug is patched, messages are replayed by consuming from the DLQ topic and republishing to the original topic, or a dedicated replay consumer processes them directly.
+
+> [!tip] The interview line
+> A DLQ is not the end of the message's life, it is a parking spot until the failure is understood, with enough information in the envelope to fix the root cause and enough structure to replay it safely afterward.
 
 ---
 

@@ -35,3 +35,16 @@ The flow is short enough to recite:
 4. The server validates the token and authorises the operation.
 
 The reason this is worth doing is that step 4 needs no lookup of the user's password. With a self contained token, it often needs no lookup at all. The token carries the proof, which is what lets the same token be checked by many services. See the microservices section in [[authorization]].
+
+---
+
+## Access token versus refresh token
+
+| | Access token | Refresh token |
+| --- | --- | --- |
+| Lifespan | short, minutes | long, days or weeks |
+| Used for | authorizing each request | getting a new access token without a fresh login |
+| Sent with | every API call | only to the token refresh endpoint |
+| If stolen | damage is capped by the short expiry | far more dangerous, valid much longer |
+
+The short access token expiry limits the damage window if one leaks. The refresh token exists so the user is not forced to log in again every few minutes, but because it is longer-lived and more dangerous if stolen, it is used far less often and typically stored more carefully. See [[jwt]] for rotation and reuse detection on the refresh token itself.

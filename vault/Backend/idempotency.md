@@ -15,15 +15,19 @@ Without idempotency you get duplicate orders, double payments and corrupt state.
 
 ## HTTP methods
 
-| Method | Idempotent | Notes |
-| --- | --- | --- |
-| GET | yes | read only |
-| PUT | yes | replaces the resource |
-| DELETE | yes | deleting twice gives the same result |
-| POST | no | must be made idempotent |
-| PATCH | no | depends on implementation |
+| Method | Idempotent | Safe | Cacheable | Notes |
+| --- | --- | --- | --- | --- |
+| GET | yes | yes | yes | read only, changes nothing on the server |
+| PUT | yes | no | no | replaces the resource, so the same request gives the same final state |
+| DELETE | yes | no | no | deleting twice gives the same result |
+| POST | no | no | no | two POSTs create two resources |
+| PATCH | no | no | no | depends on implementation, `set status = paid` is idempotent, `add 10 to balance` is not |
+
+Safe means the request does not change server state, which is why a browser or crawler will fire a GET without asking and will not fire a POST.
+Cacheable follows from that: a proxy or [[cdn|CDN]] can hold a GET response, and has nothing safe to hold for the rest.
 
 POST is the main problem in production systems.
+The properties above are what decide whether a retry is allowed at all, and retries are not optional: clients time out, load balancers resend, and Kafka delivers at least once.
 
 ---
 

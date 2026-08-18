@@ -74,6 +74,35 @@ See [[what-breaks-in-production]] for the ten incident buckets.
 
 ---
 
+## The fundamentals syllabus
+
+Two lists to tick off, so a gap shows up here rather than in the room.
+
+### Node.js
+
+| Area | Items |
+| --- | --- |
+| Runtime | event driven and non blocking I/O, the single thread and how it still serves many requests, what libuv does, blocking against non blocking code, CPU bound against I/O bound work |
+| Event loop | the phases, microtasks against macrotasks, `promise.then` against `setTimeout`, `process.nextTick`, what happens at an `await`. See [[event-loop]] |
+| Async | callbacks against promises against `async`/`await`, error handling in async code, sequential against parallel, limiting concurrency, retries with backoff, timeouts. See [[promises]] |
+| Memory and performance | closures holding memory, the usual leak causes, garbage collection at a high level, streaming against buffering. See [[node-profiling]] and [[memory-and-queue-collapse]] |
+| Process and OS | `process`, `SIGTERM` and `SIGINT`, graceful shutdown, worker threads against cluster and when each applies. See [[worker-threads]] |
+
+### Backend
+
+| Area | Items |
+| --- | --- |
+| Networking and HTTP | what happens when you hit a URL, DNS then TCP then TLS then HTTP, TCP against UDP, methods and idempotency, status codes including 401 against 403 and 429, the headers that matter. See [[request-lifecycle]], [[http-status-codes]] and [[idempotency]] |
+| APIs and contracts | the request and response lifecycle, where validation belongs, versioning, staying backward compatible, REST against RPC against GraphQL. See [[api-design]] and [[rest-vs-rpc-vs-graphql]] |
+| Databases | tables and indexes, ACID, transactions, the N plus one problem, document modelling, embed against reference, consistency trade offs. See [[joins]], [[indexing]] and [[embedding-and-referencing]] |
+| Pagination | offset based against cursor based, and what each costs. See [[api-design-advanced]] |
+| Caching | why it works, cache aside, TTL against eviction, LRU, stampede. See [[caching-problems]] |
+| Security | authentication against authorization, JWT basics, cookies against headers, CSRF against XSS, SQL and NoSQL injection, rate limiting the auth endpoints, secret management. See [[authentication]], [[jwt]], [[cross-site-request-forgery]] and [[hardening]] |
+| Reliability | retry against fail fast, idempotency keys, partial failures, circuit breakers, timeouts on every external call. See [[timeouts-and-circuit-breakers]] |
+| Observability | logs against metrics against traces, correlation ids, health checks, alerts against dashboards. See [[prometheus-grafana-loki]] and [[incident-triage]] |
+
+---
+
 ## The 48 hour sprint list
 
 A finite, fixed list for a short loop. Breadth across DSA patterns, plus the eight designs that cover core backend scalability.

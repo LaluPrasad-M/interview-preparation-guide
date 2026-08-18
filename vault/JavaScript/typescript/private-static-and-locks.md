@@ -20,6 +20,9 @@ When you make something static, it belongs to the class. It exists in memory the
 
 A **singleton** needs both. `private` stops anyone outside reaching the instance. `static` puts the instance on the class, so you can get at it without first creating an object.
 
+> [!warning] An instance cannot see a static member
+> `User.platform` reads the static field. `user1.platform` is `undefined`, because the field never existed on the object. The same rule makes `static` right for utilities and factory helpers like `User.createGuest()`, which build an object rather than needing one.
+
 ---
 
 ## Synchronous code needs no locks

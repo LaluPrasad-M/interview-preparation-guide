@@ -179,3 +179,37 @@ When index == end:
 > A partition ends only when the current index reaches the maximum last occurrence of all characters seen so far.
 
 Problem link: [Partition Labels](https://leetcode.com/problems/partition-labels/).
+
+---
+
+## Worked example: Gas Station
+
+`n` gas stations in a circle. `gas[i]` is fuel gained at station i, `cost[i]` is fuel needed to reach station i+1. Find the starting station that lets you complete the full circle, or return -1 if none exists.
+
+**The brute force.** Try every starting station and simulate the full lap, O(n^2).
+
+**The greedy insight.** If the total gas across the whole circle is less than the total cost, no starting point works, full stop. If total gas is at least total cost, exactly one starting point works, and you can find it in one pass.
+
+**Why a failing point eliminates a whole range.** Walk from station 0, tracking a running tank total. The moment the tank goes negative at station `i`, no station between the current `candidateStart` and `i` (inclusive) can be the answer either. Any of them would arrive at station `i` with an equal or smaller tank than starting from `candidateStart` did, since starting later only means less gas accumulated by the time you reach `i`. So the next candidate becomes `i + 1`, and everything up to `i` is eliminated in one step, not retried individually.
+
+```js
+function canCompleteCircuit(gas, cost) {
+  let totalTank = 0, currentTank = 0, candidateStart = 0;
+
+  for (let i = 0; i < gas.length; i++) {
+    const delta = gas[i] - cost[i];
+    totalTank += delta;
+    currentTank += delta;
+
+    if (currentTank < 0) {
+      candidateStart = i + 1;
+      currentTank = 0;
+    }
+  }
+
+  return totalTank >= 0 ? candidateStart : -1;
+}
+```
+
+> [!tip] The one line takeaway
+> A negative running tank at station `i` proves every station from the current candidate through `i` is disqualified, so the next candidate jumps straight past all of them instead of being tested one by one.

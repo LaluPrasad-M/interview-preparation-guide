@@ -78,6 +78,7 @@
 | [[config-management]] | the sidecar as a background file downloader |
 | [[multi-region-cart]] | active active with tombstones and last write wins |
 | [[oauth-token-lifecycle]] | proactive scheduler plus reactive interceptor, and promise sharing |
+| [[distributed-rate-limiter]] | one limit across many servers, Lua for correctness, fail open when Redis is gone |
 
 ### Payments and ledgers
 
@@ -97,6 +98,7 @@
 | [[campaign-messaging-engine]] | tiered topics beat a single partition key |
 | [[matchmaking-fanout]] | one event becomes 500 independent tasks |
 | [[flash-sale-inventory]] | Redis as a concurrency layer, not a cache |
+| [[high-throughput-counter]] | keep the database off the write path, aggregate in Redis, sync in batches |
 | [[circuit-breaker]] | the state machine, where state lives, four production failures |
 
 ### Webhooks
@@ -149,6 +151,7 @@ High volume in, aggregates out, and knowing when it breaks.
 | Note | Covers |
 | --- | --- |
 | [[checkout-worked-example]] | four patterns wired together, plus the pattern mapping table |
+| [[rate-limiter]] | token bucket and sliding window as small classes, and which to pick |
 | [[ride-booking]] | the six steps end to end, the request trace, the composition root, in four parts: entities and states, strategies and services, assembly |
 
 ---

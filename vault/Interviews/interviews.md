@@ -21,6 +21,7 @@
 | --- | --- |
 | [[dsa-problems]] | problems paired with the one sentence that unlocks each |
 | [[machine-coding]] | seven levels of LLD problems with their mental triggers |
+| [[revision-method]] | active recall, retrieval practice, and what not to do when revising |
 
 ---
 

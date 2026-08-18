@@ -26,6 +26,21 @@ When a new image is pushed to ECR, the running pods get replaced with the new ve
 
 ---
 
+## The same pipeline, named step by step
+
+The tools change between companies, the chain does not:
+
+1. A developer pushes to the repository, for example Bitbucket.
+2. A webhook on that push triggers the build server, for example Jenkins.
+3. Jenkins pulls the code, runs the tests, and builds the Docker image.
+4. Jenkins pushes the image to the registry.
+5. Jenkins updates the Kubernetes deployment to point at the new image tag.
+6. Kubernetes pulls the image and starts a rolling update, so the new version goes live without downtime.
+
+Step 5 is the one people skip when they describe this out loud, and it is the answer to "who actually triggers the rollout".
+
+---
+
 ## The same thing in more detail
 
 **Creating Docker images.** The image holds the application code, the runtime, the libraries and every dependency needed to run it. That is what makes it behave the same on your machine and in the cluster.

@@ -101,6 +101,27 @@ Throttling caps execution: handle a scroll event at most once every 200 ms.
 **API caching.** Use TanStack Query or SWR to prevent repeated fetches.
 They provide caching, retries, and deduplication.
 
+**Context re-renders.** Every consumer of a context re-renders when its value changes, even the ones that only read a field that did not change.
+Two fixes: split one big context into several small ones, and memoise the value you pass to the provider so a new object is not created on every parent render.
+
+```jsx
+const value = useMemo(() => ({ user, theme }), [user, theme]);
+```
+
+**Images.** A slow first paint is often images, not JavaScript.
+Add `loading="lazy"` to anything below the fold, serve sized versions rather than one huge file, compress, and put a [[cdn|CDN]] in front.
+
+**Fix them in this order.**
+
+1. Measure with the React DevTools Profiler.
+2. Find the renders that should not be happening.
+3. Apply `React.memo`, `useMemo` and `useCallback` where the profiler pointed.
+4. Virtualise long lists and lazy load routes.
+5. Debounce typing, throttle scroll, cache API calls, split contexts.
+
+Step 1 is the answer to the question.
+Everything after it is guesswork if you skip it.
+
 > [!warning] The optimisation caveat
 > Do not use `useMemo` and `useCallback` everywhere.
 > They have their own overhead.

@@ -50,6 +50,28 @@ Node C -> slots 10001-16383
 
 **The request flow.** A client wants `GET user:1`. Redis calculates slot 500, which belongs to node A, so the request goes to A.
 
+Note what the key is doing here: the key itself is the shard key.
+There is nothing separate to configure, and the split is by hash, not by range, so `user_id` 1 to a million do not land together on one node the way they would in a range sharded database.
+That is exactly why the load spreads evenly.
+
+---
+
+## Key tags, when related keys must share a node
+
+A command touching two keys only works if both keys live on the same node, which by default they will not.
+Wrapping part of the key in braces tells Redis to hash only that part:
+
+```text
+user:{123}:profile
+user:{123}:orders
+```
+
+Both hash on `123`, so both land in the same slot and the same node.
+That is what makes a multi key operation, a transaction, or a Lua script over both keys legal at all.
+
+Use it deliberately.
+Tagging too much on one value pushes all of that user's data onto one node, which is how you build a [[hot-key|hot key]] by hand.
+
 ---
 
 ## Adding a node
@@ -77,6 +99,14 @@ Redis typically runs a primary with a replica. If the primary dies, the replica 
 
 > [!warning] The real reason Redis survives failures
 > It is replication and failover, not consistent hashing itself.
+
+---
+
+## A hot key still breaks a cluster
+
+Hash slots spread keys across nodes, but one specific key, for example a viral post's like counter, still lives on exactly one node no matter how many nodes the cluster has. If that key gets a disproportionate share of the traffic, the node holding its slot saturates while the rest of the cluster sits idle. Adding more nodes does not fix this, since the hot key does not get smaller or move just because more nodes exist to hold it.
+
+The fix is application level, not cluster level: shard the hot key itself into several keys (see the sharded counter approach in [[redis-use-cases]]), or cache its value at a layer in front of Redis entirely.
 
 ---
 

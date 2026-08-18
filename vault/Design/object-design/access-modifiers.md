@@ -47,3 +47,34 @@ The mistake in the other direction is a class where everything is `public`, whic
 > ```
 
 In Java or C# the modifier is enforced by the runtime, so the distinction does not arise there. It is worth knowing which kind of language you are talking about when an interviewer asks whether `private` is secure.
+
+---
+
+## Getters and setters
+
+A private field with no way to read or write it from outside is often too strict. Getters and setters give controlled access back, without dropping encapsulation, since you can validate or transform the value on the way in or out.
+
+```typescript
+class Account {
+  #balance: number;
+
+  constructor(balance: number) {
+    this.#balance = balance;
+  }
+
+  get balance(): number {
+    return this.#balance;
+  }
+
+  set balance(value: number) {
+    if (value < 0) throw new Error("Balance cannot go negative");
+    this.#balance = value;
+  }
+}
+
+const acc = new Account(100);
+acc.balance = 50;         // runs the setter, validates first
+console.log(acc.balance); // runs the getter
+```
+
+The caller writes `acc.balance = 50` like a plain property assignment, but the setter's validation still runs. That is the whole point: the external interface stays simple while the internal rule gets enforced.

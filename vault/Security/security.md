@@ -11,11 +11,14 @@
 | --- | --- |
 | [[authentication]] | the seven methods, access tokens, and the four step token flow |
 | [[authorization]] | role, attribute and rule based access control, permission tickets, microservices, least privilege |
-| [[hardening]] | password reset, rate limiting with three algorithms, session data in cookies |
+| [[hardening]] | password reset, storing passwords, secrets, rate limiting with three algorithms, session data in cookies |
 | [[encryption]] | symmetric against asymmetric, why real systems use both, digital signatures |
 | [[jwt]] | the three parts, the signature maths, the end to end flow, and the four standard questions |
 | [[webhook-signatures]] | HMAC, the raw body trap, timing attacks, replay attacks |
 | [[cross-site-scripting]] | the attack and the defences |
+| [[oauth]] | delegated authorization, the four actors, and how it differs from JWT |
+| [[cors]] | the same origin policy, and why it is not an API security feature |
+| [[cross-site-request-forgery]] | riding a victim's cookies, the defences, and the storage tradeoff with JWT |
 
 ---
 

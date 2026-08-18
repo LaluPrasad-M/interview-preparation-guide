@@ -45,6 +45,21 @@ const cancellable = function (fn, args, t) {
 > [!warning] That first call is the difference
 > `setInterval` alone waits `t` before its first run. Calling `fn` up front means the caller sees a result straight away and then every `t` after that. Verified: a 50ms interval cancelled at 170ms fires four times with the leading call and three without it. If a question says "call it now and then every second", that line is what it is testing.
 
+> [!warning] An interval does not keep to its schedule
+> `setInterval(fn, 1000)` means "no sooner than every second", not "exactly every second". If `fn` takes two seconds, the runs do not overlap, they drift, and the gap you asked for is gone. So intervals are fine for metrics collection, health checks, cache cleanup and polling, and wrong for anything that needs to happen at a precise time. For that, use a scheduler that reads a clock, see [[oauth-refresh-scheduler]].
+
+When the work itself is slow, schedule the next run at the end of the last one instead:
+
+```js
+function loop() {
+  work();
+  setTimeout(loop, 1000);        // one second after work finishes, not after it started
+}
+loop();
+```
+
+That gives a real gap between runs, which `setInterval` cannot promise once `work` takes longer than the interval.
+
 ---
 
 ## Timeout wrapper

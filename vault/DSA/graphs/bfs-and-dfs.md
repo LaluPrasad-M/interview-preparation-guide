@@ -17,6 +17,8 @@
 
 **When to use it in an interview.** If a prompt asks for minimum steps, shortest route, or fewest jumps, default to BFS immediately.
 
+The code itself, plus the level and visited rules that make it correct, is in [[bfs-template]].
+
 ---
 
 ## Depth first search, the maze runner

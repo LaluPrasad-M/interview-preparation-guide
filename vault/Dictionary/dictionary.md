@@ -41,6 +41,7 @@
 | [[oidc]] | a workload requests a short lived identity token from a trusted issuer at run time |
 | [[oltp-and-olap]] | OLTP serves live transactional traffic, OLAP serves large analytical queries |
 | [[out-of-memory-kill]] | the kernel kills a process outright when it exceeds its memory limit |
+| [[p99-latency]] | the response time only the slowest 1 percent of requests exceed |
 | [[poison-message]] | a message that consistently fails processing no matter how many times it is retried |
 | [[qps]] | the number of requests a system handles each second |
 | [[quorum]] | a write or read counts as successful once enough replicas acknowledge it, not all of them |

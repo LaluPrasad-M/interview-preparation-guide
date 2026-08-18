@@ -36,6 +36,24 @@ await axios.post(
 );
 ```
 
+A timeout is not an error your code can ignore, it arrives as one. With axios it surfaces as `err.code === "ECONNABORTED"`, so the handler can turn it into something the caller understands rather than letting a generic 500 hide the fact that a dependency never answered.
+
+### Per-dependency timeout defaults are not safe defaults
+
+Every client library ships a different default, and several ship none at all.
+
+| Library | Default | Configure with |
+| --- | --- | --- |
+| axios | no timeout | `{ timeout: 1000 }` |
+| native `fetch` | no timeout | `AbortController` plus `setTimeout(() => controller.abort(), ms)`, then `fetch(url, { signal })` |
+| Mongoose | 30s server selection, no query timeout | `serverSelectionTimeoutMS`, `socketTimeoutMS`, and `.maxTimeMS()` per query |
+| mysql2 | no timeout | `connectTimeout` in the pool config, `timeout` per query |
+| ioredis | no timeout | `connectTimeout`, `commandTimeout` |
+| kafkajs | broker-level defaults, often generous | `requestTimeout` on the producer and consumer config |
+
+> [!warning] "No timeout" is not neutral, it is a maximum-length hang
+> Native `fetch` and mysql2 do not merely default to something generous, they default to none. A dependency that never returns leaves that call open indefinitely, holding a socket and a pending promise the whole time. This is the same failure mode `axios.post` without a `timeout` produces above, just easier to miss because it does not look like a config omission when the library never asked for one.
+
 ### Timeout ambiguity
 
 The caller times out at 1 second but the downstream completes at 1.2 seconds. The caller thinks the request failed while the downstream already succeeded, creating uncertain distributed state.

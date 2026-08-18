@@ -16,6 +16,14 @@
 
 ---
 
+## Networking
+
+| Note | Covers |
+| --- | --- |
+| [[request-lifecycle]] | DNS, then TCP, then TLS, then HTTP for one request, plus TCP against UDP |
+
+---
+
 ## Realtime
 
 | Note | Covers |

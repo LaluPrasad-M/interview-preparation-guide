@@ -91,6 +91,17 @@ class PayPalPayment extends Payment {
 }
 ```
 
+### The super() cheat sheet
+
+| Rule | Detail |
+| --- | --- |
+| Must call `super()` first | before touching `this` in a subclass constructor |
+| Skips the constructor entirely | a class with no constructor still calls the parent's automatically |
+| Passes arguments through | `super(id)` forwards to the parent constructor's parameters |
+| Calls a specific method | `super.methodName()` reaches the parent's version, even if the child overrides it |
+| Not available outside constructors and methods | it only makes sense where "the parent version" has meaning |
+| Cannot read instance data | `super.name` is wrong, because `super` points at the parent's methods, not at the object. Use `this.name` |
+
 ---
 
 ## Polymorphism
@@ -107,6 +118,20 @@ function checkout(paymentMethod: IPayment) {
     paymentMethod.process();
 }
 ```
+
+### Why it matters beyond one function
+
+```ts
+const payments: IPayment[] = [
+  new CardPayment(),
+  new PayPalPayment(),
+  new CryptoPayment(),
+];
+
+payments.forEach(p => p.process());
+```
+
+None of this code knows or cares which concrete class each item is. Add a fourth payment type tomorrow and this loop does not change, which is the same idea OCP describes from the other direction: extend by adding, not by modifying what already works.
 
 ---
 

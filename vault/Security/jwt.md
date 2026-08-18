@@ -65,3 +65,28 @@ Because the server alone knows the secret key, a hacker cannot alter the payload
 | How do you log a user out if the server does not store the token? | This is the biggest flaw of JWT. Being stateless, the server cannot delete the token on its end. Standard practice is for the client to delete the token. For strict security you implement a server side blacklist of revoked tokens, which reintroduces the database bottleneck you were trying to avoid. |
 | What happens if the secret key is leaked? | A catastrophic breach. The attacker can generate valid signatures and mint their own admin tokens. You must rotate the secret key immediately, which invalidates every JWT in existence and forces all users to log in again. |
 | Why do we need an expiration time (`exp`)? | Because we cannot easily revoke them, JWTs must have a short lifespan, for example 15 minutes. If a token is stolen the attacker has only that window before the math considers it invalid. |
+
+---
+
+## Two more ways to invalidate a JWT
+
+The blacklist answer above reintroduces the database lookup JWT exists to avoid. Two alternatives avoid that:
+
+**Token versioning.** Store a `tokenVersion` number on the user record, and embed it in the JWT payload at issue time. On each request, compare the token's version to the current stored version, one cheap lookup or cache read, not a full blacklist table. To invalidate every token a user holds, for example on password change, increment `tokenVersion`. Every existing token now fails the comparison, in one write.
+
+**Refresh token rotation with reuse detection.** Each time a refresh token is used, issue a new one and invalidate the old one immediately.
+Now an already-invalidated refresh token turning up again means two parties hold the same token, so one of them stole it.
+The response is to revoke the whole token family, not just the one that was presented.
+
+---
+
+## Where to store the token
+
+| Storage | Exposed to XSS | Exposed to CSRF |
+| --- | --- | --- |
+| `localStorage` | yes, any injected script can read it directly | no |
+| HttpOnly cookie | no, JavaScript cannot read it | yes, sent automatically with matching-domain requests |
+
+Neither storage location is safe by default, each trades one attack class for the other. See [[cross-site-request-forgery]] for the full comparison against CORS and XSS.
+
+A common compromise: keep the access token in memory only, never persisted to storage at all, and keep the longer-lived refresh token in an HttpOnly, SameSite cookie. That limits an XSS payload to whatever is currently in memory rather than a token that survives a page reload, while still needing CSRF defences on the refresh endpoint itself.
