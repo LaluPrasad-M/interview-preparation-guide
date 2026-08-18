@@ -9,7 +9,7 @@ Shared Obsidian vault for interview preparation: DSA, JavaScript, design, databa
 The notes live in `vault/`, and everything else is repo plumbing. Open **`vault/`** as your Obsidian vault, not the repo root, so the sidebar shows notes rather than READMEs and shell scripts.
 
 ```text
-placement-notes/
+interview-preparation-guide/
   vault/            <- open this one in Obsidian
     _index.md       the map, every area links from here
     Dictionary/     every jargon word, explained once
@@ -47,7 +47,7 @@ This table is the only place files point at each other. Each file above is compl
 1. Install [Obsidian](https://obsidian.md) (desktop + phone, both free).
 2. Clone:
    ```bash
-   git clone git@github.com:LaluPrasad-M/placement-notes.git
+   git clone git@github.com:LaluPrasad-M/interview-preparation-guide.git
    ```
 3. Obsidian → **Open folder as vault** → pick the **`vault/`** folder inside the clone.
 4. Settings → Community plugins → Browse → install **Git** (`obsidian-git`). Set it up as:
