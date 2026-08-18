@@ -26,7 +26,7 @@ When a producer publishes a message, Kafka routes a copy of that message's parti
 
 ## Partitions against consumer groups, the cost divide
 
-**Partitions are the book.** Creating 5,000 partitions means creating thousands of physical hard drive directories, replicating them across the cluster, and managing constant leader elections if brokers crash. It is incredibly heavy.
+**Partitions are the book.** Creating 5,000 partitions means creating thousands of physical hard drive directories, replicating them across the cluster, and managing constant [[leader-election|leader elections]] if brokers crash. It is incredibly heavy.
 
 **Consumer groups are the bookmark.** A consumer group is just a tracking name and an integer, the offset. Kafka tracks this in memory and writes tiny updates to an internal topic. It is incredibly cheap.
 

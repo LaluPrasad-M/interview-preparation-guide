@@ -37,7 +37,7 @@ A topic is the sum of its partitions.
 | Offset | each message inside a partition gets a sequential number 0, 1, 2 and so on | consumers track where they are, which supports replay, fault tolerance and per partition ordering |
 | Broker | one server in a Kafka cluster that stores some partitions | Kafka scales horizontally by adding brokers |
 | Leader and followers | for each partition, one replica is leader and the rest are followers, and the leader handles all reads and writes | if the leader fails a follower is promoted, so no data loss and high availability |
-| In sync replicas (ISR) | the subset of replicas up to date with the leader | only healthy replicas are used for failover, preventing data loss on replica lag |
+| [[in-sync-replicas|In sync replicas (ISR)]] | the subset of replicas up to date with the leader | only healthy replicas are used for failover, preventing data loss on replica lag |
 | Segments and index files | each partition log is stored as a sequence of segment files such as `000000000.log` and `000000000.index` | efficient disk I/O, fast lookups, manageable file size |
 | Commit log | Kafka appends sequentially and old data stays until retention removes it | append only sequential writes make Kafka fast and simplify replay |
 | Consumer group and offsets | a set of consumers sharing the read load, each group tracking its own offset per partition | parallel, fault tolerant, replayable consumption |
@@ -100,7 +100,7 @@ Sequential disk writes, page cache utilisation, zero copy I/O, batching on both 
 
 ## Trade offs to watch
 
-Ordering is guaranteed only per partition, and messages across partitions are independent. Designing good partition keys matters, because bad keys create hot partitions. Stronger durability, meaning `acks=all` plus high replication, adds latency. Because Kafka retains logs, disk usage needs management through compaction or deletion policies.
+Ordering is guaranteed only per partition, and messages across partitions are independent. Designing good partition keys matters, because bad keys create [[hot-key|hot partitions]]. Stronger durability, meaning `acks=all` plus high replication, adds latency. Because Kafka retains logs, disk usage needs management through compaction or deletion policies.
 
 ---
 
@@ -118,7 +118,7 @@ Kafka is not a queue that deletes on consumption. Retention policies are time ba
 
 ## Common usage patterns
 
-Event sourcing, log aggregation, change data capture using Debezium, streaming ETL pipelines, microservice communication, and real time analytics.
+Event sourcing, log aggregation, change data capture using Debezium, streaming [[etl|ETL]] pipelines, microservice communication, and real time analytics.
 
 ---
 
@@ -137,7 +137,7 @@ Use idempotent producers to avoid duplicates. Use `acks=all` plus proper replica
 ## When to introduce Kafka
 
 > [!tip] The interview line
-> I would introduce Kafka when the workflow does not require immediate synchronous processing, the throughput is high, multiple downstream systems need the same event, and I want to decouple producers from consumers. Kafka also helps absorb traffic spikes, provides backpressure handling, improves fault isolation, and allows independent scaling of consumers.
+> I would introduce Kafka when the workflow does not require immediate synchronous processing, the throughput is high, multiple downstream systems need the same event, and I want to decouple producers from consumers. Kafka also helps absorb traffic spikes, provides [[backpressure]] handling, improves fault isolation, and allows independent scaling of consumers.
 
 ---
 

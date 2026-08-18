@@ -7,7 +7,7 @@
 
 ## Why direct connection fails
 
-Kafka hates consumers that constantly spin up and down, which is exactly what WebSocket servers do as they are added and removed. Every membership change triggers rebalancing storms that halt message processing.
+Kafka hates consumers that constantly spin up and down, which is exactly what WebSocket servers do as they are added and removed. Every membership change triggers [[rebalance-storm|rebalancing storms]] that halt message processing.
 
 See [[rebalancing]] for why the pauses happen.
 

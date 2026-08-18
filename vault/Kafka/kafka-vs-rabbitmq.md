@@ -26,7 +26,7 @@
 
 **3. Request and reply messaging.** RabbitMQ supports RPC style messaging better. Kafka is not ideal for RPC.
 
-**4. Fine grained acknowledgment.** Explicit ACK and NACK, dead letter queues, retry queues and per message TTL, all useful for transactional workflows.
+**4. Fine grained acknowledgment.** Explicit ACK and NACK, dead letter queues, retry queues and per message [[ttl|TTL]], all useful for transactional workflows.
 
 **5. Smaller scale systems.** It is often simpler operationally for medium throughput enterprise and internal systems.
 
@@ -42,7 +42,7 @@
 
 **3. Replayability.** Very important. Kafka retains events and consumers can replay old ones. RabbitMQ is not designed for replay centric architectures.
 
-**4. Event sourcing and CQRS.** It is excellent for rebuilding state, replaying events and audit trails. Huge in fintech.
+**4. Event sourcing and [[cqrs|CQRS]].** It is excellent for rebuilding state, replaying events and audit trails. Huge in fintech.
 
 **5. Independent consumer scalability.** Many consumer groups can independently process the same stream. An orders topic can feed analytics, fraud detection, a recommendation engine and the warehouse system, each keeping its own offset.
 

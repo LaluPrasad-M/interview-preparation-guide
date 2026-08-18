@@ -19,7 +19,7 @@ The interview question is simply "Kafka lag is increasing". First determine: are
 
 The producer rate exceeds the consumer rate.
 
-**Investigate.** Consumer throughput, producer throughput, P95 and P99 processing latency, database latency, external API latency, event loop lag, GC pressure, CPU utilisation, memory utilisation, hot partitions.
+**Investigate.** Consumer throughput, producer throughput, P95 and P99 processing latency, database latency, external API latency, event loop lag, GC pressure, CPU utilisation, memory utilisation, [[hot-key|hot partitions]].
 
 > [!tip] The interview line
 > First determine whether the consumer is making progress. If offsets are not moving, investigate blocked processing. If offsets are moving but lag is still growing, investigate throughput bottlenecks.
@@ -78,7 +78,7 @@ DLQs are not built into Kafka. They are implemented as separate topics.
 
 ## Metrics to monitor
 
-**Kafka metrics.** Consumer lag, producer throughput, consumer throughput, rebalance count, partition distribution, ISR shrink events.
+**Kafka metrics.** Consumer lag, producer throughput, consumer throughput, rebalance count, partition distribution, [[in-sync-replicas|ISR]] shrink events.
 
 **Application metrics.** P95 and P99 processing latency, event loop lag, database latency, API latency, CPU, memory, GC time.
 

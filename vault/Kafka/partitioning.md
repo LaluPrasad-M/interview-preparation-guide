@@ -75,7 +75,7 @@ Suppose that becomes `294021736`. Then:
 partition = 294021736 % 10
 ```
 
-So `order-123` always lands on P2. Ordering is preserved and related events are grouped, but there is hot partition risk.
+So `order-123` always lands on P2. Ordering is preserved and related events are grouped, but there is [[hot-key|hot partition]] risk.
 
 ### Custom partitioning
 
@@ -90,7 +90,7 @@ This is used for geo routing, tenant isolation and priority workloads.
 
 ## Choosing a good partition key
 
-**Good keys** are high cardinality identifiers: `userId`, `orderId`, `accountId`, `rideId`, `deviceId`.
+**Good keys** are high [[cardinality]] identifiers: `userId`, `orderId`, `accountId`, `rideId`, `deviceId`.
 
 **Bad keys** are low cardinality fields: `country`, `status`, `city`, `tenantType`. These create skew.
 

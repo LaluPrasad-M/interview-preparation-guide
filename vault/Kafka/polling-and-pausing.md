@@ -56,4 +56,4 @@ Yes, and that is exactly what we want.
 
 If message A is not ready to be processed yet, it is physically impossible for message B to be ready, because message B failed after message A. By pausing the entire `retry_1m` partition, we enforce a strict one minute delay pipeline.
 
-Meanwhile the main topic is completely unaffected and keeps processing fresh webhooks at 10,000 QPS.
+Meanwhile the main topic is completely unaffected and keeps processing fresh webhooks at 10,000 [[qps|QPS]].
