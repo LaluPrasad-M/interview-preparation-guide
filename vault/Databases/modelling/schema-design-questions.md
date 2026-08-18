@@ -36,7 +36,7 @@ Ask what exists independently in the business domain. Entities usually become ta
 
 ## 2. The relationships
 
-Relationships define foreign keys, join tables and cardinality.
+Relationships define foreign keys, join tables and [[cardinality]].
 
 **One to one**, for example user and profile, which is comparatively rare. **One to many**, for example user to orders, which is the most common. **Many to many**, for example orders and menu items, which needs a join table.
 
@@ -75,7 +75,7 @@ Ask which fields get updated constantly, and whether this data has a significant
 
 Examples: driver location, online status, `last_seen`, inventory count.
 
-**Why it matters.** Frequent updates create contention, locking, row bloat and write amplification.
+**Why it matters.** Frequent updates create contention, locking, row bloat and [[write-amplification|write amplification]].
 
 Say `users` holds name, email and `current_location`. If location updates every few seconds, the `users` table becomes hot. Eventually `user_locations` separates out.
 

@@ -17,7 +17,7 @@ Common patterns: second highest salary, top N per group, running total, deduplic
 
 ### 2. Indexing, the most important for SDE2
 
-Understand deeply: what a B-tree is, clustered against non clustered index, the composite index ordering rule, index selectivity, covering indexes, when an index is useless because of low cardinality, why too many indexes are bad, and index scan against index seek.
+Understand deeply: what a B-tree is, clustered against non clustered index, the composite index ordering rule, index selectivity, [[covering-index|covering indexes]], when an index is useless because of low [[cardinality]], why too many indexes are bad, and index scan against index seek.
 
 **Debug checklist when a query is slow.** Run `EXPLAIN ANALYZE`. Check for a full table scan. Check for wrong index usage. Check composite index order. Check for a missing index. Check the join strategy, nested loop against hash join.
 
@@ -41,7 +41,7 @@ Offset pagination against cursor pagination, keyset pagination, the N plus 1 que
 
 ### 6. Schema migrations
 
-Add a column without downtime. Backfill safely. Avoid a full table lock. Rolling migration. The blue green database deployment idea.
+Add a column without downtime. Backfill safely. Avoid a full table lock. Rolling migration. The [[blue-green-deployment|blue green]] database deployment idea.
 
 ---
 
@@ -53,7 +53,7 @@ Primary to replica setup, read replica usage, read after write consistency, repl
 
 ### 8. Sharding
 
-Horizontal against vertical partitioning, choosing a shard key, the hot shard problem, rebalancing shards.
+Horizontal against vertical partitioning, choosing a shard key, the [[hot-key|hot shard]] problem, rebalancing shards.
 
 ### 9. Distributed transactions
 

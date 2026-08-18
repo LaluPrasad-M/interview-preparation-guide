@@ -189,7 +189,7 @@ Use cases: conditional aggregation, categorisation, pivoting data.
 
 **The trap.** You write `WHERE YEAR(created_at) = 2026`.
 
-**The reality.** Applying a function to an indexed column in `WHERE` makes the query non sargable. The database must do a full table scan and compute the function on every row before filtering.
+**The reality.** Applying a function to an indexed column in `WHERE` makes the query non [[sargable]]. The database must do a full table scan and compute the function on every row before filtering.
 
 **The fix.** Use explicit boundaries so the database can do an index seek:
 

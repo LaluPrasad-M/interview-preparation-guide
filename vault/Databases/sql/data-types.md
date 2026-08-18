@@ -85,7 +85,7 @@ In `DECIMAL(10,2)`, the 10 is total digits and the 2 is digits after the decimal
 | `VARBINARY` | variable binary | tokens |
 | `BLOB` | binary large object | files and images |
 
-**Production reality.** Modern architectures avoid storing large files in the database. Store the file in object storage such as S3, a CDN or blob storage, and save the URL in the database.
+**Production reality.** Modern architectures avoid storing large files in the database. Store the file in object storage such as S3, a [[cdn|CDN]] or blob storage, and save the URL in the database.
 
 ---
 

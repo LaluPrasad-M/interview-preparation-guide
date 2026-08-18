@@ -18,7 +18,7 @@ Most business systems start with Postgres.
 | Technology | Choose when | Avoid when | Trade off |
 | --- | --- | --- | --- |
 | PostgreSQL | transactions, joins, consistency, financial systems, ERP, inventory | massive write scale, petabyte scale telemetry | excellent consistency and SQL ecosystem, harder horizontal scaling |
-| MySQL | traditional web applications, OLTP workloads | heavy analytics, complex reporting | simple and battle tested, but fewer advanced analytical features than PostgreSQL |
+| MySQL | traditional web applications, [[oltp-and-olap|OLTP]] workloads | heavy analytics, complex reporting | simple and battle tested, but fewer advanced analytical features than PostgreSQL |
 
 ---
 
@@ -156,7 +156,7 @@ See [[kafka-vs-rabbitmq]] for the full comparison.
 
 | Choose when | Avoid when |
 | --- | --- |
-| leader election | user data |
+| [[leader-election]] | user data |
 | cluster coordination | analytics |
 | configuration management | high volume writes |
 

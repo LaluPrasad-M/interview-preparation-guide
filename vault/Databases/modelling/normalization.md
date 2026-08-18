@@ -195,4 +195,4 @@ A frequent question: how do we track the history of changes to a payment record?
 
 **Level 2, database triggers.** The database saves the old row state to an audit table on `UPDATE` or `DELETE`. The flaw is that triggers are hidden logic and hard to debug.
 
-**Level 3, change data capture.** A tool like Debezium reads the write ahead log and streams every change as an event. The application does not know it is happening, and there is no performance impact on the main database. See [[change-data-capture]].
+**Level 3, change data capture.** A tool like Debezium reads the [[write-ahead-log|write ahead log]] and streams every change as an event. The application does not know it is happening, and there is no performance impact on the main database. See [[change-data-capture]].

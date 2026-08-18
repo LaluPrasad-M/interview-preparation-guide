@@ -97,7 +97,7 @@ No lost update, no corruption, no race condition. You did not write a mutex. The
 
 Readers see a snapshot. Writers do not block readers, and readers do not block writers. So `GET /cart` is fast, concurrent writes are safe, and there is no global locking.
 
-**Isolation levels under MVCC.**
+**Isolation levels under [[multi-version-concurrency-control|MVCC]].**
 
 | Level | Behaviour |
 | --- | --- |

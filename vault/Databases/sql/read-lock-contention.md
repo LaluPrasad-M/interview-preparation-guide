@@ -48,7 +48,7 @@ That creates MVCC bloat, storage growth, index bloat, vacuum lag, slower queries
 
 **The key insight.** The danger is often not the read itself, it is how long the read keeps the snapshot alive. Long running reads are dangerous, especially analytics queries, reporting jobs, exports and huge scans.
 
-That is why production systems separate OLTP databases from analytics databases.
+That is why production systems separate [[oltp-and-olap|OLTP]] databases from analytics databases.
 
 ---
 
