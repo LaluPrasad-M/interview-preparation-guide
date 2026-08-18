@@ -83,7 +83,7 @@ Verify it with `totalDocsExamined = 0`.
 
 ## TTL index
 
-A TTL index automatically deletes documents after `expireAfterSeconds`. It is useful for OTPs, sessions and temporary tokens.
+A [[ttl|TTL]] index automatically deletes documents after `expireAfterSeconds`. It is useful for OTPs, sessions and temporary tokens.
 
 ---
 
@@ -107,8 +107,8 @@ Push `$match` as early as possible, to reduce the dataset before `$lookup`, `$so
 
 ## Shard keys
 
-**A good shard key** has high cardinality, even distribution and no hotspots. Examples are `userId` and `tenantId`.
+**A good shard key** has high [[cardinality]], even distribution and no hotspots. Examples are `userId` and `tenantId`.
 
 **Avoid** a timestamp, because it is monotonic.
 
-**A bad shard key causes** hot shards, uneven traffic and poor scaling. See [[sharding]].
+**A bad shard key causes** [[hot-key|hot shards]], uneven traffic and poor scaling. See [[sharding]].

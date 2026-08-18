@@ -1,15 +1,15 @@
 # Caching Problems
 
 > [!tldr]
-> Twelve ways caching bites back. TTL is not a performance setting, it is a consistency policy.
+> Twelve ways caching bites back. [[ttl|TTL]] is not a performance setting, it is a consistency policy.
 
 ---
 
 ## 1. Cache stampede, the thundering herd
 
-A hot cache key expires and many requests hit the database simultaneously, because all of them try to rebuild the cache at the same time.
+A [[hot-key|hot cache key]] expires and many requests hit the database simultaneously, because all of them try to rebuild the cache at the same time.
 
-**Mitigations.** Request coalescing or single flight, where only one request fetches and the others wait for the result. Distributed locking with `SETNX`. Stale while revalidate. Randomised TTL, meaning jitter. Background refresh. Never expiring ultra hot keys. CDN offloading. Local in memory caching.
+**Mitigations.** Request coalescing or single flight, where only one request fetches and the others wait for the result. Distributed locking with `SETNX`. Stale while revalidate. Randomised TTL, meaning jitter. Background refresh. Never expiring ultra hot keys. [[cdn|CDN]] offloading. Local in memory caching.
 
 **The insight.** A stampede is a traffic amplification problem.
 
@@ -34,7 +34,7 @@ Requests repeatedly query data that does not exist, so invalid keys bypass the c
 
 **Negative caching.** Cache the `NULL` or `NOT_FOUND` result for a short TTL.
 
-**Bloom filters.** These run before the database lookup. A bloom filter answers either definitely not present, or maybe present. There are no false negatives, so it massively reduces useless database queries.
+**[[bloom-filter|Bloom filters]].** These run before the database lookup. A bloom filter answers either definitely not present, or maybe present. There are no false negatives, so it massively reduces useless database queries.
 
 ---
 
@@ -157,7 +157,7 @@ Senior engineers do not jump to conclusions.
 
 ### Step 2: the six root causes
 
-**High cardinality keys.** If every request uses a different key, for example `GET /users/{id}` with traffic spread evenly across millions of users, there is no reuse. Low locality means a low hit ratio.
+**High [[cardinality]] keys.** If every request uses a different key, for example `GET /users/{id}` with traffic spread evenly across millions of users, there is no reuse. Low locality means a low hit ratio.
 
 **TTL too small.** If the TTL is 5 seconds but the same key is requested every 30 seconds, the cache always expires before reuse. Check the TTL against the real request frequency per key.
 
@@ -167,11 +167,11 @@ Senior engineers do not jump to conclusions.
 
 **Poor access pattern.** Pagination where most users request each page once has almost no reuse.
 
-**Cold cache after deployment.** After a restart the cache is empty and initial misses are high.
+**[[cold-start|Cold cache after deployment]].** After a restart the cache is empty and initial misses are high.
 
 ### Step 3: the metrics to check
 
-Hit ratio, both global and per key. Evictions per minute. Memory usage percentage. Keyspace size. P95 and P99 latency. Database QPS. Top requested keys, for skew analysis.
+Hit ratio, both global and per key. Evictions per minute. Memory usage percentage. Keyspace size. P95 and P99 latency. Database [[qps|QPS]]. Top requested keys, for skew analysis.
 
 > [!tip] The scripted answer
 > A 20 percent hit ratio suggests either high cardinality, a low TTL, memory pressure, or incorrect cache placement. I would first check the eviction rate, memory usage and key access patterns. If the access pattern has low reuse, caching may not help at all. Otherwise, tuning the TTL and the cache size should improve it.

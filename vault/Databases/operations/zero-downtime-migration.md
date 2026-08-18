@@ -55,12 +55,12 @@ Contract
 | Large collection migration | `updateMany()` on everything | background migration workers | incremental migration |
 | Delete millions of rows | `DELETE` all at once | delete in chunks | chunked deletion |
 | Create an index | create during peak traffic | online or concurrent index creation | online indexing |
-| Move to a new database | big bang cutover | dual write plus gradual read migration | blue green data migration |
+| Move to a new database | big bang cutover | dual write plus gradual read migration | [[blue-green-deployment|blue green]] data migration |
 | SQL sharding | stop the app and move data | dual write, validate, gradual cutover | sharding migration |
 | Mongo sharding | enable sharding blindly | choose the shard key first | shard key design |
 | Schema redesign | immediate replacement | a read compatibility layer | backward compatibility |
 | Partitioning large tables | move all data at once | create partitions, migrate gradually | data partitioning |
-| Service migration | direct traffic switch | canary or blue green rollout | progressive rollout |
+| Service migration | direct traffic switch | [[canary-release|canary]] or blue green rollout | progressive rollout |
 | Database upgrade | stop the database, upgrade | upgrade a replica, fail over, upgrade the primary | rolling upgrade |
 
 ---
@@ -139,7 +139,7 @@ To archive, detach the partition. To delete, drop the partition. Both are fast, 
 
 **SQL.** `CREATE INDEX CONCURRENTLY` in Postgres avoids blocking writes. Read replicas scale reads, sharding scales writes.
 
-**Mongo.** Documents can exist in different formats and the application handles both, which is schema evolution. Choose the shard key carefully: bad keys are `timestamp`, `createdAt`, `country` and `status`, good ones are `hashed(userId)`, `hashed(orderId)` or a UUID, because they give even distribution and no hot shards.
+**Mongo.** Documents can exist in different formats and the application handles both, which is schema evolution. Choose the shard key carefully: bad keys are `timestamp`, `createdAt`, `country` and `status`, good ones are `hashed(userId)`, `hashed(orderId)` or a UUID, because they give even distribution and no [[hot-key|hot shards]].
 
 ---
 

@@ -71,7 +71,7 @@ Never jump to sharding first. If you do, the interviewer thinks you are shallow.
 
 1. Query optimisation
 2. Indexing
-3. Caching, Redis or CDN
+3. Caching, Redis or [[cdn|CDN]]
 4. Read replicas
 5. Partitioning
 6. Sharding

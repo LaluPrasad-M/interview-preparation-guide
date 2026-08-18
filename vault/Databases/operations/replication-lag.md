@@ -9,7 +9,7 @@
 
 This is the most common approach for user facing applications. If a user updates their own profile they immediately see the update, while other users might temporarily see the old version.
 
-**Time based routing.** When a user performs a write, set a timestamp in their session token or cookie. For a short window, for example 2 to 5 seconds which comfortably covers normal lag, route all reads for that user directly to the primary. After the TTL expires, route them back to the replicas.
+**Time based routing.** When a user performs a write, set a timestamp in their session token or cookie. For a short window, for example 2 to 5 seconds which comfortably covers normal lag, route all reads for that user directly to the primary. After the [[ttl|TTL]] expires, route them back to the replicas.
 
 **Version checking.** The database returns a logical sequence number (LSN) or GTID on a successful write. The client passes this ID on its next read. The load balancer checks whether the replica has caught up to that LSN, and if not, routes the read to the primary.
 

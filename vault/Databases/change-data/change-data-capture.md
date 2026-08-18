@@ -42,7 +42,7 @@ Instead of downstream systems asking for updates, the database instantly announc
 
 1. **The application makes a change.** A user updates their profile picture, and the backend sends a standard `UPDATE` to the primary database.
 
-2. **The database writes to its transaction log.** Before updating table data on disk, the database writes the change to an internal append only log, the write ahead log in Postgres or the binlog in MySQL. Databases already do this natively for crash recovery.
+2. **The database writes to its transaction log.** Before updating table data on disk, the database writes the change to an internal append only log, the [[write-ahead-log|write ahead log]] in Postgres or the binlog in MySQL. Databases already do this natively for crash recovery.
 
 3. **The CDC tool reads the log.** A tool such as Debezium tails the transaction log continuously. It never queries the tables directly, it just parses log entries like `Row 45 updated: previous_value='old_pic.jpg', new_value='new_pic.jpg'`.
 

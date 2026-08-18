@@ -7,7 +7,7 @@
 
 ## What it is
 
-A column oriented OLAP database designed for fast analytical queries on massive datasets.
+A column oriented [[oltp-and-olap|OLAP]] database designed for fast analytical queries on massive datasets.
 
 Where it sits: Postgres is the application database, Mongo the document database, Redis the cache, ClickHouse the analytics database.
 

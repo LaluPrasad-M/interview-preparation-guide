@@ -97,7 +97,7 @@ This is similar to foreign keys in SQL, but with no enforced joins and no automa
 
 MongoDB will not validate the reference, auto fetch related data, or prevent dangling references. That responsibility is yours.
 
-**Why MongoDB allows this.** It optimises for distributed systems, independent scaling of collections, and flexible schemas. Embedding everything would cause document bloat, increase write amplification, and make sharding painful. Referencing keeps documents small, stable and shard friendly.
+**Why MongoDB allows this.** It optimises for distributed systems, independent scaling of collections, and flexible schemas. Embedding everything would cause document bloat, increase [[write-amplification|write amplification]], and make sharding painful. Referencing keeps documents small, stable and shard friendly.
 
 ---
 

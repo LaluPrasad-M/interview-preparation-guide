@@ -93,7 +93,7 @@ A review does not update the restaurant's `avgRating` inline. A background worke
 Lunch and dinner produce predictable load spikes rather than random ones, so the mitigations are mostly about the read path, not the write path.
 
 - **Read replicas** for restaurant and menu reads, so browsing does not compete with order writes for the primary.
-- **CDN cache** for menu images, since they are large, static, and shared across every user looking at that restaurant.
+- **[[cdn|CDN]] cache** for menu images, since they are large, static, and shared across every user looking at that restaurant.
 - **Pre-computed nearby restaurants**, refreshed periodically, instead of running the `2dsphere` query on every request.
 - **Rate limiting** on order creation, to protect the write path when everyone orders at once.
 

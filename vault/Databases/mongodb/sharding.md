@@ -26,7 +26,7 @@ Sharding is splitting one large collection into smaller pieces and storing those
 
 ## Good shard key properties
 
-A good shard key has high cardinality, has an even distribution, appears in the query filter, and stays immutable.
+A good shard key has high [[cardinality]], has an even distribution, appears in the query filter, and stays immutable.
 
 **Avoid** low cardinality fields such as `status` or `isActive`, and monotonic values such as `createdAt` or `_id`.
 
@@ -45,7 +45,7 @@ This works because there are millions of users (high cardinality), hashing gives
 | `restaurants` | `{ location }` | geo queries |
 | `users` | `{ userId: hashed }` | even load |
 
-Avoid monotonic keys such as timestamps, and avoid `restaurantId` as the shard key for orders because of hot shard risk.
+Avoid monotonic keys such as timestamps, and avoid `restaurantId` as the shard key for orders because of [[hot-key|hot shard]] risk.
 
 ---
 

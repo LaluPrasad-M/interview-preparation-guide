@@ -51,7 +51,7 @@ processLargeDataset()
 
 `.cursor()` turns the query into a stream. MongoDB fetches results in batches, memory stays stable, and you process one document at a time.
 
-**When to use it.** Exporting large data, data migration, ETL jobs, bulk analytics, background batch jobs.
+**When to use it.** Exporting large data, data migration, [[etl|ETL]] jobs, bulk analytics, background batch jobs.
 
 ---
 

@@ -17,7 +17,7 @@ Avoid hitting the database for repeated reads.
 Service -> Redis -> DB (on cache miss)
 ```
 
-The buzzwords to mention: cache invalidation, TTL, hot keys, cache stampede. See [[caching-problems]].
+The buzzwords to mention: cache invalidation, [[ttl|TTL]], [[hot-key|hot keys]], cache stampede. See [[caching-problems]].
 
 ---
 
@@ -25,7 +25,7 @@ The buzzwords to mention: cache invalidation, TTL, hot keys, cache stampede. See
 
 Prevent race conditions across multiple service instances.
 
-**Use cases.** Preventing double order placement, ensuring a single cron or job execution, basic leader election.
+**Use cases.** Preventing double order placement, ensuring a single cron or job execution, basic [[leader-election]].
 
 **The primitive.** `SET key value NX PX`. Acquire the lock, run the critical section, release the lock.
 
@@ -141,7 +141,7 @@ async function getCachedValue(key, fetchFunction, ttl = 300) {
 
 ### The problem without a lock
 
-Four services receive a request at the same time and the cache is empty, either a cold start or an expired TTL.
+Four services receive a request at the same time and the cache is empty, either a [[cold-start|cold start]] or an expired TTL.
 
 ```text
 A: Cache miss -> calls the expensive upstream
@@ -171,7 +171,7 @@ Four expensive calls, all unnecessary, potentially overloading the upstream.
 | C | no | roughly 100 to 200 ms | cached data |
 | D | no | roughly 100 to 200 ms | cached data |
 
-Upstream calls reduced by 75 percent, the race condition prevented, the thundering herd avoided.
+Upstream calls reduced by 75 percent, the race condition prevented, the [[thundering-herd|thundering herd]] avoided.
 
 ### Scenario 2: service A crashes holding the lock
 
