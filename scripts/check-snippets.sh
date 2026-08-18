@@ -92,12 +92,12 @@ $line"; fi
 }
 
 # Current code lines, for the line-level fallback.
-git ls-files "$PREFIX" | grep '\.md$' | while read -r f; do
+git ls-files --cached --others --exclude-standard "$PREFIX" | grep '\.md$' | while read -r f; do
   blocks < "$ROOT/$f"
 done | grep -v '^$' | sort -u > "$NOWLINES"
 
 # Current block fingerprints, for the whole-block check.
-git ls-files "$PREFIX" | grep '\.md$' | while read -r f; do
+git ls-files --cached --others --exclude-standard "$PREFIX" | grep '\.md$' | while read -r f; do
   blocks < "$ROOT/$f"
 done | block_hashes | sort -u > "$NOWBLOCKS"
 
