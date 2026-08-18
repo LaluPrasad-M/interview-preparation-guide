@@ -1,10 +1,25 @@
 # Command Query Responsibility Segregation (CQRS)
 
 > [!tldr]
-> The write model and the read model are two different things, kept in sync asynchronously, instead of one schema trying to serve both well.
+> Stop making one data model serve both writing and reading. Keep a write model shaped for correctness, keep a separate read model shaped for the queries you actually run, and sync the second from the first in the background.
 
-Writes want normalisation and transactional correctness. Reads want denormalised, precomputed shapes that are fast to query. Once those pull in different directions hard enough, the system splits: writes go to the primary database, and a projection, kept current via Kafka or CDC, serves reads.
+A command changes data and a query reads it, and the two want opposite things. Writes want each fact stored once so nothing can contradict itself. Reads want the answer precomputed so no joining is needed at request time.
 
-The cost is real: projection lag, eventual consistency, and rebuilding a projection from scratch if it drifts. It is a fix for a specific scaling pain, not a default architecture.
+| | Write model | Read model |
+| --- | --- | --- |
+| Shape | normalised, one fact in one place | denormalised, one document per screen |
+| Optimised for | correct transactions | a single fast lookup |
+| Lives in | the primary database | a projection, often Elasticsearch, Redis or a wide table |
+| Consistency | immediate | eventually consistent, a moment behind |
+
+> [!example]- An order history page
+> The write side keeps `orders`, `order_items`, `products`, `users` and `addresses`, each normalised, because that is what makes a checkout transaction safe.
+> The read side keeps one document per order with the customer name, the item names and the delivery address already baked in, so the page is one lookup by `orderId` instead of a five table join.
+> A change on the write side flows across through Change Data Capture (CDC) or a Kafka topic, and the projection updates itself.
+
+> [!warning] You are choosing to serve stale data
+> The projection lags, usually by milliseconds and occasionally by minutes when it falls behind. A user who edits their address and immediately reloads may see the old one, so the read model needs a rebuild path and the product needs to tolerate the gap.
+
+This is a fix for one specific pain, which is a read pattern the write schema cannot serve without heavy joins at high volume. Reaching for it before that pain exists buys you two models to keep in sync and nothing else.
 
 **Shows up in:** [[query-optimization]], [[write-scaling]], [[geospatial-discovery]].

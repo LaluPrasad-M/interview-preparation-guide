@@ -1,10 +1,19 @@
 # Out of Memory Kill (OOM Kill)
 
 > [!tldr]
-> The kernel kills a process outright when it exceeds its memory limit, no exception to catch and no graceful shutdown.
+> The kernel terminates a process the instant it exceeds its memory limit. There is no exception to catch, no cleanup, and no graceful shutdown, because the process is not asked, it is killed.
 
-In Kubernetes this shows up as a pod status of `OOMKilled`, found with `kubectl describe pod`. It means the container tried to use more memory than its resource limit allowed, and the kernel terminated it instantly rather than letting it degrade.
+This is the kernel protecting the machine. Something has to give when memory runs out, so it picks a victim and removes it immediately.
 
-The fix is never a bigger try/catch. It is finding the leak, lowering per-request memory use, or raising the limit if the workload genuinely needs more.
+In Kubernetes it appears as a pod status of `OOMKilled` with exit code 137, visible from `kubectl describe pod`. It means the container tried to allocate more than its resource limit allowed. Repeated kills show up as a restart count climbing while the logs end mid sentence with nothing that looks like an error, which is the giveaway: a process that crashed would have said something.
+
+| Looks like | Actually is |
+| --- | --- |
+| the app crashed with no stack trace | the kernel killed it, so it never got to log |
+| a mystery restart loop | the limit is below what a normal request needs |
+| a slow leak, fine for hours then gone | memory grew past the limit and hit the wall |
+
+> [!warning] No `try/catch` will ever help here
+> There is no error thrown into your code to catch, so the fix is upstream: find what holds memory it should release, stop buffering whole files or whole result sets in memory, or raise the limit if the workload honestly needs more. Streaming a response instead of building it in memory removes a surprising share of these.
 
 **Shows up in:** [[kubernetes-basics]].

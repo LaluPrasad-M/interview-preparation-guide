@@ -1,10 +1,31 @@
 # Immediately Invoked Function Expression (IIFE)
 
 > [!tldr]
-> A function that is defined and run in the same statement, `(function () { ... })()`, so it never leaks a name into the surrounding scope.
+> A function that is written and called in the same breath, `(function () { ... })()`, so its variables live and die inside it and nothing new appears in the surrounding scope.
 
-Before ES modules existed, this was how you built a module: wrap everything in an IIFE, keep the internals private, and return only the pieces you want to expose. It is also how a counter or a mutex holds private state without a `private` keyword, since a closure inside the IIFE remembers its variables after the call returns.
+The wrapping parentheses are what make it an expression rather than a declaration, and the trailing `()` runs it on the spot. You never get a name to call again, which is the point.
 
-TypeScript's compiled `enum` still generates one under the hood, which is part of why it bloats bundle size compared to `as const`.
+> [!example]- Before modules existed, this was the module
+> ```js
+> const counter = (function () {
+>   let count = 0;                       // nobody outside can reach this
+>   return {
+>     increment: () => ++count,
+>     value: () => count,
+>   };
+> })();
+>
+> counter.increment();   // 1
+> counter.count;         // undefined, there is no way in
+> ```
+> The returned object keeps working after the function has finished, because the closure it was defined in still remembers `count`. That is private state without a `private` keyword, and it is how a counter, a cache or a mutex hid its internals before `import` and `export` arrived.
+
+| Problem | Old answer | Today |
+| --- | --- | --- |
+| Keep helpers out of the global scope | wrap the file in an IIFE | it is a module, top level is already private |
+| Expose only part of a file | return an object from the IIFE | `export` the parts you want |
+| Hold private state | a closure inside an IIFE | still this, or a `#private` class field |
+
+You still meet them in compiled output even if you no longer write them. TypeScript's `enum` compiles to an IIFE that builds a lookup object at runtime, which is part of why it adds bundle weight where a plain `as const` object would not.
 
 **Shows up in:** [[function-types]], [[closures]], [[compiler-internals]], [[puzzles-scheduling-async-await]].
