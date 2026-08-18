@@ -17,7 +17,8 @@
 > debounce 500ms                     -> 1 call, after the pause
 > throttle 500ms   ->      ->        -> 3 calls, spread across the burst
 > ```
-> A search box wants the debounce: you only care what the user finished typing. A scroll position indicator wants the throttle: you need updates while the scrolling is still happening, just not 60 times a second.
+>
+> A search box wants the debounce: you only care what the user finished typing. A scroll position indicator wants the throttle, usually around 200ms, because you need updates while the scrolling is still happening, just not 60 times a second.
 
 ```js
 function debounce(fn, delay) {
